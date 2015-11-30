@@ -1,0 +1,14 @@
+<lint>
+  <issue id="UnusedAttribute">
+    <ignore path="*/main/AndroidManifest.xml"/>
+  </issue>
+  <issue id="AllowBackup" severity="ignore">
+    <ignore path="debug/*/AndroidManifest.xml"/>
+  </issue>
+  <issue id="IconMissingDensityFolder" severity="ignore"/>
+  <issue severity="ignore" id="GoogleAppIndexingWarning"/>
+  <issue id="UnusedResources">
+    <!-- TODO Remove this ignore when the first preference is used as the build will no longer break -->
+    <ignore path="*/prefs_presentation_dump.xml"/>
+  </issue>
+</lint>

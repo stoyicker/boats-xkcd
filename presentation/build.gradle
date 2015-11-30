@@ -1,0 +1,103 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'com.fernandocejas.frodo'
+
+android {
+
+  //noinspection GroovyAssignabilityCheck
+  compileSdkVersion androidCompileSdkVersion
+  //noinspection GroovyAssignabilityCheck
+  buildToolsVersion androidBuildToolsVersion
+
+  defaultConfig {
+    //noinspection GroovyAssignabilityCheck
+    applicationId androidApplicationId
+    //noinspection GroovyAssignabilityCheck
+    versionCode androidVersionCode
+    //noinspection GroovyAssignabilityCheck
+    versionName androidVersionName
+    //noinspection GroovyAssignabilityCheck
+    minSdkVersion androidMinSdkVersion
+    //noinspection GroovyAssignabilityCheck
+    targetSdkVersion androidTargetSdkVersion
+
+    //noinspection GroovyAssignabilityCheck
+    testInstrumentationRunner androidTestInstrumentationRunner
+  }
+
+  compileOptions {
+    //noinspection GroovyAssignabilityCheck
+    sourceCompatibility javaVersion
+    targetCompatibility javaVersion
+  }
+
+  buildTypes {
+    debug {
+      minifyEnabled false
+      shrinkResources false
+    }
+  }
+
+  //Ignore release-variant-related problems for now
+  variantFilter { variant ->
+    if (variant.buildType.name.toLowerCase().contentEquals('release')) {
+      variant.setIgnore(true);
+    }
+  }
+
+  lintOptions {
+    abortOnError true
+    absolutePaths true
+    checkAllWarnings true
+    htmlOutput = new File("${staticAnalysisReportTarget}/presentation/lint.html")
+    quiet true
+    warningsAsErrors true
+  }
+}
+
+apply plugin: "com.getkeepsafe.dexcount"
+
+dexcount {
+  includeClasses = true
+  includeFieldCount = false
+  printAsTree = false
+  orderByMethodCount = true
+  verbose = false
+}
+
+apply plugin: 'com.flipboard.psync'
+
+psync {
+  className = "P"
+  includesPattern = "**/xml/prefs_presentation_*.xml"
+  packageName = rootProject.ext.androidApplicationId
+  generateRx = false
+}
+
+dependencies {
+  compile project(':domain')
+  compile project(':data')
+
+  final Collection<String> providedDependencies = providedPresentationDependencies.values()
+  final Collection<String> debugCompileDependencies = debugCompilePresentationDependencies.
+      values()
+
+  final Collection<String> compileDependencies = compilePresentationDependencies.values()
+  final Collection<String> aptDependencies = aptPresentationDependencies.values()
+  final Collection<String> androidTestCompileDependencies = androidTestCompilePresentationDependencies.
+      values()
+  for (final String dependency : providedDependencies) provided dependency
+  for (final String dependency : compileDependencies) compile dependency
+  for (final String dependency : aptDependencies) apt dependency
+  for (final String dependency : androidTestCompileDependencies) {
+    if (dependency.contains("support.test")) {
+      androidTestCompile(dependency) {
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'
+      }
+    } else {
+      androidTestCompile dependency
+    }
+  }
+  for (final String dependency : debugCompileDependencies) debugCompile dependency
+}

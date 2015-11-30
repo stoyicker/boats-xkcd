@@ -1,0 +1,24 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jorge.boats">
+
+  <application android:allowBackup="true"
+      android:fullBackupContent="true"
+      android:label="@string/app_name"
+      android:icon="@mipmap/ic_launcher"
+      android:banner="@drawable/banner"
+      android:isGame="true"
+      android:supportsRtl="true"
+      android:name=".CustomApplication">
+    <activity android:name=".view.activity.OpeningActivity"
+        android:label="@string/app_name"
+        android:launchMode="singleInstance"
+        android:clearTaskOnLaunch="true"
+        android:windowSoftInputMode="stateHidden">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+  </application>
+
+</manifest>

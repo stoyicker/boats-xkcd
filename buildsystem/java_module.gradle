@@ -1,0 +1,17 @@
+apply plugin: 'java'
+
+//noinspection GroovyUnusedAssignment
+sourceCompatibility = rootProject.ext.javaVersion
+//noinspection GroovyUnusedAssignment
+targetCompatibility = rootProject.ext.javaVersion
+
+configurations {
+  provided
+}
+
+//noinspection GroovyAssignabilityCheck
+sourceSets {
+  main {
+    compileClasspath += configurations.provided
+  }
+}

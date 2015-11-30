@@ -1,0 +1,78 @@
+import java.nio.file.Paths
+
+apply from: 'buildsystem/ci.gradle'
+apply from: 'buildsystem/dependencies.gradle'
+
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+    jcenter()
+  }
+
+  def androidPluginVersion = "1.5.0"
+  def frodoPluginVersion = "0.8.1"
+  def versionsPluginVersion = "0.11.3"
+  def dexcountPluginVersion = "0.3.0"
+  def androidAptPluginVersion = "1.8"
+  def pSyncPluginVersion = "1.1.5"
+
+  def classpathDependencies = [androidPlugin       : "com.android.tools.build:gradle:${androidPluginVersion}",
+                               frodoPlugin         : "com.fernandocejas.frodo:frodo-plugin:${frodoPluginVersion}",
+                               gradleVersionsPlugin: "com.github.ben-manes:gradle-versions-plugin:${versionsPluginVersion}",
+                               dexcountPlugin      : "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${dexcountPluginVersion}",
+                               androidAptPlugin    : "com.neenbedankt.gradle.plugins:android-apt:${androidAptPluginVersion}",
+                               pSync               : "gradle.plugin.com.flipboard:psync:${pSyncPluginVersion}"]
+
+  dependencies {
+    classpath classpathDependencies.androidPlugin
+    classpath classpathDependencies.frodoPlugin
+    classpath classpathDependencies.gradleVersionsPlugin
+    classpath classpathDependencies.dexcountPlugin
+    classpath classpathDependencies.androidAptPlugin
+    classpath classpathDependencies.pSync
+  }
+}
+
+apply plugin: "com.github.ben-manes.versions"
+
+//If this is modified, remember to update the script(s) accordingly
+def staticAnalysisReportFolderTarget = "staticAnalysisReport"
+
+allprojects {
+  ext {
+    //Application details
+    androidVersionCode = 1
+    androidVersionName = "0"
+    androidTestInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+
+    //Gradle wrapper version
+    gradleWrapperVersion = '2.9'
+
+    androidApplicationId = "com.jorge.boats"
+    javaVersion = JavaVersion.VERSION_1_7
+
+    staticAnalysisReportTarget = staticAnalysisReportFolderTarget
+  }
+}
+
+task wrapper(type: Wrapper) {
+  group "Build Setup"
+  description "Creates the gradle wrapper."
+
+  //noinspection GroovyAssignabilityCheck
+  gradleVersion rootProject.ext.gradleWrapperVersion
+}
+
+task clean(type: Delete, overwrite: true) {
+  group "Verification"
+  description "Deletes the build directories of the whole project and the static analysis result."
+
+  for (final Project x : rootProject.allprojects) {
+    delete x.buildDir
+    delete Paths.get(x.getProjectDir().absolutePath, staticAnalysisReportFolderTarget).
+        toAbsolutePath().
+        toString()
+  }
+}

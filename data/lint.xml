@@ -1,0 +1,6 @@
+<lint>
+  <issue id="AllowBackup" severity="ignore">
+    <ignore path="debug/*/AndroidManifest.xml"/>
+  </issue>
+  <issue severity="ignore" id="GoogleAppIndexingWarning"/>
+</lint>

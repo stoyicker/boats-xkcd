@@ -1,0 +1,45 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+
+  //noinspection GroovyAssignabilityCheck
+  compileSdkVersion androidCompileSdkVersion
+  //noinspection GroovyAssignabilityCheck
+  buildToolsVersion androidBuildToolsVersion
+
+  defaultConfig {
+    //noinspection GroovyAssignabilityCheck
+    versionCode androidVersionCode
+    //noinspection GroovyAssignabilityCheck
+    minSdkVersion androidMinSdkVersion
+    //noinspection GroovyAssignabilityCheck
+    targetSdkVersion androidTargetSdkVersion
+  }
+
+  compileOptions {
+    //noinspection GroovyAssignabilityCheck
+    sourceCompatibility javaVersion
+    targetCompatibility javaVersion
+  }
+
+  lintOptions {
+    abortOnError true
+    absolutePaths true
+    checkAllWarnings true
+    htmlOutput = new File("${staticAnalysisReportTarget}/data/lint.html")
+    quiet true
+    warningsAsErrors true
+  }
+}
+dependencies {
+  compile project(":domain")
+
+  final Collection<String> providedDependencies = providedDataDependencies.values()
+  final Collection<String> compileDependencies = compileDataDependencies.values()
+  final Collection<String> aptDependencies = aptDataDependencies.values()
+
+  for (final String dependency : providedDependencies) provided dependency
+  for (final String dependency : compileDependencies) compile dependency
+  for (final String dependency : aptDependencies) apt dependency
+}
