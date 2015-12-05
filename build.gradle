@@ -11,7 +11,7 @@ buildscript {
     jcenter()
   }
 
-  def androidPluginVersion = "1.5.0"
+  def androidPluginVersion = "2.0.0-alpha2"
   def frodoPluginVersion = "0.8.1"
   def versionsPluginVersion = "0.11.3"
   def dexcountPluginVersion = "0.3.0"

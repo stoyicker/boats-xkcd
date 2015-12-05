@@ -5,7 +5,6 @@
       android:fullBackupContent="true"
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
-      android:banner="@drawable/banner"
       android:isGame="true"
       android:supportsRtl="true"
       android:name=".CustomApplication">
