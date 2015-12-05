@@ -1,0 +1,21 @@
+apply plugin: 'de.undercouch.download'
+
+task downloadProguardFiles {
+  download {
+    src(
+        ["https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-butterknife-7.pro",
+         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-gson.pro",
+         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-project.pro",
+         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-rx-java.pro",
+         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-rxjava-promises.pro",
+         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-okhttp.pro",
+         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-okio.pro",
+         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-picasso.pro",
+         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-retrofit.pro"])
+    dest "proguard/proguardFileContainer"
+    overwrite true
+    onlyIfNewer true
+    compress false
+    acceptAnyCertificate false
+  }
+}

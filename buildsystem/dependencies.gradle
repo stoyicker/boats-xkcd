@@ -19,6 +19,9 @@ ext {
   rxAndroidVersion = "1.0.1"
   timberVersion = "4.1.0"
   dbFlowVersion = "2.2.1"
+  butterknifeVersion = "7.0.1"
+  retrofitVersion = "2.0.0-beta2"
+  picassoVersion = "2.5.2"
 
   //Testing
   espressoVersion = "2.2.1"
@@ -30,9 +33,10 @@ ext {
 
   debugCompilePresentationDependencies = [timber: "com.jakewharton.timber:timber:${timberVersion}"]
 
-  compilePresentationDependencies =
-      [dagger         : "com.google.dagger:dagger:${daggerVersion}",
-       rxAndroid      : "io.reactivex:rxandroid:${rxAndroidVersion}"]
+  compilePresentationDependencies = [dagger     : "com.google.dagger:dagger:${daggerVersion}",
+                                     rxAndroid  : "io.reactivex:rxandroid:${rxAndroidVersion}",
+                                     butterknife: "com.jakewharton:butterknife:${butterknifeVersion}",
+  picasso:"com.squareup.picasso:picasso:${picassoVersion}"]
 
   aptPresentationDependencies =
       [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}"]
@@ -49,9 +53,11 @@ ext {
       [supportAnnotations: "com.android.support:support-annotations:${supportAnnotationsVersion}",
        javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}"]
 
-  compileDataDependencies = [dagger    : "com.google.dagger:dagger:${daggerVersion}",
-                             dbFlowCore: "com.raizlabs.android:DBFlow-Core:${dbFlowVersion}",
-                             dbFlow    : "com.raizlabs.android:DBFlow:${dbFlowVersion}"]
+  compileDataDependencies = [dagger               : "com.google.dagger:dagger:${daggerVersion}",
+                             dbFlowCore           : "com.raizlabs.android:DBFlow-Core:${dbFlowVersion}",
+                             dbFlow               : "com.raizlabs.android:DBFlow:${dbFlowVersion}",
+                             retrofit             : "com.squareup.retrofit:retrofit:${retrofitVersion}",
+                             retrofitGSONConverter: "com.squareup.retrofit:converter-gson:${retrofitVersion}"]
 
   aptDataDependencies = [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
                          dbFlowCompiler: "com.raizlabs.android:DBFlow-Compiler:${dbFlowVersion}"]

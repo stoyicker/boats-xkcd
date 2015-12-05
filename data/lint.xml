@@ -1,6 +1,10 @@
 <lint>
-  <issue id="AllowBackup" severity="ignore">
+  <issue id="AllowBackup">
     <ignore path="debug/*/AndroidManifest.xml"/>
   </issue>
   <issue severity="ignore" id="GoogleAppIndexingWarning"/>
+  <issue id="InvalidPackage">
+    <ignore regexp="retrofit"/>
+    <ignore regexp="okio"/>
+  </issue>
 </lint>

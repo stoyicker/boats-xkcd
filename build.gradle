@@ -17,13 +17,15 @@ buildscript {
   def dexcountPluginVersion = "0.3.0"
   def androidAptPluginVersion = "1.8"
   def pSyncPluginVersion = "1.1.5"
+  def fileDownloadPluginVersion = "2.0.0"
 
   def classpathDependencies = [androidPlugin       : "com.android.tools.build:gradle:${androidPluginVersion}",
                                frodoPlugin         : "com.fernandocejas.frodo:frodo-plugin:${frodoPluginVersion}",
                                gradleVersionsPlugin: "com.github.ben-manes:gradle-versions-plugin:${versionsPluginVersion}",
                                dexcountPlugin      : "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${dexcountPluginVersion}",
                                androidAptPlugin    : "com.neenbedankt.gradle.plugins:android-apt:${androidAptPluginVersion}",
-                               pSync               : "gradle.plugin.com.flipboard:psync:${pSyncPluginVersion}"]
+                               pSync               : "gradle.plugin.com.flipboard:psync:${pSyncPluginVersion}",
+                               fileDownloadPlugin  : "de.undercouch:gradle-download-task:${fileDownloadPluginVersion}"]
 
   dependencies {
     classpath classpathDependencies.androidPlugin
@@ -32,6 +34,7 @@ buildscript {
     classpath classpathDependencies.dexcountPlugin
     classpath classpathDependencies.androidAptPlugin
     classpath classpathDependencies.pSync
+    classpath classpathDependencies.fileDownloadPlugin
   }
 }
 
@@ -67,7 +70,7 @@ task wrapper(type: Wrapper) {
 
 task clean(type: Delete, overwrite: true) {
   group "Verification"
-  description "Deletes the build directories of the whole project and the static analysis result."
+  description "Deletes the build directories of the whole project, the downloaded proguard files and the static analysis result."
 
   for (final Project x : rootProject.allprojects) {
     delete x.buildDir
@@ -75,4 +78,10 @@ task clean(type: Delete, overwrite: true) {
         toAbsolutePath().
         toString()
   }
+
+  Arrays.asList(Paths.get("presentation", "proguard", "proguardFileContainer").
+      toFile().
+      listFiles()).
+      stream().
+      each({ f -> delete f })
 }
