@@ -13,6 +13,7 @@ ext {
 
   //Dependencies
   supportAnnotationsVersion = "23.1.1"
+  supportAppcompatVersion = "23.1.1"
   javaxAnnotationVersion = "1.0"
   daggerVersion = "2.0.2"
   rxJavaVersion = "1.1.0"
@@ -33,10 +34,11 @@ ext {
 
   debugCompilePresentationDependencies = [timber: "com.jakewharton.timber:timber:${timberVersion}"]
 
-  compilePresentationDependencies = [dagger     : "com.google.dagger:dagger:${daggerVersion}",
-                                     rxAndroid  : "io.reactivex:rxandroid:${rxAndroidVersion}",
-                                     butterknife: "com.jakewharton:butterknife:${butterknifeVersion}",
-  picasso:"com.squareup.picasso:picasso:${picassoVersion}"]
+  compilePresentationDependencies = [dagger          : "com.google.dagger:dagger:${daggerVersion}",
+                                     rxAndroid       : "io.reactivex:rxandroid:${rxAndroidVersion}",
+                                     butterknife     : "com.jakewharton:butterknife:${butterknifeVersion}",
+                                     picasso         : "com.squareup.picasso:picasso:${picassoVersion}",
+                                     supportAppCompat: "com.android.support:appcompat-v7:${supportAppcompatVersion}"]
 
   aptPresentationDependencies =
       [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}"]

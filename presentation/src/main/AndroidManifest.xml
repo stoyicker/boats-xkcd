@@ -7,7 +7,8 @@
       android:icon="@mipmap/ic_launcher"
       android:isGame="true"
       android:supportsRtl="true"
-      android:name=".CustomApplication">
+      android:name=".CustomApplication"
+      android:theme="@style/AbstractAppTheme.Base">
     <activity android:name=".view.activity.OpeningActivity"
         android:label="@string/app_name"
         android:launchMode="singleInstance"
