@@ -8,6 +8,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.jorge.boats.R;
+import com.jorge.boats.helper.FontManager;
 
 public final class CustomTitleToolbar extends Toolbar {
 
@@ -18,9 +19,14 @@ public final class CustomTitleToolbar extends Toolbar {
   }
 
   @Override protected void onFinishInflate() {
-    super.onFinishInflate();
-
     initButterKnife();
+    completeTitleStyle();
+
+    super.onFinishInflate();
+  }
+
+  private void completeTitleStyle() {
+    mTitleView.setTypeface(FontManager.get(getContext(), FontManager.FONT_APP));
   }
 
   private void initButterKnife() {

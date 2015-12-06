@@ -14,7 +14,7 @@ import javax.inject.Singleton;
   @SuppressWarnings("MethodNameSameAsClassName") @Inject public void Navigator() {
   }
 
-  public void navigateToI(final @NavigationItem int item) {
+  public void navigateToItem(final @NavigationItem int item) {
     //TODO navigateToItem
   }
 }
