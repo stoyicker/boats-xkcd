@@ -1,9 +1,7 @@
 apply from: "../buildsystem/java_module.gradle"
 
 dependencies {
-  final Collection<String> providedDependencies = providedDomainDependencies.values()
   final Collection<String> compileDependencies = compileDomainDependencies.values()
 
-  for (final String dependency : providedDependencies) provided dependency
   for (final String dependency : compileDependencies) compile dependency
 }
