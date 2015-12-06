@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 import com.jorge.boats.R;
 import com.jorge.boats.view.widget.CustomTitleToolbar;
 
-class BaseVisualActivity extends BaseActivity {
+public class BaseVisualActivity extends BaseActivity {
 
   @Bind(android.R.id.content) View mRoot;
 

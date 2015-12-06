@@ -14,6 +14,7 @@ ext {
   //Dependencies
   supportAnnotationsVersion = "23.1.1"
   supportAppcompatVersion = "23.1.1"
+  javaxAnnotationVersion = "1.0"
   daggerVersion = "2.0.2"
   rxJavaVersion = "1.1.0"
   rxAndroidVersion = "1.0.1"
@@ -48,7 +49,8 @@ ext {
   compileDomainDependencies = [rxJava: "io.reactivex:rxjava:${rxJavaVersion}"]
 
   providedDataDependencies =
-      [supportAnnotations: "com.android.support:support-annotations:${supportAnnotationsVersion}"]
+      [supportAnnotations: "com.android.support:support-annotations:${supportAnnotationsVersion}",
+       javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}"]
 
   compileDataDependencies = [dagger               : "com.google.dagger:dagger:${daggerVersion}",
                              dbFlowCore           : "com.raizlabs.android:DBFlow-Core:${dbFlowVersion}",

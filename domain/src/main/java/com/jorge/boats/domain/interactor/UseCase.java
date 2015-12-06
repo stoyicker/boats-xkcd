@@ -38,14 +38,14 @@ public abstract class UseCase {
 
   protected abstract Observable<Object> buildUseCaseObservable();
 
-  public void execute(final Subscriber<Object> useCaseSubscriber) {
+  public void execute(final Subscriber useCaseSubscriber) {
     this.buildUseCaseObservable()
         .subscribeOn(Schedulers.from(mThreadExecutor))
         .observeOn(mPostExecutionThread.getScheduler())
         .subscribe(useCaseSubscriber);
   }
 
-  protected void unsubscribe() {
+  public void unsubscribe() {
     if (!mSubscription.isUnsubscribed()) {
       mSubscription.unsubscribe();
     }
