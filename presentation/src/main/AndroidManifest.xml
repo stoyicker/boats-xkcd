@@ -8,7 +8,7 @@
       android:isGame="true"
       android:supportsRtl="true"
       android:name=".CustomApplication"
-      android:theme="@style/AbstractAppTheme.Base">
+      android:theme="@style/App">
     <activity android:name=".view.activity.OpeningActivity"
         android:label="@string/app_name"
         android:launchMode="singleInstance"

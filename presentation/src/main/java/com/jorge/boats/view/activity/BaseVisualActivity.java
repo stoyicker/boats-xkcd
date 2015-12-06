@@ -8,17 +8,42 @@ import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import com.jorge.boats.R;
+import com.jorge.boats.view.widget.CustomTitleToolbar;
 
-class BaseWithBackgroundActivity extends BaseActivity {
+class BaseVisualActivity extends BaseActivity {
+
+  @Bind(android.R.id.content) View mRoot;
+
+  @Bind(R.id.toolbar) CustomTitleToolbar mToolbar;
 
   @Override public void setContentView(final int layoutResID) {
-    final Resources res;
     super.setContentView(layoutResID);
 
-    findViewById(android.R.id.content).setBackground(
-        new BackgroundBitmapDrawable(res = getResources(),
-            BitmapFactory.decodeResource(res, R.drawable.app_background)));
+    initButterKnife();
+
+    setupToolbar(mToolbar);
+    setupBackground(mRoot);
+  }
+
+  private void initButterKnife() {
+    ButterKnife.bind(this);
+  }
+
+  private void setupToolbar(final @NonNull Toolbar toolbar) {
+    setSupportActionBar(toolbar);
+  }
+
+  private void setupBackground(final @NonNull View root) {
+    final Resources res;
+
+    root.setBackground(new BackgroundBitmapDrawable(res = getResources(),
+        BitmapFactory.decodeResource(res, R.drawable.app_background)));
   }
 
   private static class BackgroundBitmapDrawable extends BitmapDrawable {
