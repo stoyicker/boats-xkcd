@@ -7,12 +7,9 @@ import com.jorge.boats.UIThread;
 import com.jorge.boats.data.executor.JobExecutor;
 import com.jorge.boats.domain.executor.PostExecutionThread;
 import com.jorge.boats.domain.executor.ThreadExecutor;
-import com.jorge.boats.domain.interactor.UseCase;
-import com.jorge.boats.io.task.TypefaceLoad;
 import com.jorge.boats.navigation.Navigator;
 import dagger.Module;
 import dagger.Provides;
-import javax.inject.Named;
 import javax.inject.Singleton;
 
 @Module public class ApplicationModule {
@@ -38,10 +35,5 @@ import javax.inject.Singleton;
   @Provides @Singleton PostExecutionThread providePostExecutionThread(
       final @NonNull UIThread uiThread) {
     return uiThread;
-  }
-
-  @Provides @Singleton @Named("typeface") UseCase provideTypefaceUseCase(
-      final @NonNull TypefaceLoad typefaceLoad) {
-    return typefaceLoad;
   }
 }

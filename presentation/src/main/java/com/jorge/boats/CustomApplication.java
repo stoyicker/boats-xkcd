@@ -18,8 +18,10 @@ public class CustomApplication extends Application {
   }
 
   private void initializeInjector() {
-    this.mApplicationComponent =
-        DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(this)).build();
+    this.mApplicationComponent = DaggerApplicationComponent
+        .builder()
+        .applicationModule(new ApplicationModule(this))
+        .build();
   }
 
   private void initializeSharedPreferences() {

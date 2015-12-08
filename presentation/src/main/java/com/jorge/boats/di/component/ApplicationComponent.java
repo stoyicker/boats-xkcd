@@ -8,7 +8,8 @@ import com.jorge.boats.view.activity.BaseActivity;
 import dagger.Component;
 import javax.inject.Singleton;
 
-@Singleton @Component(modules = ApplicationModule.class) public interface ApplicationComponent {
+@Singleton @Component(modules = ApplicationModule.class)
+public interface ApplicationComponent extends AbstractComponent {
   void inject(final BaseActivity baseActivity);
 
   Context context();
