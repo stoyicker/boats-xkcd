@@ -63,6 +63,7 @@ public class StripeActivity extends BaseVisualActivity
   private void initializeInjector() {
     this.mStripeComponent =
         DaggerStripeComponent.builder().stripeModule(new StripeModule(mStripeId)).build();
+    mStripeComponent.inject(this);
   }
 
   private void initializeStripePresenter() {

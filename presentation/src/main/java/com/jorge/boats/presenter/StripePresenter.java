@@ -2,13 +2,14 @@ package com.jorge.boats.presenter;
 
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.interactor.UseCase;
 import com.jorge.boats.view.LoadStripeView;
 import javax.inject.Inject;
 import javax.inject.Named;
 import rx.Subscriber;
 
-public class StripePresenter implements Presenter {
+@PerActivity public class StripePresenter implements Presenter {
 
   private final UseCase mTypefaceUseCase;
   private LoadStripeView mView;
