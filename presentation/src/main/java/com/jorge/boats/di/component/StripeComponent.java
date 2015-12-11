@@ -6,8 +6,9 @@ import com.jorge.boats.di.module.StripeModule;
 import com.jorge.boats.view.stripe.StripeActivity;
 import dagger.Component;
 
-@PerActivity @Component(modules = { StripeModule.class }) public interface StripeComponent
-    extends AbstractComponent {
+@PerActivity
+@Component(dependencies = { ApplicationComponent.class }, modules = { StripeModule.class })
+public interface StripeComponent extends ApplicationComponent {
 
   void inject(final @NonNull StripeActivity stripeActivity);
 }

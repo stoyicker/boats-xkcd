@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import com.jorge.boats.R;
 import com.jorge.boats.di.HasComponent;
+import com.jorge.boats.di.component.ApplicationComponent;
 import com.jorge.boats.di.component.DaggerStripeComponent;
 import com.jorge.boats.di.component.StripeComponent;
 import com.jorge.boats.di.module.StripeModule;
@@ -41,7 +42,17 @@ public class StripeActivity extends BaseVisualActivity
     setContentView(R.layout.activity_main);
 
     initializeActivity(savedInstanceState);
-    initializeInjector();
+  }
+
+  @Override protected ApplicationComponent createComponentAndInjectSelf() {
+    this.mStripeComponent =
+        DaggerStripeComponent
+            .builder()
+            .applicationComponent(getApplicationComponent())
+            .stripeModule(new StripeModule(mStripeId)).build();
+    mStripeComponent.inject(this);
+
+    return mStripeComponent;
   }
 
   @Override protected void onSaveInstanceState(final @Nullable Bundle outState) {
@@ -58,12 +69,6 @@ public class StripeActivity extends BaseVisualActivity
     } else {
       this.mStripeId = savedInstanceState.getString(INSTANCE_STATE_PARAM_STRING_ID, null);
     }
-  }
-
-  private void initializeInjector() {
-    this.mStripeComponent =
-        DaggerStripeComponent.builder().stripeModule(new StripeModule(mStripeId)).build();
-    mStripeComponent.inject(this);
   }
 
   private void initializeStripePresenter() {

@@ -13,10 +13,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    this.getApplicationComponent().inject(this);
+    createComponentAndInjectSelf();
   }
 
-  protected ApplicationComponent getApplicationComponent() {
+  protected abstract ApplicationComponent createComponentAndInjectSelf();
+
+  protected final ApplicationComponent getApplicationComponent() {
     return ((CustomApplication) getApplication()).getApplicationComponent();
   }
 }
