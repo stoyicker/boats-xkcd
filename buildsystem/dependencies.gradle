@@ -26,7 +26,6 @@ ext {
 
   //Testing
   espressoVersion = "2.2.1"
-  testingSupportLibVersion = "0.1"
 
   providedPresentationDependencies =
       [supportAnnotations: "com.android.support:support-annotations:${supportAnnotationsVersion}",
