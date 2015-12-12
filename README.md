@@ -1,3 +1,6 @@
+master [![Build Status](https://travis-ci.org/stoyicker/boats-xkcd.svg?branch=master)](https://travis-ci.org/stoyicker/boats-xkcd)
+======
+
 Project setup
 =============
 * Install Android Studio and SDK, tools, etc.
