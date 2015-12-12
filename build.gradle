@@ -18,14 +18,16 @@ buildscript {
   def androidAptPluginVersion = "1.8"
   def pSyncPluginVersion = "1.1.5"
   def fileDownloadPluginVersion = "2.0.0"
+  def jsonSchema2PojoPluginVersion = "0.4.16"
 
-  def classpathDependencies = [androidPlugin       : "com.android.tools.build:gradle:${androidPluginVersion}",
-                               frodoPlugin         : "com.fernandocejas.frodo:frodo-plugin:${frodoPluginVersion}",
-                               gradleVersionsPlugin: "com.github.ben-manes:gradle-versions-plugin:${versionsPluginVersion}",
-                               dexcountPlugin      : "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${dexcountPluginVersion}",
-                               androidAptPlugin    : "com.neenbedankt.gradle.plugins:android-apt:${androidAptPluginVersion}",
-                               pSync               : "gradle.plugin.com.flipboard:psync:${pSyncPluginVersion}",
-                               fileDownloadPlugin  : "de.undercouch:gradle-download-task:${fileDownloadPluginVersion}"]
+  def classpathDependencies = [androidPlugin        : "com.android.tools.build:gradle:${androidPluginVersion}",
+                               frodoPlugin          : "com.fernandocejas.frodo:frodo-plugin:${frodoPluginVersion}",
+                               gradleVersionsPlugin : "com.github.ben-manes:gradle-versions-plugin:${versionsPluginVersion}",
+                               dexcountPlugin       : "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${dexcountPluginVersion}",
+                               androidAptPlugin     : "com.neenbedankt.gradle.plugins:android-apt:${androidAptPluginVersion}",
+                               pSync                : "gradle.plugin.com.flipboard:psync:${pSyncPluginVersion}",
+                               fileDownloadPlugin   : "de.undercouch:gradle-download-task:${fileDownloadPluginVersion}",
+                               jsonSchema2PojoPlugin: "org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:${jsonSchema2PojoPluginVersion}"]
 
   dependencies {
     classpath classpathDependencies.androidPlugin
@@ -35,6 +37,7 @@ buildscript {
     classpath classpathDependencies.androidAptPlugin
     classpath classpathDependencies.pSync
     classpath classpathDependencies.fileDownloadPlugin
+    classpath classpathDependencies.jsonSchema2PojoPlugin
   }
 }
 

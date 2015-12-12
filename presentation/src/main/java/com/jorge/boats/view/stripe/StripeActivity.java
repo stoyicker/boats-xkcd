@@ -12,7 +12,7 @@ import com.jorge.boats.di.component.ApplicationComponent;
 import com.jorge.boats.di.component.DaggerStripeComponent;
 import com.jorge.boats.di.component.StripeComponent;
 import com.jorge.boats.di.module.StripeModule;
-import com.jorge.boats.model.StripeModel;
+import com.jorge.boats.domain.entity.StripeEntity;
 import com.jorge.boats.presenter.StripePresenter;
 import com.jorge.boats.view.activity.BaseVisualActivity;
 import javax.inject.Inject;
@@ -90,7 +90,7 @@ public class StripeActivity extends BaseVisualActivity
     this.mStripePresenter.destroy();
   }
 
-  @Override public void renderStripe(@NonNull StripeModel user) {
+  @Override public void renderStripe(@NonNull StripeEntity model) {
 
   }
 

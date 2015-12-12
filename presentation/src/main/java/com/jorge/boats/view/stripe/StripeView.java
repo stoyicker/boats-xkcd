@@ -6,10 +6,10 @@
 package com.jorge.boats.view.stripe;
 
 import android.support.annotation.NonNull;
-import com.jorge.boats.model.StripeModel;
+import com.jorge.boats.domain.entity.StripeEntity;
 import com.jorge.boats.view.LoadStripeView;
 
 interface StripeView extends LoadStripeView {
 
-  void renderStripe(final @NonNull StripeModel user);
+  void renderStripe(final @NonNull StripeEntity model);
 }

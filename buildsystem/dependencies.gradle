@@ -23,6 +23,7 @@ ext {
   butterknifeVersion = "7.0.1"
   retrofitVersion = "2.0.0-beta2"
   picassoVersion = "2.5.2"
+  commonsLang3Version = "3.4"
 
   //Testing
   espressoVersion = "2.2.1"
@@ -55,7 +56,8 @@ ext {
                              dbFlowCore           : "com.raizlabs.android:DBFlow-Core:${dbFlowVersion}",
                              dbFlow               : "com.raizlabs.android:DBFlow:${dbFlowVersion}",
                              retrofit             : "com.squareup.retrofit:retrofit:${retrofitVersion}",
-                             retrofitGSONConverter: "com.squareup.retrofit:converter-gson:${retrofitVersion}"]
+                             retrofitGSONConverter: "com.squareup.retrofit:converter-gson:${retrofitVersion}",
+                             commonsLang3         : "org.apache.commons:commons-lang3:${commonsLang3Version}"]
 
   aptDataDependencies = [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
                          dbFlowCompiler: "com.raizlabs.android:DBFlow-Compiler:${dbFlowVersion}"]

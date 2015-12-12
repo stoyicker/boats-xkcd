@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.interactor.UseCase;
-import com.jorge.boats.io.task.TypefaceLoad;
+import com.jorge.boats.io.task.TypefaceLoadTask;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Named;
@@ -20,7 +20,7 @@ import javax.inject.Named;
   }
 
   @Provides @PerActivity @Named("typeface") UseCase provideTypefaceUseCase(
-      final @NonNull TypefaceLoad typefaceLoad) {
+      final @NonNull TypefaceLoadTask typefaceLoad) {
     return typefaceLoad;
   }
 }
