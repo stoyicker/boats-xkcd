@@ -17,7 +17,7 @@ ext {
   javaxAnnotationVersion = "1.0"
   daggerVersion = "2.0.2"
   rxJavaVersion = "1.1.0"
-  rxAndroidVersion = "1.0.1"
+  rxAndroidVersion = "1.1.0"
   timberVersion = "4.1.0"
   dbFlowVersion = "2.2.1"
   butterknifeVersion = "7.0.1"
