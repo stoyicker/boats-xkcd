@@ -2,6 +2,7 @@ package com.jorge.boats.view.stripe;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -45,11 +46,10 @@ public class StripeActivity extends BaseVisualActivity
   }
 
   @Override protected ApplicationComponent createComponentAndInjectSelf() {
-    this.mStripeComponent =
-        DaggerStripeComponent
-            .builder()
-            .applicationComponent(getApplicationComponent())
-            .stripeModule(new StripeModule(mStripeId)).build();
+    this.mStripeComponent = DaggerStripeComponent.builder()
+        .applicationComponent(getApplicationComponent())
+        .stripeModule(new StripeModule(mStripeId))
+        .build();
     mStripeComponent.inject(this);
 
     return mStripeComponent;
@@ -72,8 +72,7 @@ public class StripeActivity extends BaseVisualActivity
   }
 
   private void initializeStripePresenter() {
-    mStripePresenter.initialize();
-    this.mStripePresenter.setView(this);
+    this.mStripePresenter.initializeView(this);
   }
 
   @Override public void onResume() {
@@ -113,6 +112,10 @@ public class StripeActivity extends BaseVisualActivity
 
   @Override public void showError(@LoadStripeError int errorCode) {
 
+  }
+
+  @Override public void setToolbarTitleTypeface(@NonNull Typeface typeface) {
+    super.setToolbarTitleTypeface(typeface);
   }
 
   @Override public Context getContext() {

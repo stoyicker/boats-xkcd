@@ -8,6 +8,7 @@ import com.jorge.boats.view.LoadStripeView;
 import javax.inject.Inject;
 import javax.inject.Named;
 import rx.Subscriber;
+import timber.log.Timber;
 
 @PerActivity public class StripePresenter implements Presenter {
 
@@ -18,11 +19,12 @@ import rx.Subscriber;
     mTypefaceUseCase = typefaceUseCase;
   }
 
-  public void setView(@NonNull LoadStripeView view) {
+  public void initializeView(@NonNull LoadStripeView view) {
     this.mView = view;
+    this.runSetupTasks();
   }
 
-  public void initialize() {
+  private void runSetupTasks() {
     this.loadTitleTypeface();
   }
 
@@ -42,18 +44,18 @@ import rx.Subscriber;
     mTypefaceUseCase.unsubscribe();
   }
 
-  private static final class TitleTypefaceSubscriber extends Subscriber<Typeface> {
+  private final class TitleTypefaceSubscriber extends Subscriber<Typeface> {
 
     @Override public void onCompleted() {
-      //TODO On completed for typeface load
+      //Do nothing
     }
 
     @Override public void onError(final @NonNull Throwable e) {
-      //TODO On error for typeface load
+      Timber.e(e, e.getClass().getName());
     }
 
     @Override public void onNext(final @NonNull Typeface typeface) {
-      //TODO On next for typeface load
+      mView.setToolbarTitleTypeface(typeface);
     }
   }
 }

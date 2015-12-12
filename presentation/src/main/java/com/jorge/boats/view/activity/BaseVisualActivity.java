@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
@@ -29,6 +30,10 @@ public abstract class BaseVisualActivity extends BaseActivity {
 
     setupToolbar(mToolbar);
     setupBackground(mRoot);
+  }
+
+  protected void setToolbarTitleTypeface(final @NonNull Typeface typeface) {
+    mToolbar.setTitleTypeface(typeface);
   }
 
   private void initButterKnife() {
