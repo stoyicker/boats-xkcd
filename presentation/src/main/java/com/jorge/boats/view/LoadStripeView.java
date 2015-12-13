@@ -6,9 +6,7 @@
 package com.jorge.boats.view;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.support.annotation.IntDef;
-import android.support.annotation.NonNull;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -29,8 +27,6 @@ public interface LoadStripeView {
   void hideRetry();
 
   void showError(final @LoadStripeError int errorCode);
-
-  void setToolbarTitleTypeface(final @NonNull Typeface typeface);
 
   Context getContext();
 }

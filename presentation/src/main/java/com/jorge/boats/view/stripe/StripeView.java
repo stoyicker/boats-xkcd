@@ -5,11 +5,14 @@
  */
 package com.jorge.boats.view.stripe;
 
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import com.jorge.boats.domain.entity.StripeEntity;
 import com.jorge.boats.view.LoadStripeView;
 
-interface StripeView extends LoadStripeView {
+public interface StripeView extends LoadStripeView {
+
+  void setTitleTypeface(@NonNull Typeface titleTypeface);
 
   void renderStripe(final @NonNull StripeEntity model);
 }

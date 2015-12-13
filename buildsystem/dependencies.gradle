@@ -27,6 +27,8 @@ ext {
 
   //Testing
   espressoVersion = "2.2.1"
+  mockitoCoreVersion = "1.9.5"
+  dexmakerVersion = "1.0"
 
   providedPresentationDependencies =
       [supportAnnotations: "com.android.support:support-annotations:${supportAnnotationsVersion}",
@@ -44,7 +46,9 @@ ext {
       [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}"]
 
   androidTestCompilePresentationDependencies =
-      [espresso: "com.android.support.test.espresso:espresso-core:${espressoVersion}"]
+      [dexmaker       : "com.google.dexmaker:dexmaker:${dexmakerVersion}",
+       dexmakerMockito: "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}",
+       espresso       : "com.android.support.test.espresso:espresso-core:${espressoVersion}"]
 
   compileDomainDependencies = [rxJava: "io.reactivex:rxjava:${rxJavaVersion}"]
 

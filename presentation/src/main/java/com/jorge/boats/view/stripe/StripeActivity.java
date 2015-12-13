@@ -6,8 +6,8 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.widget.TextView;
 import com.jorge.boats.R;
-import com.jorge.boats.di.HasComponent;
 import com.jorge.boats.di.component.ApplicationComponent;
 import com.jorge.boats.di.component.DaggerStripeComponent;
 import com.jorge.boats.di.component.StripeComponent;
@@ -17,8 +17,7 @@ import com.jorge.boats.presenter.StripePresenter;
 import com.jorge.boats.view.activity.BaseVisualActivity;
 import javax.inject.Inject;
 
-public class StripeActivity extends BaseVisualActivity
-    implements StripeView, HasComponent<StripeComponent> {
+public class StripeActivity extends BaseVisualActivity implements StripeView {
 
   private static final String INTENT_EXTRA_PARAM_STRING_ID =
       StripeActivity.class.getName() + ".INTENT_PARAM_USER_ID";
@@ -65,16 +64,16 @@ public class StripeActivity extends BaseVisualActivity
   private void initializeActivity(final @Nullable Bundle savedInstanceState) {
     if (savedInstanceState == null) {
       this.mStripeId =
-          getIntent().getLongExtra(INTENT_EXTRA_PARAM_STRING_ID, StripeModule.STRIPE_ID_CURRENT);
+          getIntent().getLongExtra(INTENT_EXTRA_PARAM_STRING_ID, StripePresenter.STRIPE_ID_CURRENT);
       initializeStripePresenter();
     } else {
       this.mStripeId = savedInstanceState.getLong(INSTANCE_STATE_PARAM_STRING_ID,
-          StripeModule.STRIPE_ID_CURRENT);
+          StripePresenter.STRIPE_ID_CURRENT);
     }
   }
 
   private void initializeStripePresenter() {
-    this.mStripePresenter.initializeView(this);
+    this.mStripePresenter.setView(this);
   }
 
   @Override public void onResume() {
@@ -94,6 +93,15 @@ public class StripeActivity extends BaseVisualActivity
 
   @Override public void renderStripe(@NonNull StripeEntity model) {
 
+  }
+
+  @Override
+  public void setTitleTypeface(@NonNull Typeface titleTypeface) {
+    super.getTitleView().setTypeface(titleTypeface);
+  }
+
+  @Override public TextView getTitleView() {
+    return super.getTitleView();
   }
 
   @Override public void showLoading() {
@@ -116,15 +124,7 @@ public class StripeActivity extends BaseVisualActivity
 
   }
 
-  @Override public void setToolbarTitleTypeface(@NonNull Typeface typeface) {
-    super.setToolbarTitleTypeface(typeface);
-  }
-
   @Override public Context getContext() {
     return getApplicationContext();
-  }
-
-  @Override public StripeComponent getComponent() {
-    return mStripeComponent;
   }
 }

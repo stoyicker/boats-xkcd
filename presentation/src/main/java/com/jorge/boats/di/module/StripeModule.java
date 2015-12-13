@@ -10,8 +10,6 @@ import javax.inject.Named;
 
 @Module public class StripeModule {
 
-  public static final long STRIPE_ID_CURRENT = -1;
-
   private final long mStripeId;
 
   public StripeModule(final long stripeId) {

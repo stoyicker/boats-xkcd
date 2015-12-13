@@ -1,7 +1,6 @@
 package com.jorge.boats.view.widget;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
@@ -24,8 +23,8 @@ public final class CustomTitleToolbar extends Toolbar {
     super.onFinishInflate();
   }
 
-  public void setTitleTypeface(final @NonNull Typeface typeface) {
-    mTitleView.setTypeface(typeface);
+  public TextView getTitleView() {
+    return mTitleView;
   }
 
   private void initButterKnife() {

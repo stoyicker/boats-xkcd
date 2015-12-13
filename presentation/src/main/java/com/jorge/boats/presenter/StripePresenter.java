@@ -4,7 +4,7 @@ import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.interactor.UseCase;
-import com.jorge.boats.view.LoadStripeView;
+import com.jorge.boats.view.stripe.StripeView;
 import javax.inject.Inject;
 import javax.inject.Named;
 import rx.Subscriber;
@@ -12,19 +12,26 @@ import timber.log.Timber;
 
 @PerActivity public class StripePresenter implements Presenter {
 
+  public static final long STRIPE_ID_CURRENT = -1;
+  private long mStripeId;
+
   private final UseCase mTypefaceUseCase;
-  private LoadStripeView mView;
+  private StripeView mView;
 
   @Inject public StripePresenter(final @NonNull @Named("typeface") UseCase typefaceUseCase) {
     mTypefaceUseCase = typefaceUseCase;
   }
 
-  public void initializeView(@NonNull LoadStripeView view) {
+  public void setView(@NonNull StripeView view) {
     this.mView = view;
-    this.runSetupTasks();
   }
 
-  private void runSetupTasks() {
+  void initialize(final long stripeId) {
+    if (stripeId < STRIPE_ID_CURRENT) {
+      throw new IllegalArgumentException(
+          "Illegal stripe id " + stripeId + ". Minimum is " + STRIPE_ID_CURRENT + ".");
+    }
+    mStripeId = stripeId;
     this.loadTitleTypeface();
   }
 
@@ -55,7 +62,7 @@ import timber.log.Timber;
     }
 
     @Override public void onNext(final @NonNull Typeface typeface) {
-      mView.setToolbarTitleTypeface(typeface);
+      mView.setTitleTypeface(typeface);
     }
   }
 }

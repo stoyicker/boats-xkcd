@@ -7,11 +7,11 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.jorge.boats.R;
@@ -32,10 +32,6 @@ public abstract class BaseVisualActivity extends BaseActivity {
     setupBackground(mRoot);
   }
 
-  protected void setToolbarTitleTypeface(final @NonNull Typeface typeface) {
-    mToolbar.setTitleTypeface(typeface);
-  }
-
   private void initButterKnife() {
     ButterKnife.bind(this);
   }
@@ -49,6 +45,10 @@ public abstract class BaseVisualActivity extends BaseActivity {
 
     root.setBackground(new BackgroundBitmapDrawable(res = getResources(),
         BitmapFactory.decodeResource(res, R.drawable.app_background)));
+  }
+
+  @NonNull public TextView getTitleView() {
+    return mToolbar.getTitleView();
   }
 
   private static class BackgroundBitmapDrawable extends BitmapDrawable {
