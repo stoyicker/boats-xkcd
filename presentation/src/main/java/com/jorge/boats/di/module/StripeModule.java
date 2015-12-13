@@ -1,7 +1,6 @@
 package com.jorge.boats.di.module;
 
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.interactor.UseCase;
 import com.jorge.boats.io.task.TypefaceLoadTask;
@@ -11,12 +10,12 @@ import javax.inject.Named;
 
 @Module public class StripeModule {
 
-  private static final String EMPTY_STRING = "";
+  public static final long STRIPE_ID_CURRENT = -1;
 
-  private final String mStripeId;
+  private final long mStripeId;
 
-  public StripeModule(final String stripeId) {
-    mStripeId = TextUtils.isEmpty(stripeId) ? EMPTY_STRING : stripeId;
+  public StripeModule(final long stripeId) {
+    mStripeId = stripeId;
   }
 
   @Provides @PerActivity @Named("typeface") UseCase provideTypefaceUseCase(

@@ -25,7 +25,7 @@ public class StripeActivity extends BaseVisualActivity
   private static final String INSTANCE_STATE_PARAM_STRING_ID =
       StripeActivity.class.getName() + ".STATE_PARAM_USER_ID";
 
-  private String mStripeId;
+  private long mStripeId;
   private StripeComponent mStripeComponent;
 
   @Inject StripePresenter mStripePresenter;
@@ -57,17 +57,19 @@ public class StripeActivity extends BaseVisualActivity
 
   @Override protected void onSaveInstanceState(final @Nullable Bundle outState) {
     if (outState != null) {
-      outState.putString(INSTANCE_STATE_PARAM_STRING_ID, this.mStripeId);
+      outState.putLong(INSTANCE_STATE_PARAM_STRING_ID, this.mStripeId);
     }
     super.onSaveInstanceState(outState);
   }
 
   private void initializeActivity(final @Nullable Bundle savedInstanceState) {
     if (savedInstanceState == null) {
-      this.mStripeId = getIntent().getStringExtra(INTENT_EXTRA_PARAM_STRING_ID);
+      this.mStripeId =
+          getIntent().getLongExtra(INTENT_EXTRA_PARAM_STRING_ID, StripeModule.STRIPE_ID_CURRENT);
       initializeStripePresenter();
     } else {
-      this.mStripeId = savedInstanceState.getString(INSTANCE_STATE_PARAM_STRING_ID, null);
+      this.mStripeId = savedInstanceState.getLong(INSTANCE_STATE_PARAM_STRING_ID,
+          StripeModule.STRIPE_ID_CURRENT);
     }
   }
 
