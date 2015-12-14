@@ -28,12 +28,14 @@ import static org.mockito.Mockito.verify;
 
 public class StripePresenterTest extends ActivityInstrumentationTestCase2<StripeActivity> {
 
-  private static long STRIPE_ID_CURRENT = StripePresenter.STRIPE_ID_CURRENT;
-  private static long STRIPE_ID_ARBITRARY = 123;
+  private static final long STRIPE_ID_INVALID = -1;
+  private static final long STRIPE_ID_CURRENT = StripePresenter.STRIPE_ID_CURRENT;
+  private static final long STRIPE_ID_ARBITRARY = 123;
 
   @Rule public final ExpectedException mExceptionExpectation = ExpectedException.none();
 
   private StripePresenter mSut;
+  private Context mTargetContext;
 
   //TODO Rethink how to setup mockups (requires a custom runner, which is not possible here)
   @Mock private StripeView mockView;
@@ -56,25 +58,29 @@ public class StripePresenterTest extends ActivityInstrumentationTestCase2<Stripe
     this.setActivityIntent(createTargetIntent());
     getActivity();
 
-    mTypefaceLoadTask =
-        new TypefaceLoadTask(getInstrumentation().getContext(), mJobExecutor, mUiThread);
+    mTargetContext = getInstrumentation().getTargetContext();
+    mTypefaceLoadTask = new TypefaceLoadTask(mTargetContext, mJobExecutor, mUiThread);
     mSut = new StripePresenter(mTypefaceLoadTask);
     mSut.setView(mockView);
   }
 
-  public void test_TitleTypefaceTaskCurrent() {
-    test_TitleTypefaceTask(STRIPE_ID_CURRENT);
+  public void test_InitializeIdCurrent() {
+    testInitialize(STRIPE_ID_CURRENT);
   }
 
-  public void test_TitleTypefaceTaskArbitrary() {
-    test_TitleTypefaceTask(STRIPE_ID_ARBITRARY);
+  public void test_InitializeIdValidArbitrary() {
+    testInitialize(STRIPE_ID_ARBITRARY);
   }
 
-  private void test_TitleTypefaceTask(final long stripeId) {
+  public void test_initializeIdInvalid() {
+    mExceptionExpectation.expect(IllegalArgumentException.class);
+    testInitialize(STRIPE_ID_INVALID);
+  }
+
+  private void testInitialize(final long stripeId) {
     @SuppressWarnings("unchecked") final TestSubscriber<Typeface> typefaceLoadTaskTestSubscriber =
         new TestSubscriber();
 
-    if (stripeId < STRIPE_ID_CURRENT) mExceptionExpectation.expect(IllegalArgumentException.class);
     mSut.initialize(stripeId);
 
     verify(mTypefaceLoadTask).execute(typefaceLoadTaskTestSubscriber);
@@ -89,7 +95,7 @@ public class StripePresenterTest extends ActivityInstrumentationTestCase2<Stripe
           final NoMatchingViewException noViewFoundException) {
         if (noViewFoundException != null) throw noViewFoundException;
 
-        final Context context = StripePresenterTest.this.getInstrumentation().getContext();
+        final Context context = StripePresenterTest.this.mTargetContext;
 
         assertEquals(
             Typeface.createFromAsset(context.getAssets(), context.getString(R.string.app_font)),
