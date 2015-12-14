@@ -1,15 +1,7 @@
 package com.jorge.boats.presenter;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
-import android.support.annotation.NonNull;
-import android.support.test.espresso.NoMatchingViewException;
-import android.support.test.espresso.ViewAssertion;
 import android.test.ActivityInstrumentationTestCase2;
-import android.view.View;
-import android.widget.TextView;
-import com.jorge.boats.R;
 import com.jorge.boats.UIThread;
 import com.jorge.boats.data.executor.JobExecutor;
 import com.jorge.boats.domain.executor.PostExecutionThread;
@@ -20,11 +12,6 @@ import com.jorge.boats.view.stripe.StripeView;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mock;
-import rx.observers.TestSubscriber;
-
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static org.mockito.Mockito.verify;
 
 public class StripePresenterTest extends ActivityInstrumentationTestCase2<StripeActivity> {
 
@@ -35,15 +22,12 @@ public class StripePresenterTest extends ActivityInstrumentationTestCase2<Stripe
   @Rule public final ExpectedException mExceptionExpectation = ExpectedException.none();
 
   private StripePresenter mSut;
-  private Context mTargetContext;
 
-  //TODO Rethink how to setup mockups (requires a custom runner, which is not possible here)
+  //TODO Rethink how to setup the view (mocking requires a custom runner, which is not possible here)
   @Mock private StripeView mockView;
 
   private final PostExecutionThread mUiThread = new UIThread();
   private final ThreadExecutor mJobExecutor = new JobExecutor();
-
-  private TypefaceLoadTask mTypefaceLoadTask;
 
   public StripePresenterTest() {
     super(StripeActivity.class);
@@ -58,9 +42,8 @@ public class StripePresenterTest extends ActivityInstrumentationTestCase2<Stripe
     this.setActivityIntent(createTargetIntent());
     getActivity();
 
-    mTargetContext = getInstrumentation().getTargetContext();
-    mTypefaceLoadTask = new TypefaceLoadTask(mTargetContext, mJobExecutor, mUiThread);
-    mSut = new StripePresenter(mTypefaceLoadTask);
+    mSut = new StripePresenter(
+        new TypefaceLoadTask(getInstrumentation().getTargetContext(), mJobExecutor, mUiThread));
     mSut.setView(mockView);
   }
 
@@ -78,29 +61,6 @@ public class StripePresenterTest extends ActivityInstrumentationTestCase2<Stripe
   }
 
   private void testInitialize(final long stripeId) {
-    @SuppressWarnings("unchecked") final TestSubscriber<Typeface> typefaceLoadTaskTestSubscriber =
-        new TestSubscriber();
-
     mSut.initialize(stripeId);
-
-    verify(mTypefaceLoadTask).execute(typefaceLoadTaskTestSubscriber);
-
-    typefaceLoadTaskTestSubscriber.awaitTerminalEvent();
-    typefaceLoadTaskTestSubscriber.assertNoErrors();
-    typefaceLoadTaskTestSubscriber.assertCompleted();
-
-    onView(withId(R.id.toolbar_title)).check(new ViewAssertion() {
-
-      @Override public void check(final @NonNull View titleView,
-          final NoMatchingViewException noViewFoundException) {
-        if (noViewFoundException != null) throw noViewFoundException;
-
-        final Context context = StripePresenterTest.this.mTargetContext;
-
-        assertEquals(
-            Typeface.createFromAsset(context.getAssets(), context.getString(R.string.app_font)),
-            ((TextView) titleView).getTypeface());
-      }
-    });
   }
 }
