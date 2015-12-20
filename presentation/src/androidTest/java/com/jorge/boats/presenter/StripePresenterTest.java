@@ -8,10 +8,8 @@ import com.jorge.boats.domain.executor.PostExecutionThread;
 import com.jorge.boats.domain.executor.ThreadExecutor;
 import com.jorge.boats.io.task.TypefaceLoadTask;
 import com.jorge.boats.view.stripe.StripeActivity;
-import com.jorge.boats.view.stripe.StripeView;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
-import org.mockito.Mock;
 
 public class StripePresenterTest extends ActivityInstrumentationTestCase2<StripeActivity> {
 
@@ -22,9 +20,6 @@ public class StripePresenterTest extends ActivityInstrumentationTestCase2<Stripe
   @Rule public final ExpectedException mExceptionExpectation = ExpectedException.none();
 
   private StripePresenter mSut;
-
-  //TODO Rethink how to setup the view (mocking requires a custom runner, which is not possible here)
-  @Mock private StripeView mockView;
 
   private final PostExecutionThread mUiThread = new UIThread();
   private final ThreadExecutor mJobExecutor = new JobExecutor();
@@ -40,11 +35,11 @@ public class StripePresenterTest extends ActivityInstrumentationTestCase2<Stripe
   @Override protected void setUp() throws Exception {
     super.setUp();
     this.setActivityIntent(createTargetIntent());
-    getActivity();
+    final StripeActivity stripeActivity = getActivity();
 
     mSut = new StripePresenter(
         new TypefaceLoadTask(getInstrumentation().getTargetContext(), mJobExecutor, mUiThread));
-    mSut.setView(mockView);
+    mSut.setView(stripeActivity);
   }
 
   public void test_InitializeIdCurrent() {
