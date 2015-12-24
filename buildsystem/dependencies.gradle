@@ -31,6 +31,8 @@ ext {
   mockitoCoreVersion = "1.9.5"
   dexmakerVersion = "1.2"
   testingSupportLibraryRunnerVersion = "0.4"
+  robolectricVersion = "3.0"
+  assertJVersion = "1.7.1"
 
   providedPresentationDependencies =
       [supportAnnotations  : "com.android.support:support-annotations:${supportAnnotationsVersion}",
@@ -77,4 +79,7 @@ ext {
 
   aptDataDependencies = [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
                          dbFlowCompiler: "com.raizlabs.android:DBFlow-Compiler:${dbFlowVersion}"]
+
+  testCompileDataDependencies = [robolectric: "org.robolectric:robolectric:${robolectricVersion}",
+                                 assertj    : "org.assertj:assertj-core:${assertJVersion}"]
 }
