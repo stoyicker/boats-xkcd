@@ -28,7 +28,7 @@ ext {
   //Testing
   espressoVersion = "2.2.1"
   mockitoCoreVersion = "1.9.5"
-  dexmakerVersion = "1.0"
+  dexmakerVersion = "1.2"
   testingSupportLibraryRunnerVersion = "0.4"
 
   providedPresentationDependencies =
