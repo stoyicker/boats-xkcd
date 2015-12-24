@@ -25,3 +25,4 @@ before_install:
 # Mark Gradle as executable ##END##
 script:
     - sh scripts/verifyDebug.sh
+    - sh scripts/unitTests.sh
