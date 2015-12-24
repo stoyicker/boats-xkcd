@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <integer name="client_timeout_connection_milliseconds">10000</integer>
+  <integer name="client_timeout_read_milliseconds">10000</integer>
+  <integer name="client_timeout_write_milliseconds">10000</integer>
+</resources>

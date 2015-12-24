@@ -33,6 +33,13 @@ android {
     quiet true
     warningsAsErrors true
   }
+
+  sourceSets {
+    main {
+      res.srcDirs = ['src/main/res/parameters',
+                     'src/main/res']
+    }
+  }
 }
 dependencies {
   compile project(":domain")
