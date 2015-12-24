@@ -1,4 +1,4 @@
-package com.jorge.boats.io.task;
+package com.jorge.boats.task;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

@@ -3,7 +3,7 @@ package com.jorge.boats.di.module;
 import android.support.annotation.NonNull;
 import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.interactor.UseCase;
-import com.jorge.boats.io.task.TypefaceLoadTask;
+import com.jorge.boats.task.TypefaceLoadTask;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Named;

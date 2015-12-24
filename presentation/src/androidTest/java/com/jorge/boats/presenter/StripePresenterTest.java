@@ -6,7 +6,7 @@ import com.jorge.boats.UIThread;
 import com.jorge.boats.data.executor.JobExecutor;
 import com.jorge.boats.domain.executor.PostExecutionThread;
 import com.jorge.boats.domain.executor.ThreadExecutor;
-import com.jorge.boats.io.task.TypefaceLoadTask;
+import com.jorge.boats.task.TypefaceLoadTask;
 import com.jorge.boats.view.stripe.StripeActivity;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
