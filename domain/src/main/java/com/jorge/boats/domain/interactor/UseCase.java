@@ -39,6 +39,7 @@ public abstract class UseCase {
   protected abstract Observable<Object> buildUseCaseObservable();
 
   public void execute(final Subscriber useCaseSubscriber) {
+    //noinspection unchecked
     this.buildUseCaseObservable()
         .subscribeOn(Schedulers.from(mThreadExecutor))
         .observeOn(mPostExecutionThread.getScheduler())
