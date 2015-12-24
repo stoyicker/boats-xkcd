@@ -15,10 +15,10 @@ import timber.log.Timber;
 
   private long mStripeId;
 
-  private final UseCase mTypefaceUseCase;
+  private final UseCase<Typeface> mTypefaceUseCase;
   private StripeView mView;
 
-  @Inject public StripePresenter(final @NonNull @Named("typeface") UseCase typefaceUseCase) {
+  @Inject public StripePresenter(final @NonNull @Named("typeface") UseCase<Typeface> typefaceUseCase) {
     mTypefaceUseCase = typefaceUseCase;
   }
 
