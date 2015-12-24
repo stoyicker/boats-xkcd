@@ -23,7 +23,7 @@ import rx.Subscription;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.Subscriptions;
 
-public abstract class UseCase {
+public abstract class UseCase<T> {
 
   private final ThreadExecutor mThreadExecutor;
   private final PostExecutionThread mPostExecutionThread;
@@ -36,10 +36,9 @@ public abstract class UseCase {
     this.mPostExecutionThread = postExecutionThread;
   }
 
-  protected abstract Observable<Object> buildUseCaseObservable();
+  protected abstract Observable<T> buildUseCaseObservable();
 
-  public void execute(final Subscriber useCaseSubscriber) {
-    //noinspection unchecked
+  public void execute(final Subscriber<T> useCaseSubscriber) {
     this.buildUseCaseObservable()
         .subscribeOn(Schedulers.from(mThreadExecutor))
         .observeOn(mPostExecutionThread.getScheduler())

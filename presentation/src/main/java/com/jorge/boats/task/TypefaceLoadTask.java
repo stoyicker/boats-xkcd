@@ -1,6 +1,7 @@
 package com.jorge.boats.task;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import com.fernandocejas.frodo.annotation.RxLogObservable;
 import com.jorge.boats.domain.executor.PostExecutionThread;
@@ -10,7 +11,7 @@ import com.jorge.boats.io.FontManager;
 import javax.inject.Inject;
 import rx.Observable;
 
-public class TypefaceLoadTask extends UseCase {
+public class TypefaceLoadTask extends UseCase<Typeface> {
 
   private final Context mContext;
 
@@ -22,7 +23,7 @@ public class TypefaceLoadTask extends UseCase {
   }
 
   //This would be better done using rx.Single but support from Frodo is still in the works and it also could clunk the architecture a bit
-  @RxLogObservable @Override protected Observable<Object> buildUseCaseObservable() {
-    return Observable.<Object>just(FontManager.get(mContext, FontManager.FONT_APP));
+  @RxLogObservable @Override protected Observable<Typeface> buildUseCaseObservable() {
+    return Observable.just(FontManager.get(mContext, FontManager.FONT_APP));
   }
 }

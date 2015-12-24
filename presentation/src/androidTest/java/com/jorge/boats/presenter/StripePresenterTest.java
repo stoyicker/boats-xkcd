@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
 import com.jorge.boats.UIThread;
 import com.jorge.boats.data.executor.JobExecutor;
+import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.executor.PostExecutionThread;
 import com.jorge.boats.domain.executor.ThreadExecutor;
 import com.jorge.boats.task.TypefaceLoadTask;
@@ -14,7 +15,7 @@ import org.junit.rules.ExpectedException;
 public class StripePresenterTest extends ActivityInstrumentationTestCase2<StripeActivity> {
 
   private static final long STRIPE_ID_INVALID = -1;
-  private static final long STRIPE_ID_CURRENT = StripePresenter.STRIPE_ID_CURRENT;
+  private static final long STRIPE_ID_CURRENT = DomainStripe.STRIPE_ID_CURRENT;
   private static final long STRIPE_ID_ARBITRARY = 123;
 
   @Rule public final ExpectedException mExceptionExpectation = ExpectedException.none();

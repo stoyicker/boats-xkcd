@@ -47,12 +47,15 @@ ext {
       [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}"]
 
   androidTestCompilePresentationDependencies =
-      [dexmaker       : "com.google.dexmaker:dexmaker:${dexmakerVersion}",
-       dexmakerMockito: "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}",
-       espresso       : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+      [dexmaker                   : "com.google.dexmaker:dexmaker:${dexmakerVersion}",
+       dexmakerMockito            : "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}",
+       espresso                   : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
        testingSupportLibraryRunner: "com.android.support.test:runner:${testingSupportLibraryRunnerVersion}"]
 
-  compileDomainDependencies = [rxJava: "io.reactivex:rxjava:${rxJavaVersion}"]
+  compileDomainDependencies = [rxJava         : "io.reactivex:rxjava:${rxJavaVersion}",
+                               javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+                               daggerCompiler : "com.google.dagger:dagger-compiler:${daggerVersion}",
+                               dagger         : "com.google.dagger:dagger:${daggerVersion}"]
 
   providedDataDependencies =
       [supportAnnotations: "com.android.support:support-annotations:${supportAnnotationsVersion}",

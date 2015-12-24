@@ -12,7 +12,7 @@ import com.jorge.boats.di.component.ApplicationComponent;
 import com.jorge.boats.di.component.DaggerStripeComponent;
 import com.jorge.boats.di.component.StripeComponent;
 import com.jorge.boats.di.module.StripeModule;
-import com.jorge.boats.domain.entity.StripeEntity;
+import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.presenter.StripePresenter;
 import com.jorge.boats.view.activity.BaseVisualActivity;
 import javax.inject.Inject;
@@ -64,11 +64,11 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
   private void initializeActivity(final @Nullable Bundle savedInstanceState) {
     if (savedInstanceState == null) {
       this.mStripeId =
-          getIntent().getLongExtra(INTENT_EXTRA_PARAM_STRING_ID, StripePresenter.STRIPE_ID_CURRENT);
+          getIntent().getLongExtra(INTENT_EXTRA_PARAM_STRING_ID, DomainStripe.STRIPE_ID_CURRENT);
       initializeStripePresenter();
     } else {
       this.mStripeId = savedInstanceState.getLong(INSTANCE_STATE_PARAM_STRING_ID,
-          StripePresenter.STRIPE_ID_CURRENT);
+          DomainStripe.STRIPE_ID_CURRENT);
     }
   }
 
@@ -91,7 +91,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
     this.mStripePresenter.destroy();
   }
 
-  @Override public void renderStripe(@NonNull StripeEntity model) {
+  @Override public void renderStripe(@NonNull DomainStripe model) {
 
   }
 

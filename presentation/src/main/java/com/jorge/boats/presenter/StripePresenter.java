@@ -3,6 +3,7 @@ package com.jorge.boats.presenter;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import com.jorge.boats.di.PerActivity;
+import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.interactor.UseCase;
 import com.jorge.boats.view.stripe.StripeView;
 import javax.inject.Inject;
@@ -12,7 +13,6 @@ import timber.log.Timber;
 
 @PerActivity public class StripePresenter implements Presenter {
 
-  public static final long STRIPE_ID_CURRENT = -1;
   private long mStripeId;
 
   private final UseCase mTypefaceUseCase;
@@ -27,9 +27,9 @@ import timber.log.Timber;
   }
 
   void initialize(final long stripeId) {
-    if (stripeId < STRIPE_ID_CURRENT) {
+    if (stripeId < DomainStripe.STRIPE_ID_CURRENT) {
       throw new IllegalArgumentException(
-          "Illegal stripe id " + stripeId + ". Minimum is " + STRIPE_ID_CURRENT + ".");
+          "Illegal stripe id " + stripeId + ". Minimum is " + DomainStripe.STRIPE_ID_CURRENT + ".");
     }
     mStripeId = stripeId;
     this.loadTitleTypeface();

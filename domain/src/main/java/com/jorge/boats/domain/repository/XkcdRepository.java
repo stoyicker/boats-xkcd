@@ -15,10 +15,12 @@
  */
 package com.jorge.boats.domain.repository;
 
-import com.jorge.boats.domain.entity.StripeEntity;
+import com.jorge.boats.domain.entity.DomainStripe;
 import rx.Observable;
 
 public interface XkcdRepository {
 
-  Observable<StripeEntity> stripe(final int id);
+  Observable<DomainStripe> currentStripe();
+
+  Observable<DomainStripe> stripeWithId(final long id);
 }
