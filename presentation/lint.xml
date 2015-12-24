@@ -6,6 +6,7 @@
     <ignore path="debug/*/AndroidManifest.xml"/>
   </issue>
   <issue id="IconMissingDensityFolder" severity="ignore"/>
+  <!-- TODO I want to detect urls in the xkcd domain -->
   <issue severity="ignore" id="GoogleAppIndexingWarning"/>
   <issue id="UnusedResources">
     <!-- TODO Remove this ignore when the first preference is used as the build will no longer break -->
