@@ -24,7 +24,7 @@ ext {
   retrofitVersion = "2.0.0-beta2"
   picassoVersion = "2.5.2"
   commonsLang3Version = "3.4"
-  jetbrainsAnnotationsVersion = "13.0"
+  jetbrainsAnnotationsVersion = "15.0"
 
   //Testing
   espressoVersion = "2.2.1"
