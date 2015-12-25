@@ -5,10 +5,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import com.jorge.boats.UIThread;
 import com.jorge.boats.data.executor.JobExecutor;
-import com.jorge.boats.data.net.XkcdStoreImpl;
 import com.jorge.boats.domain.executor.PostExecutionThread;
 import com.jorge.boats.domain.executor.ThreadExecutor;
-import com.jorge.boats.domain.repository.XkcdStore;
 import com.jorge.boats.navigation.Navigator;
 import dagger.Module;
 import dagger.Provides;
@@ -37,10 +35,5 @@ import javax.inject.Singleton;
   @Provides @Singleton PostExecutionThread providePostExecutionThread(
       final @NonNull UIThread uiThread) {
     return uiThread;
-  }
-
-  @Provides @Singleton XkcdStore provideXkcdRepository(
-      final @NonNull XkcdStoreImpl xkcdRepositoryImpl) {
-    return xkcdRepositoryImpl;
   }
 }
