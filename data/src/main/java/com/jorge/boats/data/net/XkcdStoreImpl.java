@@ -16,12 +16,18 @@ import rx.functions.Func1;
   private final XkcdClient mClient;
   private final DomainEntityMapper mEntityMapper;
 
-  @Inject public XkcdStoreImpl(final XkcdClient client,
-      final @NonNull DomainEntityMapper entityMapper) {
+  @Inject
+  public XkcdStoreImpl(final XkcdClient client, final @NonNull DomainEntityMapper entityMapper) {
     mClient = client;
     mEntityMapper = entityMapper;
   }
 
+  /**
+   * Unfortunately there is no reliable way to know the number of the current stripe without
+   * actually parsing it.
+   *
+   * @return {@link Observable<DomainStripe>}
+   */
   @Override public Observable<DomainStripe> currentStripe() {
     return mClient.getCurrentStripe().map(new Func1<DataStripe, DomainStripe>() {
       @Override public DomainStripe call(final DataStripe dataStripe) {
