@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Contract;
   }
 
   @Nullable @Contract(pure = true)
-  private DatabaseStripe queryForStripeWithNum(final long stripeNum) {
+  public DatabaseStripe queryForStripeWithNum(final long stripeNum) {
     return SQLite.select()
         .from(DatabaseStripe.class)
         .where(DatabaseStripe_Table.NUM.is(stripeNum))
