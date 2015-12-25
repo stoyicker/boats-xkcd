@@ -7,7 +7,6 @@ import com.jorge.boats.data.R;
 import com.jorge.boats.data.model.DataStripe;
 import com.squareup.okhttp.OkHttpClient;
 import java.util.concurrent.TimeUnit;
-import javax.inject.Inject;
 import javax.inject.Singleton;
 import retrofit.Retrofit;
 import rx.Observable;
@@ -16,7 +15,7 @@ import rx.Observable;
 
   private final XkcdService mService;
 
-  @Inject public XkcdClient(final @NonNull Context context) {
+  public XkcdClient(final @NonNull Context context) {
     mService = createRetrofit(context).create(XkcdService.class);
   }
 
@@ -24,8 +23,8 @@ import rx.Observable;
     return mService.getCurrentStripe();
   }
 
-  public Observable<DataStripe> getStripeWithId(final long stripeId) {
-    return mService.getStripeWithId(stripeId);
+  public Observable<DataStripe> getStripeWithId(final long stripeNum) {
+    return mService.getStripeWithNum(stripeNum);
   }
 
   private Retrofit createRetrofit(final @NonNull Context context) {

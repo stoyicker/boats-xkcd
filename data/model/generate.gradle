@@ -7,7 +7,7 @@ jsonSchema2Pojo {
   targetDirectory = file("${project.projectDir}/src/main/java")
   targetPackage = "com.jorge.boats.data.model"
   propertyWordDelimiters = [] as char[]
-  useLongIntegers = false
+  useLongIntegers = true
   useDoubleNumbers = false
   includeHashcodeAndEquals = true
   includeToString = true

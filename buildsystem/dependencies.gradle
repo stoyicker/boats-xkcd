@@ -1,6 +1,7 @@
 allprojects {
   repositories {
     jcenter()
+    maven { url "https://jitpack.io" }
   }
 }
 
@@ -19,7 +20,7 @@ ext {
   rxJavaVersion = "1.1.0"
   rxAndroidVersion = "1.1.0"
   timberVersion = "4.1.0"
-  dbFlowVersion = "2.2.1"
+  dbFlowVersion = "3.0.0-beta1"
   butterknifeVersion = "7.0.1"
   retrofitVersion = "2.0.0-beta2"
   picassoVersion = "2.5.2"
@@ -71,14 +72,14 @@ ext {
        jetbrainsAnnotations: "org.jetbrains:annotations:${jetbrainsAnnotationsVersion}"]
 
   compileDataDependencies = [dagger               : "com.google.dagger:dagger:${daggerVersion}",
-                             dbFlowCore           : "com.raizlabs.android:DBFlow-Core:${dbFlowVersion}",
-                             dbFlow               : "com.raizlabs.android:DBFlow:${dbFlowVersion}",
+                             dbFlowCore           : "com.github.Raizlabs.DBFlow:dbflow-core:${dbFlowVersion}",
+                             dbFlow               : "com.github.Raizlabs.DBFlow:dbflow:${dbFlowVersion}",
                              retrofit             : "com.squareup.retrofit:retrofit:${retrofitVersion}",
                              retrofitGSONConverter: "com.squareup.retrofit:converter-gson:${retrofitVersion}",
                              commonsLang3         : "org.apache.commons:commons-lang3:${commonsLang3Version}"]
 
   aptDataDependencies = [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
-                         dbFlowCompiler: "com.raizlabs.android:DBFlow-Compiler:${dbFlowVersion}"]
+                         dbFlowCompiler: "com.github.Raizlabs.DBFlow:dbflow-processor:${dbFlowVersion}"]
 
   testCompileDataDependencies = [robolectric: "org.robolectric:robolectric:${robolectricVersion}",
                                  assertj    : "org.assertj:assertj-core:${assertJVersion}"]

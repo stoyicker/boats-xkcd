@@ -16,7 +16,7 @@ public class DataStripe {
     private String month;
     @SerializedName("num")
     @Expose
-    private int num;
+    private long num;
     @SerializedName("link")
     @Expose
     private String link;
@@ -69,7 +69,7 @@ public class DataStripe {
      * @return
      *     The num
      */
-    public int getNum() {
+    public long getNum() {
         return num;
     }
 
@@ -78,7 +78,7 @@ public class DataStripe {
      * @param num
      *     The num
      */
-    public void setNum(int num) {
+    public void setNum(long num) {
         this.num = num;
     }
 
@@ -262,10 +262,10 @@ public class DataStripe {
             return true;
         } else {
             if ("num".equals(name)) {
-                if (value instanceof Integer) {
-                    setNum(((Integer) value));
+                if (value instanceof Long) {
+                    setNum(((Long) value));
                 } else {
-                    throw new IllegalArgumentException(("property \"num\" is of type \"int\", but got "+ value.getClass().toString()));
+                    throw new IllegalArgumentException(("property \"num\" is of type \"long\", but got "+ value.getClass().toString()));
                 }
                 return true;
             } else {

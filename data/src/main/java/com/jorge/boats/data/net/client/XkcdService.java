@@ -11,6 +11,6 @@ interface XkcdService {
 
   @GET(STRIPE_INFO_PATH) Observable<DataStripe> getCurrentStripe();
 
-  @GET("{stripeId}/" + STRIPE_INFO_PATH) Observable<DataStripe> getStripeWithId(
-      final @Path("stripeId") long stripeId);
+  @GET("{stripeNum}/" + STRIPE_INFO_PATH) Observable<DataStripe> getStripeWithNum(
+      final @Path("stripeNum") long stripeNum);
 }

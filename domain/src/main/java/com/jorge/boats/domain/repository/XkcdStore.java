@@ -18,9 +18,9 @@ package com.jorge.boats.domain.repository;
 import com.jorge.boats.domain.entity.DomainStripe;
 import rx.Observable;
 
-public interface XkcdRepository {
+public interface XkcdStore {
 
   Observable<DomainStripe> currentStripe();
 
-  Observable<DomainStripe> stripeWithId(final long id);
+  Observable<DomainStripe> stripeWithNum(final long stripeNum);
 }

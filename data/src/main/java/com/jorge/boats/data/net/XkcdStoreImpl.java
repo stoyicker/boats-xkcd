@@ -5,19 +5,19 @@ import com.jorge.boats.data.entity.DomainEntityMapper;
 import com.jorge.boats.data.model.DataStripe;
 import com.jorge.boats.data.net.client.XkcdClient;
 import com.jorge.boats.domain.entity.DomainStripe;
-import com.jorge.boats.domain.repository.XkcdRepository;
+import com.jorge.boats.domain.repository.XkcdStore;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import rx.Observable;
 import rx.functions.Func1;
 
-@Singleton public class XkcdRepositoryImpl implements XkcdRepository {
+@Singleton public class XkcdStoreImpl implements XkcdStore {
 
   private final XkcdClient mClient;
   private final DomainEntityMapper mEntityMapper;
 
-  @Inject public XkcdRepositoryImpl(final XkcdClient client, final @NonNull
-  DomainEntityMapper entityMapper) {
+  @Inject public XkcdStoreImpl(final XkcdClient client,
+      final @NonNull DomainEntityMapper entityMapper) {
     mClient = client;
     mEntityMapper = entityMapper;
   }
@@ -25,15 +25,15 @@ import rx.functions.Func1;
   @Override public Observable<DomainStripe> currentStripe() {
     return mClient.getCurrentStripe().map(new Func1<DataStripe, DomainStripe>() {
       @Override public DomainStripe call(final DataStripe dataStripe) {
-        return XkcdRepositoryImpl.this.mEntityMapper.transform(dataStripe);
+        return XkcdStoreImpl.this.mEntityMapper.transform(dataStripe);
       }
     });
   }
 
-  @Override public Observable<DomainStripe> stripeWithId(final long id) {
-    return mClient.getStripeWithId(id).map(new Func1<DataStripe, DomainStripe>() {
+  @Override public Observable<DomainStripe> stripeWithNum(final long stripeNum) {
+    return mClient.getStripeWithId(stripeNum).map(new Func1<DataStripe, DomainStripe>() {
       @Override public DomainStripe call(final DataStripe dataStripe) {
-        return XkcdRepositoryImpl.this.mEntityMapper.transform(dataStripe);
+        return XkcdStoreImpl.this.mEntityMapper.transform(dataStripe);
       }
     });
   }

@@ -5,11 +5,10 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class DomainStripe {
-  public static final long STRIPE_ID_CURRENT = -1;
-  protected final static Object NOT_FOUND_VALUE = new Object();
+  public static final long STRIPE_NUM_CURRENT = -1;
 
   private String month;
-  private int num;
+  private long num;
   private String link;
   private String year;
   private String news;
@@ -37,14 +36,14 @@ public class DomainStripe {
   /**
    * @return The num
    */
-  public int getNum() {
+  public long getNum() {
     return num;
   }
 
   /**
    * @param num The num
    */
-  public void setNum(int num) {
+  public void setNum(long num) {
     this.num = num;
   }
 

@@ -1,7 +1,6 @@
 package com.jorge.boats.view.stripe;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,18 +22,10 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
   private static final String INSTANCE_STATE_PARAM_STRING_ID =
       StripeActivity.class.getName() + ".STATE_PARAM_USER_ID";
 
-  private long mStripeId;
+  private long mStripeNum;
   private StripeComponent mStripeComponent;
 
   @Inject StripePresenter mStripePresenter;
-
-  public static Intent getCallingIntent(final @NonNull Context context,
-      final @Nullable String stripeId) {
-    final Intent callingIntent = new Intent(context, StripeActivity.class);
-    callingIntent.putExtra(INTENT_EXTRA_PARAM_STRING_ID, stripeId);
-
-    return callingIntent;
-  }
 
   @Override public void onCreate(final @Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -46,32 +37,32 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
   @Override protected void createComponentAndInjectSelf() {
     this.mStripeComponent = DaggerStripeComponent.builder()
         .applicationComponent(getApplicationComponent())
-        .stripeModule(new StripeModule(mStripeId))
+        .stripeModule(new StripeModule(mStripeNum))
         .build();
     mStripeComponent.inject(this);
   }
 
   @Override protected void onSaveInstanceState(final @Nullable Bundle outState) {
     if (outState != null) {
-      outState.putLong(INSTANCE_STATE_PARAM_STRING_ID, this.mStripeId);
+      outState.putLong(INSTANCE_STATE_PARAM_STRING_ID, this.mStripeNum);
     }
     super.onSaveInstanceState(outState);
   }
 
   private void initializeActivity(final @Nullable Bundle savedInstanceState) {
     if (savedInstanceState == null) {
-      this.mStripeId =
-          getIntent().getLongExtra(INTENT_EXTRA_PARAM_STRING_ID, DomainStripe.STRIPE_ID_CURRENT);
+      this.mStripeNum =
+          getIntent().getLongExtra(INTENT_EXTRA_PARAM_STRING_ID, DomainStripe.STRIPE_NUM_CURRENT);
       initializeStripePresenter();
     } else {
-      this.mStripeId = savedInstanceState.getLong(INSTANCE_STATE_PARAM_STRING_ID,
-          DomainStripe.STRIPE_ID_CURRENT);
+      this.mStripeNum = savedInstanceState.getLong(INSTANCE_STATE_PARAM_STRING_ID,
+          DomainStripe.STRIPE_NUM_CURRENT);
     }
   }
 
   private void initializeStripePresenter() {
     this.mStripePresenter.setView(this);
-    mStripePresenter.initialize(mStripeId);
+    mStripePresenter.initialize(mStripeNum);
   }
 
   @Override public void onResume() {

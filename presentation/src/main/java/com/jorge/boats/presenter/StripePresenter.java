@@ -14,7 +14,7 @@ import timber.log.Timber;
 
 @PerActivity public class StripePresenter implements Presenter {
 
-  private long mStripeId;
+  private long mStripeNum;
 
   private final UseCase<Typeface> mTypefaceUseCase;
   private StripeView mView;
@@ -28,12 +28,11 @@ import timber.log.Timber;
     this.mView = view;
   }
 
-  public void initialize(final long stripeId) {
-    if (stripeId < DomainStripe.STRIPE_ID_CURRENT) {
-      throw new IllegalArgumentException(
-          "Illegal stripe id " + stripeId + ". Minimum is " + DomainStripe.STRIPE_ID_CURRENT + ".");
+  public void initialize(final long stripeNum) {
+    if (stripeNum < DomainStripe.STRIPE_NUM_CURRENT) {
+      throw new IllegalArgumentException("Illegal stripe num " + stripeNum + ".");
     }
-    mStripeId = stripeId;
+    mStripeNum = stripeNum;
     this.loadTitleTypeface();
   }
 

@@ -15,7 +15,7 @@ import org.junit.rules.ExpectedException;
 public class StripePresenterTest extends ActivityInstrumentationTestCase2<StripeActivity> {
 
   private static final long STRIPE_ID_INVALID = -1;
-  private static final long STRIPE_ID_CURRENT = DomainStripe.STRIPE_ID_CURRENT;
+  private static final long STRIPE_ID_CURRENT = DomainStripe.STRIPE_NUM_CURRENT;
   private static final long STRIPE_ID_ARBITRARY = 123;
 
   @Rule public final ExpectedException mExceptionExpectation = ExpectedException.none();
@@ -56,7 +56,7 @@ public class StripePresenterTest extends ActivityInstrumentationTestCase2<Stripe
     testInitialize(STRIPE_ID_INVALID);
   }
 
-  private void testInitialize(final long stripeId) {
-    mSut.initialize(stripeId);
+  private void testInitialize(final long stripeNum) {
+    mSut.initialize(stripeNum);
   }
 }

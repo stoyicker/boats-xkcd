@@ -1,6 +1,7 @@
 package com.jorge.boats;
 
 import android.app.Application;
+import com.jorge.boats.data.DataInitializer;
 import com.jorge.boats.di.component.ApplicationComponent;
 import com.jorge.boats.di.component.DaggerApplicationComponent;
 import com.jorge.boats.di.module.ApplicationModule;
@@ -14,7 +15,7 @@ public class CustomApplication extends Application {
     super.onCreate();
     this.initializeInjector();
     this.initializeSharedPreferences();
-    this.initializeDatabase();
+    this.initializeData();
   }
 
   private void initializeInjector() {
@@ -26,8 +27,9 @@ public class CustomApplication extends Application {
     P.init(this);
   }
 
-  private void initializeDatabase() {
+  private void initializeData() {
     FlowManager.init(this);
+    DataInitializer.initialize(this);
   }
 
   public ApplicationComponent getApplicationComponent() {
