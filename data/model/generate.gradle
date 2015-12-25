@@ -1,24 +1,24 @@
-//apply plugin: 'jsonschema2pojo'
-//
-//jsonSchema2Pojo {
-//  generateBuilders = false
-//  usePrimitives = true
-//  source = files("model/input")
-//  targetDirectory = file("${project.buildDir}/generated/jsonSchema2Pojo")
-//  targetPackage = "com.jorge.boats.data.model"
-//  propertyWordDelimiters = [] as char[]
-//  useLongIntegers = false
-//  useDoubleNumbers = false
-//  includeHashcodeAndEquals = true
-//  includeToString = true
-//  annotationStyle = "gson"
-//  customAnnotator = "org.jsonschema2pojo.NoopAnnotator"
-//  includeJsr303Annotations = false
-//  sourceType = "json"
-//  removeOldOutput = true
-//  outputEncoding = "UTF-8"
-//  useJodaDates = false
-//  useCommonsLang3 = true
-//  initializeCollections = true
-//  parcelable = false
-//}
+apply plugin: 'jsonschema2pojo'
+
+jsonSchema2Pojo {
+  generateBuilders = false
+  usePrimitives = true
+  source = files("model/input")
+  targetDirectory = file("${project.projectDir}/src/main/java")
+  targetPackage = "com.jorge.boats.data.model"
+  propertyWordDelimiters = [] as char[]
+  useLongIntegers = false
+  useDoubleNumbers = false
+  includeHashcodeAndEquals = true
+  includeToString = true
+  annotationStyle = "gson"
+  customAnnotator = "org.jsonschema2pojo.NoopAnnotator"
+  includeJsr303Annotations = false
+  sourceType = "json"
+  removeOldOutput = false
+  outputEncoding = "UTF-8"
+  useJodaDates = false
+  useCommonsLang3 = true
+  initializeCollections = true
+  parcelable = false
+}
