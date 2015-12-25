@@ -7,10 +7,6 @@ Project setup
 * Import `settings.gradle` into Android Studio.
 * Optionally set up the hooks and code style.
 
-*Hook setup*
-
-`$ ./hooks/install_pre-push.sh`
-
 *Code style setup*
 
 https://github.com/square/java-code-styles
