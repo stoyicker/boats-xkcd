@@ -29,11 +29,11 @@ ext {
 
   //Testing
   espressoVersion = "2.2.1"
-  mockitoCoreVersion = "1.9.5"
   dexmakerVersion = "1.2"
-  testingSupportLibraryRunnerVersion = "0.4"
+  testingSupportLibraryRunnerVersion = "0.4.1"
   robolectricVersion = "3.0"
-  assertJVersion = "1.7.1"
+  jUnitVersion = "4.12"
+  assertJVersion = "3.2.0"
 
   providedPresentationDependencies =
       [supportAnnotations  : "com.android.support:support-annotations:${supportAnnotationsVersion}",
@@ -81,5 +81,6 @@ ext {
   aptDataDependencies = [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
                          dbFlowCompiler: "com.github.Raizlabs.DBFlow:dbflow-processor:${dbFlowVersion}"]
 
-  testCompileDataDependencies = [assertj: "org.assertj:assertj-core:${assertJVersion}"]
+  testCompileDataDependencies = [junit  : "junit:junit:${jUnitVersion}",
+                                 assertj: "org.assertj:assertj-core:${assertJVersion}"]
 }
