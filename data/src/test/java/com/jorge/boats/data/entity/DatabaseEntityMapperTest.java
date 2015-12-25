@@ -1,48 +1,22 @@
 package com.jorge.boats.data.entity;
 
-import com.jorge.boats.data.ApplicationTestCase;
 import com.jorge.boats.data.db.DatabaseStripe;
 import com.jorge.boats.data.model.DataStripe;
-import java.util.Random;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.jorge.boats.data.entity.ValueGenerator.Value;
+import static com.jorge.boats.data.entity.ValueGenerator.generateLong;
+import static com.jorge.boats.data.entity.ValueGenerator.generateString;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DatabaseEntityMapperTest extends ApplicationTestCase {
-
-  private enum Value {
-    NULL, REGULAR
-  }
+public class DatabaseEntityMapperTest {
 
   private DatabaseEntityMapper mSut;
 
   @Before public void setUp() {
     mSut = new DatabaseEntityMapper();
-  }
-
-  private static String generateString(final Value type) {
-    switch (type) {
-      case NULL:
-        return null;
-      case REGULAR:
-        return RandomStringUtils.random(1 + new Random().nextInt());
-      default:
-        throw new IllegalStateException("Unsupported value " + type.name());
-    }
-  }
-
-  private static int generateInt(final Value type) {
-    switch (type) {
-      case NULL:
-        return 0;
-      case REGULAR:
-        return 1 + new Random().nextInt();
-      default:
-        throw new IllegalStateException("Unsupported value " + type.name());
-    }
   }
 
   @Test public void testFromDataTransformNull() {
@@ -63,7 +37,7 @@ public class DatabaseEntityMapperTest extends ApplicationTestCase {
     source.setMonth(generateString(Value.NULL));
     source.setYear(generateString(Value.NULL));
     source.setNews(generateString(Value.NULL));
-    source.setNum(generateInt(Value.NULL));
+    source.setNum(generateLong(Value.NULL));
     source.setTitle(generateString(Value.NULL));
     source.setSafe_title(generateString(Value.NULL));
     source.setTranscript(generateString(Value.NULL));
@@ -81,7 +55,7 @@ public class DatabaseEntityMapperTest extends ApplicationTestCase {
     source.setMonth(generateString(Value.REGULAR));
     source.setYear(generateString(Value.REGULAR));
     source.setNews(generateString(Value.REGULAR));
-    source.setNum(generateInt(Value.REGULAR));
+    source.setNum(generateLong(Value.REGULAR));
     source.setTitle(generateString(Value.REGULAR));
     source.setSafe_title(generateString(Value.REGULAR));
     source.setTranscript(generateString(Value.REGULAR));
@@ -99,7 +73,7 @@ public class DatabaseEntityMapperTest extends ApplicationTestCase {
     source.setMonth(generateString(Value.NULL));
     source.setYear(generateString(Value.NULL));
     source.setNews(generateString(Value.NULL));
-    source.setNum(generateInt(Value.NULL));
+    source.setNum(generateLong(Value.NULL));
     source.setTitle(generateString(Value.NULL));
     source.setSafe_title(generateString(Value.NULL));
     source.setTranscript(generateString(Value.NULL));
@@ -117,7 +91,7 @@ public class DatabaseEntityMapperTest extends ApplicationTestCase {
     source.setMonth(generateString(Value.REGULAR));
     source.setYear(generateString(Value.REGULAR));
     source.setNews(generateString(Value.REGULAR));
-    source.setNum(generateInt(Value.REGULAR));
+    source.setNum(generateLong(Value.REGULAR));
     source.setTitle(generateString(Value.REGULAR));
     source.setSafe_title(generateString(Value.REGULAR));
     source.setTranscript(generateString(Value.REGULAR));

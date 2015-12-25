@@ -14,18 +14,18 @@ abstract class ValueGenerator {
       case NULL:
         return null;
       case REGULAR:
-        return RandomStringUtils.random(1 + new Random().nextInt());
+        return RandomStringUtils.random(1 + Math.abs(new Random().nextInt(100)));
       default:
         throw new IllegalStateException("Unsupported value " + type.name());
     }
   }
 
-  static int generateInt(final Value type) {
+  static long generateLong(final Value type) {
     switch (type) {
       case NULL:
         return 0;
       case REGULAR:
-        return 1 + new Random().nextInt();
+        return new Random().nextLong();
       default:
         throw new IllegalStateException("Unsupported value " + type.name());
     }

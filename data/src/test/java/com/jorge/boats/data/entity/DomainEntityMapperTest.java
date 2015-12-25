@@ -1,6 +1,5 @@
 package com.jorge.boats.data.entity;
 
-import com.jorge.boats.data.ApplicationTestCase;
 import com.jorge.boats.data.model.DataStripe;
 import com.jorge.boats.domain.entity.DomainStripe;
 import org.jetbrains.annotations.NotNull;
@@ -8,11 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.jorge.boats.data.entity.ValueGenerator.Value;
-import static com.jorge.boats.data.entity.ValueGenerator.generateInt;
+import static com.jorge.boats.data.entity.ValueGenerator.generateLong;
 import static com.jorge.boats.data.entity.ValueGenerator.generateString;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DomainEntityMapperTest extends ApplicationTestCase {
+public class DomainEntityMapperTest {
 
   private DomainEntityMapper mSut;
 
@@ -34,7 +33,7 @@ public class DomainEntityMapperTest extends ApplicationTestCase {
     source.setMonth(generateString(Value.NULL));
     source.setYear(generateString(Value.NULL));
     source.setNews(generateString(Value.NULL));
-    source.setNum(generateInt(Value.NULL));
+    source.setNum(generateLong(Value.NULL));
     source.setTitle(generateString(Value.NULL));
     source.setSafe_title(generateString(Value.NULL));
     source.setTranscript(generateString(Value.NULL));
@@ -52,7 +51,7 @@ public class DomainEntityMapperTest extends ApplicationTestCase {
     source.setMonth(generateString(Value.REGULAR));
     source.setYear(generateString(Value.REGULAR));
     source.setNews(generateString(Value.REGULAR));
-    source.setNum(generateInt(Value.REGULAR));
+    source.setNum(generateLong(Value.REGULAR));
     source.setTitle(generateString(Value.REGULAR));
     source.setSafe_title(generateString(Value.REGULAR));
     source.setTranscript(generateString(Value.REGULAR));

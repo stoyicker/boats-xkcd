@@ -5,3 +5,4 @@ local.properties
 *.iml
 gradle.properties
 staticAnalysisReport
+proguardFileContainer
