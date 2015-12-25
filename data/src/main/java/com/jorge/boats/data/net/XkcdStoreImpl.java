@@ -51,16 +51,17 @@ import rx.functions.Func1;
       @Override public void call(final @NonNull Subscriber<? super DatabaseStripe> subscriber) {
         subscriber.onStart();
 
-        subscriber.onNext(mDatabaseHandler.queryForStripeWithNum(stripeNum));
+        subscriber.onNext(XkcdStoreImpl.this.mDatabaseHandler.queryForStripeWithNum(stripeNum));
 
         subscriber.onCompleted();
       }
     }).map(new Func1<DatabaseStripe, DataStripe>() {
       @Override public DataStripe call(final DatabaseStripe databaseStripe) {
-        return mDatabaseEntityMapper.transform(databaseStripe);
+        return XkcdStoreImpl.this.mDatabaseEntityMapper.transform(databaseStripe);
       }
     }).switchIfEmpty(mClient.getStripeWithId(stripeNum)).map(new Func1<DataStripe, DomainStripe>() {
       @Override public DomainStripe call(final DataStripe dataStripe) {
+        XkcdStoreImpl.this.mDatabaseHandler.insertStripe(XkcdStoreImpl.this.mDatabaseEntityMapper.transform(dataStripe));
         return XkcdStoreImpl.this.mDomainEntityMapper.transform(dataStripe);
       }
     });
