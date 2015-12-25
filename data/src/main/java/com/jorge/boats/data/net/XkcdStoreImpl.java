@@ -5,7 +5,6 @@ import com.jorge.boats.data.db.DatabaseHandler;
 import com.jorge.boats.data.db.DatabaseStripe;
 import com.jorge.boats.data.entity.DatabaseEntityMapper;
 import com.jorge.boats.data.entity.DomainEntityMapper;
-import com.jorge.boats.data.model.DataStripe;
 import com.jorge.boats.data.net.client.XkcdClient;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.repository.XkcdStore;
@@ -13,7 +12,6 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import rx.Observable;
 import rx.Subscriber;
-import rx.functions.Func1;
 
 @Singleton public class XkcdStoreImpl implements XkcdStore {
 
@@ -39,31 +37,33 @@ import rx.functions.Func1;
    * @return {@link Observable<DomainStripe>}
    */
   @Override public Observable<DomainStripe> currentStripe() {
-    return mClient.getCurrentStripe().map(new Func1<DataStripe, DomainStripe>() {
-      @Override public DomainStripe call(final DataStripe dataStripe) {
-        return XkcdStoreImpl.this.mDomainEntityMapper.transform(dataStripe);
-      }
-    });
+    return mClient.getCurrentStripe().map(XkcdStoreImpl.this.mDomainEntityMapper::transform);
   }
 
   @Override public Observable<DomainStripe> stripeWithNum(final long stripeNum) {
     return Observable.create(new Observable.OnSubscribe<DatabaseStripe>() {
+
+      private long mStripeNum;
+
+      private Observable.OnSubscribe<DatabaseStripe> init(final long _stripeNum) {
+        mStripeNum = _stripeNum;
+        return this;
+      }
+
       @Override public void call(final @NonNull Subscriber<? super DatabaseStripe> subscriber) {
         subscriber.onStart();
 
-        subscriber.onNext(XkcdStoreImpl.this.mDatabaseHandler.queryForStripeWithNum(stripeNum));
+        subscriber.onNext(XkcdStoreImpl.this.mDatabaseHandler.queryForStripeWithNum(mStripeNum));
 
         subscriber.onCompleted();
       }
-    }).map(new Func1<DatabaseStripe, DataStripe>() {
-      @Override public DataStripe call(final DatabaseStripe databaseStripe) {
-        return XkcdStoreImpl.this.mDatabaseEntityMapper.transform(databaseStripe);
-      }
-    }).switchIfEmpty(mClient.getStripeWithId(stripeNum)).map(new Func1<DataStripe, DomainStripe>() {
-      @Override public DomainStripe call(final DataStripe dataStripe) {
-        XkcdStoreImpl.this.mDatabaseHandler.insertStripe(XkcdStoreImpl.this.mDatabaseEntityMapper.transform(dataStripe));
-        return XkcdStoreImpl.this.mDomainEntityMapper.transform(dataStripe);
-      }
-    });
+    }.init(stripeNum))
+        .map(XkcdStoreImpl.this.mDatabaseEntityMapper::transform)
+        .switchIfEmpty(mClient.getStripeWithId(stripeNum))
+        .map(dataStripe -> {
+          XkcdStoreImpl.this.mDatabaseHandler.insertStripe(
+              XkcdStoreImpl.this.mDatabaseEntityMapper.transform(dataStripe));
+          return XkcdStoreImpl.this.mDomainEntityMapper.transform(dataStripe);
+        });
   }
 }
