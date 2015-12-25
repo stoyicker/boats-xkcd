@@ -7,12 +7,12 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import org.jetbrains.annotations.Contract;
 
-@Singleton public class EntityMapper {
+@Singleton public class DomainEntityMapper {
 
   /**
    * Make explicit that this constructor can be used to inject the class.
    */
-  @Inject public EntityMapper() {
+  @Inject public DomainEntityMapper() {
   }
 
   @Contract("null -> null") public DomainStripe transform(final @Nullable DataStripe dataStripe) {

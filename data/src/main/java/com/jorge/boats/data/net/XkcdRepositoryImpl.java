@@ -1,7 +1,7 @@
 package com.jorge.boats.data.net;
 
 import android.support.annotation.NonNull;
-import com.jorge.boats.data.entity.EntityMapper;
+import com.jorge.boats.data.entity.DomainEntityMapper;
 import com.jorge.boats.data.model.DataStripe;
 import com.jorge.boats.data.net.client.XkcdClient;
 import com.jorge.boats.domain.entity.DomainStripe;
@@ -14,9 +14,10 @@ import rx.functions.Func1;
 @Singleton public class XkcdRepositoryImpl implements XkcdRepository {
 
   private final XkcdClient mClient;
-  private final EntityMapper mEntityMapper;
+  private final DomainEntityMapper mEntityMapper;
 
-  @Inject public XkcdRepositoryImpl(final XkcdClient client, final @NonNull EntityMapper entityMapper) {
+  @Inject public XkcdRepositoryImpl(final XkcdClient client, final @NonNull
+  DomainEntityMapper entityMapper) {
     mClient = client;
     mEntityMapper = entityMapper;
   }

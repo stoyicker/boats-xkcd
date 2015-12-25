@@ -1,0 +1,142 @@
+package com.jorge.boats.data.entity;
+
+import com.jorge.boats.data.ApplicationTestCase;
+import com.jorge.boats.data.db.DatabaseStripe;
+import com.jorge.boats.data.model.DataStripe;
+import java.util.Random;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.jetbrains.annotations.NotNull;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+public class DatabaseEntityMapperTest extends ApplicationTestCase {
+
+  private enum Value {
+    NULL, REGULAR
+  }
+
+  private DatabaseEntityMapper mSut;
+
+  @Before public void setUp() {
+    mSut = new DatabaseEntityMapper();
+  }
+
+  private static String generateString(final Value type) {
+    switch (type) {
+      case NULL:
+        return null;
+      case REGULAR:
+        return RandomStringUtils.random(1 + new Random().nextInt());
+      default:
+        throw new IllegalStateException("Unsupported value " + type.name());
+    }
+  }
+
+  private static int generateInt(final Value type) {
+    switch (type) {
+      case NULL:
+        return 0;
+      case REGULAR:
+        return 1 + new Random().nextInt();
+      default:
+        throw new IllegalStateException("Unsupported value " + type.name());
+    }
+  }
+
+  @Test public void testFromDataTransformNull() {
+    assertThat(mSut.transform((DataStripe) null)).isNull();
+  }
+
+  @Test public void testFromDatabaseTransformNull() {
+    assertThat(mSut.transform((DatabaseStripe) null)).isNull();
+  }
+
+  @Test public void testFromDataTransformAllFieldsNull() {
+    final DataStripe source = new DataStripe();
+
+    source.setAlt(generateString(Value.NULL));
+    source.setDay(generateString(Value.NULL));
+    source.setImg(generateString(Value.NULL));
+    source.setLink(generateString(Value.NULL));
+    source.setMonth(generateString(Value.NULL));
+    source.setYear(generateString(Value.NULL));
+    source.setNews(generateString(Value.NULL));
+    source.setNum(generateInt(Value.NULL));
+    source.setTitle(generateString(Value.NULL));
+    source.setSafe_title(generateString(Value.NULL));
+    source.setTranscript(generateString(Value.NULL));
+
+    assertEquivalent(source, mSut.transform(source));
+  }
+
+  @Test public void testFromDataTransformAllFieldsRegular() {
+    final DataStripe source = new DataStripe();
+
+    source.setAlt(generateString(Value.REGULAR));
+    source.setDay(generateString(Value.REGULAR));
+    source.setImg(generateString(Value.REGULAR));
+    source.setLink(generateString(Value.REGULAR));
+    source.setMonth(generateString(Value.REGULAR));
+    source.setYear(generateString(Value.REGULAR));
+    source.setNews(generateString(Value.REGULAR));
+    source.setNum(generateInt(Value.REGULAR));
+    source.setTitle(generateString(Value.REGULAR));
+    source.setSafe_title(generateString(Value.REGULAR));
+    source.setTranscript(generateString(Value.REGULAR));
+
+    assertEquivalent(source, mSut.transform(source));
+  }
+
+  @Test public void testFromDatabaseTransformAllFieldsNull() {
+    final DatabaseStripe source = new DatabaseStripe();
+
+    source.setAlt(generateString(Value.NULL));
+    source.setDay(generateString(Value.NULL));
+    source.setImg(generateString(Value.NULL));
+    source.setLink(generateString(Value.NULL));
+    source.setMonth(generateString(Value.NULL));
+    source.setYear(generateString(Value.NULL));
+    source.setNews(generateString(Value.NULL));
+    source.setNum(generateInt(Value.NULL));
+    source.setTitle(generateString(Value.NULL));
+    source.setSafe_title(generateString(Value.NULL));
+    source.setTranscript(generateString(Value.NULL));
+
+    assertEquivalent(mSut.transform(source), source);
+  }
+
+  @Test public void testFromDatabaseTransformAllFieldsRegular() {
+    final DatabaseStripe source = new DatabaseStripe();
+
+    source.setAlt(generateString(Value.REGULAR));
+    source.setDay(generateString(Value.REGULAR));
+    source.setImg(generateString(Value.REGULAR));
+    source.setLink(generateString(Value.REGULAR));
+    source.setMonth(generateString(Value.REGULAR));
+    source.setYear(generateString(Value.REGULAR));
+    source.setNews(generateString(Value.REGULAR));
+    source.setNum(generateInt(Value.REGULAR));
+    source.setTitle(generateString(Value.REGULAR));
+    source.setSafe_title(generateString(Value.REGULAR));
+    source.setTranscript(generateString(Value.REGULAR));
+
+    assertEquivalent(mSut.transform(source), source);
+  }
+
+  private void assertEquivalent(final @NotNull DataStripe dataStripe,
+      final @NotNull DatabaseStripe databaseStripe) {
+    assertThat(dataStripe.getAlt()).isEqualTo(databaseStripe.getAlt());
+    assertThat(dataStripe.getDay()).isEqualTo(databaseStripe.getDay());
+    assertThat(dataStripe.getImg()).isEqualTo(databaseStripe.getImg());
+    assertThat(dataStripe.getLink()).isEqualTo(databaseStripe.getLink());
+    assertThat(dataStripe.getMonth()).isEqualTo(databaseStripe.getMonth());
+    assertThat(dataStripe.getYear()).isEqualTo(databaseStripe.getYear());
+    assertThat(dataStripe.getNews()).isEqualTo(databaseStripe.getNews());
+    assertThat(dataStripe.getNum()).isEqualTo(databaseStripe.getNum());
+    assertThat(dataStripe.getTitle()).isEqualTo(databaseStripe.getTitle());
+    assertThat(dataStripe.getSafe_title()).isEqualTo(databaseStripe.getSafe_title());
+    assertThat(dataStripe.getTranscript()).isEqualTo(databaseStripe.getTranscript());
+  }
+}
