@@ -16,12 +16,11 @@ import rx.Observable;
 
   private final XkcdService mService;
 
-  @Inject
-  public XkcdClient(final @NonNull Context context) {
+  @Inject public XkcdClient(final @NonNull Context context) {
     mService = createRetrofit(context).create(XkcdService.class);
   }
 
-  public Observable<DataStripe> getCurrentStripe(){
+  public Observable<DataStripe> getCurrentStripe() {
     return mService.getCurrentStripe();
   }
 
@@ -34,7 +33,7 @@ import rx.Observable;
     final OkHttpClient client = new OkHttpClient();
     final Resources resources = context.getResources();
 
-    client.setConnectTimeout(resources.getInteger(R.integer.client_timeout_connect_milliseconds),
+    client.setConnectTimeout(resources.getInteger(R.integer.client_timeout_connection_milliseconds),
         TimeUnit.MILLISECONDS);
     client.setReadTimeout(resources.getInteger(R.integer.client_timeout_read_milliseconds),
         TimeUnit.MILLISECONDS);

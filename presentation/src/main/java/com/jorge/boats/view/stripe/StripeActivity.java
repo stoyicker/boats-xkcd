@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.TextView;
 import com.jorge.boats.R;
-import com.jorge.boats.di.component.ApplicationComponent;
 import com.jorge.boats.di.component.DaggerStripeComponent;
 import com.jorge.boats.di.component.StripeComponent;
 import com.jorge.boats.di.module.StripeModule;
@@ -44,14 +43,12 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
     initializeActivity(savedInstanceState);
   }
 
-  @Override protected ApplicationComponent createComponentAndInjectSelf() {
+  @Override protected void createComponentAndInjectSelf() {
     this.mStripeComponent = DaggerStripeComponent.builder()
         .applicationComponent(getApplicationComponent())
         .stripeModule(new StripeModule(mStripeId))
         .build();
     mStripeComponent.inject(this);
-
-    return mStripeComponent;
   }
 
   @Override protected void onSaveInstanceState(final @Nullable Bundle outState) {
@@ -74,6 +71,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
 
   private void initializeStripePresenter() {
     this.mStripePresenter.setView(this);
+    mStripePresenter.initialize(mStripeId);
   }
 
   @Override public void onResume() {
@@ -95,8 +93,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
 
   }
 
-  @Override
-  public void setTitleTypeface(@NonNull Typeface titleTypeface) {
+  @Override public void setTitleTypeface(@NonNull Typeface titleTypeface) {
     super.getTitleView().setTypeface(titleTypeface);
   }
 

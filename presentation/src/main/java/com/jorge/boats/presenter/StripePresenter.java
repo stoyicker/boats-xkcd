@@ -2,6 +2,7 @@ package com.jorge.boats.presenter;
 
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import com.fernandocejas.frodo.annotation.RxLogSubscriber;
 import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.interactor.UseCase;
@@ -18,7 +19,8 @@ import timber.log.Timber;
   private final UseCase<Typeface> mTypefaceUseCase;
   private StripeView mView;
 
-  @Inject public StripePresenter(final @NonNull @Named("typeface") UseCase<Typeface> typefaceUseCase) {
+  @Inject
+  public StripePresenter(final @NonNull @Named("typeface") UseCase<Typeface> typefaceUseCase) {
     mTypefaceUseCase = typefaceUseCase;
   }
 
@@ -26,7 +28,7 @@ import timber.log.Timber;
     this.mView = view;
   }
 
-  void initialize(final long stripeId) {
+  public void initialize(final long stripeId) {
     if (stripeId < DomainStripe.STRIPE_ID_CURRENT) {
       throw new IllegalArgumentException(
           "Illegal stripe id " + stripeId + ". Minimum is " + DomainStripe.STRIPE_ID_CURRENT + ".");
@@ -51,7 +53,7 @@ import timber.log.Timber;
     mTypefaceUseCase.unsubscribe();
   }
 
-  private final class TitleTypefaceSubscriber extends Subscriber<Typeface> {
+  @RxLogSubscriber private final class TitleTypefaceSubscriber extends Subscriber<Typeface> {
 
     @Override public void onCompleted() {
       //Do nothing

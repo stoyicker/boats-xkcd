@@ -39,8 +39,8 @@ import javax.inject.Singleton;
     return uiThread;
   }
 
-  @Provides @Singleton XkcdRepository provideXkcdRepository(final @NonNull
-  XkcdRepositoryImpl xkcdRepositoryImpl) {
+  @Provides @Singleton XkcdRepository provideXkcdRepository(
+      final @NonNull XkcdRepositoryImpl xkcdRepositoryImpl) {
     return xkcdRepositoryImpl;
   }
 }
