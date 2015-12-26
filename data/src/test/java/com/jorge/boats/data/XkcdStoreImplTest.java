@@ -9,7 +9,6 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 import java.lang.reflect.Field;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 import org.robolectric.RuntimeEnvironment;
 
 public class XkcdStoreImplTest extends ApplicationTestSuite {
@@ -38,18 +37,18 @@ public class XkcdStoreImplTest extends ApplicationTestSuite {
     field.setAccessible(wasAccessible);
   }
 
-  @Test public void testGetStripeCurrentSuccessful() {
-  }
-
-  @Test public void testGetStripeCurrentNoConnection() {
-  }
-
-  @Test public void testGetStripeWithValidIdSuccessful() {
-  }
-
-  @Test public void testGetStripeWithInvalidIdSuccessful() {
-  }
-
-  @Test public void testGetStripeWithIdNoConnection() {
-  }
+  //@Test public void testGetStripeCurrentSuccessful() {
+  //}
+  //
+  //@Test public void testGetStripeCurrentNoConnection() {
+  //}
+  //
+  //@Test public void testGetStripeWithValidIdSuccessful() {
+  //}
+  //
+  //@Test public void testGetStripeWithInvalidIdSuccessful() {
+  //}
+  //
+  //@Test public void testGetStripeWithIdNoConnection() {
+  //}
 }

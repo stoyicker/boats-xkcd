@@ -19,7 +19,6 @@ buildscript {
   def pSyncPluginVersion = "1.1.5"
   def fileDownloadPluginVersion = "2.1.0"
   def jsonSchema2PojoPluginVersion = "0.4.18"
-  def retrolambdaPluginVersion = "3.3.0-beta3"
 
   def classpathDependencies = [androidPlugin        : "com.android.tools.build:gradle:${androidPluginVersion}",
                                frodoPlugin          : "com.fernandocejas.frodo:frodo-plugin:${frodoPluginVersion}",
@@ -28,8 +27,7 @@ buildscript {
                                androidAptPlugin     : "com.neenbedankt.gradle.plugins:android-apt:${androidAptPluginVersion}",
                                pSync                : "gradle.plugin.com.flipboard:psync:${pSyncPluginVersion}",
                                fileDownloadPlugin   : "de.undercouch:gradle-download-task:${fileDownloadPluginVersion}",
-                               jsonSchema2PojoPlugin: "org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:${jsonSchema2PojoPluginVersion}",
-                               retrolambdaPlugin    : "me.tatarka:gradle-retrolambda:${retrolambdaPluginVersion}"]
+                               jsonSchema2PojoPlugin: "org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:${jsonSchema2PojoPluginVersion}"]
 
   dependencies {
     classpath classpathDependencies.androidPlugin
@@ -40,7 +38,6 @@ buildscript {
     classpath classpathDependencies.pSync
     classpath classpathDependencies.fileDownloadPlugin
     classpath classpathDependencies.jsonSchema2PojoPlugin
-    classpath classpathDependencies.retrolambdaPlugin
   }
 }
 
@@ -60,7 +57,7 @@ allprojects {
     gradleWrapperVersion = '2.10'
 
     androidApplicationId = "com.jorge.boats"
-    javaVersion = JavaVersion.VERSION_1_8
+    javaVersion = JavaVersion.VERSION_1_7
 
     staticAnalysisReportTarget = staticAnalysisReportFolderTarget
   }

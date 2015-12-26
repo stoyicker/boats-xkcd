@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 
 apply plugin: 'com.neenbedankt.android-apt'
 
-apply from: "../buildsystem/retrolambda.gradle"
 apply from: "model/generate.gradle"
 
 android {

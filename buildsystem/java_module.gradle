@@ -4,5 +4,3 @@ apply plugin: 'java'
 sourceCompatibility = rootProject.ext.javaVersion
 //noinspection GroovyUnusedAssignment
 targetCompatibility = rootProject.ext.javaVersion
-
-apply from: "../buildsystem/retrolambda.gradle"
