@@ -1,4 +1,4 @@
-package com.jorge.boats.data.net;
+package com.jorge.boats.data;
 
 import android.support.annotation.NonNull;
 import com.jorge.boats.data.db.DatabaseHandler;

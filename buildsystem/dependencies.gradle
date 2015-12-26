@@ -81,6 +81,7 @@ ext {
   aptDataDependencies = [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
                          dbFlowCompiler: "com.github.Raizlabs.DBFlow:dbflow-processor:${dbFlowVersion}"]
 
-  testCompileDataDependencies = [junit  : "junit:junit:${jUnitVersion}",
-                                 assertj: "org.assertj:assertj-core:${assertJVersion}"]
+  testCompileDataDependencies = [junit      : "junit:junit:${jUnitVersion}",
+                                 assertj    : "org.assertj:assertj-core:${assertJVersion}",
+                                 robolectric: "org.robolectric:robolectric:${robolectricVersion}",]
 }
