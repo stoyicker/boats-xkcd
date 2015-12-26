@@ -9,7 +9,10 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 import java.lang.reflect.Field;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.robolectric.RuntimeEnvironment;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class XkcdStoreImplTest extends ApplicationTestSuite {
 
@@ -37,8 +40,9 @@ public class XkcdStoreImplTest extends ApplicationTestSuite {
     field.setAccessible(wasAccessible);
   }
 
-  //@Test public void testGetStripeCurrentSuccessful() {
-  //}
+  @Test public void testGetStripeCurrentSuccessful() {
+    assertThat(true).isTrue();
+  }
   //
   //@Test public void testGetStripeCurrentNoConnection() {
   //}
