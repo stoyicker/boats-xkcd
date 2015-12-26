@@ -19,7 +19,7 @@ buildscript {
   def pSyncPluginVersion = "1.1.5"
   def fileDownloadPluginVersion = "2.1.0"
   def jsonSchema2PojoPluginVersion = "0.4.18"
-  def retrolambdaPluginVersion = "3.2.4"
+  def retrolambdaPluginVersion = "3.3.0-beta3"
 
   def classpathDependencies = [androidPlugin        : "com.android.tools.build:gradle:${androidPluginVersion}",
                                frodoPlugin          : "com.fernandocejas.frodo:frodo-plugin:${frodoPluginVersion}",
