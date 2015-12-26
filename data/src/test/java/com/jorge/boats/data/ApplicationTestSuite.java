@@ -6,4 +6,4 @@ import org.robolectric.annotation.Config;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, application = ApplicationStub.class)
-abstract class ApplicationTestCase {}
+abstract class ApplicationTestSuite {}

@@ -7,9 +7,9 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import org.jetbrains.annotations.Contract;
 
-@Singleton public class DatabaseHandler {
+@Singleton public class XkcdDatabaseHandler {
 
-  @Inject public DatabaseHandler() {
+  @Inject public XkcdDatabaseHandler() {
   }
 
   public void insertStripe(final @NonNull DatabaseStripe databaseStripe) {

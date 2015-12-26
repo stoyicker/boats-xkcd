@@ -1,7 +1,7 @@
 package com.jorge.boats.data;
 
 import android.support.annotation.NonNull;
-import com.jorge.boats.data.db.DatabaseHandler;
+import com.jorge.boats.data.db.XkcdDatabaseHandler;
 import com.jorge.boats.data.db.DatabaseStripe;
 import com.jorge.boats.data.entity.DatabaseEntityMapper;
 import com.jorge.boats.data.entity.DomainEntityMapper;
@@ -18,16 +18,16 @@ import rx.Subscriber;
   private final XkcdClient mClient;
   private final DatabaseEntityMapper mDatabaseEntityMapper;
   private final DomainEntityMapper mDomainEntityMapper;
-  private final DatabaseHandler mDatabaseHandler;
+  private final XkcdDatabaseHandler mXkcdDatabaseHandler;
 
   @Inject public XkcdStoreImpl(final @NonNull XkcdClient client,
       final @NonNull DatabaseEntityMapper databaseEntityMapper,
       final @NonNull DomainEntityMapper entityMapper,
-      final @NonNull DatabaseHandler databaseHandler) {
+      final @NonNull XkcdDatabaseHandler xkcdDatabaseHandler) {
     mClient = client;
     mDatabaseEntityMapper = databaseEntityMapper;
     mDomainEntityMapper = entityMapper;
-    mDatabaseHandler = databaseHandler;
+    mXkcdDatabaseHandler = xkcdDatabaseHandler;
   }
 
   /**
@@ -53,7 +53,7 @@ import rx.Subscriber;
       @Override public void call(final @NonNull Subscriber<? super DatabaseStripe> subscriber) {
         subscriber.onStart();
 
-        subscriber.onNext(XkcdStoreImpl.this.mDatabaseHandler.queryForStripeWithNum(mStripeNum));
+        subscriber.onNext(XkcdStoreImpl.this.mXkcdDatabaseHandler.queryForStripeWithNum(mStripeNum));
 
         subscriber.onCompleted();
       }
@@ -61,7 +61,7 @@ import rx.Subscriber;
         .map(XkcdStoreImpl.this.mDatabaseEntityMapper::transform)
         .switchIfEmpty(mClient.getStripeWithId(stripeNum))
         .map(dataStripe -> {
-          XkcdStoreImpl.this.mDatabaseHandler.insertStripe(
+          XkcdStoreImpl.this.mXkcdDatabaseHandler.insertStripe(
               XkcdStoreImpl.this.mDatabaseEntityMapper.transform(dataStripe));
           return XkcdStoreImpl.this.mDomainEntityMapper.transform(dataStripe);
         });
