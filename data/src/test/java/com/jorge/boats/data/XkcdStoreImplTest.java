@@ -9,14 +9,12 @@ import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.repository.XkcdStore;
 import java.net.UnknownHostException;
 import java.util.Collections;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.robolectric.RuntimeEnvironment;
 import rx.Observable;
 import rx.observers.TestSubscriber;
 
@@ -25,7 +23,7 @@ import static com.jorge.boats.data.ValueGenerator.generateString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
 
-public class XkcdStoreImplTest extends ApplicationTestSuite {
+public class XkcdStoreImplTest extends DataModuleTestSuite {
 
   private XkcdStore mSut;
 
@@ -36,20 +34,12 @@ public class XkcdStoreImplTest extends ApplicationTestSuite {
 
   @Rule public final ExpectedException mExceptionExpectation = ExpectedException.none();
 
-  @Before public void setUp() {
+  @Before @Override public void setUp() {
+    super.setUp();
     MockitoAnnotations.initMocks(this);
-    DataManager.initialize(RuntimeEnvironment.application);
 
     mSut = new XkcdStoreImpl(mMockClient, mMockDatabaseEntityMapper, mMockDomainEntityMapper,
         mMockXkcdDatabaseHandler);
-  }
-
-  /**
-   * <a href="https://github.com/robolectric/robolectric/issues/1890#issuecomment-120080017">Note
-   * that this is likely to be broken by newer releases.</a>
-   */
-  @After public void tearDown() throws Exception {
-    DataManager.destroy();
   }
 
   private static DataStripe generateRandomDataStripe() {
@@ -128,7 +118,9 @@ public class XkcdStoreImplTest extends ApplicationTestSuite {
     final DomainStripe targetStripe = generateRandomDomainStripe();
     final long generatedNum;
 
-    given(mMockClient.getStripeWithId(generatedNum = ValueGenerator.generateLong(ValueGenerator.Value.REGULAR))).willReturn(Observable.just(sourceStripe));
+    given(mMockClient.getStripeWithId(
+        generatedNum = ValueGenerator.generateLong(ValueGenerator.Value.REGULAR))).willReturn(
+        Observable.just(sourceStripe));
     //The mapper is tested elsewhere, so there is no need to use real functionality here
     given(mMockDomainEntityMapper.transform(any(DataStripe.class))).willReturn(targetStripe);
 

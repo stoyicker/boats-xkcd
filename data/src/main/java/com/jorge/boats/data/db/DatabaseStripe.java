@@ -7,7 +7,7 @@ import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.annotation.Unique;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
-@Table(database = XkcdDatabase.class, insertConflict = ConflictAction.IGNORE)
+@Table(database = XkcdDatabase.class, insertConflict = ConflictAction.REPLACE)
 public class DatabaseStripe extends BaseModel {
 
   public String getMonth() {
