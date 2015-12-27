@@ -53,16 +53,15 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
     if (savedInstanceState == null) {
       this.mStripeNum =
           getIntent().getLongExtra(INTENT_EXTRA_PARAM_STRING_ID, DomainStripe.STRIPE_NUM_CURRENT);
-      initializeStripePresenter();
     } else {
       this.mStripeNum = savedInstanceState.getLong(INSTANCE_STATE_PARAM_STRING_ID,
           DomainStripe.STRIPE_NUM_CURRENT);
     }
+    initializeStripePresenter();
   }
 
   private void initializeStripePresenter() {
     this.mStripePresenter.setView(this);
-    mStripePresenter.initialize(mStripeNum);
   }
 
   @Override public void onResume() {

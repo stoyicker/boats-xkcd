@@ -41,7 +41,7 @@ import timber.log.Timber;
   }
 
   @Override public void resume() {
-
+    this.initialize(mStripeNum);
   }
 
   @Override public void pause() {
