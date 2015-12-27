@@ -1,4 +1,4 @@
-package com.jorge.boats.data.entity;
+package com.jorge.boats.data.mapper;
 
 import com.jorge.boats.data.model.DataStripe;
 import com.jorge.boats.domain.entity.DomainStripe;

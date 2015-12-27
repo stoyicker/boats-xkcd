@@ -1,8 +1,8 @@
 package com.jorge.boats.data;
 
 import com.jorge.boats.data.db.XkcdDatabaseHandler;
-import com.jorge.boats.data.entity.DatabaseEntityMapper;
-import com.jorge.boats.data.entity.DomainEntityMapper;
+import com.jorge.boats.data.mapper.DatabaseEntityMapper;
+import com.jorge.boats.data.mapper.DomainEntityMapper;
 import com.jorge.boats.data.model.DataStripe;
 import com.jorge.boats.data.net.XkcdClient;
 import com.jorge.boats.domain.entity.DomainStripe;
@@ -23,6 +23,7 @@ import static com.jorge.boats.data.ValueGenerator.generateString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
 
+//TODO Reenable the test for not found stripe when the retrofit2 package is available through the dependency
 public class XkcdStoreImplTest extends DataModuleTestSuite {
 
   private XkcdStore mSut;
@@ -82,6 +83,15 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
     return new UnknownHostException("Stub for no connection.");
   }
 
+  //private static Throwable generateNotFoundStubThrowable() {
+  //  final retrofit2.HttpException ret = Mockito.mock(retrofit2.HttpException.class);
+  //
+  //  given(ret.code()).willReturn(404);
+  //  given(ret.message()).willReturn("Not found.");
+  //
+  //  return ret;
+  //}
+
   @Test public void testGetStripeCurrentSuccessful() {
     final DataStripe sourceStripe = generateRandomDataStripe();
     final DomainStripe targetStripe = generateRandomDomainStripe();
@@ -113,7 +123,7 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
     testSubscriber.assertNotCompleted();
   }
 
-  @Test public void testGetStripeWithValidIdSuccessful() {
+  @Test public void testGetStripeWithValidNumSuccessful() {
     final DataStripe sourceStripe = generateRandomDataStripe();
     final DomainStripe targetStripe = generateRandomDomainStripe();
     final long generatedNum;
@@ -133,7 +143,7 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
     testSubscriber.assertCompleted();
   }
 
-  @Test public void testGetStripeWithValidIdNoConnection() {
+  @Test public void testGetStripeWithValidNumNoConnection() {
     final Throwable error = generateNoInternetStubThrowable();
     final long generatedNum;
 
@@ -151,9 +161,27 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
     testSubscriber.assertNotCompleted();
   }
 
-  @Test public void testGetStripeWithInvalidId() {
+  @Test public void testGetStripeWithInvalidNum() {
     mExceptionExpectation.expect(IllegalArgumentException.class);
 
     mSut.stripeWithNum(generateLong(ValueGenerator.Value.NULL));
   }
+
+  //@Test public void testGetStripeWithNotFoundNum() {
+  //  final Throwable error = generateNotFoundStubThrowable();
+  //  final long generatedNum;
+  //
+  //  given(mMockClient.getStripeWithId(
+  //      (generatedNum = ValueGenerator.generateLong(ValueGenerator.Value.REGULAR)))).willReturn(
+  //      Observable.<DataStripe>error(error));
+  //  given(mMockXkcdDatabaseHandler.queryForStripeWithNum(generatedNum)).willReturn(null);
+  //
+  //  final TestSubscriber<DomainStripe> testSubscriber = new TestSubscriber<>();
+  //
+  //  mSut.stripeWithNum(generatedNum).subscribe(testSubscriber);
+  //
+  //  testSubscriber.assertError(retrofit2.HttpException.class);
+  //  testSubscriber.assertReceivedOnNext(Collections.<DomainStripe>emptyList());
+  //  testSubscriber.assertNotCompleted();
+  //}
 }

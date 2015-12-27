@@ -1,4 +1,4 @@
-package com.jorge.boats.data.entity;
+package com.jorge.boats.data.mapper;
 
 import android.support.annotation.Nullable;
 import com.jorge.boats.data.db.DatabaseStripe;

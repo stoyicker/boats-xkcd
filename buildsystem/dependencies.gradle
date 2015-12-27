@@ -80,5 +80,5 @@ ext {
   testCompileDataDependencies = [junit      : "junit:junit:${jUnitVersion}",
                                  assertj    : "org.assertj:assertj-core:${assertJVersion}",
                                  mockito    : "org.mockito:mockito-core:${mockitoVersion}",
-                                 robolectric: "org.robolectric:robolectric:${robolectricVersion}",]
+                                 robolectric: "org.robolectric:robolectric:${robolectricVersion}"]
 }
