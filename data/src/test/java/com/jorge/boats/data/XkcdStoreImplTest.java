@@ -3,27 +3,40 @@ package com.jorge.boats.data;
 import com.jorge.boats.data.db.XkcdDatabaseHandler;
 import com.jorge.boats.data.entity.DatabaseEntityMapper;
 import com.jorge.boats.data.entity.DomainEntityMapper;
+import com.jorge.boats.data.model.DataStripe;
 import com.jorge.boats.data.net.XkcdClient;
+import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.repository.XkcdStore;
+import java.util.Collections;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.robolectric.RuntimeEnvironment;
+import rx.Observable;
+import rx.observers.TestSubscriber;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.jorge.boats.data.ValueGenerator.generateLong;
+import static com.jorge.boats.data.ValueGenerator.generateString;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.any;
 
 public class XkcdStoreImplTest extends ApplicationTestSuite {
 
   private XkcdStore mSut;
+
   @Mock private XkcdClient mMockClient;
+  @Mock private DatabaseEntityMapper mMockDatabaseEntityMapper;
+  @Mock private DomainEntityMapper mMockDomainEntityMapper;
   @Mock private XkcdDatabaseHandler mMockXkcdDatabaseHandler;
 
   @Before public void setUp() {
+    MockitoAnnotations.initMocks(this);
     DataManager.initialize(RuntimeEnvironment.application);
 
-    mSut = new XkcdStoreImpl(mMockClient, new DatabaseEntityMapper(), new DomainEntityMapper(),
-        new XkcdDatabaseHandler());
+    mSut = new XkcdStoreImpl(mMockClient, mMockDatabaseEntityMapper, mMockDomainEntityMapper,
+        mMockXkcdDatabaseHandler);
   }
 
   /**
@@ -34,8 +47,57 @@ public class XkcdStoreImplTest extends ApplicationTestSuite {
     DataManager.destroy();
   }
 
+  private static DataStripe generateRandomDataStripe() {
+    final DataStripe ret = new DataStripe();
+
+    ret.setAlt(generateString(ValueGenerator.Value.NULL));
+    ret.setDay(generateString(ValueGenerator.Value.NULL));
+    ret.setImg(generateString(ValueGenerator.Value.NULL));
+    ret.setLink(generateString(ValueGenerator.Value.NULL));
+    ret.setMonth(generateString(ValueGenerator.Value.NULL));
+    ret.setYear(generateString(ValueGenerator.Value.NULL));
+    ret.setNews(generateString(ValueGenerator.Value.NULL));
+    ret.setNum(generateLong(ValueGenerator.Value.NULL));
+    ret.setTitle(generateString(ValueGenerator.Value.NULL));
+    ret.setSafe_title(generateString(ValueGenerator.Value.NULL));
+    ret.setTranscript(generateString(ValueGenerator.Value.NULL));
+
+    return ret;
+  }
+
+  private static DomainStripe generateRandomDomainStripe() {
+    final DomainStripe ret = new DomainStripe();
+
+    ret.setAlt(generateString(ValueGenerator.Value.NULL));
+    ret.setDay(generateString(ValueGenerator.Value.NULL));
+    ret.setImg(generateString(ValueGenerator.Value.NULL));
+    ret.setLink(generateString(ValueGenerator.Value.NULL));
+    ret.setMonth(generateString(ValueGenerator.Value.NULL));
+    ret.setYear(generateString(ValueGenerator.Value.NULL));
+    ret.setNews(generateString(ValueGenerator.Value.NULL));
+    ret.setNum(generateLong(ValueGenerator.Value.NULL));
+    ret.setTitle(generateString(ValueGenerator.Value.NULL));
+    ret.setSafe_title(generateString(ValueGenerator.Value.NULL));
+    ret.setTranscript(generateString(ValueGenerator.Value.NULL));
+
+    return ret;
+  }
+
   @Test public void testGetStripeCurrentSuccessful() {
-    assertThat(true).isTrue();
+    final DataStripe sourceStripe = generateRandomDataStripe();
+    final DomainStripe targetStripe = generateRandomDomainStripe();
+
+    given(mMockClient.getCurrentStripe()).willReturn(Observable.just(sourceStripe));
+    //The mapper is tested elsewhere, so there is no need to use real functionality here
+    given(mMockDomainEntityMapper.transform(any(DataStripe.class))).willReturn(targetStripe);
+
+    final TestSubscriber<DomainStripe> testSubscriber = new TestSubscriber<>();
+
+    mSut.currentStripe().subscribe(testSubscriber);
+
+    testSubscriber.assertNoErrors();
+    testSubscriber.assertReceivedOnNext(Collections.singletonList(targetStripe));
+    testSubscriber.assertCompleted();
   }
   //
   //@Test public void testGetStripeCurrentNoConnection() {

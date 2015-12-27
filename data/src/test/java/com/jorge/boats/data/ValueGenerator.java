@@ -1,15 +1,15 @@
-package com.jorge.boats.data.entity;
+package com.jorge.boats.data;
 
 import java.util.Random;
 import org.apache.commons.lang3.RandomStringUtils;
 
-abstract class ValueGenerator {
+public abstract class ValueGenerator {
 
-  enum Value {
+  public enum Value {
     NULL, REGULAR
   }
 
-  static String generateString(final Value type) {
+  public static String generateString(final Value type) {
     switch (type) {
       case NULL:
         return null;
@@ -20,7 +20,7 @@ abstract class ValueGenerator {
     }
   }
 
-  static long generateLong(final Value type) {
+  public static long generateLong(final Value type) {
     switch (type) {
       case NULL:
         return 0;
