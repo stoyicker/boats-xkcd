@@ -73,7 +73,7 @@ task wrapper(type: Wrapper) {
 
 task clean(type: Delete, overwrite: true) {
   group "Verification"
-  description "Deletes the build directories of the whole project, the downloaded proguard files and the static analysis result."
+  description "Deletes the build directories of the whole project and the static analysis result."
 
   for (final Project x : rootProject.allprojects) {
     delete x.buildDir
@@ -81,10 +81,4 @@ task clean(type: Delete, overwrite: true) {
         toAbsolutePath().
         toString()
   }
-
-  Arrays.asList(Paths.get("presentation", "proguard", "proguardFileContainer").
-      toFile().
-      listFiles()).
-      stream().
-      each({ f -> delete f })
 }

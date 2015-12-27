@@ -10,7 +10,7 @@ task downloadProguardFiles {
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-rxjava-promises.pro",
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-okhttp.pro",
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-okio.pro",
-         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-picasso.pro",
+         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-glide.pro",
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-retrofit.pro"])
     dest "proguard/proguardFileContainer"
     overwrite true

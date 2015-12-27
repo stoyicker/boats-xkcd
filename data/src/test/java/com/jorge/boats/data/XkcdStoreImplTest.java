@@ -6,7 +6,6 @@ import com.jorge.boats.data.entity.DomainEntityMapper;
 import com.jorge.boats.data.net.client.XkcdClient;
 import com.jorge.boats.domain.repository.XkcdStore;
 import com.raizlabs.android.dbflow.config.FlowManager;
-import java.lang.reflect.Field;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,12 +31,7 @@ public class XkcdStoreImplTest extends ApplicationTestSuite {
    * that this is likely to be broken by newer releases.</a>
    */
   @After public void tearDown() throws Exception {
-    final Field field = FlowManager.class.getDeclaredField("mDatabaseHolder");
-    final boolean wasAccessible = field.isAccessible();
-
-    if (!wasAccessible) field.setAccessible(true);
-    field.set(null, null);
-    field.setAccessible(wasAccessible);
+    FlowManager.destroy();
   }
 
   @Test public void testGetStripeCurrentSuccessful() {
