@@ -1,4 +1,4 @@
-package com.jorge.boats.data.net.client;
+package com.jorge.boats.data.net;
 
 import android.content.Context;
 import android.content.res.Resources;

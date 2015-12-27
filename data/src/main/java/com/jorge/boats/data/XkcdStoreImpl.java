@@ -6,7 +6,7 @@ import com.jorge.boats.data.db.XkcdDatabaseHandler;
 import com.jorge.boats.data.entity.DatabaseEntityMapper;
 import com.jorge.boats.data.entity.DomainEntityMapper;
 import com.jorge.boats.data.model.DataStripe;
-import com.jorge.boats.data.net.client.XkcdClient;
+import com.jorge.boats.data.net.XkcdClient;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.repository.XkcdStore;
 import javax.inject.Inject;

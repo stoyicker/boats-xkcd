@@ -1,11 +1,10 @@
 package com.jorge.boats;
 
 import android.app.Application;
-import com.jorge.boats.data.DataInitializer;
+import com.jorge.boats.data.DataManager;
 import com.jorge.boats.di.component.ApplicationComponent;
 import com.jorge.boats.di.component.DaggerApplicationComponent;
 import com.jorge.boats.di.module.ApplicationModule;
-import com.raizlabs.android.dbflow.config.FlowManager;
 
 public class CustomApplication extends Application {
 
@@ -28,8 +27,7 @@ public class CustomApplication extends Application {
   }
 
   private void initializeData() {
-    FlowManager.init(this);
-    DataInitializer.initialize(this);
+    DataManager.initialize(this);
   }
 
   public ApplicationComponent getApplicationComponent() {

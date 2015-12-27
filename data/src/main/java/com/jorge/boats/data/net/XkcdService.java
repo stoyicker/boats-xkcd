@@ -1,4 +1,4 @@
-package com.jorge.boats.data.net.client;
+package com.jorge.boats.data.net;
 
 import com.jorge.boats.data.model.DataStripe;
 import retrofit.http.GET;

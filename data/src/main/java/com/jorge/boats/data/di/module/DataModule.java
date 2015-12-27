@@ -2,7 +2,7 @@ package com.jorge.boats.data.di.module;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import com.jorge.boats.data.net.client.XkcdClient;
+import com.jorge.boats.data.net.XkcdClient;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;

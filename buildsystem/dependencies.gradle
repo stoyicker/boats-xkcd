@@ -33,6 +33,7 @@ ext {
   robolectricVersion = "3.0"
   jUnitVersion = "4.12"
   assertJVersion = "1.7.1" //Newer versions of AssertJ won't work here
+  mockitoVersion = '2.0.33-beta'
 
   providedPresentationDependencies =
       [supportAnnotations  : "com.android.support:support-annotations:${supportAnnotationsVersion}",
@@ -81,5 +82,6 @@ ext {
 
   testCompileDataDependencies = [junit      : "junit:junit:${jUnitVersion}",
                                  assertj    : "org.assertj:assertj-core:${assertJVersion}",
+                                 mockito    : "org.mockito:mockito-core:${mockitoVersion}",
                                  robolectric: "org.robolectric:robolectric:${robolectricVersion}",]
 }

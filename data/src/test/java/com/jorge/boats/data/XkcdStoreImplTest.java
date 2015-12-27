@@ -3,12 +3,12 @@ package com.jorge.boats.data;
 import com.jorge.boats.data.db.XkcdDatabaseHandler;
 import com.jorge.boats.data.entity.DatabaseEntityMapper;
 import com.jorge.boats.data.entity.DomainEntityMapper;
-import com.jorge.boats.data.net.client.XkcdClient;
+import com.jorge.boats.data.net.XkcdClient;
 import com.jorge.boats.domain.repository.XkcdStore;
-import com.raizlabs.android.dbflow.config.FlowManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.robolectric.RuntimeEnvironment;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,14 +16,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class XkcdStoreImplTest extends ApplicationTestSuite {
 
   private XkcdStore mSut;
-  private XkcdClient mClient;
-  private XkcdDatabaseHandler mXkcdDatabaseHandler;
+  @Mock private XkcdClient mMockClient;
+  @Mock private XkcdDatabaseHandler mMockXkcdDatabaseHandler;
 
   @Before public void setUp() {
-    DataInitializer.initialize(RuntimeEnvironment.application);
+    DataManager.initialize(RuntimeEnvironment.application);
 
-    mSut = new XkcdStoreImpl(mClient = new XkcdClient(RuntimeEnvironment.application),
-        new DatabaseEntityMapper(), new DomainEntityMapper(), new XkcdDatabaseHandler());
+    mSut = new XkcdStoreImpl(mMockClient, new DatabaseEntityMapper(), new DomainEntityMapper(),
+        new XkcdDatabaseHandler());
   }
 
   /**
@@ -31,7 +31,7 @@ public class XkcdStoreImplTest extends ApplicationTestSuite {
    * that this is likely to be broken by newer releases.</a>
    */
   @After public void tearDown() throws Exception {
-    FlowManager.destroy();
+    DataManager.destroy();
   }
 
   @Test public void testGetStripeCurrentSuccessful() {
