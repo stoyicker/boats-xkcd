@@ -11,7 +11,9 @@ import java.net.UnknownHostException;
 import java.util.Collections;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.robolectric.RuntimeEnvironment;
@@ -31,6 +33,8 @@ public class XkcdStoreImplTest extends ApplicationTestSuite {
   @Mock private DatabaseEntityMapper mMockDatabaseEntityMapper;
   @Mock private DomainEntityMapper mMockDomainEntityMapper;
   @Mock private XkcdDatabaseHandler mMockXkcdDatabaseHandler;
+
+  @Rule public final ExpectedException mExceptionExpectation = ExpectedException.none();
 
   @Before public void setUp() {
     MockitoAnnotations.initMocks(this);
@@ -118,13 +122,46 @@ public class XkcdStoreImplTest extends ApplicationTestSuite {
     testSubscriber.assertReceivedOnNext(Collections.<DomainStripe>emptyList());
     testSubscriber.assertNotCompleted();
   }
-  //
-  //@Test public void testGetStripeWithValidIdSuccessful() {
-  //}
-  //
-  //@Test public void testGetStripeWithInvalidIdSuccessful() {
-  //}
-  //
-  //@Test public void testGetStripeWithIdNoConnection() {
-  //}
+
+  @Test public void testGetStripeWithValidIdSuccessful() {
+    final DataStripe sourceStripe = generateRandomDataStripe();
+    final DomainStripe targetStripe = generateRandomDomainStripe();
+    final long generatedNum;
+
+    given(mMockClient.getStripeWithId(generatedNum = ValueGenerator.generateLong(ValueGenerator.Value.REGULAR))).willReturn(Observable.just(sourceStripe));
+    //The mapper is tested elsewhere, so there is no need to use real functionality here
+    given(mMockDomainEntityMapper.transform(any(DataStripe.class))).willReturn(targetStripe);
+
+    final TestSubscriber<DomainStripe> testSubscriber = new TestSubscriber<>();
+
+    mSut.stripeWithNum(generatedNum).subscribe(testSubscriber);
+
+    testSubscriber.assertNoErrors();
+    testSubscriber.assertReceivedOnNext(Collections.singletonList(targetStripe));
+    testSubscriber.assertCompleted();
+  }
+
+  @Test public void testGetStripeWithValidIdNoConnection() {
+    final Throwable error = generateNoInternetStubThrowable();
+    final long generatedNum;
+
+    given(mMockClient.getStripeWithId(
+        (generatedNum = ValueGenerator.generateLong(ValueGenerator.Value.REGULAR)))).willReturn(
+        Observable.<DataStripe>error(error));
+    given(mMockXkcdDatabaseHandler.queryForStripeWithNum(generatedNum)).willReturn(null);
+
+    final TestSubscriber<DomainStripe> testSubscriber = new TestSubscriber<>();
+
+    mSut.stripeWithNum(generatedNum).subscribe(testSubscriber);
+
+    testSubscriber.assertError(UnknownHostException.class);
+    testSubscriber.assertReceivedOnNext(Collections.<DomainStripe>emptyList());
+    testSubscriber.assertNotCompleted();
+  }
+
+  @Test public void testGetStripeWithInvalidId() {
+    mExceptionExpectation.expect(IllegalArgumentException.class);
+
+    mSut.stripeWithNum(generateLong(ValueGenerator.Value.NULL));
+  }
 }

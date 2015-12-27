@@ -47,6 +47,10 @@ import rx.functions.Func1;
   }
 
   @Override public Observable<DomainStripe> stripeWithNum(final long stripeNum) {
+    if (!DomainStripe.isValidExplicitNum(stripeNum)) {
+      throw new IllegalArgumentException("Illegal stripe number " + stripeNum);
+    }
+
     return Observable.create(new Observable.OnSubscribe<DatabaseStripe>() {
 
       private long mStripeNum;
@@ -59,8 +63,10 @@ import rx.functions.Func1;
       @Override public void call(final @NonNull Subscriber<? super DatabaseStripe> subscriber) {
         subscriber.onStart();
 
-        subscriber.onNext(
-            XkcdStoreImpl.this.mXkcdDatabaseHandler.queryForStripeWithNum(mStripeNum));
+        final DatabaseStripe retrievedFromDatabase =
+            XkcdStoreImpl.this.mXkcdDatabaseHandler.queryForStripeWithNum(mStripeNum);
+
+        if (retrievedFromDatabase != null) subscriber.onNext(retrievedFromDatabase);
 
         subscriber.onCompleted();
       }

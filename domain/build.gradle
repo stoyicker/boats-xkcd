@@ -1,27 +1,8 @@
 apply from: "../buildsystem/java_module.gradle"
 
-buildscript {
-  repositories {
-    maven {
-      url "https://plugins.gradle.org/m2/"
-    }
-  }
-
-  def aptPluginVersion = "0.5"
-
-  def classpathDependencies = [aptPlugin: "net.ltgt.gradle:gradle-apt-plugin:${aptPluginVersion}"]
-
-  dependencies {
-    classpath classpathDependencies.aptPlugin
-  }
-}
-
-apply plugin: "net.ltgt.apt"
-
 dependencies {
-  final Collection<String> compileOnlyDependencies = compileOnlyDomainDependencies.values(), compileDependencies = compileDomainDependencies.
+  final Collection<String> compileDependencies = compileDomainDependencies.
       values()
 
-  for (final String dependency : compileOnlyDependencies) compileOnly dependency
   for (final String dependency : compileDependencies) compile dependency
 }

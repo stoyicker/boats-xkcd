@@ -25,7 +25,7 @@ public abstract class ValueGenerator {
       case NULL:
         return 0;
       case REGULAR:
-        return new Random().nextLong();
+        return 1 + Math.abs(new Random().nextLong());
       default:
         throw new IllegalStateException("Unsupported value " + type.name());
     }

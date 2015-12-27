@@ -56,9 +56,6 @@ ext {
        espresso                   : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
        testingSupportLibraryRunner: "com.android.support.test:runner:${testingSupportLibraryRunnerVersion}"]
 
-  compileOnlyDomainDependencies =
-      [jetbrainsAnnotations: "org.jetbrains:annotations:${jetbrainsAnnotationsVersion}"]
-
   compileDomainDependencies = [rxJava         : "io.reactivex:rxjava:${rxJavaVersion}",
                                javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
                                daggerCompiler : "com.google.dagger:dagger-compiler:${daggerVersion}",
