@@ -7,6 +7,7 @@ import com.jorge.boats.data.model.DataStripe;
 import com.jorge.boats.data.net.XkcdClient;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.repository.XkcdStore;
+import java.net.UnknownHostException;
 import java.util.Collections;
 import org.junit.After;
 import org.junit.Before;
@@ -83,6 +84,10 @@ public class XkcdStoreImplTest extends ApplicationTestSuite {
     return ret;
   }
 
+  private static Throwable generateNoInternetStubThrowable() {
+    return new UnknownHostException("Stub for no connection.");
+  }
+
   @Test public void testGetStripeCurrentSuccessful() {
     final DataStripe sourceStripe = generateRandomDataStripe();
     final DomainStripe targetStripe = generateRandomDomainStripe();
@@ -99,9 +104,20 @@ public class XkcdStoreImplTest extends ApplicationTestSuite {
     testSubscriber.assertReceivedOnNext(Collections.singletonList(targetStripe));
     testSubscriber.assertCompleted();
   }
-  //
-  //@Test public void testGetStripeCurrentNoConnection() {
-  //}
+
+  @Test public void testGetStripeCurrentNoConnection() {
+    final Throwable error = generateNoInternetStubThrowable();
+
+    given(mMockClient.getCurrentStripe()).willReturn(Observable.<DataStripe>error(error));
+
+    final TestSubscriber<DomainStripe> testSubscriber = new TestSubscriber<>();
+
+    mSut.currentStripe().subscribe(testSubscriber);
+
+    testSubscriber.assertError(UnknownHostException.class);
+    testSubscriber.assertReceivedOnNext(Collections.<DomainStripe>emptyList());
+    testSubscriber.assertNotCompleted();
+  }
   //
   //@Test public void testGetStripeWithValidIdSuccessful() {
   //}
