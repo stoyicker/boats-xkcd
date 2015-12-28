@@ -1,5 +1,6 @@
 package com.jorge.boats.data;
 
+import com.jorge.boats.data.db.DatabaseStripe;
 import com.jorge.boats.data.db.XkcdDatabaseHandler;
 import com.jorge.boats.data.mapper.DatabaseEntityMapper;
 import com.jorge.boats.data.mapper.DomainEntityMapper;
@@ -21,7 +22,9 @@ import rx.observers.TestSubscriber;
 import static com.jorge.boats.data.ValueGenerator.generateLong;
 import static com.jorge.boats.data.ValueGenerator.generateString;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 
 //TODO Reenable the test for not found stripe when the retrofit2 package is available through the dependency
 public class XkcdStoreImplTest extends DataModuleTestSuite {
@@ -41,6 +44,24 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
 
     mSut = new XkcdStoreImpl(mMockClient, mMockDatabaseEntityMapper, mMockDomainEntityMapper,
         mMockXkcdDatabaseHandler);
+  }
+
+  private static DatabaseStripe generateRandomDatabaseStripe() {
+    final DatabaseStripe ret = new DatabaseStripe();
+
+    ret.setAlt(generateString(ValueGenerator.Value.NULL));
+    ret.setDay(generateString(ValueGenerator.Value.NULL));
+    ret.setImg(generateString(ValueGenerator.Value.NULL));
+    ret.setLink(generateString(ValueGenerator.Value.NULL));
+    ret.setMonth(generateString(ValueGenerator.Value.NULL));
+    ret.setYear(generateString(ValueGenerator.Value.NULL));
+    ret.setNews(generateString(ValueGenerator.Value.NULL));
+    ret.setNum(generateLong(ValueGenerator.Value.NULL));
+    ret.setTitle(generateString(ValueGenerator.Value.NULL));
+    ret.setSafe_title(generateString(ValueGenerator.Value.NULL));
+    ret.setTranscript(generateString(ValueGenerator.Value.NULL));
+
+    return ret;
   }
 
   private static DataStripe generateRandomDataStripe() {
@@ -98,7 +119,7 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
 
     given(mMockClient.getCurrentStripe()).willReturn(Observable.just(sourceStripe));
     //The mapper is tested elsewhere, so there is no need to use real functionality here
-    given(mMockDomainEntityMapper.transform(any(DataStripe.class))).willReturn(targetStripe);
+    given(mMockDomainEntityMapper.transform(sourceStripe)).willReturn(targetStripe);
 
     final TestSubscriber<DomainStripe> testSubscriber = new TestSubscriber<>();
 
@@ -132,7 +153,7 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
         generatedNum = ValueGenerator.generateLong(ValueGenerator.Value.REGULAR))).willReturn(
         Observable.just(sourceStripe));
     //The mapper is tested elsewhere, so there is no need to use real functionality here
-    given(mMockDomainEntityMapper.transform(any(DataStripe.class))).willReturn(targetStripe);
+    given(mMockDomainEntityMapper.transform(sourceStripe)).willReturn(targetStripe);
     //The database is also tested somewhere else, so we can mock it here
     given(mMockXkcdDatabaseHandler.queryForStripeWithNum(generatedNum)).willReturn(null);
 
@@ -149,10 +170,10 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
     final Throwable error = generateNoInternetStubThrowable();
     final long generatedNum;
 
-    given(mMockClient.getStripeWithId(
-        (generatedNum = ValueGenerator.generateLong(ValueGenerator.Value.REGULAR)))).willReturn(
+    given(mMockXkcdDatabaseHandler.queryForStripeWithNum(
+        generatedNum = ValueGenerator.generateLong(ValueGenerator.Value.REGULAR))).willReturn(null);
+    given(mMockClient.getStripeWithId((generatedNum))).willReturn(
         Observable.<DataStripe>error(error));
-    given(mMockXkcdDatabaseHandler.queryForStripeWithNum(generatedNum)).willReturn(null);
 
     final TestSubscriber<DomainStripe> testSubscriber = new TestSubscriber<>();
 
@@ -161,6 +182,28 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
     testSubscriber.assertError(UnknownHostException.class);
     testSubscriber.assertReceivedOnNext(Collections.<DomainStripe>emptyList());
     testSubscriber.assertNotCompleted();
+  }
+
+  @Test public void testGetStripeWithValidNumCached() {
+    final DatabaseStripe sourceStripe = generateRandomDatabaseStripe();
+    final DataStripe intermediateStripe = generateRandomDataStripe();
+    final DomainStripe targetStripe = generateRandomDomainStripe();
+
+    given(mMockXkcdDatabaseHandler.queryForStripeWithNum(anyLong())).willReturn(sourceStripe);
+    given(mMockDatabaseEntityMapper.transform(sourceStripe)).willReturn(intermediateStripe);
+    given(mMockDomainEntityMapper.transform(intermediateStripe)).willReturn(targetStripe);
+
+    final TestSubscriber<DomainStripe> testSubscriber = new TestSubscriber<>();
+
+    mSut.stripeWithNum(generateLong(ValueGenerator.Value.REGULAR)).subscribe(testSubscriber);
+
+    testSubscriber.assertNoErrors();
+    testSubscriber.assertReceivedOnNext(Collections.singletonList(targetStripe));
+    testSubscriber.assertCompleted();
+
+    testSubscriber.awaitTerminalEvent();
+
+    verify(mMockClient, never()).getStripeWithId(anyLong());
   }
 
   @Test public void testGetStripeWithInvalidNum() {
@@ -186,6 +229,4 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
   //  testSubscriber.assertReceivedOnNext(Collections.<DomainStripe>emptyList());
   //  testSubscriber.assertNotCompleted();
   //}
-  
-  //TODO Write a test where the result is cached in the database and then we assert that the client is not used
 }

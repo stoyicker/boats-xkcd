@@ -80,6 +80,6 @@ import rx.functions.Func1;
             XkcdStoreImpl.this.mDatabaseEntityMapper.transform(dataStripe));
         return XkcdStoreImpl.this.mDomainEntityMapper.transform(dataStripe);
       }
-    });
+    }).cache();
   }
 }
