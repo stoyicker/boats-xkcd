@@ -123,7 +123,7 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
     testSubscriber.assertNotCompleted();
   }
 
-  @Test public void testGetStripeWithValidNumSuccessful() {
+  @Test public void testGetStripeWithValidNumNoCachedSuccessful() {
     final DataStripe sourceStripe = generateRandomDataStripe();
     final DomainStripe targetStripe = generateRandomDomainStripe();
     final long generatedNum;
@@ -133,6 +133,8 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
         Observable.just(sourceStripe));
     //The mapper is tested elsewhere, so there is no need to use real functionality here
     given(mMockDomainEntityMapper.transform(any(DataStripe.class))).willReturn(targetStripe);
+    //The database is also tested somewhere else, so we can mock it here
+    given(mMockXkcdDatabaseHandler.queryForStripeWithNum(generatedNum)).willReturn(null);
 
     final TestSubscriber<DomainStripe> testSubscriber = new TestSubscriber<>();
 
@@ -143,7 +145,7 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
     testSubscriber.assertCompleted();
   }
 
-  @Test public void testGetStripeWithValidNumNoConnection() {
+  @Test public void testGetStripeWithValidNumNoCachedNoConnection() {
     final Throwable error = generateNoInternetStubThrowable();
     final long generatedNum;
 
@@ -167,7 +169,7 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
     mSut.stripeWithNum(generateLong(ValueGenerator.Value.NULL));
   }
 
-  //@Test public void testGetStripeWithNotFoundNum() {
+  //@Test public void testGetStripeWithNotFoundNumNoCachedSuccessful() {
   //  final Throwable error = generateNotFoundStubThrowable();
   //  final long generatedNum;
   //
@@ -184,4 +186,6 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
   //  testSubscriber.assertReceivedOnNext(Collections.<DomainStripe>emptyList());
   //  testSubscriber.assertNotCompleted();
   //}
+  
+  //TODO Write a test where the result is cached in the database and then we assert that the client is not used
 }
