@@ -43,7 +43,7 @@ import rx.functions.Func1;
       @Override public DomainStripe call(DataStripe dataStripe) {
         return XkcdStoreImpl.this.mDomainEntityMapper.transform(dataStripe);
       }
-    });
+    }).cache();
   }
 
   @Override public Observable<DomainStripe> stripeWithNum(final long stripeNum) {
