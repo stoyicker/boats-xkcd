@@ -51,33 +51,59 @@ import rx.functions.Func1;
       throw new IllegalArgumentException("Illegal stripe number " + stripeNum);
     }
 
-    return Observable.create(new Observable.OnSubscribe<DatabaseStripe>() {
+    final Observable<DataStripe> fromDatabase =
+        Observable.create(new Observable.OnSubscribe<DatabaseStripe>() {
 
-      private long mStripeNum;
+          private long mStripeNum;
 
-      private Observable.OnSubscribe<DatabaseStripe> init(final long _stripeNum) {
-        mStripeNum = _stripeNum;
-        return this;
-      }
+          private Observable.OnSubscribe<DatabaseStripe> init(final long _stripeNum) {
+            mStripeNum = _stripeNum;
+            return this;
+          }
 
-      @Override public void call(final @NonNull Subscriber<? super DatabaseStripe> subscriber) {
-        subscriber.onStart();
+          @Override public void call(final @NonNull Subscriber<? super DatabaseStripe> subscriber) {
+            subscriber.onStart();
 
-        final DatabaseStripe retrievedFromDatabase =
-            XkcdStoreImpl.this.mXkcdDatabaseHandler.queryForStripeWithNum(mStripeNum);
+            final DatabaseStripe retrievedFromDatabase =
+                XkcdStoreImpl.this.mXkcdDatabaseHandler.queryForStripeWithNum(mStripeNum);
 
-        if (retrievedFromDatabase != null) subscriber.onNext(retrievedFromDatabase);
+            if (retrievedFromDatabase != null) subscriber.onNext(retrievedFromDatabase);
 
-        subscriber.onCompleted();
-      }
-    }.init(stripeNum)).map(new Func1<DatabaseStripe, DataStripe>() {
-      @Override public DataStripe call(final DatabaseStripe databaseStripe) {
-        return XkcdStoreImpl.this.mDatabaseEntityMapper.transform(databaseStripe);
-      }
-    }).switchIfEmpty(mClient.getStripeWithId(stripeNum)).map(new Func1<DataStripe, DomainStripe>() {
+            subscriber.onCompleted();
+          }
+        }.init(stripeNum)).map(new Func1<DatabaseStripe, DataStripe>() {
+          @Override public DataStripe call(final DatabaseStripe databaseStripe) {
+            return XkcdStoreImpl.this.mDatabaseEntityMapper.transform(databaseStripe);
+          }
+        });
+
+    final Observable<DataStripe> fromInternet =
+        Observable.create(new Observable.OnSubscribe<DataStripe>() {
+
+          private long mStripeNum;
+
+          private Observable.OnSubscribe<DataStripe> init(final long _stripeNum) {
+            mStripeNum = _stripeNum;
+            return this;
+          }
+
+          @Override public void call(final @NonNull Subscriber<? super DataStripe> subscriber) {
+            subscriber.onStart();
+
+            final DataStripe retrievedFromInternet =
+                mClient.getStripeWithId(mStripeNum).toBlocking().single();
+
+            XkcdStoreImpl.this.mXkcdDatabaseHandler.insertStripe(
+                XkcdStoreImpl.this.mDatabaseEntityMapper.transform(retrievedFromInternet));
+
+            if (retrievedFromInternet != null) subscriber.onNext(retrievedFromInternet);
+
+            subscriber.onCompleted();
+          }
+        }.init(stripeNum));
+
+    return fromDatabase.switchIfEmpty(fromInternet).map(new Func1<DataStripe, DomainStripe>() {
       @Override public DomainStripe call(final DataStripe dataStripe) {
-        XkcdStoreImpl.this.mXkcdDatabaseHandler.insertStripe(
-            XkcdStoreImpl.this.mDatabaseEntityMapper.transform(dataStripe));
         return XkcdStoreImpl.this.mDomainEntityMapper.transform(dataStripe);
       }
     }).cache();
