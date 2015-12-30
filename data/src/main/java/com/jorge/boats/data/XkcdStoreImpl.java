@@ -89,14 +89,31 @@ import rx.functions.Func1;
 
           @Override public void call(final @NonNull Subscriber<? super DataStripe> subscriber) {
             subscriber.onStart();
+            final DataStripe retrievedFromInternet = mClient.getStripeWithId(mStripeNum)
+                .onErrorReturn(new Func1<Throwable, DataStripe>() {
 
-            final DataStripe retrievedFromInternet =
-                mClient.getStripeWithId(mStripeNum).toBlocking().single();
+                  private Subscriber<? super DataStripe> mSubscriber;
 
-            XkcdStoreImpl.this.mXkcdDatabaseHandler.insertStripe(
-                XkcdStoreImpl.this.mDatabaseEntityMapper.transform(retrievedFromInternet));
+                  private Func1<Throwable, DataStripe> init(
+                      final @NonNull Subscriber<? super DataStripe> subscriber) {
+                    mSubscriber = subscriber;
+                    return this;
+                  }
 
-            if (retrievedFromInternet != null) subscriber.onNext(retrievedFromInternet);
+                  @Override public DataStripe call(final Throwable throwable) {
+                    mSubscriber.onError(throwable);
+                    return null;
+                  }
+                }.init(subscriber))
+                .toBlocking()
+                .single();
+
+            if (retrievedFromInternet != null) {
+              subscriber.onNext(retrievedFromInternet);
+
+              XkcdStoreImpl.this.mXkcdDatabaseHandler.insertStripe(
+                  XkcdStoreImpl.this.mDatabaseEntityMapper.transform(retrievedFromInternet));
+            }
 
             subscriber.onCompleted();
           }
