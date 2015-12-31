@@ -37,17 +37,17 @@ public abstract class ValueGenerator {
   public static DatabaseStripe generateRandomDatabaseStripe() {
     final DatabaseStripe ret = new DatabaseStripe();
 
-    ret.setAlt(generateString(ValueGenerator.Value.NULL));
-    ret.setDay(generateString(ValueGenerator.Value.NULL));
-    ret.setImg(generateString(ValueGenerator.Value.NULL));
-    ret.setLink(generateString(ValueGenerator.Value.NULL));
-    ret.setMonth(generateString(ValueGenerator.Value.NULL));
-    ret.setYear(generateString(ValueGenerator.Value.NULL));
-    ret.setNews(generateString(ValueGenerator.Value.NULL));
-    ret.setNum(generateLong(ValueGenerator.Value.NULL));
-    ret.setTitle(generateString(ValueGenerator.Value.NULL));
-    ret.setSafe_title(generateString(ValueGenerator.Value.NULL));
-    ret.setTranscript(generateString(ValueGenerator.Value.NULL));
+    ret.setAlt(generateString(ValueGenerator.Value.REGULAR));
+    ret.setDay(generateString(ValueGenerator.Value.REGULAR));
+    ret.setImg(generateString(ValueGenerator.Value.REGULAR));
+    ret.setLink(generateString(ValueGenerator.Value.REGULAR));
+    ret.setMonth(generateString(ValueGenerator.Value.REGULAR));
+    ret.setYear(generateString(ValueGenerator.Value.REGULAR));
+    ret.setNews(generateString(ValueGenerator.Value.REGULAR));
+    ret.setNum(generateLong(ValueGenerator.Value.REGULAR));
+    ret.setTitle(generateString(ValueGenerator.Value.REGULAR));
+    ret.setSafe_title(generateString(ValueGenerator.Value.REGULAR));
+    ret.setTranscript(generateString(ValueGenerator.Value.REGULAR));
 
     return ret;
   }
@@ -55,17 +55,17 @@ public abstract class ValueGenerator {
   public static DataStripe generateRandomDataStripe() {
     final DataStripe ret = new DataStripe();
 
-    ret.setAlt(generateString(ValueGenerator.Value.NULL));
-    ret.setDay(generateString(ValueGenerator.Value.NULL));
-    ret.setImg(generateString(ValueGenerator.Value.NULL));
-    ret.setLink(generateString(ValueGenerator.Value.NULL));
-    ret.setMonth(generateString(ValueGenerator.Value.NULL));
-    ret.setYear(generateString(ValueGenerator.Value.NULL));
-    ret.setNews(generateString(ValueGenerator.Value.NULL));
-    ret.setNum(generateLong(ValueGenerator.Value.NULL));
-    ret.setTitle(generateString(ValueGenerator.Value.NULL));
-    ret.setSafe_title(generateString(ValueGenerator.Value.NULL));
-    ret.setTranscript(generateString(ValueGenerator.Value.NULL));
+    ret.setAlt(generateString(ValueGenerator.Value.REGULAR));
+    ret.setDay(generateString(ValueGenerator.Value.REGULAR));
+    ret.setImg(generateString(ValueGenerator.Value.REGULAR));
+    ret.setLink(generateString(ValueGenerator.Value.REGULAR));
+    ret.setMonth(generateString(ValueGenerator.Value.REGULAR));
+    ret.setYear(generateString(ValueGenerator.Value.REGULAR));
+    ret.setNews(generateString(ValueGenerator.Value.REGULAR));
+    ret.setNum(generateLong(ValueGenerator.Value.REGULAR));
+    ret.setTitle(generateString(ValueGenerator.Value.REGULAR));
+    ret.setSafe_title(generateString(ValueGenerator.Value.REGULAR));
+    ret.setTranscript(generateString(ValueGenerator.Value.REGULAR));
 
     return ret;
   }
@@ -73,17 +73,17 @@ public abstract class ValueGenerator {
   public static DomainStripe generateRandomDomainStripe() {
     final DomainStripe ret = new DomainStripe();
 
-    ret.setAlt(generateString(ValueGenerator.Value.NULL));
-    ret.setDay(generateString(ValueGenerator.Value.NULL));
-    ret.setImg(generateString(ValueGenerator.Value.NULL));
-    ret.setLink(generateString(ValueGenerator.Value.NULL));
-    ret.setMonth(generateString(ValueGenerator.Value.NULL));
-    ret.setYear(generateString(ValueGenerator.Value.NULL));
-    ret.setNews(generateString(ValueGenerator.Value.NULL));
-    ret.setNum(generateLong(ValueGenerator.Value.NULL));
-    ret.setTitle(generateString(ValueGenerator.Value.NULL));
-    ret.setSafe_title(generateString(ValueGenerator.Value.NULL));
-    ret.setTranscript(generateString(ValueGenerator.Value.NULL));
+    ret.setAlt(generateString(ValueGenerator.Value.REGULAR));
+    ret.setDay(generateString(ValueGenerator.Value.REGULAR));
+    ret.setImg(generateString(ValueGenerator.Value.REGULAR));
+    ret.setLink(generateString(ValueGenerator.Value.REGULAR));
+    ret.setMonth(generateString(ValueGenerator.Value.REGULAR));
+    ret.setYear(generateString(ValueGenerator.Value.REGULAR));
+    ret.setNews(generateString(ValueGenerator.Value.REGULAR));
+    ret.setNum(generateLong(ValueGenerator.Value.REGULAR));
+    ret.setTitle(generateString(ValueGenerator.Value.REGULAR));
+    ret.setSafe_title(generateString(ValueGenerator.Value.REGULAR));
+    ret.setTranscript(generateString(ValueGenerator.Value.REGULAR));
 
     return ret;
   }

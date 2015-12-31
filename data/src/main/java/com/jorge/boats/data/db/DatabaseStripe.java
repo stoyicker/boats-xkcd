@@ -1,14 +1,11 @@
 package com.jorge.boats.data.db;
 
 import com.raizlabs.android.dbflow.annotation.Column;
-import com.raizlabs.android.dbflow.annotation.ConflictAction;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
-import com.raizlabs.android.dbflow.annotation.Unique;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
-@Table(database = XkcdDatabase.class, insertConflict = ConflictAction.REPLACE)
-public class DatabaseStripe extends BaseModel {
+@Table(database = XkcdDatabase.class) public class DatabaseStripe extends BaseModel {
 
   public String getMonth() {
     return mMonth;
@@ -100,9 +97,9 @@ public class DatabaseStripe extends BaseModel {
 
   @Column(name = "MONTH") String mMonth;
 
-  @Column(name = "NUM") @Unique long mNum;
+  @Column(name = "NUM") @PrimaryKey long mNum;
 
-  @Column(name = "LINK") @PrimaryKey String mLink;
+  @Column(name = "LINK") String mLink;
 
   @Column(name = "YEAR") String mYear;
 
