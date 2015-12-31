@@ -2,6 +2,7 @@ package com.jorge.boats.data;
 
 import com.jorge.boats.data.db.DatabaseStripe;
 import com.jorge.boats.data.db.XkcdDatabaseHandler;
+import com.jorge.boats.data.helper.ValueGenerator;
 import com.jorge.boats.data.mapper.DatabaseEntityMapper;
 import com.jorge.boats.data.mapper.DomainEntityMapper;
 import com.jorge.boats.data.model.DataStripe;
@@ -19,14 +20,16 @@ import org.mockito.MockitoAnnotations;
 import rx.Observable;
 import rx.observers.TestSubscriber;
 
-import static com.jorge.boats.data.ValueGenerator.generateLong;
-import static com.jorge.boats.data.ValueGenerator.generateString;
+import static com.jorge.boats.data.helper.ValueGenerator.generateLong;
+import static com.jorge.boats.data.helper.ValueGenerator.generateRandomDataStripe;
+import static com.jorge.boats.data.helper.ValueGenerator.generateRandomDatabaseStripe;
+import static com.jorge.boats.data.helper.ValueGenerator.generateRandomDomainStripe;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
-//TODO Reenable the test for not found stripe when the retrofit2 package is available through the dependency
+//TODO Re-enable the test for not found stripe when the retrofit2 package is available through the dependency
 public class XkcdStoreImplTest extends DataModuleTestSuite {
 
   private XkcdStore mSut;
@@ -44,60 +47,6 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
 
     mSut = new XkcdStoreImpl(mMockClient, mMockDatabaseEntityMapper, mMockDomainEntityMapper,
         mMockXkcdDatabaseHandler);
-  }
-
-  private static DatabaseStripe generateRandomDatabaseStripe() {
-    final DatabaseStripe ret = new DatabaseStripe();
-
-    ret.setAlt(generateString(ValueGenerator.Value.NULL));
-    ret.setDay(generateString(ValueGenerator.Value.NULL));
-    ret.setImg(generateString(ValueGenerator.Value.NULL));
-    ret.setLink(generateString(ValueGenerator.Value.NULL));
-    ret.setMonth(generateString(ValueGenerator.Value.NULL));
-    ret.setYear(generateString(ValueGenerator.Value.NULL));
-    ret.setNews(generateString(ValueGenerator.Value.NULL));
-    ret.setNum(generateLong(ValueGenerator.Value.NULL));
-    ret.setTitle(generateString(ValueGenerator.Value.NULL));
-    ret.setSafe_title(generateString(ValueGenerator.Value.NULL));
-    ret.setTranscript(generateString(ValueGenerator.Value.NULL));
-
-    return ret;
-  }
-
-  private static DataStripe generateRandomDataStripe() {
-    final DataStripe ret = new DataStripe();
-
-    ret.setAlt(generateString(ValueGenerator.Value.NULL));
-    ret.setDay(generateString(ValueGenerator.Value.NULL));
-    ret.setImg(generateString(ValueGenerator.Value.NULL));
-    ret.setLink(generateString(ValueGenerator.Value.NULL));
-    ret.setMonth(generateString(ValueGenerator.Value.NULL));
-    ret.setYear(generateString(ValueGenerator.Value.NULL));
-    ret.setNews(generateString(ValueGenerator.Value.NULL));
-    ret.setNum(generateLong(ValueGenerator.Value.NULL));
-    ret.setTitle(generateString(ValueGenerator.Value.NULL));
-    ret.setSafe_title(generateString(ValueGenerator.Value.NULL));
-    ret.setTranscript(generateString(ValueGenerator.Value.NULL));
-
-    return ret;
-  }
-
-  private static DomainStripe generateRandomDomainStripe() {
-    final DomainStripe ret = new DomainStripe();
-
-    ret.setAlt(generateString(ValueGenerator.Value.NULL));
-    ret.setDay(generateString(ValueGenerator.Value.NULL));
-    ret.setImg(generateString(ValueGenerator.Value.NULL));
-    ret.setLink(generateString(ValueGenerator.Value.NULL));
-    ret.setMonth(generateString(ValueGenerator.Value.NULL));
-    ret.setYear(generateString(ValueGenerator.Value.NULL));
-    ret.setNews(generateString(ValueGenerator.Value.NULL));
-    ret.setNum(generateLong(ValueGenerator.Value.NULL));
-    ret.setTitle(generateString(ValueGenerator.Value.NULL));
-    ret.setSafe_title(generateString(ValueGenerator.Value.NULL));
-    ret.setTranscript(generateString(ValueGenerator.Value.NULL));
-
-    return ret;
   }
 
   private static Throwable generateNoInternetStubThrowable() {

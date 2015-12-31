@@ -6,9 +6,9 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.jorge.boats.data.ValueGenerator.Value;
-import static com.jorge.boats.data.ValueGenerator.generateLong;
-import static com.jorge.boats.data.ValueGenerator.generateString;
+import static com.jorge.boats.data.helper.ValueGenerator.Value;
+import static com.jorge.boats.data.helper.ValueGenerator.generateLong;
+import static com.jorge.boats.data.helper.ValueGenerator.generateString;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DatabaseEntityMapperTest {
