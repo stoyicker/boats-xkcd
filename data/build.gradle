@@ -13,10 +13,6 @@ android {
 
   defaultConfig {
     //noinspection GroovyAssignabilityCheck
-    versionCode androidVersionCode
-    //noinspection GroovyAssignabilityCheck
-    versionName androidVersionName
-    //noinspection GroovyAssignabilityCheck
     minSdkVersion androidMinSdkVersion
     //noinspection GroovyAssignabilityCheck
     targetSdkVersion androidTargetSdkVersion
