@@ -9,6 +9,8 @@
       android:id="@+id/toolbar_title"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:maxLines="1"
+      android:ellipsize="end"
       android:textIsSelectable="true"
       style="@style/ToolbarTitle"/>
 </com.jorge.boats.view.widget.CustomTitleToolbar>
