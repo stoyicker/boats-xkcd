@@ -46,11 +46,17 @@ apply plugin: "com.github.ben-manes.versions"
 //If this is modified, remember to update the script(s) accordingly
 def staticAnalysisReportFolderTarget = "staticAnalysisReport"
 
+
+// Query git for the SHA, Tag and commit count. Use these to automate versioning. (https://github.com/nickbutcher/plaid/blob/master/app/build.gradle)
+def gitTag = 'git describe --tags'.execute([], project.rootDir).text.trim()
+def gitCommitCount = 100 +
+    Integer.parseInt('git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
+
 allprojects {
   ext {
     //Application details
-    androidVersionCode = 1
-    androidVersionName = "0"
+    androidVersionCode = gitCommitCount
+    androidVersionName = gitTag
     androidTestInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
 
     //Gradle wrapper version
