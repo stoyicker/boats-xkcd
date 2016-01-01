@@ -33,6 +33,6 @@ public class CustomTitleToolbar extends Toolbar {
   }
 
   @Override public void setTitle(final @Nullable CharSequence title) {
-    ((RevealFlickerTextView) mTitleView).playAndSetText(title);
+    ((FlickAndRevealTextView) mTitleView).playAndSetText(title);
   }
 }

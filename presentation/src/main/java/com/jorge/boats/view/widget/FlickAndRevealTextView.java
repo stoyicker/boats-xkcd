@@ -19,40 +19,40 @@ import com.jorge.boats.R;
 /**
  * Adapted from <a href="https://github.com/ANPez/RevealTextView">RevealTextView</a>
  */
-public class RevealFlickerTextView extends TextView
+public class FlickAndRevealTextView extends TextView
     implements Runnable, ValueAnimator.AnimatorUpdateListener {
 
   private int mAnimationDuration = 0;
   private int mRed, mGreen, mBlue;
   private double[] mAlphas;
 
-  public RevealFlickerTextView(final @NonNull Context context) {
+  public FlickAndRevealTextView(final @NonNull Context context) {
     super(context);
   }
 
-  public RevealFlickerTextView(final @NonNull Context context, final @Nullable AttributeSet attrs) {
+  public FlickAndRevealTextView(final @NonNull Context context, final @Nullable AttributeSet attrs) {
     super(context, attrs);
-    init(context.getTheme().obtainStyledAttributes(attrs, R.styleable.RevealFlickerTextView, 0, 0));
+    init(context.getTheme().obtainStyledAttributes(attrs, R.styleable.FlickAndRevealTextView, 0, 0));
   }
 
-  public RevealFlickerTextView(final @NonNull Context context, final @Nullable AttributeSet attrs,
+  public FlickAndRevealTextView(final @NonNull Context context, final @Nullable AttributeSet attrs,
       int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    init(context.getTheme().obtainStyledAttributes(attrs, R.styleable.RevealFlickerTextView, 0, 0));
+    init(context.getTheme().obtainStyledAttributes(attrs, R.styleable.FlickAndRevealTextView, 0, 0));
   }
 
   @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-  public RevealFlickerTextView(final Context context, final @Nullable AttributeSet attrs,
+  public FlickAndRevealTextView(final Context context, final @Nullable AttributeSet attrs,
       final int defStyleAttr, final int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
-    init(context.getTheme().obtainStyledAttributes(attrs, R.styleable.RevealFlickerTextView, 0, 0));
+    init(context.getTheme().obtainStyledAttributes(attrs, R.styleable.FlickAndRevealTextView, 0, 0));
   }
 
   private void init(final @Nullable TypedArray attrs) {
     if (attrs != null) {
       try {
         mAnimationDuration =
-            attrs.getInteger(R.styleable.RevealFlickerTextView_duration_millis, mAnimationDuration);
+            attrs.getInteger(R.styleable.FlickAndRevealTextView_duration_millis, mAnimationDuration);
       } finally {
         attrs.recycle();
       }
