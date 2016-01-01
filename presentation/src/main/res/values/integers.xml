@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <integer name="toolbar_text_fade_duration_millis">1200</integer>
+</resources>

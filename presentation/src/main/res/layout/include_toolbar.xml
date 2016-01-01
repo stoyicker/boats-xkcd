@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.jorge.boats.view.widget.CustomTitleToolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize">
 
-  <TextView
+  <com.jorge.boats.view.widget.RevealFlickerTextView
       android:id="@+id/toolbar_title"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:maxLines="1"
+      android:singleLine="true"
+      app:duration_millis="@integer/toolbar_text_fade_duration_millis"
       android:ellipsize="end"
       android:textIsSelectable="true"
       style="@style/ToolbarTitle"/>

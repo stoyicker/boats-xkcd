@@ -2,6 +2,7 @@ package com.jorge.boats.view.widget;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.widget.TextView;
@@ -9,11 +10,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.jorge.boats.R;
 
-public final class CustomTitleToolbar extends Toolbar {
+public class CustomTitleToolbar extends Toolbar {
 
   @Bind(R.id.toolbar_title) TextView mTitleView;
 
-  public CustomTitleToolbar(final @NonNull Context context, AttributeSet attrs) {
+  public CustomTitleToolbar(final @NonNull Context context, final @Nullable AttributeSet attrs) {
     super(context, attrs);
   }
 
@@ -31,7 +32,7 @@ public final class CustomTitleToolbar extends Toolbar {
     ButterKnife.bind(this);
   }
 
-  @Override public void setTitle(final CharSequence title) {
-    mTitleView.setText(title);
+  @Override public void setTitle(final @Nullable CharSequence title) {
+    ((RevealFlickerTextView) mTitleView).playAndSetText(title);
   }
 }
