@@ -27,7 +27,7 @@ import javax.inject.Named;
     return typefaceLoad;
   }
 
-  @Provides @PerActivity @Named("getStripe") UseCase<DomainStripe> provideGetStripeUseCase(
+  @Provides @PerActivity @Named("stripe") UseCase<DomainStripe> provideGetStripeUseCase(
       final @NonNull XkcdStore repository, final @NonNull ThreadExecutor threadExecutor,
       final @NonNull PostExecutionThread postExecutionThread) {
     return new GetStripeUseCase(mStripeNum, repository, threadExecutor, postExecutionThread);

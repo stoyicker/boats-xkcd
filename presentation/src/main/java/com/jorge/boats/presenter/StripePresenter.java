@@ -6,6 +6,7 @@ import com.fernandocejas.frodo.annotation.RxLogSubscriber;
 import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.interactor.UseCase;
+import com.jorge.boats.mapper.PresentationEntityMapper;
 import com.jorge.boats.view.stripe.StripeView;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,11 +18,16 @@ import timber.log.Timber;
   private long mStripeNum;
 
   private final UseCase<Typeface> mTypefaceUseCase;
+  private final UseCase<DomainStripe> mStripeUseCase;
+
+  private final PresentationEntityMapper mEntityMapper;
   private StripeView mView;
 
   @Inject
-  public StripePresenter(final @NonNull @Named("typeface") UseCase<Typeface> typefaceUseCase) {
+  public StripePresenter(final @NonNull @Named("typeface") UseCase<Typeface> typefaceUseCase, final @NonNull @Named("stripe") UseCase<DomainStripe> stripeUseCase, PresentationEntityMapper presentationEntityMapper) {
     mTypefaceUseCase = typefaceUseCase;
+    mStripeUseCase = stripeUseCase;
+    mEntityMapper = presentationEntityMapper;
   }
 
   public void setView(@NonNull StripeView view) {
