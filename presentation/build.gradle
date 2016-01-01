@@ -18,6 +18,7 @@ android {
     versionCode androidVersionCode
     //noinspection GroovyAssignabilityCheck
     versionName androidVersionName
+    archivesBaseName = "$applicationId-$versionName"
     //noinspection GroovyAssignabilityCheck
     minSdkVersion androidMinSdkVersion
     //noinspection GroovyAssignabilityCheck
