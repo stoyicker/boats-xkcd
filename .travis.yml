@@ -26,3 +26,6 @@ before_install:
 script:
     - sh scripts/debugVerify.sh
     - sh scripts/debugUnitTests.sh
+after_failure:
+    - cat "/home/travis/build/stoyicker/boats-xkcd/staticAnalysisReport/presentation/lint.html"
+    - cat "/home/travis/build/stoyicker/boats-xkcd/staticAnalysisReport/data/lint.html"
