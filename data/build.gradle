@@ -29,7 +29,7 @@ android {
     absolutePaths true
     checkAllWarnings true
     htmlOutput = new File("${staticAnalysisReportTarget}/data/lint.html")
-    quiet true
+    quiet false
     warningsAsErrors true
   }
 }

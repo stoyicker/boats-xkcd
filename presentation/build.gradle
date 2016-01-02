@@ -74,7 +74,7 @@ android {
     absolutePaths true
     checkAllWarnings true
     htmlOutput = new File("${staticAnalysisReportTarget}/presentation/lint.html")
-    quiet true
+    quiet false
     warningsAsErrors true
   }
 
