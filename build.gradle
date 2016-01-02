@@ -42,7 +42,7 @@ buildscript {
 def staticAnalysisReportFolderTarget = project.rootDir.getAbsolutePath() + "staticAnalysisReport"
 
 
-// Query git for the SHA, Tag and commit count. Use these to automate versioning. (https://github.com/nickbutcher/plaid/blob/master/app/build.gradle)
+// Query git for the tag and commit count. Use these to automate versioning. (https://github.com/nickbutcher/plaid/blob/master/app/build.gradle)
 def gitTag = 'git describe --tags'.execute([], project.rootDir).text.trim()
 def gitCommitCount = 100 + Integer.parseInt(
     'git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
