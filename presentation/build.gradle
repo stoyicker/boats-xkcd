@@ -11,21 +11,23 @@ android {
   //noinspection GroovyAssignabilityCheck
   buildToolsVersion androidBuildToolsVersion
 
-  defaultConfig {
-    //noinspection GroovyAssignabilityCheck
-    applicationId androidApplicationId
-    //noinspection GroovyAssignabilityCheck
-    versionCode androidVersionCode
-    //noinspection GroovyAssignabilityCheck
-    versionName androidVersionName
-    archivesBaseName = "$applicationId-$versionName"
-    //noinspection GroovyAssignabilityCheck
-    minSdkVersion androidMinSdkVersion
-    //noinspection GroovyAssignabilityCheck
-    targetSdkVersion androidTargetSdkVersion
+  productFlavors {
+    standard {
+      //noinspection GroovyAssignabilityCheck
+      applicationId androidApplicationId
+      //noinspection GroovyAssignabilityCheck
+      versionCode androidVersionCode
+      //noinspection GroovyAssignabilityCheck
+      versionName androidVersionName
+      archivesBaseName = "$applicationId-$versionName"
+      //noinspection GroovyAssignabilityCheck
+      minSdkVersion androidMinSdkVersion
+      //noinspection GroovyAssignabilityCheck
+      targetSdkVersion androidTargetSdkVersion
 
-    //noinspection GroovyAssignabilityCheck
-    testInstrumentationRunner androidTestInstrumentationRunner
+      //noinspection GroovyAssignabilityCheck
+      testInstrumentationRunner androidTestInstrumentationRunner
+    }
   }
 
   compileOptions {
@@ -34,28 +36,35 @@ android {
     targetCompatibility javaVersion
   }
 
+  signingConfigs {
+    release {
+      storeFile new File("boats.keystore")
+      storePassword(new File("keystore.pwd").text)
+      keyAlias("boats")
+      keyPassword(new File("key.pwd").text)
+    }
+  }
+
   buildTypes {
     debug {
       minifyEnabled false
       shrinkResources false
     }
     release {
+      //TODO Enable these three flags when ProGuard is setup and the product is ready to release
       minifyEnabled true
       shrinkResources true
       zipAlignEnabled true
-      //noinspection GroovyAssignabilityCheck
-      proguardFiles java.nio.file.Paths.get("presentation", "proguard", "proguardFileContainer").
-          toFile().
-          listFiles()
-      proguardFiles += "presentation/proguard/proguard-android-extensions.pro"
+      proguardFiles = ["proguard/proguard-android-extensions.pro"]
       proguardFiles += getDefaultProguardFile("proguard-android-optimize.txt")
-    }
-  }
-
-  //Ignore release-variant-related problems for now
-  variantFilter { variant ->
-    if (variant.buildType.name.toLowerCase().contentEquals('release')) {
-      variant.setIgnore(true);
+      //    noinspection GroovyAssignabilityCheck
+      final File f = java.nio.file.Paths.get(rootProject.rootDir.getAbsolutePath(), "presentation", "proguard", "proguardFileContainer").
+          toFile()
+      f?.listFiles()?.each { file ->
+        System.out.format(Locale.ENGLISH, "Adding %s\n", file.getName())
+        proguardFiles += file
+      }
+      signingConfig signingConfigs.release
     }
   }
 
@@ -104,6 +113,8 @@ dependencies {
   final Collection<String> aptDependencies = aptPresentationDependencies.values()
   final Collection<String> androidTestCompileDependencies = androidTestCompilePresentationDependencies.
       values()
+  final Collection<String> testCompileDependencies = testCompilePresentationDependencies.
+      values()
   for (final String dependency : providedDependencies) provided dependency
   for (final String dependency : compileDependencies) compile dependency
   for (final String dependency : aptDependencies) apt dependency
@@ -118,4 +129,5 @@ dependencies {
     }
   }
   for (final String dependency : debugCompileDependencies) debugCompile dependency
+  for (final String dependency : testCompileDependencies) testCompile dependency
 }

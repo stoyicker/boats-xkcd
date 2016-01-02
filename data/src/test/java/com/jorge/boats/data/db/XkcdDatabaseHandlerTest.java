@@ -1,7 +1,7 @@
 package com.jorge.boats.data.db;
 
 import android.text.TextUtils;
-import com.jorge.boats.data.DataModuleTestSuite;
+import com.jorge.boats.data.DataModuleTestCase;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import org.assertj.core.api.Condition;
 import org.junit.Before;
@@ -14,7 +14,7 @@ import static com.jorge.boats.data.helper.ValueGenerator.generateLong;
 import static com.jorge.boats.data.helper.ValueGenerator.generateRandomDatabaseStripe;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class XkcdDatabaseHandlerTest extends DataModuleTestSuite {
+public class XkcdDatabaseHandlerTest extends DataModuleTestCase {
 
   private XkcdDatabaseHandler mSut;
 

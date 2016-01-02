@@ -1,4 +1,4 @@
-package com.jorge.boats.data;
+package com.jorge.boats;
 
 import android.app.Application;
 

@@ -5,12 +5,12 @@ task downloadProguardFiles {
     src(
         ["https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-butterknife-7.pro",
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-gson.pro",
-         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-project.pro",
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-rx-java.pro",
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-rxjava-promises.pro",
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-okhttp.pro",
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-okio.pro",
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-glide.pro",
+         //TODO Change this one by Retrofit2 when applicable
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-retrofit.pro"])
     dest "proguard/proguardFileContainer"
     overwrite true

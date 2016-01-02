@@ -5,11 +5,11 @@ import android.graphics.Typeface;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import com.jorge.boats.R;
+import com.jorge.boats.log.ApplicationLogger;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.Map;
 import java.util.WeakHashMap;
-import timber.log.Timber;
 
 public final class FontManager {
 
@@ -30,7 +30,7 @@ public final class FontManager {
       try {
         tf = Typeface.createFromAsset(context.getAssets(), name);
       } catch (final @NonNull Exception e) {
-        Timber.e(e, e.getClass().getName());
+        ApplicationLogger.e(e, e.getClass().getName());
         return null;
       }
       FONT_CACHE.put(name, tf);

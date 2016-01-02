@@ -13,7 +13,6 @@ buildscript {
 
   def androidPluginVersion = "2.0.0-alpha3"
   def frodoPluginVersion = "0.8.2"
-  def versionsPluginVersion = "0.11.3"
   def dexcountPluginVersion = "0.3.1"
   def androidAptPluginVersion = "1.8"
   def pSyncPluginVersion = "1.1.5"
@@ -22,7 +21,6 @@ buildscript {
 
   def classpathDependencies = [androidPlugin        : "com.android.tools.build:gradle:${androidPluginVersion}",
                                frodoPlugin          : "com.fernandocejas.frodo:frodo-plugin:${frodoPluginVersion}",
-                               gradleVersionsPlugin : "com.github.ben-manes:gradle-versions-plugin:${versionsPluginVersion}",
                                dexcountPlugin       : "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${dexcountPluginVersion}",
                                androidAptPlugin     : "com.neenbedankt.gradle.plugins:android-apt:${androidAptPluginVersion}",
                                pSync                : "gradle.plugin.com.flipboard:psync:${pSyncPluginVersion}",
@@ -32,7 +30,6 @@ buildscript {
   dependencies {
     classpath classpathDependencies.androidPlugin
     classpath classpathDependencies.frodoPlugin
-    classpath classpathDependencies.gradleVersionsPlugin
     classpath classpathDependencies.dexcountPlugin
     classpath classpathDependencies.androidAptPlugin
     classpath classpathDependencies.pSync
@@ -41,16 +38,14 @@ buildscript {
   }
 }
 
-apply plugin: "com.github.ben-manes.versions"
-
 //If this is modified, remember to update the script(s) accordingly
-def staticAnalysisReportFolderTarget = "staticAnalysisReport"
+def staticAnalysisReportFolderTarget = project.rootDir.getAbsolutePath() + "staticAnalysisReport"
 
 
 // Query git for the SHA, Tag and commit count. Use these to automate versioning. (https://github.com/nickbutcher/plaid/blob/master/app/build.gradle)
 def gitTag = 'git describe --tags'.execute([], project.rootDir).text.trim()
-def gitCommitCount = 100 +
-    Integer.parseInt('git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
+def gitCommitCount = 100 + Integer.parseInt(
+    'git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
 
 allprojects {
   ext {

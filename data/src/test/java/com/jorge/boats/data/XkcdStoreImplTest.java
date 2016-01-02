@@ -16,7 +16,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import rx.Observable;
 import rx.observers.TestSubscriber;
 
@@ -30,7 +29,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 //TODO Re-enable the test for not found stripe when the retrofit2 package is available through the dependency
-public class XkcdStoreImplTest extends DataModuleTestSuite {
+public class XkcdStoreImplTest extends DataModuleTestCase {
 
   private XkcdStore mSut;
 
@@ -43,7 +42,6 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
 
   @Before @Override public void setUp() {
     super.setUp();
-    MockitoAnnotations.initMocks(this);
 
     mSut = new XkcdStoreImpl(mMockClient, mMockDatabaseEntityMapper, mMockDomainEntityMapper,
         mMockXkcdDatabaseHandler);
@@ -88,7 +86,7 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
 
     mSut.currentStripe().subscribe(testSubscriber);
 
-    testSubscriber.assertError(UnknownHostException.class);
+    testSubscriber.assertError(error);
     testSubscriber.assertReceivedOnNext(Collections.<DomainStripe>emptyList());
     testSubscriber.assertNotCompleted();
   }
@@ -128,7 +126,7 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
 
     mSut.stripeWithNum(generatedNum).subscribe(testSubscriber);
 
-    testSubscriber.assertError(UnknownHostException.class);
+    testSubscriber.assertError(error);
     testSubscriber.assertReceivedOnNext(Collections.<DomainStripe>emptyList());
     testSubscriber.assertNotCompleted();
   }
@@ -156,9 +154,12 @@ public class XkcdStoreImplTest extends DataModuleTestSuite {
   }
 
   @Test public void testGetStripeWithInvalidNum() {
-    mExceptionExpectation.expect(IllegalArgumentException.class);
+    final long stripeNum = generateLong(ValueGenerator.Value.NULL);
 
-    mSut.stripeWithNum(generateLong(ValueGenerator.Value.NULL));
+    mExceptionExpectation.expect(IllegalArgumentException.class);
+    mExceptionExpectation.expectMessage("Illegal stripe number " + stripeNum);
+
+    mSut.stripeWithNum(stripeNum);
   }
 
   //@Test public void testGetStripeWithNotFoundNumNoCachedSuccessful() {

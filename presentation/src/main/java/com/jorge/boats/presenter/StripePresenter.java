@@ -6,12 +6,12 @@ import com.fernandocejas.frodo.annotation.RxLogSubscriber;
 import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.interactor.UseCase;
+import com.jorge.boats.log.ApplicationLogger;
 import com.jorge.boats.mapper.PresentationEntityMapper;
 import com.jorge.boats.view.stripe.StripeView;
 import javax.inject.Inject;
 import javax.inject.Named;
 import rx.Subscriber;
-import timber.log.Timber;
 
 @PerActivity public class StripePresenter implements Presenter {
 
@@ -24,7 +24,9 @@ import timber.log.Timber;
   private StripeView mView;
 
   @Inject
-  public StripePresenter(final @NonNull @Named("typeface") UseCase<Typeface> typefaceUseCase, final @NonNull @Named("stripe") UseCase<DomainStripe> stripeUseCase, PresentationEntityMapper presentationEntityMapper) {
+  public StripePresenter(final @NonNull @Named("typeface") UseCase<Typeface> typefaceUseCase,
+      final @NonNull @Named("stripe") UseCase<DomainStripe> stripeUseCase,
+      PresentationEntityMapper presentationEntityMapper) {
     mTypefaceUseCase = typefaceUseCase;
     mStripeUseCase = stripeUseCase;
     mEntityMapper = presentationEntityMapper;
@@ -65,7 +67,7 @@ import timber.log.Timber;
     }
 
     @Override public void onError(final @NonNull Throwable e) {
-      Timber.e(e, e.getClass().getName());
+      ApplicationLogger.e(e, e.getClass().getName());
     }
 
     @Override public void onNext(final @NonNull Typeface typeface) {

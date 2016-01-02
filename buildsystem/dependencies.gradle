@@ -51,10 +51,13 @@ ext {
       [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}"]
 
   androidTestCompilePresentationDependencies =
-      [dexmaker                   : "com.google.dexmaker:dexmaker:${dexmakerVersion}",
-       dexmakerMockito            : "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}",
-       espresso                   : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+      [espresso                   : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
        testingSupportLibraryRunner: "com.android.support.test:runner:${testingSupportLibraryRunnerVersion}"]
+
+  testCompilePresentationDependencies = [junit      : "junit:junit:${jUnitVersion}",
+                                         mockito    : "org.mockito:mockito-core:${mockitoVersion}",
+                                         assertj    : "org.assertj:assertj-core:${assertJVersion}",
+                                         robolectric: "org.robolectric:robolectric:${robolectricVersion}"]
 
   compileDomainDependencies = [rxJava         : "io.reactivex:rxjava:${rxJavaVersion}",
                                javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
