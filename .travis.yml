@@ -16,7 +16,6 @@ branches:
     - master
 before_install:
 # Signature stub ##START##
-//TODO Get this from env vars
     - echo "stub keystore" > boats.keystore
     - echo "stub storage pwd" > keystore.pwd
     - echo "stub key pwd" > key.pwd
