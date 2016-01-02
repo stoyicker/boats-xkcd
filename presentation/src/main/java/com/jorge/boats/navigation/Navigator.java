@@ -6,7 +6,7 @@ import javax.inject.Singleton;
 
 @Singleton public class Navigator {
 
-  public static final int NAVIGATION_ITEM_SETTINGS = 0;
+  private static final int NAVIGATION_ITEM_SETTINGS = 0;
 
   @IntDef({ NAVIGATION_ITEM_SETTINGS }) public @interface NavigationItem {
   }

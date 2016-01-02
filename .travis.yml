@@ -11,6 +11,8 @@ android:
     - extra-google-m2repository
 jdk:
   - oraclejdk8
+env:
+  - CI=true
 branches:
   only:
     - master

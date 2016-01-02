@@ -2,6 +2,6 @@ package com.jorge.boats;
 
 import android.app.Application;
 
-//Has to be public
+@SuppressWarnings("WeakerAccess")
 public class StubApplication extends Application {
 }

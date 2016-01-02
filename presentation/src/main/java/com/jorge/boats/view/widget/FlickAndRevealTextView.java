@@ -76,7 +76,7 @@ public class FlickAndRevealTextView extends TextView
     if (!TextUtils.isEmpty(text)) replay();
   }
 
-  public void replay() {
+  private void replay() {
     refreshAlphas();
 
     if (!TextUtils.isEmpty(super.getText())) {

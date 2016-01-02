@@ -47,14 +47,14 @@ public abstract class BaseVisualActivity extends BaseActivity {
         BitmapFactory.decodeResource(res, R.drawable.app_background)));
   }
 
-  @NonNull public TextView getTitleView() {
+  @NonNull protected TextView getTitleView() {
     return mToolbar.getTitleView();
   }
 
   private static class BackgroundBitmapDrawable extends BitmapDrawable {
     private final Matrix mMatrix = new Matrix();
     private int mOldHeight;
-    private boolean isSimpleMapping = false;
+    private final boolean isSimpleMapping = false;
 
     private BackgroundBitmapDrawable(Resources res, Bitmap bitmap) {
       super(res, bitmap);

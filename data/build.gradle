@@ -25,7 +25,7 @@ android {
   }
 
   lintOptions {
-    abortOnError true
+    abortOnError !rootProject.ext.executingOnCI
     absolutePaths true
     checkAllWarnings true
     htmlOutput = new File("${staticAnalysisReportTarget}/data/lint.html")
