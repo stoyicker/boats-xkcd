@@ -1,6 +1,5 @@
 package com.jorge.boats;
 
-import com.jorge.boats.data.BuildConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;

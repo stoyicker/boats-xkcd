@@ -39,9 +39,9 @@ android {
   signingConfigs {
     release {
       storeFile new File("boats.keystore")
-      storePassword(new File("keystore.pwd").text)
+      storePassword(new File("keystore.pwd").text.trim())
       keyAlias("boats")
-      keyPassword(new File("key.pwd").text)
+      keyPassword(new File("key.pwd").text.trim())
     }
   }
 
@@ -52,13 +52,14 @@ android {
     }
     release {
       //TODO Enable these three flags when ProGuard is setup and the product is ready to release
-      minifyEnabled true
-      shrinkResources true
-      zipAlignEnabled true
+      minifyEnabled false
+      shrinkResources false
+      zipAlignEnabled false
       proguardFiles = ["proguard/proguard-android-extensions.pro"]
       proguardFiles += getDefaultProguardFile("proguard-android-optimize.txt")
       //    noinspection GroovyAssignabilityCheck
-      final File f = java.nio.file.Paths.get(rootProject.rootDir.getAbsolutePath(), "presentation", "proguard", "proguardFileContainer").
+      final File f = java.nio.file.Paths.get(rootProject.rootDir.getAbsolutePath(), "presentation",
+          "proguard", "proguardFileContainer").
           toFile()
       f?.listFiles()?.each { file ->
         System.out.format(Locale.ENGLISH, "Adding %s\n", file.getName())

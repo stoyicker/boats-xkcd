@@ -16,13 +16,14 @@ branches:
     - master
 before_install:
 # Signature stub ##START##
-    - echo "stub keystore" > stub.keystore
-    - echo "stub storage pwd" > stubstorage.pwd
-    - echo "stub key pwd" > stub.pwd
+//TODO Get this from env vars
+    - echo "stub keystore" > boats.keystore
+    - echo "stub storage pwd" > keystore.pwd
+    - echo "stub key pwd" > key.pwd
 # Signature stub ##END##
 # Mark Gradle as executable ##START##
     - chmod +x ./gradlew
 # Mark Gradle as executable ##END##
 script:
-    - sh scripts/verifyDebug.sh
-    - sh scripts/unitTests.sh
+    - sh scripts/debugVerify.sh
+    - sh scripts/debugUnitTests.sh
