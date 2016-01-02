@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-./gradlew assembleStandardDebug testStandardDebug
+./gradlew testStandardDebug
