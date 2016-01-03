@@ -9,6 +9,8 @@
     <item name="android:textColorSecondary">@color/secondary_text</item>
     <item name="divider">@color/divider</item>
     <item name="windowActionBarOverlay">true</item>
+    <item name="android:windowActionModeOverlay">true</item>
+    <item name="android:actionModeBackground">?attr/colorPrimary</item>
   </style>
 
   <style name="ToolbarTitle" parent="@android:style/TextAppearance.Medium">
