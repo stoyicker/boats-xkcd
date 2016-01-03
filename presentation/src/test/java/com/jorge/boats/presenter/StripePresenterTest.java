@@ -35,22 +35,13 @@ public class StripePresenterTest extends PresentationModuleTestCase {
     mSut = new StripePresenter(mTypefaceLoad, mStripeLoad, mEntityMapper);
   }
 
-  @Test public void testUpdateNumCurrent() {
-    mSut.switchToStripeNum(STRIPE_NUM_CURRENT);
+  @Test public void testInitialize() {
+    mSut.initialize();
     //noinspection unchecked
     verify(mTypefaceLoad).execute(any(Subscriber.class));
   }
 
-  @Test public void testUpdateNumValidArbitrary() {
-    mSut.switchToStripeNum(STRIPE_NUM_ARBITRARY);
-    //noinspection unchecked
-    verify(mTypefaceLoad).execute(any(Subscriber.class));
-  }
-
-  @Test public void testUpdateNumInvalid() {
-    mExceptionExpectation.expect(IllegalArgumentException.class);
-    mExceptionExpectation.expectMessage("Illegal stripe num " + STRIPE_NUM_INVALID + ".");
-
-    mSut.switchToStripeNum(STRIPE_NUM_INVALID);
-  }
+  //TODO Here add tests to see if the presenter sets the title correctly
+  //TODO Add tests in the interactor package (domain) to verify that it provides the correct data
+  //TODO Add presentation mapper tests (in this module [presentation]), but the corresponding pkg
 }
