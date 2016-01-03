@@ -41,7 +41,7 @@ public class StripePresenterTest extends PresentationModuleTestCase {
     verify(mTypefaceLoad).execute(any(Subscriber.class));
   }
 
-  //TODO Here add tests to see if the presenter sets the title correctly
+  //TODO Add tests (on the activity? - see sample) to see if the presenter sets the title correctly
   //TODO Add tests in the interactor package (domain) to verify that it provides the correct data
   //TODO Add presentation mapper tests (in this module [presentation]), but the corresponding pkg
 }
