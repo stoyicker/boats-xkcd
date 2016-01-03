@@ -1,11 +1,9 @@
 package com.jorge.boats.view.widget;
 
 import android.animation.ValueAnimator;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.SpannableStringBuilder;
@@ -13,6 +11,8 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.TextView;
 import com.jorge.boats.R;
 
@@ -22,7 +22,9 @@ import com.jorge.boats.R;
 public class FlickAndRevealTextView extends TextView
     implements Runnable, ValueAnimator.AnimatorUpdateListener {
 
-  private int mAnimationDuration = 0;
+  private static int DEFAULT_ANIMATION_DURATION_MILLIS = 0;
+
+  private int mInDuration = 0, mOutDuration = 0;
   private int mRed, mGreen, mBlue;
   private double[] mAlphas;
 
@@ -30,29 +32,27 @@ public class FlickAndRevealTextView extends TextView
     super(context);
   }
 
-  public FlickAndRevealTextView(final @NonNull Context context, final @Nullable AttributeSet attrs) {
+  public FlickAndRevealTextView(final @NonNull Context context,
+      final @Nullable AttributeSet attrs) {
     super(context, attrs);
-    init(context.getTheme().obtainStyledAttributes(attrs, R.styleable.FlickAndRevealTextView, 0, 0));
+    init(
+        context.getTheme().obtainStyledAttributes(attrs, R.styleable.FlickAndRevealTextView, 0, 0));
   }
 
   public FlickAndRevealTextView(final @NonNull Context context, final @Nullable AttributeSet attrs,
       int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    init(context.getTheme().obtainStyledAttributes(attrs, R.styleable.FlickAndRevealTextView, 0, 0));
-  }
-
-  @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-  public FlickAndRevealTextView(final Context context, final @Nullable AttributeSet attrs,
-      final int defStyleAttr, final int defStyleRes) {
-    super(context, attrs, defStyleAttr, defStyleRes);
-    init(context.getTheme().obtainStyledAttributes(attrs, R.styleable.FlickAndRevealTextView, 0, 0));
+    init(
+        context.getTheme().obtainStyledAttributes(attrs, R.styleable.FlickAndRevealTextView, 0, 0));
   }
 
   private void init(final @Nullable TypedArray attrs) {
     if (attrs != null) {
       try {
-        mAnimationDuration =
-            attrs.getInteger(R.styleable.FlickAndRevealTextView_duration_millis, mAnimationDuration);
+        mInDuration = attrs.getInteger(R.styleable.FlickAndRevealTextView_in_duration_millis,
+            mInDuration);
+        mOutDuration = attrs.getInteger(R.styleable.FlickAndRevealTextView_out_duration_millis,
+            mOutDuration);
       } finally {
         attrs.recycle();
       }
@@ -70,10 +70,26 @@ public class FlickAndRevealTextView extends TextView
   }
 
   public void playAndSetText(final @Nullable CharSequence text) {
-    setVisibility(INVISIBLE);
-    super.setText(text);
+    final Animation fadeOut = new AlphaAnimation(1, 0);
 
-    if (!TextUtils.isEmpty(text)) replay();
+    fadeOut.setDuration(mOutDuration);
+
+    fadeOut.setAnimationListener(new Animation.AnimationListener() {
+      @Override public void onAnimationStart(final @NonNull Animation animation) {
+
+      }
+
+      @Override public void onAnimationEnd(final @NonNull Animation animation) {
+        FlickAndRevealTextView.super.setText(text);
+
+        if (!TextUtils.isEmpty(text)) replay();
+      }
+
+      @Override public void onAnimationRepeat(final @NonNull Animation animation) {
+      }
+    });
+
+    startAnimation(fadeOut);
   }
 
   private void replay() {
@@ -92,7 +108,7 @@ public class FlickAndRevealTextView extends TextView
     mBlue = Color.blue(color);
 
     ValueAnimator animator = ValueAnimator.ofFloat(0f, 2f);
-    animator.setDuration(mAnimationDuration);
+    animator.setDuration(mInDuration);
     animator.addUpdateListener(this);
     animator.start();
   }

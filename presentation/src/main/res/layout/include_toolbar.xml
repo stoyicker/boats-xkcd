@@ -11,7 +11,8 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:singleLine="true"
-      app:duration_millis="@integer/toolbar_text_fade_duration_millis"
+      app:in_duration_millis="@integer/toolbar_text_in_duration_millis"
+      app:out_duration_millis="@integer/toolbar_text_out_duration_millis"
       android:ellipsize="end"
       android:textIsSelectable="true"
       style="@style/ToolbarTitle"/>
