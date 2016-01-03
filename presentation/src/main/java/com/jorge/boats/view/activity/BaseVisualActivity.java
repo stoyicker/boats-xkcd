@@ -11,7 +11,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.jorge.boats.R;
@@ -47,8 +46,8 @@ public abstract class BaseVisualActivity extends BaseActivity {
         BitmapFactory.decodeResource(res, R.drawable.app_background)));
   }
 
-  @NonNull protected TextView getTitleView() {
-    return mToolbar.getTitleView();
+  @NonNull protected CustomTitleToolbar getToolbar() {
+    return mToolbar;
   }
 
   private static class BackgroundBitmapDrawable extends BitmapDrawable {

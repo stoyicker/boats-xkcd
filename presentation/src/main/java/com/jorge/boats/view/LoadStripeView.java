@@ -6,17 +6,8 @@
 package com.jorge.boats.view;
 
 import android.content.Context;
-import android.support.annotation.IntDef;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
 public interface LoadStripeView {
-
-  int LOAD_STRIPE_ERROR_UNKNOWN = 0;
-
-  @IntDef({ LOAD_STRIPE_ERROR_UNKNOWN }) @Retention(RetentionPolicy.CLASS)
-  @interface LoadStripeError {
-  }
 
   void showLoading();
 
@@ -26,7 +17,7 @@ public interface LoadStripeView {
 
   void hideRetry();
 
-  void showError(final @LoadStripeError int errorCode);
+  void showError(final Throwable throwable);
 
   Context getContext();
 }

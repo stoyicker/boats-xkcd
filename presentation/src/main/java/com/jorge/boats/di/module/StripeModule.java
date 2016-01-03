@@ -16,12 +16,6 @@ import javax.inject.Named;
 
 @Module public class StripeModule {
 
-  private final long mStripeNum;
-
-  public StripeModule(final long stripeNum) {
-    mStripeNum = stripeNum;
-  }
-
   @Provides @PerActivity @Named("typeface") UseCase<Typeface> provideTypefaceUseCase(
       final @NonNull TypefaceLoadTask typefaceLoad) {
     return typefaceLoad;
@@ -30,6 +24,6 @@ import javax.inject.Named;
   @Provides @PerActivity @Named("stripe") UseCase<DomainStripe> provideGetStripeUseCase(
       final @NonNull XkcdStore repository, final @NonNull ThreadExecutor threadExecutor,
       final @NonNull PostExecutionThread postExecutionThread) {
-    return new GetStripeUseCase(mStripeNum, repository, threadExecutor, postExecutionThread);
+    return new GetStripeUseCase(repository, threadExecutor, postExecutionThread);
   }
 }

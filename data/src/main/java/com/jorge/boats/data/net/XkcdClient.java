@@ -9,7 +9,9 @@ import com.squareup.okhttp.OkHttpClient;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
+import retrofit.RxJavaCallAdapterFactory;
 import rx.Observable;
 
 @Singleton public class XkcdClient {
@@ -40,6 +42,8 @@ import rx.Observable;
     client.setWriteTimeout(resources.getInteger(R.integer.client_timeout_write_milliseconds),
         TimeUnit.MILLISECONDS);
 
+    builder.addCallAdapterFactory(RxJavaCallAdapterFactory.create());
+    builder.addConverterFactory(GsonConverterFactory.create());
     builder.baseUrl(resources.getString(R.string.xkcd_base_url));
     builder.client(client);
 

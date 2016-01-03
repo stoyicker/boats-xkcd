@@ -5,11 +5,13 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 import com.jorge.boats.R;
 import com.jorge.boats.di.component.DaggerStripeComponent;
 import com.jorge.boats.di.component.StripeComponent;
 import com.jorge.boats.di.module.StripeModule;
 import com.jorge.boats.domain.entity.DomainStripe;
+import com.jorge.boats.entity.PresentationStripe;
 import com.jorge.boats.presenter.StripePresenter;
 import com.jorge.boats.view.activity.BaseVisualActivity;
 import javax.inject.Inject;
@@ -31,12 +33,13 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
     setContentView(R.layout.activity_main);
 
     initializeActivity(savedInstanceState);
+    initializeStripePresenter();
   }
 
   @Override protected void createComponentAndInjectSelf() {
     this.mStripeComponent = DaggerStripeComponent.builder()
         .applicationComponent(getApplicationComponent())
-        .stripeModule(new StripeModule(mStripeNum))
+        .stripeModule(new StripeModule())
         .build();
     mStripeComponent.inject(this);
   }
@@ -48,6 +51,11 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
     super.onSaveInstanceState(outState);
   }
 
+  @Override protected void onRestoreInstanceState(final @Nullable Bundle savedInstanceState) {
+    super.onRestoreInstanceState(savedInstanceState);
+    initializeActivity(savedInstanceState);
+  }
+
   private void initializeActivity(final @Nullable Bundle savedInstanceState) {
     if (savedInstanceState == null) {
       this.mStripeNum =
@@ -56,11 +64,11 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
       this.mStripeNum = savedInstanceState.getLong(INSTANCE_STATE_PARAM_STRING_ID,
           DomainStripe.STRIPE_NUM_CURRENT);
     }
-    initializeStripePresenter();
   }
 
   private void initializeStripePresenter() {
-    this.mStripePresenter.setView(this);
+    this.mStripePresenter.createWithView(this);
+    this.mStripePresenter.switchToStripeNum(mStripeNum);
   }
 
   @Override public void onResume() {
@@ -78,12 +86,13 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
     this.mStripePresenter.destroy();
   }
 
-  @Override public void renderStripe(@NonNull DomainStripe model) {
-
+  @Override public void setTitleTypeface(@NonNull Typeface titleTypeface) {
+    super.getToolbar().getTitleView().setTypeface(titleTypeface);
   }
 
-  @Override public void setTitleTypeface(@NonNull Typeface titleTypeface) {
-    super.getTitleView().setTypeface(titleTypeface);
+  @Override public void renderStripe(@NonNull PresentationStripe model) {
+    super.getToolbar().setTitle(model.getTitle());
+    //TODO Rest of render stripe
   }
 
   @Override public void showLoading() {
@@ -102,8 +111,8 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
 
   }
 
-  @Override public void showError(@LoadStripeError int errorCode) {
-
+  @Override public void showError(final @NonNull Throwable throwable) {
+    Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
   }
 
   @Override public Context getContext() {

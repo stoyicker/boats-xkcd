@@ -74,7 +74,8 @@ ext {
                              dbFlowCore           : "com.github.Raizlabs.DBFlow:dbflow-core:${dbFlowVersion}",
                              dbFlow               : "com.github.Raizlabs.DBFlow:dbflow:${dbFlowVersion}",
                              retrofit             : "com.squareup.retrofit:retrofit:${retrofitVersion}",
-                             retrofitGSONConverter: "com.squareup.retrofit:converter-gson:${retrofitVersion}",
+                             retrofitGsonConverter: "com.squareup.retrofit:converter-gson:${retrofitVersion}",
+                             retrofitRxJavaAdapter: "com.squareup.retrofit:adapter-rxjava:${retrofitVersion}",
                              commonsLang3         : "org.apache.commons:commons-lang3:${commonsLang3Version}"]
 
   aptDataDependencies = [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",

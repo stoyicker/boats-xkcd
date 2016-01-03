@@ -9,14 +9,17 @@ import rx.Observable;
 
 public class GetStripeUseCase extends UseCase<DomainStripe> {
 
-  private final long mStripeNum;
+  private long mStripeNum;
   private final XkcdStore mStore;
 
-  @Inject public GetStripeUseCase(final long stripeNum, final XkcdStore store,
-      final ThreadExecutor threadExecutor, final PostExecutionThread postExecutionThread) {
+  @Inject public GetStripeUseCase(final XkcdStore store, final ThreadExecutor threadExecutor,
+      final PostExecutionThread postExecutionThread) {
     super(threadExecutor, postExecutionThread);
-    mStripeNum = stripeNum;
     mStore = store;
+  }
+
+  public void setRequestedStripeNum(final long stripeNum) {
+    mStripeNum = stripeNum;
   }
 
   @Override protected Observable<DomainStripe> buildUseCaseObservable() {

@@ -45,7 +45,7 @@ public abstract class UseCase<T> {
         .subscribe(useCaseSubscriber);
   }
 
-  public void unsubscribe() {
+  public void destroy() {
     if (!mSubscription.isUnsubscribed()) {
       mSubscription.unsubscribe();
     }

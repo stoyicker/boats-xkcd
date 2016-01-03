@@ -32,28 +32,25 @@ public class StripePresenterTest extends PresentationModuleTestCase {
   @Before @Override public void setUp() {
     super.setUp();
 
-    //TODO Fix the colors when text in the action bar is selected
     mSut = new StripePresenter(mTypefaceLoad, mStripeLoad, mEntityMapper);
   }
 
-  @Test
-  public void testInitializeIdCurrent() {
-    mSut.initialize(STRIPE_NUM_CURRENT);
+  @Test public void testUpdateNumCurrent() {
+    mSut.switchToStripeNum(STRIPE_NUM_CURRENT);
     //noinspection unchecked
     verify(mTypefaceLoad).execute(any(Subscriber.class));
   }
 
-  @Test
-  public void testInitializeIdValidArbitrary() {
-    mSut.initialize(STRIPE_NUM_ARBITRARY);
+  @Test public void testUpdateNumValidArbitrary() {
+    mSut.switchToStripeNum(STRIPE_NUM_ARBITRARY);
     //noinspection unchecked
     verify(mTypefaceLoad).execute(any(Subscriber.class));
   }
 
-  @Test
-  public void testInitializeIdInvalid() {
+  @Test public void testUpdateNumInvalid() {
     mExceptionExpectation.expect(IllegalArgumentException.class);
     mExceptionExpectation.expectMessage("Illegal stripe num " + STRIPE_NUM_INVALID + ".");
-    mSut.initialize(STRIPE_NUM_INVALID);
+
+    mSut.switchToStripeNum(STRIPE_NUM_INVALID);
   }
 }

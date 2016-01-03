@@ -1,9 +1,13 @@
 package com.jorge.boats.presenter;
 
+import android.support.annotation.NonNull;
+
 /**
  * Interface representing a Presenter in a generate view presenter (MVP) pattern.
  */
-interface Presenter {
+interface Presenter<ViewType> {
+
+  void createWithView(final @NonNull ViewType view);
 
   void resume();
 

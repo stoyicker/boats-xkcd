@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import com.fernandocejas.frodo.annotation.RxLogSubscriber;
 import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.entity.DomainStripe;
+import com.jorge.boats.domain.interactor.GetStripeUseCase;
 import com.jorge.boats.domain.interactor.UseCase;
 import com.jorge.boats.log.ApplicationLogger;
 import com.jorge.boats.mapper.PresentationEntityMapper;
@@ -13,7 +14,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import rx.Subscriber;
 
-@PerActivity public class StripePresenter implements Presenter {
+@PerActivity public class StripePresenter implements Presenter<StripeView> {
 
   private long mStripeNum;
 
@@ -32,24 +33,37 @@ import rx.Subscriber;
     mEntityMapper = presentationEntityMapper;
   }
 
-  public void setView(@NonNull StripeView view) {
-    this.mView = view;
+  public void createWithView(@NonNull StripeView view) {
+    initialize();
+    mView = view;
   }
 
-  public void initialize(final long stripeNum) {
+  public void initialize() {
+    requestTitleTypeface();
+  }
+
+  private void requestTitleTypeface() {
+    mTypefaceUseCase.execute(new TitleTypefaceSubscriber());
+  }
+
+  private void requestStripe() {
+    loadStripe();
+  }
+
+  private void loadStripe() {
+    mStripeUseCase.execute(new StripeSubscriber());
+  }
+
+  public void switchToStripeNum(final long stripeNum) {
     if (stripeNum < DomainStripe.STRIPE_NUM_CURRENT) {
       throw new IllegalArgumentException("Illegal stripe num " + stripeNum + ".");
     }
     mStripeNum = stripeNum;
-    this.loadTitleTypeface();
-  }
-
-  private void loadTitleTypeface() {
-    mTypefaceUseCase.execute(new TitleTypefaceSubscriber());
+    ((GetStripeUseCase) mStripeUseCase).setRequestedStripeNum(mStripeNum);
+    requestStripe();
   }
 
   @Override public void resume() {
-    this.initialize(mStripeNum);
   }
 
   @Override public void pause() {
@@ -57,7 +71,8 @@ import rx.Subscriber;
   }
 
   @Override public void destroy() {
-    mTypefaceUseCase.unsubscribe();
+    mTypefaceUseCase.destroy();
+    mStripeUseCase.destroy();
   }
 
   @RxLogSubscriber private final class TitleTypefaceSubscriber extends Subscriber<Typeface> {
@@ -72,6 +87,28 @@ import rx.Subscriber;
 
     @Override public void onNext(final @NonNull Typeface typeface) {
       mView.setTitleTypeface(typeface);
+    }
+  }
+
+  private final class StripeSubscriber extends Subscriber<DomainStripe> {
+
+    @Override public void onStart() {
+      mView.showLoading();
+      mView.hideRetry();
+    }
+
+    @Override public void onCompleted() {
+      mView.hideLoading();
+    }
+
+    @Override public void onError(final @NonNull Throwable e) {
+      ApplicationLogger.e(e, e.getClass().getName());
+      mView.showError(e);
+      mView.showRetry();
+    }
+
+    @Override public void onNext(final @NonNull DomainStripe domainStripe) {
+      mView.renderStripe(mEntityMapper.transform(domainStripe));
     }
   }
 }
