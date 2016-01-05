@@ -116,6 +116,8 @@ dependencies {
       values()
   final Collection<String> testCompileDependencies = testCompilePresentationDependencies.
       values()
+  final Collection<String> releaseCompileDependencies = releaseCompilePresentationDependencies.
+      values()
   for (final String dependency : providedDependencies) provided dependency
   for (final String dependency : compileDependencies) compile dependency
   for (final String dependency : aptDependencies) apt dependency
@@ -131,4 +133,5 @@ dependencies {
   }
   for (final String dependency : debugCompileDependencies) debugCompile dependency
   for (final String dependency : testCompileDependencies) testCompile dependency
+  for (final String dependency : releaseCompileDependencies) releaseCompile dependency
 }
