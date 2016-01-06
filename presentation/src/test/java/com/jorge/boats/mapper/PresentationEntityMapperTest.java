@@ -1,8 +1,8 @@
 package com.jorge.boats.mapper;
 
+import android.support.annotation.NonNull;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.entity.PresentationStripe;
-import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -99,8 +99,8 @@ public class PresentationEntityMapperTest {
     assertEquivalent(mSut.transform(source), source);
   }
 
-  private void assertEquivalent(final @NotNull DomainStripe dataStripe,
-      final @NotNull PresentationStripe databaseStripe) {
+  private void assertEquivalent(final @NonNull DomainStripe dataStripe,
+      final @NonNull PresentationStripe databaseStripe) {
     assertThat(dataStripe.getAlt()).isEqualTo(databaseStripe.getAlt());
     assertThat(dataStripe.getDay()).isEqualTo(databaseStripe.getDay());
     assertThat(dataStripe.getImg()).isEqualTo(databaseStripe.getImg());
