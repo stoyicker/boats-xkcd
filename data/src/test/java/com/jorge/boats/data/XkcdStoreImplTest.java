@@ -11,11 +11,14 @@ import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.repository.XkcdStore;
 import java.net.UnknownHostException;
 import java.util.Collections;
+import okhttp3.internal.http.RealResponseBody;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mock;
+import retrofit2.HttpException;
+import retrofit2.Response;
 import rx.Observable;
 import rx.observers.TestSubscriber;
 
@@ -28,7 +31,6 @@ import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
-//TODO Re-enable the test for not found stripe when the retrofit2 package is available through the dependency
 public class XkcdStoreImplTest extends DataModuleTestCase {
 
   private XkcdStore mSut;
@@ -51,14 +53,10 @@ public class XkcdStoreImplTest extends DataModuleTestCase {
     return new UnknownHostException("Stub for no connection.");
   }
 
-  //private static Throwable generateNotFoundStubThrowable() {
-  //  final retrofit2.HttpException ret = Mockito.mock(retrofit2.HttpException.class);
-  //
-  //  given(ret.code()).willReturn(404);
-  //  given(ret.message()).willReturn("Not found.");
-  //
-  //  return ret;
-  //}
+  private static Throwable generateNotFoundStubThrowable() {
+    //Could probably be way better
+    return new HttpException(Response.error(404, new RealResponseBody(null, null)));
+  }
 
   @Test public void testGetStripeCurrentSuccessful() {
     final DataStripe sourceStripe = generateRandomDataStripe();
@@ -162,21 +160,21 @@ public class XkcdStoreImplTest extends DataModuleTestCase {
     mSut.stripeWithNum(stripeNum);
   }
 
-  //@Test public void testGetStripeWithNotFoundNumNoCachedSuccessful() {
-  //  final Throwable error = generateNotFoundStubThrowable();
-  //  final long generatedNum;
-  //
-  //  given(mMockClient.getStripeWithId(
-  //      (generatedNum = ValueGenerator.generateLong(ValueGenerator.Value.REGULAR)))).willReturn(
-  //      Observable.<DataStripe>error(error));
-  //  given(mMockXkcdDatabaseHandler.queryForStripeWithNum(generatedNum)).willReturn(null);
-  //
-  //  final TestSubscriber<DomainStripe> testSubscriber = new TestSubscriber<>();
-  //
-  //  mSut.stripeWithNum(generatedNum).subscribe(testSubscriber);
-  //
-  //  testSubscriber.assertError(retrofit2.HttpException.class);
-  //  testSubscriber.assertReceivedOnNext(Collections.<DomainStripe>emptyList());
-  //  testSubscriber.assertNotCompleted();
-  //}
+  @Test public void testGetStripeWithNotFoundNumNoCachedSuccessful() {
+    final Throwable error = generateNotFoundStubThrowable();
+    final long generatedNum;
+
+    given(mMockClient.getStripeWithId(
+        (generatedNum = ValueGenerator.generateLong(ValueGenerator.Value.REGULAR)))).willReturn(
+        Observable.<DataStripe>error(error));
+    given(mMockXkcdDatabaseHandler.queryForStripeWithNum(generatedNum)).willReturn(null);
+
+    final TestSubscriber<DomainStripe> testSubscriber = new TestSubscriber<>();
+
+    mSut.stripeWithNum(generatedNum).subscribe(testSubscriber);
+
+    testSubscriber.assertError(error);
+    testSubscriber.assertReceivedOnNext(Collections.<DomainStripe>emptyList());
+    testSubscriber.assertNotCompleted();
+  }
 }

@@ -1,8 +1,8 @@
 package com.jorge.boats.data.net;
 
 import com.jorge.boats.data.model.DataStripe;
-import retrofit.http.GET;
-import retrofit.http.Path;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
 import rx.Observable;
 
 interface XkcdService {

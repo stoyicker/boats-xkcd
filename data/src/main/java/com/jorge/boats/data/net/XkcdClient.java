@@ -5,13 +5,13 @@ import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import com.jorge.boats.data.R;
 import com.jorge.boats.data.model.DataStripe;
-import com.squareup.okhttp.OkHttpClient;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
-import retrofit.RxJavaCallAdapterFactory;
+import okhttp3.OkHttpClient;
+import retrofit2.GsonConverterFactory;
+import retrofit2.Retrofit;
+import retrofit2.RxJavaCallAdapterFactory;
 import rx.Observable;
 
 @Singleton public class XkcdClient {
@@ -32,15 +32,15 @@ import rx.Observable;
 
   private Retrofit createRetrofit(final @NonNull Context context) {
     final Retrofit.Builder builder = new Retrofit.Builder();
-    final OkHttpClient client = new OkHttpClient();
     final Resources resources = context.getResources();
-
-    client.setConnectTimeout(resources.getInteger(R.integer.client_timeout_connection_milliseconds),
-        TimeUnit.MILLISECONDS);
-    client.setReadTimeout(resources.getInteger(R.integer.client_timeout_read_milliseconds),
-        TimeUnit.MILLISECONDS);
-    client.setWriteTimeout(resources.getInteger(R.integer.client_timeout_write_milliseconds),
-        TimeUnit.MILLISECONDS);
+    final OkHttpClient client = new OkHttpClient.Builder().connectTimeout(
+        resources.getInteger(R.integer.client_timeout_connection_milliseconds),
+        TimeUnit.MILLISECONDS)
+        .readTimeout(resources.getInteger(R.integer.client_timeout_read_milliseconds),
+            TimeUnit.MILLISECONDS)
+        .writeTimeout(resources.getInteger(R.integer.client_timeout_write_milliseconds),
+            TimeUnit.MILLISECONDS)
+        .build();
 
     builder.addCallAdapterFactory(RxJavaCallAdapterFactory.create());
     builder.addConverterFactory(GsonConverterFactory.create());
