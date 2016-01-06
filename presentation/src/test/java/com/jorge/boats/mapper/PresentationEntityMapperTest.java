@@ -1,34 +1,34 @@
-package com.jorge.boats.data.mapper;
+package com.jorge.boats.mapper;
 
-import com.jorge.boats.data.db.DatabaseStripe;
-import com.jorge.boats.data.model.DataStripe;
+import com.jorge.boats.domain.entity.DomainStripe;
+import com.jorge.boats.entity.PresentationStripe;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.jorge.boats.data.helper.ValueGenerator.Value;
-import static com.jorge.boats.data.helper.ValueGenerator.generateLong;
-import static com.jorge.boats.data.helper.ValueGenerator.generateString;
+import static com.jorge.boats.helper.ValueGenerator.Value;
+import static com.jorge.boats.helper.ValueGenerator.generateLong;
+import static com.jorge.boats.helper.ValueGenerator.generateString;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DatabaseEntityMapperTest {
+public class PresentationEntityMapperTest {
 
-  private DatabaseEntityMapper mSut;
+  private PresentationEntityMapper mSut;
 
   @Before public void setUp() {
-    mSut = new DatabaseEntityMapper();
+    mSut = new PresentationEntityMapper();
   }
 
-  @Test public void testTransformFromDataNull() {
-    assertThat(mSut.transform((DataStripe) null)).isNull();
+  @Test public void testTransformFromDomainNull() {
+    assertThat(mSut.transform((DomainStripe) null)).isNull();
   }
 
-  @Test public void testTransformFromDatabaseNull() {
-    assertThat(mSut.transform((DatabaseStripe) null)).isNull();
+  @Test public void testTransformFromPresentationNull() {
+    assertThat(mSut.transform((PresentationStripe) null)).isNull();
   }
 
-  @Test public void testTransformFromDataAllFieldsNull() {
-    final DataStripe source = new DataStripe();
+  @Test public void testTransformFromDomainAllFieldsNull() {
+    final DomainStripe source = new DomainStripe();
 
     source.setAlt(generateString(Value.NULL));
     source.setDay(generateString(Value.NULL));
@@ -45,8 +45,8 @@ public class DatabaseEntityMapperTest {
     assertEquivalent(source, mSut.transform(source));
   }
 
-  @Test public void testTransformFromDataAllFieldsRegular() {
-    final DataStripe source = new DataStripe();
+  @Test public void testTransformFromDomainAllFieldsRegular() {
+    final DomainStripe source = new DomainStripe();
 
     source.setAlt(generateString(Value.REGULAR));
     source.setDay(generateString(Value.REGULAR));
@@ -63,8 +63,8 @@ public class DatabaseEntityMapperTest {
     assertEquivalent(source, mSut.transform(source));
   }
 
-  @Test public void testTransformFromDatabaseAllFieldsNull() {
-    final DatabaseStripe source = new DatabaseStripe();
+  @Test public void testTransformFromPresentationAllFieldsNull() {
+    final PresentationStripe source = new PresentationStripe();
 
     source.setAlt(generateString(Value.NULL));
     source.setDay(generateString(Value.NULL));
@@ -81,8 +81,8 @@ public class DatabaseEntityMapperTest {
     assertEquivalent(mSut.transform(source), source);
   }
 
-  @Test public void testTransformFromDatabaseAllFieldsRegular() {
-    final DatabaseStripe source = new DatabaseStripe();
+  @Test public void testTransformFromPresentationAllFieldsRegular() {
+    final PresentationStripe source = new PresentationStripe();
 
     source.setAlt(generateString(Value.REGULAR));
     source.setDay(generateString(Value.REGULAR));
@@ -99,8 +99,8 @@ public class DatabaseEntityMapperTest {
     assertEquivalent(mSut.transform(source), source);
   }
 
-  private void assertEquivalent(final @NotNull DataStripe dataStripe,
-      final @NotNull DatabaseStripe databaseStripe) {
+  private void assertEquivalent(final @NotNull DomainStripe dataStripe,
+      final @NotNull PresentationStripe databaseStripe) {
     assertThat(dataStripe.getAlt()).isEqualTo(databaseStripe.getAlt());
     assertThat(dataStripe.getDay()).isEqualTo(databaseStripe.getDay());
     assertThat(dataStripe.getImg()).isEqualTo(databaseStripe.getImg());

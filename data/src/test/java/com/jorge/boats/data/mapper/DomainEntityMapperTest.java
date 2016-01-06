@@ -23,7 +23,7 @@ public class DomainEntityMapperTest {
     assertThat(mSut.transform(null)).isNull();
   }
 
-  @Test public void testAllFieldsNull() {
+  @Test public void testTransformDataAllFieldsNull() {
     final DataStripe source = new DataStripe();
 
     source.setAlt(generateString(Value.NULL));
@@ -41,7 +41,7 @@ public class DomainEntityMapperTest {
     assertEquivalent(source, mSut.transform(source));
   }
 
-  @Test public void testAllFieldsRegular() {
+  @Test public void testTransformDataAllFieldsRegular() {
     final DataStripe source = new DataStripe();
 
     source.setAlt(generateString(Value.REGULAR));
