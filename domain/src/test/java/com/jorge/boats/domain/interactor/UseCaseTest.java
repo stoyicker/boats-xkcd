@@ -22,7 +22,7 @@ public class UseCaseTest {
   private UseCase<List<Integer>> mSut;
 
   private final ThreadExecutor mThreadExecutor = new ThreadExecutor() {
-    @Override public void execute(final Runnable command) {
+    @Override public void execute(@SuppressWarnings("NullableProblems") final Runnable command) {
       command.run();
     }
   };
