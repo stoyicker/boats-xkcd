@@ -3,7 +3,6 @@ package com.jorge.boats.task;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
-import com.fernandocejas.frodo.annotation.RxLogObservable;
 import com.jorge.boats.domain.executor.PostExecutionThread;
 import com.jorge.boats.domain.executor.ThreadExecutor;
 import com.jorge.boats.domain.interactor.UseCase;
@@ -23,7 +22,7 @@ public class TypefaceLoadTask extends UseCase<Typeface> {
   }
 
   //This would be better done using rx.Single but support from Frodo is still in the works and it also could clunk the architecture a bit
-  @RxLogObservable @Override protected Observable<Typeface> buildUseCaseObservable() {
+  @Override protected Observable<Typeface> buildUseCaseObservable() {
     return Observable.just(FontManager.get(mContext, FontManager.FONT_APP));
   }
 }

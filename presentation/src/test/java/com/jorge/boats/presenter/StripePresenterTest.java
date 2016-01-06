@@ -37,5 +37,4 @@ public class StripePresenterTest extends PresentationModuleTestCase {
   }
 
   //TODO Add tests (on the activity? - see sample) to see if the presenter sets the title correctly
-  //TODO Add tests in the interactor package (domain) to verify that it provides the correct data
 }

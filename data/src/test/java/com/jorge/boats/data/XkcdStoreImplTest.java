@@ -8,7 +8,6 @@ import com.jorge.boats.data.mapper.DomainEntityMapper;
 import com.jorge.boats.data.model.DataStripe;
 import com.jorge.boats.data.net.XkcdClient;
 import com.jorge.boats.domain.entity.DomainStripe;
-import com.jorge.boats.domain.repository.XkcdStore;
 import java.net.UnknownHostException;
 import java.util.Collections;
 import okhttp3.internal.http.RealResponseBody;
@@ -33,7 +32,7 @@ import static org.mockito.Mockito.verify;
 
 public class XkcdStoreImplTest extends DataModuleTestCase {
 
-  private XkcdStore mSut;
+  private XkcdStoreImpl mSut;
 
   @Mock private XkcdClient mMockClient;
   @Mock private DatabaseEntityMapper mMockDatabaseEntityMapper;

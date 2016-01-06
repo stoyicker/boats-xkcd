@@ -3,6 +3,9 @@ apply from: "../buildsystem/java_module.gradle"
 dependencies {
   final Collection<String> compileDependencies = compileDomainDependencies.
       values()
+  final Collection<String> testCompileDependencies = testCompileDomainDependencies.
+      values()
 
   for (final String dependency : compileDependencies) compile dependency
+  for (final String dependency : testCompileDependencies) testCompile dependency
 }

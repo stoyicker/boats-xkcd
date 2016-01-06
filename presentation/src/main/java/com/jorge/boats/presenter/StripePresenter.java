@@ -2,7 +2,6 @@ package com.jorge.boats.presenter;
 
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
-import com.fernandocejas.frodo.annotation.RxLogSubscriber;
 import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.interactor.GetStripeUseCase;
@@ -75,7 +74,7 @@ import rx.Subscriber;
     mStripeUseCase.destroy();
   }
 
-  @RxLogSubscriber private final class TitleTypefaceSubscriber extends Subscriber<Typeface> {
+  private final class TitleTypefaceSubscriber extends Subscriber<Typeface> {
 
     @Override public void onCompleted() {
       //Do nothing
