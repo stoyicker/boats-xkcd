@@ -10,4 +10,6 @@ public interface StripeView extends LoadStripeView {
   void setTitleTypeface(final @NonNull Typeface titleTypeface);
 
   void renderStripe(final @NonNull PresentationStripe model);
+
+  void setStripeNum(final long num);
 }

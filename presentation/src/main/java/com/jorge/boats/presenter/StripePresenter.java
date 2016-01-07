@@ -15,8 +15,6 @@ import rx.Subscriber;
 
 @PerActivity public class StripePresenter implements Presenter<StripeView> {
 
-  private long mStripeNum;
-
   private final UseCase<Typeface> mTypefaceUseCase;
   private final UseCase<DomainStripe> mStripeUseCase;
 
@@ -57,8 +55,7 @@ import rx.Subscriber;
     if (stripeNum < DomainStripe.STRIPE_NUM_CURRENT) {
       throw new IllegalArgumentException("Illegal stripe num " + stripeNum + ".");
     }
-    mStripeNum = stripeNum;
-    ((GetStripeUseCase) mStripeUseCase).setRequestedStripeNum(mStripeNum);
+    ((GetStripeUseCase) mStripeUseCase).setRequestedStripeNum(stripeNum);
     requestStripe();
   }
 
@@ -107,6 +104,7 @@ import rx.Subscriber;
     }
 
     @Override public void onNext(final @NonNull DomainStripe domainStripe) {
+      mView.setStripeNum(domainStripe.getNum());
       mView.renderStripe(mEntityMapper.transform(domainStripe));
     }
   }

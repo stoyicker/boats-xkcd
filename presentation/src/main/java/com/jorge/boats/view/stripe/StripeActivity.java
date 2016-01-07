@@ -75,6 +75,10 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
     }
   }
 
+  @Override public void setStripeNum(final long stripeNum) {
+    mStripeNum = stripeNum;
+  }
+
   private void initializeStripePresenter() {
     this.mStripePresenter.createWithView(this);
     this.mStripePresenter.switchToStripeNum(mStripeNum);
