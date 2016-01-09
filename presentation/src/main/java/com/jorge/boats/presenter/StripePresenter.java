@@ -99,6 +99,7 @@ import rx.Subscriber;
 
     @Override public void onError(final @NonNull Throwable e) {
       ApplicationLogger.e(e, e.getClass().getName());
+      mView.hideLoading();
       mView.showError(e);
       mView.showRetry();
     }
