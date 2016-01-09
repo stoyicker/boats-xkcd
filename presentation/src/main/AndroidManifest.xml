@@ -7,8 +7,7 @@
       android:fullBackupContent="true"
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
-      android:isGame="true"
-      android:supportsRtl="true"
+      android:supportsRtl="false"
       android:name=".CustomApplication"
       android:theme="@style/App">
     <activity android:name=".view.stripe.StripeActivity"
