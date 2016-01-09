@@ -58,7 +58,7 @@ android {
       proguardFiles += getDefaultProguardFile("proguard-android-optimize.txt")
       //    noinspection GroovyAssignabilityCheck
       final File f = java.nio.file.Paths.get(rootProject.rootDir.getAbsolutePath(), "presentation",
-          "proguard", "proguardFileContainer").
+          "proguard", "proguardDownloadContainer").
           toFile()
       f?.listFiles()?.each { file ->
         System.out.format(Locale.ENGLISH, "Adding %s\n", file.getName())
