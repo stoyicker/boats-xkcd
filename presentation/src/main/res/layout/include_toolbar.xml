@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/toolbar_wrapper"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    android:background="@color/actionbar_background">
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:id="@+id/toolbar_wrapper"
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="?attr/actionBarSize"
+		android:background="@color/actionbar_background">
 
   <com.jorge.boats.view.widget.CustomTitleToolbar
-      android:id="@+id/toolbar"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
+			android:id="@+id/toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
 
   <com.jorge.boats.view.widget.FlickAndRevealTextView
-      android:id="@+id/toolbar_title"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:singleLine="true"
-      app:in_duration_millis="@integer/toolbar_text_in_duration_millis"
-      app:out_duration_millis="@integer/toolbar_text_out_duration_millis"
-      android:ellipsize="end"
-      android:textIsSelectable="true"
-      style="@style/ToolbarTitle"/>
+			android:id="@+id/toolbar_title"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:singleLine="true"
+			app:in_duration_millis="@integer/toolbar_text_in_duration_millis"
+			app:out_duration_millis="@integer/toolbar_text_out_duration_millis"
+			android:ellipsize="end"
+			android:textIsSelectable="true"
+			style="@style/ToolbarTitle"/>
   </com.jorge.boats.view.widget.CustomTitleToolbar>
 
   <View
-      android:id="@+id/toolbar_shadow"
-      android:layout_width="match_parent"
-      android:layout_height="@dimen/toolbar_shadow"
-      android:background="@drawable/toolbar_drop_shadow"/>
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/toolbar_shadow_height"
+			android:background="@drawable/toolbar_drop_shadow"/>
 </LinearLayout>

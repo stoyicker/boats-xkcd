@@ -11,5 +11,6 @@
     <item name="windowActionBarOverlay">true</item>
     <item name="android:windowActionModeOverlay">true</item>
     <item name="android:actionModeBackground">?attr/colorPrimary</item>
+    <item name="android:windowBackground">@null</item>
   </style>
 </resources>
