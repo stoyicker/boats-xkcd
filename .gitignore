@@ -7,3 +7,4 @@ gradle.properties
 staticAnalysisReport
 *.keystore
 *.pwd
+proguardDownloadContainer/*

@@ -11,7 +11,7 @@ task downloadProguardFiles {
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-okio.pro",
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-glide.pro",
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-retrofit2.pro"])
-    dest "proguard/proguardFileContainer"
+    dest "proguard/proguardDownloadContainer"
     overwrite true
     onlyIfNewer true
     compress false
