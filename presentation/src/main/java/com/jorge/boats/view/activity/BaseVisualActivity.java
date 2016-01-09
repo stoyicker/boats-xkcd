@@ -2,7 +2,6 @@ package com.jorge.boats.view.activity;
 
 import android.content.res.Configuration;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.RelativeLayout;
 import butterknife.Bind;
@@ -18,21 +17,24 @@ public abstract class BaseVisualActivity extends BaseActivity {
 
   @Bind(R.id.navigator) View mNavigator;
 
+  @Bind(R.id.progress_bar) View mProgressBar;
+
   @Override public void setContentView(final int layoutResID) {
     super.setContentView(layoutResID);
 
     initButterKnife();
 
-    setupToolbar(mToolbar);
+    setupToolbar();
     setupNavigator();
+    setupProgressBar();
   }
 
   private void initButterKnife() {
     ButterKnife.bind(this);
   }
 
-  private void setupToolbar(final @NonNull Toolbar toolbar) {
-    setSupportActionBar(toolbar);
+  private void setupToolbar() {
+    setSupportActionBar(mToolbar);
   }
 
   private void setupNavigator() {
@@ -43,7 +45,7 @@ public abstract class BaseVisualActivity extends BaseActivity {
 
     if (isLandscape) {
       navigatorLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-      navigatorLayoutParams.addRule(RelativeLayout.BELOW, mToolbar.getId());
+      navigatorLayoutParams.addRule(RelativeLayout.BELOW, mProgressBar.getId());
     } else {
       navigatorLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
     }
@@ -51,7 +53,20 @@ public abstract class BaseVisualActivity extends BaseActivity {
     mNavigator.setLayoutParams(navigatorLayoutParams);
   }
 
+  private void setupProgressBar() {
+    final RelativeLayout.LayoutParams progressBarLayoutParams =
+        (RelativeLayout.LayoutParams) mProgressBar.getLayoutParams();
+
+    progressBarLayoutParams.addRule(RelativeLayout.BELOW, R.id.toolbar_wrapper);
+
+    mProgressBar.setLayoutParams(progressBarLayoutParams);
+  }
+
   @NonNull protected CustomTitleToolbar getToolbar() {
     return mToolbar;
+  }
+
+  @NonNull protected View getLoadingView() {
+    return mProgressBar;
   }
 }

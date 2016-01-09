@@ -10,8 +10,7 @@ task downloadProguardFiles {
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-okhttp.pro",
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-okio.pro",
          "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-glide.pro",
-         //TODO Change this one by Retrofit2 when applicable
-         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-retrofit.pro"])
+         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-retrofit2.pro"])
     dest "proguard/proguardFileContainer"
     overwrite true
     onlyIfNewer true

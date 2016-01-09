@@ -26,6 +26,7 @@ ext {
   commonsLang3Version = "3.4"
   jetbrainsAnnotationsVersion = "15.0"
   leakCanaryVersion = "1.3.1"
+  materialProgressBarVersion = "1.1.4"
 
   //Testing
   espressoVersion = "2.2.1"
@@ -44,10 +45,11 @@ ext {
   debugCompilePresentationDependencies = [timber    : "com.jakewharton.timber:timber:${timberVersion}",
                                           leakCanary: "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"]
 
-  compilePresentationDependencies = [dagger          : "com.google.dagger:dagger:${daggerVersion}",
-                                     rxAndroid       : "io.reactivex:rxandroid:${rxAndroidVersion}",
-                                     butterknife     : "com.jakewharton:butterknife:${butterknifeVersion}",
-                                     supportAppCompat: "com.android.support:appcompat-v7:${supportAppcompatVersion}"]
+  compilePresentationDependencies = [dagger             : "com.google.dagger:dagger:${daggerVersion}",
+                                     rxAndroid          : "io.reactivex:rxandroid:${rxAndroidVersion}",
+                                     butterknife        : "com.jakewharton:butterknife:${butterknifeVersion}",
+                                     supportAppCompat   : "com.android.support:appcompat-v7:${supportAppcompatVersion}",
+                                     materialProgressBar: "me.zhanghai.android.materialprogressbar:library:${materialProgressBarVersion}"]
 
   releaseCompilePresentationDependencies =
       [leakCanaryNoOp: "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}"]
