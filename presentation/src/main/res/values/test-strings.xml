@@ -1,0 +1,4 @@
+<!-- Apparently having test resources within instrumentation-scope only is not supported yet. -->
+<resources>
+	<string name="stub_stripe_title" translatable="false">Centrifugal Force</string>
+</resources>

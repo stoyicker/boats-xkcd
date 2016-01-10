@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-./gradlew connectedAndroidStandardReleaseTest
+./gradlew connectedAndroidTest

@@ -30,8 +30,7 @@ import rx.Subscriber;
     mEntityMapper = presentationEntityMapper;
   }
 
-  public void createWithView(@NonNull StripeView view) {
-    initialize();
+  public void setView(@NonNull StripeView view) {
     mView = view;
   }
 
@@ -89,8 +88,8 @@ import rx.Subscriber;
   private final class StripeSubscriber extends Subscriber<DomainStripe> {
 
     @Override public void onStart() {
-      mView.showLoading();
       mView.hideRetry();
+      mView.showLoading();
     }
 
     @Override public void onCompleted() {

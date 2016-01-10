@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
  */
 interface Presenter<ViewType> {
 
-  void createWithView(final @NonNull ViewType view);
+  void setView(final @NonNull ViewType view);
 
   void resume();
 

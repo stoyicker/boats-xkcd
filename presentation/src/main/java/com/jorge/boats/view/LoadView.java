@@ -2,7 +2,7 @@ package com.jorge.boats.view;
 
 import android.content.Context;
 
-public interface LoadStripeView {
+public interface LoadView {
 
   void showLoading();
 

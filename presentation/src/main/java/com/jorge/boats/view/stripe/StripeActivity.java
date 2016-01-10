@@ -81,7 +81,8 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
   }
 
   private void initializeStripePresenter() {
-    this.mStripePresenter.createWithView(this);
+    this.mStripePresenter.setView(this);
+    this.mStripePresenter.initialize();
     this.mStripePresenter.switchToStripeNum(mStripeNum);
   }
 
@@ -109,8 +110,6 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
     //TODO Rest of render stripe
   }
 
-  //TODO Write tests for the loading view
-
   @Override public void showLoading() {
     super.getLoadingView().setVisibility(View.VISIBLE);
   }
@@ -128,7 +127,8 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
   }
 
   @Override public void showError(final @NonNull Throwable throwable) {
-    Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+    super.getToolbar().setTitle(getString(R.string.error_title));
+    Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
   }
 
   @Override public Context getContext() {

@@ -4,10 +4,9 @@ import com.jorge.boats.PresentationModuleTestCase;
 import com.jorge.boats.domain.interactor.GetStripeUseCase;
 import com.jorge.boats.mapper.PresentationEntityMapper;
 import com.jorge.boats.task.TypefaceLoadTask;
+import com.jorge.boats.view.stripe.StripeView;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.mockito.Mock;
 import rx.Subscriber;
 
@@ -16,25 +15,30 @@ import static org.mockito.Mockito.verify;
 
 public class StripePresenterTest extends PresentationModuleTestCase {
 
-  @Rule public final ExpectedException mExceptionExpectation = ExpectedException.none();
-
   private StripePresenter mSut;
 
-  @Mock private TypefaceLoadTask mTypefaceLoad;
-  @Mock private GetStripeUseCase mStripeLoad;
-  @Mock private PresentationEntityMapper mEntityMapper;
+  @Mock private TypefaceLoadTask mMockTypefaceLoad;
+  @Mock private GetStripeUseCase mMockStripeLoad;
+  @Mock private PresentationEntityMapper mMockEntityMapper;
+  @Mock private StripeView mMockStripeView;
 
   @Before @Override public void setUp() {
     super.setUp();
 
-    mSut = new StripePresenter(mTypefaceLoad, mStripeLoad, mEntityMapper);
+    mSut = new StripePresenter(mMockTypefaceLoad, mMockStripeLoad, mMockEntityMapper);
   }
 
   @Test public void testInitialize() {
     mSut.initialize();
     //noinspection unchecked
-    verify(mTypefaceLoad).execute(any(Subscriber.class));
+    verify(mMockTypefaceLoad).execute(any(Subscriber.class));
   }
 
-  //TODO Add tests (on the activity? - see sample) to see if the presenter sets the title correctly
+  @Test public void testStartLoad() {
+    mSut.initialize();
+    mSut.setView(mMockStripeView);
+
+    verify(mMockStripeView).hideRetry();
+    verify(mMockStripeView).showLoading();
+  }
 }

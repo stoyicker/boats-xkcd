@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Boats</string>
+		<string name="error_title">Oops!</string>
 </resources>
