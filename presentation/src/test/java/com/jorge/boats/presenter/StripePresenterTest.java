@@ -1,6 +1,7 @@
 package com.jorge.boats.presenter;
 
 import com.jorge.boats.PresentationModuleTestCase;
+import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.interactor.GetStripeUseCase;
 import com.jorge.boats.mapper.PresentationEntityMapper;
 import com.jorge.boats.task.TypefaceLoadTask;
@@ -15,6 +16,7 @@ import static org.mockito.Mockito.verify;
 
 public class StripePresenterTest extends PresentationModuleTestCase {
 
+  private static final long STRIPE_NUM_CURRENT = DomainStripe.STRIPE_NUM_CURRENT;
   private StripePresenter mSut;
 
   @Mock private TypefaceLoadTask mMockTypefaceLoad;
@@ -34,9 +36,11 @@ public class StripePresenterTest extends PresentationModuleTestCase {
     verify(mMockTypefaceLoad).execute(any(Subscriber.class));
   }
 
-  @Test public void testStartLoad() {
+  @Test public void testLoadCurrent() {
     mSut.initialize();
     mSut.setView(mMockStripeView);
+
+    mSut.switchToStripeNum(STRIPE_NUM_CURRENT);
 
     verify(mMockStripeView).hideRetry();
     verify(mMockStripeView).showLoading();
