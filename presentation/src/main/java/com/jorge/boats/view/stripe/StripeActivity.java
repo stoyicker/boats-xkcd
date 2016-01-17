@@ -6,19 +6,20 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 import com.jorge.boats.R;
 import com.jorge.boats.di.component.DaggerStripeComponent;
-import com.jorge.boats.di.component.StripeComponent;
 import com.jorge.boats.di.module.StripeModule;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.entity.PresentationStripe;
+import com.jorge.boats.navigation.NavigationLayoutGestureDetector;
 import com.jorge.boats.presenter.StripePresenter;
-import com.jorge.boats.view.activity.BaseVisualActivity;
+import com.jorge.boats.view.activity.BaseBrowsableActivity;
 import javax.inject.Inject;
 
-public class StripeActivity extends BaseVisualActivity implements StripeView {
+public class StripeActivity extends BaseBrowsableActivity implements StripeView {
 
   private static final String INTENT_EXTRA_PARAM_STRIPE_NUM =
       StripeActivity.class.getName() + ".INTENT_PARAM_STRIPE_NUM";
@@ -26,8 +27,8 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
       StripeActivity.class.getName() + ".STATE_PARAM_STRIPE_NUM";
 
   private long mStripeNum;
-  private StripeComponent mStripeComponent;
 
+  @Inject NavigationLayoutGestureDetector mNavigationLayoutGestureDetector;
   @Inject StripePresenter mStripePresenter;
 
   @NonNull
@@ -46,12 +47,16 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
     initializeStripePresenter();
   }
 
+  @Override public boolean onTouchEvent(final @NonNull MotionEvent event) {
+    return this.mNavigationLayoutGestureDetector.onTouchEvent(event) || super.onTouchEvent(event);
+  }
+
   @Override protected void createComponentAndInjectSelf() {
-    this.mStripeComponent = DaggerStripeComponent.builder()
+    DaggerStripeComponent.builder()
         .applicationComponent(getApplicationComponent())
-        .stripeModule(new StripeModule())
-        .build();
-    mStripeComponent.inject(this);
+        .stripeModule(new StripeModule(super.getNavigationLayout()))
+        .build()
+        .inject(this);
   }
 
   @Override protected void onSaveInstanceState(final @Nullable Bundle outState) {

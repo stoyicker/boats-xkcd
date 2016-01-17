@@ -9,12 +9,12 @@ import com.jorge.boats.data.executor.JobExecutor;
 import com.jorge.boats.domain.executor.PostExecutionThread;
 import com.jorge.boats.domain.executor.ThreadExecutor;
 import com.jorge.boats.domain.repository.XkcdStore;
-import com.jorge.boats.navigation.Navigator;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
 
 @Module public class ApplicationModule {
+
   private final Application mApplication;
 
   public ApplicationModule(final Application application) {
@@ -23,10 +23,6 @@ import javax.inject.Singleton;
 
   @Provides @Singleton Context provideApplicationContext() {
     return this.mApplication;
-  }
-
-  @Provides @Singleton Navigator provideNavigator() {
-    return new Navigator();
   }
 
   @Provides @Singleton ThreadExecutor provideThreadExecutor(

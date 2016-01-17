@@ -7,25 +7,26 @@ import android.widget.RelativeLayout;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.jorge.boats.R;
+import com.jorge.boats.navigation.NavigationLayout;
 import com.jorge.boats.view.widget.CustomTitleToolbar;
 
-public abstract class BaseVisualActivity extends BaseActivity {
+public abstract class BaseBrowsableActivity extends BaseActivity {
 
   @Bind(android.R.id.content) View mRoot;
 
   @Bind(R.id.toolbar) CustomTitleToolbar mToolbar;
 
-  @Bind(R.id.navigator) View mNavigator;
+  @Bind(R.id.navigation) NavigationLayout mNavigationLayout;
 
   @Bind(R.id.progress_bar) View mProgressBar;
 
   @Override public void setContentView(final int layoutResID) {
     super.setContentView(layoutResID);
-
     initButterKnife();
+    createComponentAndInjectSelf();
 
     setupToolbar();
-    setupNavigator();
+    setupNavigationLayout();
     setupProgressBar();
   }
 
@@ -37,20 +38,20 @@ public abstract class BaseVisualActivity extends BaseActivity {
     setSupportActionBar(mToolbar);
   }
 
-  private void setupNavigator() {
-    final RelativeLayout.LayoutParams navigatorLayoutParams =
-        (RelativeLayout.LayoutParams) mNavigator.getLayoutParams();
+  private void setupNavigationLayout() {
+    final RelativeLayout.LayoutParams navigationLayoutLp =
+        (RelativeLayout.LayoutParams) mNavigationLayout.getLayoutParams();
     final boolean isLandscape =
         getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
 
     if (isLandscape) {
-      navigatorLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-      navigatorLayoutParams.addRule(RelativeLayout.BELOW, mProgressBar.getId());
+      navigationLayoutLp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+      navigationLayoutLp.addRule(RelativeLayout.BELOW, mProgressBar.getId());
     } else {
-      navigatorLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+      navigationLayoutLp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
     }
 
-    mNavigator.setLayoutParams(navigatorLayoutParams);
+    mNavigationLayout.setLayoutParams(navigationLayoutLp);
   }
 
   private void setupProgressBar() {
@@ -68,5 +69,9 @@ public abstract class BaseVisualActivity extends BaseActivity {
 
   @NonNull protected View getLoadingView() {
     return mProgressBar;
+  }
+
+  @NonNull protected NavigationLayout getNavigationLayout() {
+    return mNavigationLayout;
   }
 }

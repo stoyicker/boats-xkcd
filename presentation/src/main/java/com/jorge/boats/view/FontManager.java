@@ -1,4 +1,4 @@
-package com.jorge.boats.io;
+package com.jorge.boats.view;
 
 import android.content.Context;
 import android.graphics.Typeface;

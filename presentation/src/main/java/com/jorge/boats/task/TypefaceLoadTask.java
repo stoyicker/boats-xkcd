@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import com.jorge.boats.domain.executor.PostExecutionThread;
 import com.jorge.boats.domain.executor.ThreadExecutor;
 import com.jorge.boats.domain.interactor.UseCase;
-import com.jorge.boats.io.FontManager;
+import com.jorge.boats.view.FontManager;
 import javax.inject.Inject;
 import rx.Observable;
 

@@ -9,12 +9,23 @@ import com.jorge.boats.domain.executor.ThreadExecutor;
 import com.jorge.boats.domain.interactor.GetStripeUseCase;
 import com.jorge.boats.domain.interactor.UseCase;
 import com.jorge.boats.domain.repository.XkcdStore;
+import com.jorge.boats.navigation.NavigationLayout;
 import com.jorge.boats.task.TypefaceLoadTask;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Named;
 
 @Module public class StripeModule {
+
+  private final NavigationLayout mNavigationLayout;
+
+  public StripeModule(final @NonNull NavigationLayout navigationLayout) {
+    mNavigationLayout = navigationLayout;
+  }
+
+  @Provides @PerActivity NavigationLayout provideNavigationLayout() {
+    return mNavigationLayout;
+  }
 
   @Provides @PerActivity @Named("typeface") UseCase<Typeface> provideTypefaceUseCase(
       final @NonNull TypefaceLoadTask typefaceLoad) {

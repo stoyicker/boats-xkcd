@@ -11,5 +11,5 @@
 
   <include layout="@layout/include_progress_bar"/>
 
-  <include layout="@layout/include_navigator"/>
+  <include layout="@layout/include_navigation_layout"/>
 </RelativeLayout>
