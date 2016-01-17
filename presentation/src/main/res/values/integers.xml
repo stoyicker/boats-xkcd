@@ -2,4 +2,7 @@
 <resources>
   <integer name="toolbar_text_in_duration_millis">800</integer>
   <integer name="toolbar_text_out_duration_millis">300</integer>
+  <integer name="bezel_gesture_span_pixels">20</integer>
+  <integer name="navigator_layout_show_minimum_distance_pixels">60</integer>
+  <integer name="navigator_layout_hide_minimum_distance_pixels">40</integer>
 </resources>

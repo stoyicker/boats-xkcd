@@ -9,6 +9,10 @@ public class ApplicationLogger {
     throw new IllegalAccessError("No instances.");
   }
 
+  public static void d(@NonNull String message) {
+    Timber.d(message);
+  }
+
   public static void e(@NonNull Throwable throwable, @NonNull String message) {
     Timber.e(throwable, message);
   }

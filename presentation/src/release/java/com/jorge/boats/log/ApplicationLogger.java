@@ -8,6 +8,10 @@ public class ApplicationLogger {
     throw new IllegalAccessError("No instances.");
   }
 
+  public static void d(@NonNull String message) {
+    //Do nothing
+  }
+
   public static void e(@NonNull Throwable throwable, @NonNull String message) {
     //Do nothing
   }
