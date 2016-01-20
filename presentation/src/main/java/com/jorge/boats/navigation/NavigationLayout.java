@@ -6,9 +6,9 @@ import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import com.jorge.boats.log.ApplicationLogger;
 
 public class NavigationLayout extends LinearLayout {
 
@@ -31,6 +31,7 @@ public class NavigationLayout extends LinearLayout {
   }
 
   public boolean show() {
+    ApplicationLogger.d("Checking show");
     if (isShown()) return false;
 
     animateIn();
@@ -39,6 +40,7 @@ public class NavigationLayout extends LinearLayout {
   }
 
   public boolean hide() {
+    ApplicationLogger.d("Checking hide");
     if (!isShown()) return false;
 
     animateOut();
@@ -47,7 +49,7 @@ public class NavigationLayout extends LinearLayout {
   }
 
   private void animateIn() {
-    Log.d("JORGETEST", "Animating in");
+    ApplicationLogger.d("Animating in");
     final int childAmount = getChildCount();
     View currentChild;
     for (int i = 0; i < childAmount; i++) {
@@ -56,7 +58,7 @@ public class NavigationLayout extends LinearLayout {
   }
 
   private void animateOut() {
-    Log.d("JORGETEST", "Animating out");
+    ApplicationLogger.d("Animating out");
     final int childAmount = getChildCount();
     View currentChild;
     for (int i = 0; i < childAmount; i++) {

@@ -44,27 +44,22 @@ import javax.inject.Inject;
         final float velocityX, final float velocityY) {
       if (e2.getAction() != MotionEvent.ACTION_UP) return false;
 
-      final long availableSpace =
-          isLandscape ? Resources.getSystem().getDisplayMetrics().heightPixels
-              : Resources.getSystem().getDisplayMetrics().widthPixels;
-
       ApplicationLogger.d(
           String.format(Locale.ENGLISH, "FLING:\ne1: %.0f,%.0f\ne2: %.0f,%.0f", e1.getX(),
               e1.getY(), e2.getX(), e2.getY()));
+      ApplicationLogger.d(String.format(Locale.ENGLISH, "MINIMUM SHOW DISTANCE: %.0f",
+          mLayoutShowMinimumDistancePixels));
+      ApplicationLogger.d(
+          String.format(Locale.ENGLISH, "BEZEL GESTURE SPAN: %.0f", mBezelGestureSpanPixels));
 
-      final float start;
-
-      //TODO HERE: Enhance the condition and include hide
-      //TODO NOT HERE: Change the layout to the new appearance
+      //TODO HERE: Include hide
 
       if (isLandscape) {
-        if ((start = e1.getY()) + mBezelGestureSpanPixels >= availableSpace
-            && e2.getY() + mLayoutShowMinimumDistancePixels < start) {
+        if (e1.getY() + mBezelGestureSpanPixels >= mLayoutShowMinimumDistancePixels) {
           return mNavigationLayout.show();
         }
       } else {
-        if ((start = e1.getX()) + mBezelGestureSpanPixels >= availableSpace
-            && e2.getX() + mLayoutShowMinimumDistancePixels < start) {
+        if (e1.getX() + mBezelGestureSpanPixels >= mLayoutShowMinimumDistancePixels) {
           return mNavigationLayout.show();
         }
       }
