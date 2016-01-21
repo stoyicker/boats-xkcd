@@ -12,8 +12,6 @@ import com.jorge.boats.view.widget.CustomTitleToolbar;
 
 public abstract class BaseBrowsableActivity extends BaseActivity {
 
-  @Bind(android.R.id.content) View mRoot;
-
   @Bind(R.id.toolbar) CustomTitleToolbar mToolbar;
 
   @Bind(R.id.navigation) NavigationLayout mNavigationLayout;
