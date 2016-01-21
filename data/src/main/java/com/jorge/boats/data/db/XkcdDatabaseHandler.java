@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Contract;
 
     adapter.bindToContentValues(values, databaseStripe);
 
-    statement.columnValues(values).queryClose();
+    statement.columnValues(values).execute();
   }
 
   @Nullable @Contract(pure = true)
