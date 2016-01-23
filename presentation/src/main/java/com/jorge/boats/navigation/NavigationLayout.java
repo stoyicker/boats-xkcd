@@ -42,6 +42,9 @@ public class NavigationLayout extends LinearLayout {
     }
 
     ButterKnife.bind(this);
+
+    //Continuously changing the layer type is probably not a good idea
+    setLayerType(View.LAYER_TYPE_HARDWARE, null);
   }
 
   public boolean isExpanded() {
@@ -183,8 +186,8 @@ public class NavigationLayout extends LinearLayout {
 
     if (isLandscape) {
       propertyValuesHolderTranslation = PropertyValuesHolder.ofFloat(View.Y,
-          translation == TRANSLATION_TYPE_IN ? displayMetrics.heightPixels - target.getHeight() * 1.1f
-              : displayMetrics.heightPixels);
+          translation == TRANSLATION_TYPE_IN ? displayMetrics.heightPixels
+              - target.getHeight() * 1.1f : displayMetrics.heightPixels);
     } else {
       propertyValuesHolderTranslation = PropertyValuesHolder.ofFloat(View.X,
           translation == TRANSLATION_TYPE_IN ? displayMetrics.widthPixels - target.getWidth() * 1.1f
