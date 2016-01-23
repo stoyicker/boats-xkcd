@@ -51,6 +51,9 @@ public class NavigationLayout extends LinearLayout {
   private void animateIn() {
     ApplicationLogger.d("Animating in");
     final int childAmount = getChildCount();
+
+    setVisibility(View.VISIBLE);
+
     View currentChild;
     for (int i = 0; i < childAmount; i++) {
       //TODO Apply the in animation
@@ -60,6 +63,9 @@ public class NavigationLayout extends LinearLayout {
   private void animateOut() {
     ApplicationLogger.d("Animating out");
     final int childAmount = getChildCount();
+
+    setVisibility(View.GONE);
+
     View currentChild;
     for (int i = 0; i < childAmount; i++) {
       //TODO Apply the out animation

@@ -1,6 +1,7 @@
 package com.jorge.boats.view.activity;
 
 import android.content.res.Configuration;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -18,7 +19,7 @@ public abstract class BaseBrowsableActivity extends BaseActivity {
 
   @Bind(R.id.progress_bar) View mProgressBar;
 
-  @Override public void setContentView(final int layoutResID) {
+  @Override public void setContentView(final @LayoutRes int layoutResID) {
     super.setContentView(layoutResID);
     initButterKnife();
     createComponentAndInjectSelf();
@@ -43,10 +44,10 @@ public abstract class BaseBrowsableActivity extends BaseActivity {
         getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
 
     if (isLandscape) {
-      navigationLayoutLp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-      navigationLayoutLp.addRule(RelativeLayout.BELOW, mProgressBar.getId());
-    } else {
       navigationLayoutLp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+    } else {
+      navigationLayoutLp.addRule(RelativeLayout.BELOW, mProgressBar.getId());
+      navigationLayoutLp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
     }
 
     mNavigationLayout.setLayoutParams(navigationLayoutLp);

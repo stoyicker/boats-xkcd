@@ -17,6 +17,7 @@ import com.jorge.boats.entity.PresentationStripe;
 import com.jorge.boats.navigation.NavigationLayoutGestureDetector;
 import com.jorge.boats.presenter.StripePresenter;
 import com.jorge.boats.view.activity.BaseBrowsableActivity;
+import com.jorge.boats.view.widget.CustomTitleToolbar;
 import javax.inject.Inject;
 
 public class StripeActivity extends BaseBrowsableActivity implements StripeView {
@@ -30,6 +31,7 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
 
   @Inject NavigationLayoutGestureDetector mNavigationLayoutGestureDetector;
   @Inject StripePresenter mStripePresenter;
+  @Inject CustomTitleToolbar mToolbar;
 
   @NonNull
   public static Intent getCallingIntent(final @NonNull Context context, final long stripeNum) {
@@ -54,7 +56,7 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
   @Override protected void createComponentAndInjectSelf() {
     DaggerStripeComponent.builder()
         .applicationComponent(getApplicationComponent())
-        .stripeModule(new StripeModule(super.getNavigationLayout()))
+        .stripeModule(new StripeModule(super.getNavigationLayout(), super.getToolbar()))
         .build()
         .inject(this);
   }
@@ -107,11 +109,11 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
   }
 
   @Override public void setTitleTypeface(@NonNull Typeface titleTypeface) {
-    super.getToolbar().getTitleView().setTypeface(titleTypeface);
+    mToolbar.getTitleView().setTypeface(titleTypeface);
   }
 
   @Override public void renderStripe(@NonNull PresentationStripe model) {
-    super.getToolbar().setTitle(model.getTitle());
+    mToolbar.setTitle(model.getTitle());
     //TODO Rest of render stripe
   }
 

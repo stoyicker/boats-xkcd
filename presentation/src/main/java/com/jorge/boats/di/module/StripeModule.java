@@ -2,6 +2,7 @@ package com.jorge.boats.di.module;
 
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.Toolbar;
 import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.executor.PostExecutionThread;
@@ -11,6 +12,7 @@ import com.jorge.boats.domain.interactor.UseCase;
 import com.jorge.boats.domain.repository.XkcdStore;
 import com.jorge.boats.navigation.NavigationLayout;
 import com.jorge.boats.task.TypefaceLoadTask;
+import com.jorge.boats.view.widget.CustomTitleToolbar;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Named;
@@ -18,9 +20,16 @@ import javax.inject.Named;
 @Module public class StripeModule {
 
   private final NavigationLayout mNavigationLayout;
+  private final Toolbar mToolbar;
 
-  public StripeModule(final @NonNull NavigationLayout navigationLayout) {
+  public StripeModule(final @NonNull NavigationLayout navigationLayout,
+      final @NonNull Toolbar toolbar) {
     mNavigationLayout = navigationLayout;
+    mToolbar = toolbar;
+  }
+
+  @Provides @PerActivity CustomTitleToolbar provideCustomTitleToolbar() {
+    return (CustomTitleToolbar) mToolbar;
   }
 
   @Provides @PerActivity NavigationLayout provideNavigationLayout() {
