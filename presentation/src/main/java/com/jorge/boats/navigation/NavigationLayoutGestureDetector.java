@@ -10,8 +10,6 @@ import android.view.MotionEvent;
 import android.view.WindowManager;
 import com.jorge.boats.R;
 import com.jorge.boats.di.PerActivity;
-import com.jorge.boats.log.ApplicationLogger;
-import java.util.Locale;
 import javax.inject.Inject;
 
 @PerActivity public class NavigationLayoutGestureDetector extends GestureDetector {
@@ -56,14 +54,6 @@ import javax.inject.Inject;
       if (e1.getAction() != MotionEvent.ACTION_DOWN || e2.getAction() != MotionEvent.ACTION_UP) {
         return false;
       }
-
-      ApplicationLogger.d(
-          String.format(Locale.ENGLISH, "FLING:\ne1: %.0f,%.0f\ne2: %.0f,%.0f", e1.getX(),
-              e1.getY(), e2.getX(), e2.getY()));
-      ApplicationLogger.d(String.format(Locale.ENGLISH, "MINIMUM SHOW DISTANCE: %.0f",
-          mLayoutShowMinimumDistancePixels));
-      ApplicationLogger.d(
-          String.format(Locale.ENGLISH, "BEZEL GESTURE SPAN: %.0f", mBezelGestureSpanPixels));
 
       final boolean isGestureStartingFromCorrectBezel = isPositionedOnRelevantEndBezel(e1);
       final boolean isLayoutExpanded = mNavigationLayout.isExpanded();

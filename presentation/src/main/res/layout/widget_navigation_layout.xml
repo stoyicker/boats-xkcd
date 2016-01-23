@@ -2,8 +2,11 @@
 <merge
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="match_parent"
+		tools:ignore="RtlHardcoded">
+	<!-- I explicitely stated in the manifest that there is no RTL support and I don't want to add extra "maybe-fix, maybe-crash" code -->
 
 	<RelativeLayout
 			android:layout_width="wrap_content"

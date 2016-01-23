@@ -22,7 +22,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.jorge.boats.R;
-import com.jorge.boats.log.ApplicationLogger;
 
 public class NavigationLayout extends LinearLayout {
 
@@ -56,7 +55,6 @@ public class NavigationLayout extends LinearLayout {
   }
 
   public boolean show() {
-    ApplicationLogger.d("Checking navigation layout for show");
     if (isExpanded()) return false;
 
     animateIn();
@@ -66,7 +64,6 @@ public class NavigationLayout extends LinearLayout {
   }
 
   public boolean hide() {
-    ApplicationLogger.d("Checking navigation layout for hide");
     if (!isExpanded()) return false;
 
     animateOut();
@@ -76,7 +73,6 @@ public class NavigationLayout extends LinearLayout {
   }
 
   private void animateIn() {
-    ApplicationLogger.d("Animating navigation layout in");
     final Context context = getContext();
     final Resources resources = context.getResources();
     final boolean isLandscape =
@@ -91,7 +87,7 @@ public class NavigationLayout extends LinearLayout {
     final BaseInterpolator interpolator = new DecelerateInterpolator();
 
     for (final View button : mButtons) {
-      rotation = generateRotationAnimator(button);
+      rotation = generateRotationInAnimator(button);
       translation = generateTranslateInAnimator(button, isLandscape);
 
       translation.setDuration(animationDurationMillis);
@@ -110,7 +106,6 @@ public class NavigationLayout extends LinearLayout {
   }
 
   private void animateOut() {
-    ApplicationLogger.d("Animating navigation layout out");
     final Context context = getContext();
     final Resources resources = context.getResources();
     final boolean isLandscape =
@@ -125,7 +120,7 @@ public class NavigationLayout extends LinearLayout {
     final BaseInterpolator interpolator = new AccelerateInterpolator();
 
     for (final View button : mButtons) {
-      rotation = generateRotationAnimator(button);
+      rotation = generateRotationOutAnimator(button);
       translation = generateTranslateOutAnimator(button, isLandscape);
 
       translation.setDuration(animationDurationMillis);
@@ -152,48 +147,79 @@ public class NavigationLayout extends LinearLayout {
   @OnClick(R.id.fab_index_two) void navigateToNext() {
   }
 
-  private static Animator generateRotationAnimator(final @NonNull View target) {
+  private static final int ANIMATOR_TYPE_IN = -1, ANIMATOR_TYPE_OUT = 1;
+
+  @IntDef({
+      ANIMATOR_TYPE_IN, ANIMATOR_TYPE_OUT
+  }) private @interface AnimatorType {
+  }
+
+  private static Animator generateRotationInAnimator(final @NonNull View target) {
+    return generateRotationAnimator(target, ANIMATOR_TYPE_IN);
+  }
+
+  private static Animator generateRotationOutAnimator(final @NonNull View target) {
+    return generateRotationAnimator(target, ANIMATOR_TYPE_OUT);
+  }
+
+  private static Animator generateRotationAnimator(final @NonNull View target,
+      final @AnimatorType int translation) {
+    final boolean isIn;
     final PropertyValuesHolder propertyValuesHolderRotation =
-        PropertyValuesHolder.ofFloat(View.ROTATION, 0, 360);
+        PropertyValuesHolder.ofFloat(View.ROTATION,
+            (isIn = translation == ANIMATOR_TYPE_IN) ? 0 : 720, isIn ? 720 : 0);
 
     return ObjectAnimator.ofPropertyValuesHolder(target, propertyValuesHolderRotation);
   }
 
-  private static final int TRANSLATION_TYPE_IN = -1, TRANSLATION_TYPE_OUT = 1;
-
-  @IntDef({
-      TRANSLATION_TYPE_IN, TRANSLATION_TYPE_OUT
-  }) private @interface TranslationType {
-  }
-
   private static Animator generateTranslateInAnimator(final @NonNull View target,
       final boolean isLandscape) {
-    return generateTranslateAnimator(target, isLandscape, TRANSLATION_TYPE_IN);
+    return generateTranslateAnimator(target, isLandscape, ANIMATOR_TYPE_IN);
   }
 
   private static Animator generateTranslateOutAnimator(final @NonNull View target,
       final boolean isLandscape) {
-    return generateTranslateAnimator(target, isLandscape, TRANSLATION_TYPE_OUT);
+    return generateTranslateAnimator(target, isLandscape, ANIMATOR_TYPE_OUT);
   }
 
   private static Animator generateTranslateAnimator(final @NonNull View target,
-      final boolean isLandscape, final @TranslationType int translation) {
+      final boolean isLandscape, final @AnimatorType int translation) {
     final PropertyValuesHolder propertyValuesHolderTranslation;
     final DisplayMetrics displayMetrics = new DisplayMetrics();
+    final Context context;
 
-    ((WindowManager) target.getContext()
-        .getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(displayMetrics);
+    ((WindowManager) (context = target.getContext()).getSystemService(
+        Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(displayMetrics);
 
     if (isLandscape) {
       propertyValuesHolderTranslation = PropertyValuesHolder.ofFloat(View.Y,
-          translation == TRANSLATION_TYPE_IN ? displayMetrics.heightPixels
-              - target.getHeight() * 1.1f : displayMetrics.heightPixels);
+          (translation == ANIMATOR_TYPE_IN ? displayMetrics.heightPixels - getWingspan(true, target)
+              : displayMetrics.heightPixels) - getStatusBarHeight(context));
     } else {
       propertyValuesHolderTranslation = PropertyValuesHolder.ofFloat(View.X,
-          translation == TRANSLATION_TYPE_IN ? displayMetrics.widthPixels - target.getWidth() * 1.1f
+          translation == ANIMATOR_TYPE_IN ? displayMetrics.widthPixels - getWingspan(false, target)
               : displayMetrics.widthPixels);
     }
 
     return ObjectAnimator.ofPropertyValuesHolder(target, propertyValuesHolderTranslation);
+  }
+
+  private static int getWingspan(final boolean isLandscape, final @NonNull View view) {
+    final int ret = (isLandscape ? view.getHeight() : view.getWidth()) + view.getContext()
+        .getResources()
+        .getDimensionPixelSize(R.dimen.standard_margin);
+
+    return ret;
+  }
+
+  private static int getStatusBarHeight(final @NonNull Context context) {
+    final Resources resources = context.getResources();
+    int result = 0;
+    int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+
+    if (resourceId > 0) {
+      result = resources.getDimensionPixelSize(resourceId);
+    }
+    return result;
   }
 }
