@@ -40,9 +40,9 @@ import javax.inject.Inject;
       mNavigationLayout = navigationLayout;
       mBezelGestureSpanPixels = resources.getInteger(R.integer.bezel_gesture_span_pixels);
       mLayoutShowMinimumDistancePixels =
-          resources.getInteger(R.integer.navigator_layout_show_minimum_distance_pixels);
+          resources.getInteger(R.integer.navigation_layout_show_minimum_distance_pixels);
       mLayoutHideMinimumDistancePixels =
-          resources.getInteger(R.integer.navigator_layout_hide_minimum_distance_pixels);
+          resources.getInteger(R.integer.navigation_layout_hide_minimum_distance_pixels);
 
       final DisplayMetrics displayMetrics = new DisplayMetrics();
       ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay()
@@ -66,10 +66,10 @@ import javax.inject.Inject;
           String.format(Locale.ENGLISH, "BEZEL GESTURE SPAN: %.0f", mBezelGestureSpanPixels));
 
       final boolean isGestureStartingFromCorrectBezel = isPositionedOnRelevantEndBezel(e1);
-      final boolean isLayoutShowing = mNavigationLayout.isShown();
+      final boolean isLayoutExpanded = mNavigationLayout.isExpanded();
       final float start, end;
 
-      if (isLayoutShowing || isGestureStartingFromCorrectBezel) {
+      if (isLayoutExpanded || isGestureStartingFromCorrectBezel) {
         if (isLandscape) {
           start = e1.getY();
           end = e2.getY();
@@ -78,7 +78,7 @@ import javax.inject.Inject;
           end = e2.getX();
         }
 
-        if (!isLayoutShowing && start - end >= mLayoutShowMinimumDistancePixels) {
+        if (!isLayoutExpanded && start - end >= mLayoutShowMinimumDistancePixels) {
           mNavigationLayout.show();
         } else if (end - start >= mLayoutHideMinimumDistancePixels) {
           mNavigationLayout.hide();

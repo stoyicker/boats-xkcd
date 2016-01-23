@@ -15,6 +15,7 @@ ext {
   //Dependencies
   supportAnnotationsVersion = "23.1.1"
   supportAppcompatVersion = "23.1.1"
+  supportDesignVersion = "23.1.1"
   javaxAnnotationVersion = "1.0"
   daggerVersion = "2.0.2"
   rxJavaVersion = "1.1.0"
@@ -49,7 +50,8 @@ ext {
                                      rxAndroid          : "io.reactivex:rxandroid:${rxAndroidVersion}",
                                      butterknife        : "com.jakewharton:butterknife:${butterknifeVersion}",
                                      supportAppCompat   : "com.android.support:appcompat-v7:${supportAppcompatVersion}",
-                                     materialProgressBar: "me.zhanghai.android.materialprogressbar:library:${materialProgressBarVersion}"]
+                                     materialProgressBar: "me.zhanghai.android.materialprogressbar:library:${materialProgressBarVersion}",
+                                     supportDesign      : "com.android.support:design:${supportDesignVersion}"]
 
   releaseCompilePresentationDependencies =
       [leakCanaryNoOp: "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}"]
