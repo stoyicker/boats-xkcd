@@ -47,10 +47,6 @@ import rx.functions.Func1;
   }
 
   @Override public Observable<DomainStripe> stripeWithNum(final long stripeNum) {
-    if (!DomainStripe.isValidExplicitNum(stripeNum)) {
-      throw new IllegalArgumentException("Illegal stripe number " + stripeNum);
-    }
-
     final Observable<DataStripe> fromDatabase =
         Observable.create(new Observable.OnSubscribe<DatabaseStripe>() {
 

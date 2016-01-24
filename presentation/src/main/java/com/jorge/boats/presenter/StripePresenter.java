@@ -11,6 +11,7 @@ import com.jorge.boats.mapper.PresentationEntityMapper;
 import com.jorge.boats.view.stripe.StripeView;
 import javax.inject.Inject;
 import javax.inject.Named;
+import retrofit2.HttpException;
 import rx.Subscriber;
 
 @PerActivity public class StripePresenter implements Presenter<StripeView> {
@@ -71,7 +72,7 @@ import rx.Subscriber;
   }
 
   public void actionNext() {
-    //There is no feasible way to know if this is the latest stripe
+    //There is no feasible way to know if this is the latest stripe without first trying
 
     switchToStripeNum(mView.getStripeNum() + 1);
   }
@@ -119,8 +120,11 @@ import rx.Subscriber;
     @Override public void onError(final @NonNull Throwable e) {
       ApplicationLogger.e(e, e.getClass().getName());
       mView.hideLoading();
-      mView.showError(e);
-      mView.showRetry();
+      //Upon attempt of loading a non-existing stripe, do nothing instead
+      if (!(e instanceof HttpException) || ((HttpException) e).code() != 404) {
+        mView.showError(e);
+        mView.showRetry();
+      }
     }
 
     @Override public void onNext(final @NonNull DomainStripe domainStripe) {
