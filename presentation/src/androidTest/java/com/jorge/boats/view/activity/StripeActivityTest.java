@@ -47,9 +47,9 @@ public class StripeActivityTest extends ActivityInstrumentationTestCase2<StripeA
 
     waitForLoad();
 
-    titleInteraction.check(
-        matches(CustomViewMatchers.withText(equalTo(mStubObject.getTitle()))));
+    titleInteraction.check(matches(CustomViewMatchers.withText(equalTo(mStubObject.getTitle()))));
 
+    //We rely on Glide's tests to verify that the correct, image is shown, but we need to ensure that the view is displayed
     onView(withId(R.id.progress_bar)).check(matches(not(isDisplayed())));
   }
 

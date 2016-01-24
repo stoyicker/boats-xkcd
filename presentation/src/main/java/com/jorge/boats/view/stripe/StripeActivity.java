@@ -1,9 +1,9 @@
 package com.jorge.boats.view.stripe;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -159,7 +159,7 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
     return getApplicationContext();
   }
 
-  @Override public void share() {
+  @SuppressLint("InlinedApi") @Override public void share() {
     //Prevent trying to share "nothing"
     for (final CharSequence x : mShareableRenderedData) {
       if (TextUtils.isEmpty(x)) return;
@@ -168,14 +168,8 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
     final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
 
     intent.setType("text/plain");
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
-    } else {
-      //noinspection deprecation - I'm already taking care of this deprecation in the other branch
-      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-    }
-
-    intent.putExtra(Intent.EXTRA_TITLE, mShareableRenderedData[0]);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+    intent.putExtra(Intent.EXTRA_SUBJECT, mShareableRenderedData[0]);
     intent.putExtra(Intent.EXTRA_TEXT, mShareableRenderedData[1]);
 
     startActivity(Intent.createChooser(intent, getString(R.string.action_share_title)));
