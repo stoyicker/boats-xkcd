@@ -156,10 +156,11 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
   }
 
   @Override public void showError(final @NonNull Throwable throwable) {
+    mNavigationLayout.hide();
     mToolbar.setTitle(getString(R.string.error_title));
     (mErrorSnackbar =
         Snackbar.make(findViewById(android.R.id.content), throwable.getLocalizedMessage(),
-            Snackbar.LENGTH_INDEFINITE)).show();
+            Snackbar.LENGTH_SHORT)).show();
   }
 
   @Override public void hideError() {
