@@ -106,6 +106,7 @@ import rx.Subscriber;
   private final class StripeSubscriber extends Subscriber<DomainStripe> {
 
     @Override public void onStart() {
+      mView.hideError();
       mView.hideRetry();
       mView.showLoading();
     }

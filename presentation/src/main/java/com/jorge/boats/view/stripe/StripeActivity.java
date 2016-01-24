@@ -7,10 +7,10 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 import com.jorge.boats.R;
 import com.jorge.boats.di.component.DaggerStripeComponent;
 import com.jorge.boats.di.module.StripeModule;
@@ -32,6 +32,7 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
 
   private long mStripeNum;
   private CharSequence[] mShareableRenderedData = new CharSequence[2]; //Title and link
+  private Snackbar mErrorSnackbar;
 
   @Inject NavigationLayout mNavigationLayout;
   @Inject NavigationLayoutGestureDetector mNavigationLayoutGestureDetector;
@@ -93,8 +94,7 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
     mStripeNum = stripeNum;
   }
 
-  @Override
-  public long getStripeNum() {
+  @Override public long getStripeNum() {
     return mStripeNum;
   }
 
@@ -157,7 +157,13 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
 
   @Override public void showError(final @NonNull Throwable throwable) {
     mToolbar.setTitle(getString(R.string.error_title));
-    Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
+    (mErrorSnackbar =
+        Snackbar.make(findViewById(android.R.id.content), throwable.getLocalizedMessage(),
+            Snackbar.LENGTH_INDEFINITE)).show();
+  }
+
+  @Override public void hideError() {
+    if (mErrorSnackbar != null) mErrorSnackbar.dismiss();
   }
 
   @Override public Context getContext() {
