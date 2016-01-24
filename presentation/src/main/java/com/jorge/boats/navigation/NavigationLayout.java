@@ -84,7 +84,7 @@ public class NavigationLayout extends LinearLayout {
         resources.getInteger(R.integer.navigation_layout_element_animation_delay_milliseconds);
     final int animationDurationMillis =
         resources.getInteger(R.integer.navigation_layout_global_animation_duration_milliseconds);
-    int delayMs = navigationLayoutPerButtonDelayMillis * mButtons.length;
+    int delayMs = 0;
     //Using AnimationSet does not work
     Animator rotation, translation;
     final BaseInterpolator interpolator = new DecelerateInterpolator();
@@ -117,7 +117,7 @@ public class NavigationLayout extends LinearLayout {
         resources.getInteger(R.integer.navigation_layout_element_animation_delay_milliseconds);
     final int animationDurationMillis =
         resources.getInteger(R.integer.navigation_layout_global_animation_duration_milliseconds);
-    int delayMs = navigationLayoutPerButtonDelayMillis * mButtons.length;
+    int delayMs = navigationLayoutPerButtonDelayMillis * (mButtons.length - 1);
     //Using AnimationSet does not work
     Animator rotation, translation;
     final BaseInterpolator interpolator = new AccelerateInterpolator();
