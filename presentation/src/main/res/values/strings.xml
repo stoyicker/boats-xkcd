@@ -1,5 +1,5 @@
 <resources>
   <string name="app_name">Boats</string>
 	<string name="error_title">Oops!</string>
-	<string name="action_share_title">Share to…</string>
+	<string name="action_share_title">Share using…</string>
 </resources>
