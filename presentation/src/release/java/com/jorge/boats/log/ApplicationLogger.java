@@ -1,6 +1,6 @@
 package com.jorge.boats.log;
 
-public class ApplicationLogger {
+public abstract class ApplicationLogger {
 
   private ApplicationLogger() {
     throw new IllegalAccessError("No instances.");

@@ -11,7 +11,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-public final class FontManager {
+public abstract class FontManager {
 
   public static final int FONT_APP = R.string.app_font;
 

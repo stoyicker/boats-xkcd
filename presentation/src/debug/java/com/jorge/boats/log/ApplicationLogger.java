@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import java.util.Locale;
 import timber.log.Timber;
 
-public class ApplicationLogger {
+public abstract class ApplicationLogger {
 
   private ApplicationLogger() {
     throw new IllegalAccessError("No instances.");
