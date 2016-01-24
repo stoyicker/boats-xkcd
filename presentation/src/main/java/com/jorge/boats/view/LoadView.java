@@ -14,7 +14,5 @@ public interface LoadView {
 
   void showError(final Throwable throwable);
 
-  void hideError();
-
   Context getContext();
 }
