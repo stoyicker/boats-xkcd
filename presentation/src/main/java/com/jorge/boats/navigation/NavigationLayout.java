@@ -22,12 +22,15 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.jorge.boats.R;
+import com.jorge.boats.presenter.StripePresenter;
 
 public class NavigationLayout extends LinearLayout {
 
   @Bind({ R.id.fab_index_zero, R.id.fab_index_one, R.id.fab_index_two }) View[] mButtons;
 
   private boolean isExpanded = false;
+
+  private StripePresenter mStripePresenter;
 
   public NavigationLayout(final @NonNull Context context, final @Nullable AttributeSet attrs) {
     super(context, attrs);
@@ -142,12 +145,18 @@ public class NavigationLayout extends LinearLayout {
   }
 
   @OnClick(R.id.fab_index_one) void navigateToShare() {
+    mStripePresenter.actionShare();
+    hide();
   }
 
   @OnClick(R.id.fab_index_two) void navigateToNext() {
   }
 
   private static final int ANIMATOR_TYPE_IN = -1, ANIMATOR_TYPE_OUT = 1;
+
+  public void setStripePresenter(final @NonNull StripePresenter stripePresenter) {
+    this.mStripePresenter = stripePresenter;
+  }
 
   @IntDef({
       ANIMATOR_TYPE_IN, ANIMATOR_TYPE_OUT

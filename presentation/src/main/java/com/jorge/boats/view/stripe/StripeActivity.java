@@ -3,9 +3,11 @@ package com.jorge.boats.view.stripe;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -14,6 +16,7 @@ import com.jorge.boats.di.component.DaggerStripeComponent;
 import com.jorge.boats.di.module.StripeModule;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.entity.PresentationStripe;
+import com.jorge.boats.navigation.NavigationLayout;
 import com.jorge.boats.navigation.NavigationLayoutGestureDetector;
 import com.jorge.boats.presenter.StripePresenter;
 import com.jorge.boats.view.activity.BaseBrowsableActivity;
@@ -28,7 +31,9 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
       StripeActivity.class.getName() + ".STATE_PARAM_STRIPE_NUM";
 
   private long mStripeNum;
+  private CharSequence[] mShareableRenderedData = new CharSequence[2]; //Title and link
 
+  @Inject NavigationLayout mNavigationLayout;
   @Inject NavigationLayoutGestureDetector mNavigationLayoutGestureDetector;
   @Inject StripePresenter mStripePresenter;
   @Inject CustomTitleToolbar mToolbar;
@@ -47,6 +52,7 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
 
     initializeActivity(savedInstanceState);
     initializeStripePresenter();
+    initializeNavigationLayout();
   }
 
   @Override public boolean onTouchEvent(final @NonNull MotionEvent event) {
@@ -93,6 +99,10 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
     this.mStripePresenter.switchToStripeNum(mStripeNum);
   }
 
+  private void initializeNavigationLayout() {
+    this.mNavigationLayout.setStripePresenter(this.mStripePresenter);
+  }
+
   @Override public void onResume() {
     super.onResume();
     this.mStripePresenter.resume();
@@ -108,13 +118,20 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
     this.mStripePresenter.destroy();
   }
 
-  @Override public void setTitleTypeface(@NonNull Typeface titleTypeface) {
+  @Override public void setTitleTypeface(final @NonNull Typeface titleTypeface) {
     mToolbar.getTitleView().setTypeface(titleTypeface);
   }
 
-  @Override public void renderStripe(@NonNull PresentationStripe model) {
+  @Override public void renderStripe(final @NonNull PresentationStripe model) {
     mToolbar.setTitle(model.getTitle());
     //TODO Rest of render stripe
+
+    updateShareableData(model);
+  }
+
+  private void updateShareableData(final @NonNull PresentationStripe model) {
+    mShareableRenderedData[0] = model.getTitle();
+    mShareableRenderedData[1] = model.getImg();
   }
 
   @Override public void showLoading() {
@@ -140,5 +157,27 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
 
   @Override public Context getContext() {
     return getApplicationContext();
+  }
+
+  @Override public void share() {
+    //Prevent trying to share "nothing"
+    for (final CharSequence x : mShareableRenderedData) {
+      if (TextUtils.isEmpty(x)) return;
+    }
+
+    final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+
+    intent.setType("text/plain");
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+    } else {
+      //noinspection deprecation - I'm already taking care of this deprecation in the other branch
+      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+    }
+
+    intent.putExtra(Intent.EXTRA_TITLE, mShareableRenderedData[0]);
+    intent.putExtra(Intent.EXTRA_TEXT, mShareableRenderedData[1]);
+
+    startActivity(Intent.createChooser(intent, getString(R.string.action_share_title)));
   }
 }

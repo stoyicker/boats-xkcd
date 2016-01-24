@@ -70,6 +70,10 @@ import rx.Subscriber;
     mStripeUseCase.destroy();
   }
 
+  public void actionShare() {
+    mView.share();
+  }
+
   private final class TitleTypefaceSubscriber extends Subscriber<Typeface> {
 
     @Override public void onCompleted() {

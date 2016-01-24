@@ -12,4 +12,6 @@ public interface StripeView extends LoadView {
   void renderStripe(final @NonNull PresentationStripe model);
 
   void setStripeNum(final long num);
+
+  void share();
 }
