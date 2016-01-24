@@ -52,9 +52,6 @@ import rx.Subscriber;
   }
 
   public void switchToStripeNum(final long stripeNum) {
-    if (stripeNum < DomainStripe.STRIPE_NUM_CURRENT) {
-      throw new IllegalArgumentException("Illegal stripe num " + stripeNum + ".");
-    }
     ((GetStripeUseCase) mStripeUseCase).setRequestedStripeNum(stripeNum);
     requestStripe();
   }

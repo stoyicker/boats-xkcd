@@ -150,15 +150,6 @@ public class XkcdStoreImplTest extends DataModuleTestCase {
     verify(mMockClient, never()).getStripeWithId(anyLong());
   }
 
-  @Test public void testGetStripeWithInvalidNum() {
-    final long stripeNum = generateLong(ValueGenerator.Value.NULL);
-
-    mExceptionExpectation.expect(IllegalArgumentException.class);
-    mExceptionExpectation.expectMessage("Illegal stripe number " + stripeNum);
-
-    mSut.stripeWithNum(stripeNum);
-  }
-
   @Test public void testGetStripeWithNotFoundNumNoCachedSuccessful() {
     final Throwable error = generateNotFoundStubThrowable();
     final long generatedNum;

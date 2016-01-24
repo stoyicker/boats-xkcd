@@ -1,6 +1,11 @@
 package com.jorge.boats.view.activity;
 
+import android.app.Activity;
+import android.app.Instrumentation;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.test.espresso.ViewInteraction;
 import android.test.ActivityInstrumentationTestCase2;
@@ -20,7 +25,11 @@ public class StripeActivityTest extends ActivityInstrumentationTestCase2<StripeA
 
   private static final long STUB_STRIPE_NUM = 123;
   private static final long LOAD_WAIT_TIME_MILLISECONDS = 1000;
+  private static final long SHARE_WAIT_TIME_MILLISECONDS = 5000;
+
   private final DomainStripe mStubObject = new DomainStripe();
+
+  private Activity mActivity;
 
   public StripeActivityTest() {
     super(StripeActivity.class);
@@ -29,7 +38,7 @@ public class StripeActivityTest extends ActivityInstrumentationTestCase2<StripeA
   @Override protected void setUp() throws Exception {
     super.setUp();
     this.setActivityIntent(createTargetIntent());
-    getActivity();
+    mActivity = getActivity();
 
     this.mStubObject.setTitle(
         getInstrumentation().getTargetContext().getString(R.string.stub_stripe_title));
@@ -51,6 +60,54 @@ public class StripeActivityTest extends ActivityInstrumentationTestCase2<StripeA
 
     //We rely on Glide's tests to verify that the correct, image is shown, but we need to ensure that the view is displayed
     onView(withId(R.id.progress_bar)).check(matches(not(isDisplayed())));
+  }
+
+  public void testPrevious() {
+    final ViewInteraction titleInteraction = onView(withId(R.id.toolbar_title));
+
+    waitForLoad();
+
+    new Handler(Looper.getMainLooper()).post(new Runnable() {
+      @Override public void run() {
+        mActivity.findViewById(R.id.fab_index_zero).performClick();
+      }
+    });
+
+    titleInteraction.check(matches(CustomViewMatchers.withText(equalTo(
+        getInstrumentation().getTargetContext().getString(R.string.stub_previous_stripe_title)))));
+  }
+
+  public void testShare() {
+    final IntentFilter intentFilter = new IntentFilter();
+    final Instrumentation.ActivityMonitor receiverActivityMonitor =
+        getInstrumentation().addMonitor(intentFilter, null, false);
+
+    intentFilter.addAction(Intent.ACTION_CHOOSER);
+
+    waitForLoad();
+
+    new Handler(Looper.getMainLooper()).post(new Runnable() {
+      @Override public void run() {
+        mActivity.findViewById(R.id.fab_index_one).performClick();
+      }
+    });
+
+    assertNotNull(receiverActivityMonitor.waitForActivityWithTimeout(SHARE_WAIT_TIME_MILLISECONDS));
+  }
+
+  public void testNext() {
+    final ViewInteraction titleInteraction = onView(withId(R.id.toolbar_title));
+
+    waitForLoad();
+
+    new Handler(Looper.getMainLooper()).post(new Runnable() {
+      @Override public void run() {
+        mActivity.findViewById(R.id.fab_index_two).performClick();
+      }
+    });
+
+    titleInteraction.check(matches(CustomViewMatchers.withText(equalTo(
+        getInstrumentation().getTargetContext().getString(R.string.stub_next_stripe_title)))));
   }
 
   /**

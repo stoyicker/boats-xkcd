@@ -1,4 +1,6 @@
 <!-- Apparently having test resources within instrumentation-scope only is not supported yet. -->
 <resources>
 	<string name="stub_stripe_title" translatable="false">Centrifugal Force</string>
+	<string name="stub_previous_stripe_title" translatable="false">Quirky Girls</string>
+	<string name="stub_next_stripe_title" translatable="false">Blogofractal</string>
 </resources>
