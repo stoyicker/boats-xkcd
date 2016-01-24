@@ -142,6 +142,7 @@ public class NavigationLayout extends LinearLayout {
   }
 
   @OnClick(R.id.fab_index_zero) void navigateToPrevious() {
+    mStripePresenter.actionPrevious();
   }
 
   @OnClick(R.id.fab_index_one) void navigateToShare() {
@@ -150,6 +151,7 @@ public class NavigationLayout extends LinearLayout {
   }
 
   @OnClick(R.id.fab_index_two) void navigateToNext() {
+    mStripePresenter.actionNext();
   }
 
   private static final int ANIMATOR_TYPE_IN = -1, ANIMATOR_TYPE_OUT = 1;

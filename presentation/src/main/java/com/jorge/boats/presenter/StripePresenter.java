@@ -70,8 +70,24 @@ import rx.Subscriber;
     mStripeUseCase.destroy();
   }
 
+  public void actionNext() {
+    //There is no feasible way to know if this is the latest stripe
+
+    switchToStripeNum(mView.getStripeNum() + 1);
+  }
+
   public void actionShare() {
     mView.share();
+  }
+
+  public void actionPrevious() {
+    final long currentlyShownStripeNum = mView.getStripeNum();
+
+    if (currentlyShownStripeNum == DomainStripe.STRIPE_NUM_FIRST) {
+      return;
+    }
+
+    switchToStripeNum(mView.getStripeNum() - 1);
   }
 
   private final class TitleTypefaceSubscriber extends Subscriber<Typeface> {

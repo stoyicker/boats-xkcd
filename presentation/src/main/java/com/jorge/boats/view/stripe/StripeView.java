@@ -7,6 +7,8 @@ import com.jorge.boats.view.LoadView;
 
 public interface StripeView extends LoadView {
 
+  long getStripeNum();
+
   void setTitleTypeface(final @NonNull Typeface titleTypeface);
 
   void renderStripe(final @NonNull PresentationStripe model);

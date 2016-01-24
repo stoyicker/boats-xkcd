@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class DomainStripe {
-  public static final long STRIPE_NUM_CURRENT = 0;
+  public static final long STRIPE_NUM_CURRENT = 0, STRIPE_NUM_FIRST = 1;
 
   public static boolean isValidExplicitNum(final long stripeNum) {
     return stripeNum > STRIPE_NUM_CURRENT;

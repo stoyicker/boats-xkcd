@@ -93,6 +93,11 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
     mStripeNum = stripeNum;
   }
 
+  @Override
+  public long getStripeNum() {
+    return mStripeNum;
+  }
+
   private void initializeStripePresenter() {
     this.mStripePresenter.setView(this);
     this.mStripePresenter.initialize();
