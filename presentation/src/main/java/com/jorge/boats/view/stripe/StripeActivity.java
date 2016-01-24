@@ -151,7 +151,7 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
   }
 
   @Override public void showError(final @NonNull Throwable throwable) {
-    super.getToolbar().setTitle(getString(R.string.error_title));
+    mToolbar.setTitle(getString(R.string.error_title));
     Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
   }
 
