@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.test.espresso.ViewInteraction;
 import android.test.ActivityInstrumentationTestCase2;
-import com.jorge.boats.CustomMatchers;
+import com.jorge.boats.CustomViewMatchers;
 import com.jorge.boats.R;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.view.stripe.StripeActivity;
@@ -48,7 +48,7 @@ public class StripeActivityTest extends ActivityInstrumentationTestCase2<StripeA
     waitForLoad();
 
     titleInteraction.check(
-        matches(CustomMatchers.withText(equalTo(mStubObject.getTitle()))));
+        matches(CustomViewMatchers.withText(equalTo(mStubObject.getTitle()))));
 
     onView(withId(R.id.progress_bar)).check(matches(not(isDisplayed())));
   }

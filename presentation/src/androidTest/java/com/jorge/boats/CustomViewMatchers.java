@@ -7,9 +7,9 @@ import android.widget.TextView;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
-public abstract class CustomMatchers {
+public abstract class CustomViewMatchers {
 
-  private CustomMatchers() {
+  private CustomViewMatchers() {
     throw new IllegalAccessError("No instances.");
   }
 
@@ -20,7 +20,7 @@ public abstract class CustomMatchers {
         return expectedMatcher.matches(item.getText().toString());
       }
 
-      @Override public void describeTo(final Description description) {
+      @Override public void describeTo(final @NonNull Description description) {
         description.appendText("with text: ");
         expectedMatcher.describeTo(description);
       }
