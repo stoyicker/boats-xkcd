@@ -44,9 +44,6 @@ public class NavigationLayout extends LinearLayout {
     }
 
     ButterKnife.bind(this);
-
-    //Continuously changing the layer type is probably not a good idea
-    setLayerType(View.LAYER_TYPE_HARDWARE, null);
   }
 
   public boolean isExpanded() {
