@@ -9,8 +9,7 @@
 			android:icon="@mipmap/ic_launcher"
 			android:supportsRtl="false"
 			android:name=".CustomApplication"
-			android:theme="@style/App"
-			android:hardwareAccelerated="true">
+			android:theme="@style/App">
     <activity android:name=".view.stripe.StripeActivity"
 				android:label="@string/app_name"
 				android:launchMode="singleInstance"
