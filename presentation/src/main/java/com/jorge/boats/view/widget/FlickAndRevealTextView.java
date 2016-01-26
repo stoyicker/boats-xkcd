@@ -11,6 +11,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
@@ -21,8 +22,6 @@ import com.jorge.boats.R;
  */
 public class FlickAndRevealTextView extends TextView
     implements Runnable, ValueAnimator.AnimatorUpdateListener {
-
-  private static int DEFAULT_ANIMATION_DURATION_MILLIS = 0;
 
   private int mInDuration = 0, mOutDuration = 0;
   private int mRed, mGreen, mBlue;
@@ -49,10 +48,10 @@ public class FlickAndRevealTextView extends TextView
   private void init(final @Nullable TypedArray attrs) {
     if (attrs != null) {
       try {
-        mInDuration = attrs.getInteger(R.styleable.FlickAndRevealTextView_in_duration_millis,
-            mInDuration);
-        mOutDuration = attrs.getInteger(R.styleable.FlickAndRevealTextView_out_duration_millis,
-            mOutDuration);
+        mInDuration =
+            attrs.getInteger(R.styleable.FlickAndRevealTextView_in_duration_millis, mInDuration);
+        mOutDuration =
+            attrs.getInteger(R.styleable.FlickAndRevealTextView_out_duration_millis, mOutDuration);
       } finally {
         attrs.recycle();
       }
@@ -97,6 +96,23 @@ public class FlickAndRevealTextView extends TextView
 
     if (!TextUtils.isEmpty(super.getText())) {
       post(this);
+    }
+  }
+
+  @Override
+  protected void onVisibilityChanged(final @NonNull View changedView, final int visibility) {
+    if (changedView != this) {
+      if (visibility == View.VISIBLE) {
+        super.onVisibilityChanged(changedView, visibility);
+        replay();
+      } else {
+        final CharSequence currentText = getText();
+        playAndSetText("");
+        super.onVisibilityChanged(changedView, visibility);
+        setText(currentText);
+      }
+    } else {
+      super.onVisibilityChanged(changedView, visibility);
     }
   }
 
