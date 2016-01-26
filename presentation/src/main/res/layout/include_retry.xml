@@ -15,7 +15,6 @@
 			android:src="@drawable/jetpack_guy"/>
 
 	  <com.jorge.boats.view.widget.FlickAndRevealTextView
-				android:id="@+id/error_text"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				app:in_duration_millis="@integer/error_text_in_duration_milliseconds"
