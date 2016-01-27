@@ -34,7 +34,7 @@ public class StripePresenterTest extends PresentationModuleTestCase {
     super.setUp();
 
     mSut = new StripePresenter(mMockTypefaceLoad,
-        new GetStripeUseCase(mMockXkcdStore, new JobExecutor(), new UIThread()), mMockEntityMapper);
+        new GetStripeUseCase(mMockXkcdStore, new JobExecutor(), new UIThread()));
   }
 
   @Test public void testInitialize() {
