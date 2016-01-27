@@ -24,7 +24,7 @@
 		<include
 				android:id="@+id/retry"
 				layout="@layout/include_retry"
-				android:visibility="visible"/>
+				android:visibility="gone"/>
 	</FrameLayout>
 
   <include
