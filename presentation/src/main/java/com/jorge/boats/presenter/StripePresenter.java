@@ -2,6 +2,7 @@ package com.jorge.boats.presenter;
 
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.view.View;
 import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.interactor.GetStripeUseCase;
@@ -19,16 +20,16 @@ import rx.Subscriber;
   private final UseCase<Typeface> mTypefaceUseCase;
   private final UseCase<DomainStripe> mStripeUseCase;
 
-  private final PresentationEntityMapper mEntityMapper;
+  @Inject PresentationEntityMapper mEntityMapper;
+  @Inject View mRetryView;
+
   private StripeView mView;
 
   @Inject
   public StripePresenter(final @NonNull @Named("typeface") UseCase<Typeface> typefaceUseCase,
-      final @NonNull @Named("stripe") UseCase<DomainStripe> stripeUseCase,
-      PresentationEntityMapper presentationEntityMapper) {
+      final @NonNull @Named("stripe") UseCase<DomainStripe> stripeUseCase) {
     mTypefaceUseCase = typefaceUseCase;
     mStripeUseCase = stripeUseCase;
-    mEntityMapper = presentationEntityMapper;
   }
 
   public void setView(@NonNull StripeView view) {
@@ -66,6 +67,10 @@ import rx.Subscriber;
   @Override public void destroy() {
     mTypefaceUseCase.destroy();
     mStripeUseCase.destroy();
+  }
+
+  @Override public boolean isRetryViewShown() {
+    return mRetryView.isShown();
   }
 
   public void actionNext() {

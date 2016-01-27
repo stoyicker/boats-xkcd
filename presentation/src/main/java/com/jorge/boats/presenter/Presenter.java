@@ -14,4 +14,6 @@ interface Presenter<ViewType> {
   void pause();
 
   void destroy();
+
+  boolean isRetryViewShown();
 }

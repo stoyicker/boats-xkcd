@@ -16,19 +16,19 @@
 			android:id="@+id/progress_bar"
 			layout="@layout/include_progress_bar"/>
 
-  <include
-			android:id="@+id/navigation"
-			layout="@layout/include_navigation"/>
-
 	<FrameLayout
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_below="@id/toolbar_wrapper">
 
-	<include
-			android:id="@+id/retry"
-			layout="@layout/include_retry"
-			android:visibility="gone"/>
+		<include
+				android:id="@+id/retry"
+				layout="@layout/include_retry"
+				android:visibility="visible"/>
 	</FrameLayout>
+
+  <include
+			android:id="@+id/navigation"
+			layout="@layout/include_navigation"/>
 
 </RelativeLayout>

@@ -7,10 +7,10 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
+import butterknife.Bind;
 import com.jorge.boats.R;
 import com.jorge.boats.di.component.DaggerStripeComponent;
 import com.jorge.boats.di.module.StripeModule;
@@ -32,12 +32,13 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
 
   private long mStripeNum;
   private CharSequence[] mShareableRenderedData = new CharSequence[2]; //Title and link
-  private Snackbar mErrorSnackbar;
 
   @Inject NavigationLayout mNavigationLayout;
   @Inject NavigationLayoutGestureDetector mNavigationLayoutGestureDetector;
   @Inject StripePresenter mStripePresenter;
   @Inject CustomTitleToolbar mToolbar;
+
+  @Bind(R.id.retry) View mRetryView;
 
   @NonNull
   public static Intent getCallingIntent(final @NonNull Context context, final long stripeNum) {
@@ -63,7 +64,7 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
   @Override protected void createComponentAndInjectSelf() {
     DaggerStripeComponent.builder()
         .applicationComponent(getApplicationComponent())
-        .stripeModule(new StripeModule(super.getNavigationLayout(), super.getToolbar()))
+        .stripeModule(new StripeModule(super.getNavigationLayout(), super.getToolbar(), mRetryView))
         .build()
         .inject(this);
   }
@@ -148,11 +149,11 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
   }
 
   @Override public void showRetry() {
-
+    mRetryView.setVisibility(View.VISIBLE);
   }
 
   @Override public void hideRetry() {
-
+    mRetryView.setVisibility(View.GONE);
   }
 
   @Override public void showError(final @NonNull Throwable throwable) {

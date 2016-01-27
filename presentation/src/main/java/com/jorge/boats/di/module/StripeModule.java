@@ -3,6 +3,7 @@ package com.jorge.boats.di.module;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.executor.PostExecutionThread;
@@ -21,11 +22,13 @@ import javax.inject.Named;
 
   private final NavigationLayout mNavigationLayout;
   private final Toolbar mToolbar;
+  private final View mErrorView;
 
   public StripeModule(final @NonNull NavigationLayout navigationLayout,
-      final @NonNull Toolbar toolbar) {
+      final @NonNull Toolbar toolbar, final @NonNull View errorView) {
     mNavigationLayout = navigationLayout;
     mToolbar = toolbar;
+    mErrorView = errorView;
   }
 
   @Provides @PerActivity CustomTitleToolbar provideCustomTitleToolbar() {
@@ -34,6 +37,10 @@ import javax.inject.Named;
 
   @Provides @PerActivity NavigationLayout provideNavigationLayout() {
     return mNavigationLayout;
+  }
+
+  @Provides @PerActivity View provideErrorView() {
+    return mErrorView;
   }
 
   @Provides @PerActivity @Named("typeface") UseCase<Typeface> provideTypefaceUseCase(

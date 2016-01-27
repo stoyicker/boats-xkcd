@@ -87,6 +87,10 @@ public class NavigationLayout extends LinearLayout {
     final BaseInterpolator interpolator = new DecelerateInterpolator();
 
     for (final View button : mButtons) {
+      if (mStripePresenter.isRetryViewShown() && button.getId() == R.id.fab_index_one) {
+        button.setVisibility(View.GONE);
+      }
+
       rotation = generateRotationInAnimator(button);
       translation = generateTranslateInAnimator(button, isLandscape);
 
