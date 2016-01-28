@@ -16,9 +16,15 @@ import com.jorge.boats.view.stripe.StripeActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.not;
 
+/**
+ * Note that, because I'm loading a real stripe, I have to assume that the load works correctly so
+ * only positive cases are tested.
+ */
 public class StripeActivityTest extends ActivityInstrumentationTestCase2<StripeActivity> {
 
   private static final long STUB_STRIPE_NUM = 123;
@@ -44,7 +50,7 @@ public class StripeActivityTest extends ActivityInstrumentationTestCase2<StripeA
 
   @Override protected void tearDown() throws Exception {
     super.tearDown();
-    mActivity.finish();
+    if (mActivity != null) mActivity.finish();
   }
 
   @NonNull private Intent createTargetIntent() {
@@ -65,6 +71,8 @@ public class StripeActivityTest extends ActivityInstrumentationTestCase2<StripeA
 
     titleInteraction.check(matches(CustomViewMatchers.withText(equalTo(
         getInstrumentation().getTargetContext().getString(R.string.stub_previous_stripe_title)))));
+
+    onView(withId(R.id.retry)).check(matches(not((isDisplayed()))));
   }
 
   public void testShare() {
@@ -100,6 +108,8 @@ public class StripeActivityTest extends ActivityInstrumentationTestCase2<StripeA
 
     titleInteraction.check(matches(CustomViewMatchers.withText(equalTo(
         getInstrumentation().getTargetContext().getString(R.string.stub_next_stripe_title)))));
+
+    onView(withId(R.id.retry)).check(matches(not((isDisplayed()))));
   }
 
   /**
