@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import butterknife.Bind;
+import butterknife.OnClick;
 import com.jorge.boats.R;
 import com.jorge.boats.di.component.DaggerStripeComponent;
 import com.jorge.boats.di.module.StripeModule;
@@ -179,5 +180,9 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
     intent.putExtra(Intent.EXTRA_TEXT, mShareableRenderedData[1]);
 
     startActivity(Intent.createChooser(intent, getString(R.string.action_share_title)));
+  }
+
+  @OnClick(R.id.retry) void actionRetry() {
+    this.mStripePresenter.switchToStripeNum(mStripeNum);
   }
 }
