@@ -3,6 +3,7 @@ package com.jorge.boats.presenter;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.TextView;
 import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.interactor.GetStripeUseCase;
@@ -105,6 +106,7 @@ import rx.Subscriber;
 
     @Override public void onNext(final @NonNull Typeface typeface) {
       mView.setTitleTypeface(typeface);
+      ((TextView) mRetryView.findViewById(android.R.id.text1)).setTypeface(typeface);
     }
   }
 

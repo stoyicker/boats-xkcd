@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 		xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:app="http://schemas.android.com/apk/res-auto"
 		android:orientation="vertical"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
@@ -14,14 +13,13 @@
 			android:scaleType="centerInside"
 			android:src="@drawable/jetpack_guy"/>
 
-	  <com.jorge.boats.view.widget.FlickAndRevealTextView
+	  <TextView
+				android:id="@android:id/text1"
 				android:layout_width="match_parent"
 				android:layout_height="0dp"
 				android:layout_weight="1"
 				android:gravity="center"
 				android:text="@string/retry"
-				app:in_duration_millis="@integer/error_text_in_duration_milliseconds"
-				app:out_duration_millis="@integer/error_text_out_duration_milliseconds"
 				android:ellipsize="end"
 				android:textIsSelectable="false"
 				style="@style/ToolbarTitle"/>

@@ -7,6 +7,4 @@
   <integer name="navigation_layout_hide_minimum_distance_pixels">40</integer>
 	<integer name="navigation_layout_element_animation_delay_milliseconds">50</integer>
 	<integer name="navigation_layout_global_animation_duration_milliseconds">50</integer>
-  <integer name="error_text_in_duration_milliseconds">800</integer>
-  <integer name="error_text_out_duration_milliseconds">300</integer>
 </resources>

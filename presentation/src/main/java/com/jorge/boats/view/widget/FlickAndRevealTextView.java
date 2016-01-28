@@ -11,7 +11,6 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
-import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
@@ -96,16 +95,6 @@ public class FlickAndRevealTextView extends TextView
 
     if (!TextUtils.isEmpty(super.getText())) {
       post(this);
-    }
-  }
-
-  @Override
-  protected void onVisibilityChanged(final @NonNull View changedView, final int visibility) {
-    if (changedView != this) {
-      if (visibility == View.VISIBLE) {
-        super.onVisibilityChanged(changedView, visibility);
-        replay();
-      }
     }
   }
 
