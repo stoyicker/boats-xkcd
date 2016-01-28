@@ -9,14 +9,16 @@
 	<ImageView
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
-			android:layout_weight="1"
+			android:layout_weight="2"
 			android:contentDescription="@string/error_title"
 			android:scaleType="centerInside"
 			android:src="@drawable/jetpack_guy"/>
 
 	  <com.jorge.boats.view.widget.FlickAndRevealTextView
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				android:layout_height="0dp"
+				android:layout_weight="1"
+				android:gravity="center"
 				android:text="@string/retry"
 				app:in_duration_millis="@integer/error_text_in_duration_milliseconds"
 				app:out_duration_millis="@integer/error_text_out_duration_milliseconds"

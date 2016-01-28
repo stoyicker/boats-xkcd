@@ -105,14 +105,7 @@ public class FlickAndRevealTextView extends TextView
       if (visibility == View.VISIBLE) {
         super.onVisibilityChanged(changedView, visibility);
         replay();
-      } else {
-        final CharSequence currentText = getText();
-        playAndSetText("");
-        super.onVisibilityChanged(changedView, visibility);
-        setText(currentText);
       }
-    } else {
-      super.onVisibilityChanged(changedView, visibility);
     }
   }
 
