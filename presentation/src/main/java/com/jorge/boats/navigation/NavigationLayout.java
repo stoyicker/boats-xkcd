@@ -196,6 +196,8 @@ public class NavigationLayout extends LinearLayout {
     final DisplayMetrics displayMetrics = new DisplayMetrics();
     final Context context;
 
+    //TODO For some reason this is not returning what it should when coming from an error view and generating out anims for the first button
+
     ((WindowManager) (context = target.getContext()).getSystemService(
         Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(displayMetrics);
 
@@ -213,11 +215,9 @@ public class NavigationLayout extends LinearLayout {
   }
 
   private static int getWingspan(final boolean isLandscape, final @NonNull View view) {
-    final int ret = (isLandscape ? view.getHeight() : view.getWidth()) + view.getContext()
+    return (isLandscape ? view.getHeight() : view.getWidth()) + view.getContext()
         .getResources()
         .getDimensionPixelSize(R.dimen.standard_margin);
-
-    return ret;
   }
 
   private static int getStatusBarHeight(final @NonNull Context context) {
