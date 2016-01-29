@@ -11,7 +11,6 @@ import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import butterknife.Bind;
-import butterknife.OnClick;
 import com.jorge.boats.R;
 import com.jorge.boats.di.component.DaggerStripeComponent;
 import com.jorge.boats.di.module.StripeModule;
@@ -22,6 +21,7 @@ import com.jorge.boats.navigation.NavigationLayoutGestureDetector;
 import com.jorge.boats.presenter.StripePresenter;
 import com.jorge.boats.view.activity.BaseBrowsableActivity;
 import com.jorge.boats.view.widget.CustomTitleToolbar;
+import com.jorge.boats.view.widget.RetryLayout;
 import javax.inject.Inject;
 
 public class StripeActivity extends BaseBrowsableActivity implements StripeView {
@@ -39,7 +39,7 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
   @Inject StripePresenter mStripePresenter;
   @Inject CustomTitleToolbar mToolbar;
 
-  @Bind(R.id.retry) View mRetryView;
+  @Bind(R.id.retry) RetryLayout mRetry;
 
   @NonNull
   public static Intent getCallingIntent(final @NonNull Context context, final long stripeNum) {
@@ -56,6 +56,7 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
     initializeActivity(savedInstanceState);
     initializeStripePresenter();
     initializeNavigationLayout();
+    initializeRetryView();
   }
 
   @Override public boolean onTouchEvent(final @NonNull MotionEvent event) {
@@ -65,7 +66,7 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
   @Override protected void createComponentAndInjectSelf() {
     DaggerStripeComponent.builder()
         .applicationComponent(getApplicationComponent())
-        .stripeModule(new StripeModule(super.getNavigationLayout(), super.getToolbar(), mRetryView))
+        .stripeModule(new StripeModule(super.getNavigationLayout(), super.getToolbar(), mRetry))
         .build()
         .inject(this);
   }
@@ -110,6 +111,10 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
     this.mNavigationLayout.setStripePresenter(this.mStripePresenter);
   }
 
+  private void initializeRetryView() {
+    this.mRetry.setStripePresenter(this.mStripePresenter);
+  }
+
   @Override public void onResume() {
     super.onResume();
     this.mStripePresenter.resume();
@@ -150,11 +155,11 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
   }
 
   @Override public void showRetry() {
-    mRetryView.setVisibility(View.VISIBLE);
+    mRetry.setVisibility(View.VISIBLE);
   }
 
   @Override public void hideRetry() {
-    mRetryView.setVisibility(View.GONE);
+    mRetry.setVisibility(View.GONE);
   }
 
   @Override public void showError(final @NonNull Throwable throwable) {
@@ -180,9 +185,5 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
     intent.putExtra(Intent.EXTRA_TEXT, mShareableRenderedData[1]);
 
     startActivity(Intent.createChooser(intent, getString(R.string.action_share_title)));
-  }
-
-  @OnClick(R.id.retry) void actionRetry() {
-    this.mStripePresenter.switchToStripeNum(mStripeNum);
   }
 }

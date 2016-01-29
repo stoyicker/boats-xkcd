@@ -2,8 +2,6 @@ package com.jorge.boats.presenter;
 
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
-import android.view.View;
-import android.widget.TextView;
 import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.interactor.GetStripeUseCase;
@@ -11,6 +9,7 @@ import com.jorge.boats.domain.interactor.UseCase;
 import com.jorge.boats.log.ApplicationLogger;
 import com.jorge.boats.mapper.PresentationEntityMapper;
 import com.jorge.boats.view.stripe.StripeView;
+import com.jorge.boats.view.widget.RetryLayout;
 import javax.inject.Inject;
 import javax.inject.Named;
 import retrofit2.HttpException;
@@ -22,7 +21,7 @@ import rx.Subscriber;
   private final UseCase<DomainStripe> mStripeUseCase;
 
   @Inject PresentationEntityMapper mEntityMapper;
-  @Inject View mRetryView;
+  @Inject RetryLayout mRetry;
 
   private StripeView mView;
 
@@ -70,8 +69,12 @@ import rx.Subscriber;
     mStripeUseCase.destroy();
   }
 
+  @Override public void requestRetry() {
+    requestStripe();
+  }
+
   @Override public boolean isRetryViewShown() {
-    return mRetryView.isShown();
+    return mRetry.isShown();
   }
 
   public void actionNext() {
@@ -106,7 +109,7 @@ import rx.Subscriber;
 
     @Override public void onNext(final @NonNull Typeface typeface) {
       mView.setTitleTypeface(typeface);
-      ((TextView) mRetryView.findViewById(android.R.id.text1)).setTypeface(typeface);
+      mRetry.setTextTypeface(typeface);
     }
   }
 

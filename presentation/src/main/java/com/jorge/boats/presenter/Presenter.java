@@ -15,5 +15,7 @@ interface Presenter<ViewType> {
 
   void destroy();
 
+  void requestRetry();
+
   boolean isRetryViewShown();
 }

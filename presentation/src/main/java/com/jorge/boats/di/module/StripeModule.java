@@ -3,7 +3,6 @@ package com.jorge.boats.di.module;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.executor.PostExecutionThread;
@@ -14,6 +13,7 @@ import com.jorge.boats.domain.repository.XkcdStore;
 import com.jorge.boats.navigation.NavigationLayout;
 import com.jorge.boats.task.TypefaceLoadTask;
 import com.jorge.boats.view.widget.CustomTitleToolbar;
+import com.jorge.boats.view.widget.RetryLayout;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Named;
@@ -22,13 +22,13 @@ import javax.inject.Named;
 
   private final NavigationLayout mNavigationLayout;
   private final Toolbar mToolbar;
-  private final View mErrorView;
+  private final RetryLayout mRetry;
 
   public StripeModule(final @NonNull NavigationLayout navigationLayout,
-      final @NonNull Toolbar toolbar, final @NonNull View errorView) {
+      final @NonNull Toolbar toolbar, final @NonNull RetryLayout errorView) {
     mNavigationLayout = navigationLayout;
     mToolbar = toolbar;
-    mErrorView = errorView;
+    mRetry = errorView;
   }
 
   @Provides @PerActivity CustomTitleToolbar provideCustomTitleToolbar() {
@@ -39,8 +39,8 @@ import javax.inject.Named;
     return mNavigationLayout;
   }
 
-  @Provides @PerActivity View provideErrorView() {
-    return mErrorView;
+  @Provides @PerActivity RetryLayout provideErrorView() {
+    return mRetry;
   }
 
   @Provides @PerActivity @Named("typeface") UseCase<Typeface> provideTypefaceUseCase(
