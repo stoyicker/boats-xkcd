@@ -23,6 +23,7 @@
 			android:layout_below="@id/toolbar_wrapper">
 
 		<include
+				android:id="@+id/image"
 				layout="@layout/include_image"/>
 
 		<include
@@ -36,9 +37,7 @@
 			layout="@layout/include_navigation"/>
 
 	<include
-			layout="@layout/include_ad_banner"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			layout="@layout/include_ad_banner"/>
 </com.jorge.boats.view.widget.PhotoViewExceptionProofRelativeLayout>
 
 		<!--TODO Ripple on the error view-->
