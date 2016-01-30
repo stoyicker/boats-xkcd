@@ -1,0 +1,31 @@
+apply plugin: 'com.android.library'
+
+android {
+
+  //noinspection GroovyAssignabilityCheck
+  compileSdkVersion androidCompileSdkVersion
+  //noinspection GroovyAssignabilityCheck
+  buildToolsVersion androidBuildToolsVersion
+
+  defaultConfig {
+    //noinspection GroovyAssignabilityCheck
+    minSdkVersion androidMinSdkVersion
+    //noinspection GroovyAssignabilityCheck
+    targetSdkVersion androidTargetSdkVersion
+  }
+
+  compileOptions {
+    //noinspection GroovyAssignabilityCheck
+    sourceCompatibility javaVersion
+    targetCompatibility javaVersion
+  }
+
+  lintOptions {
+    abortOnError !rootProject.ext.executingOnCI
+    absolutePaths true
+    checkAllWarnings true
+    htmlOutput = new File("${staticAnalysisReportTarget}/data/lint.html")
+    quiet false
+    warningsAsErrors true
+  }
+}
