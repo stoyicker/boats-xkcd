@@ -8,4 +8,5 @@
   <color name="secondary_text">#727272</color>
   <color name="divider">#B6B6B6</color>
   <color name="actionbar_background">#000000</color>
+  <color name="content_background">#000000</color>
 </resources>
