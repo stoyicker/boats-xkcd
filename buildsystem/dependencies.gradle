@@ -28,6 +28,7 @@ ext {
   jetbrainsAnnotationsVersion = "15.0"
   leakCanaryVersion = "1.4-beta1"
   materialProgressBarVersion = "1.1.4"
+  photoViewVersion = "1.2.4"
 
   //Testing
   espressoVersion = "2.2.1"
@@ -51,7 +52,8 @@ ext {
                                      butterknife        : "com.jakewharton:butterknife:${butterknifeVersion}",
                                      supportAppCompat   : "com.android.support:appcompat-v7:${supportAppcompatVersion}",
                                      materialProgressBar: "me.zhanghai.android.materialprogressbar:library:${materialProgressBarVersion}",
-                                     supportDesign      : "com.android.support:design:${supportDesignVersion}"]
+                                     supportDesign      : "com.android.support:design:${supportDesignVersion}",
+                                     photoView          : "com.commit451:PhotoView:${photoViewVersion}"]
 
   releaseCompilePresentationDependencies =
       [leakCanaryNoOp: "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}"]

@@ -15,7 +15,7 @@ import javax.inject.Inject;
 @PerActivity public class NavigationLayoutGestureDetector extends GestureDetector {
 
   @Inject public NavigationLayoutGestureDetector(final @NonNull Context context,
-      final @NonNull NavigationLayout navigationLayout) {
+      final @NonNull NavigationLinearLayout navigationLayout) {
     super(context, new NavigationLayoutBezelGestureDetectorListener(context, navigationLayout));
   }
 
@@ -26,12 +26,12 @@ import javax.inject.Inject;
     private final float mLayoutShowMinimumDistancePixels;
     private final float mLayoutHideMinimumDistancePixels;
     private final boolean isLandscape;
-    private final NavigationLayout mNavigationLayout;
+    private final NavigationLinearLayout mNavigationLayout;
     private final int mScreenWidth;
     private final int mScreenHeight;
 
     private NavigationLayoutBezelGestureDetectorListener(final @NonNull Context context,
-        final @NonNull NavigationLayout navigationLayout) {
+        final @NonNull NavigationLinearLayout navigationLayout) {
       final Resources resources = context.getResources();
 
       isLandscape = resources.getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;

@@ -15,13 +15,13 @@ import butterknife.ButterKnife;
 import com.jorge.boats.R;
 import com.jorge.boats.presenter.StripePresenter;
 
-public class RetryLayout extends LinearLayout {
+public class RetryLinearLayout extends LinearLayout {
 
   @Bind(android.R.id.text1) TextView mText;
 
   private StripePresenter mStripePresenter;
 
-  public RetryLayout(final @NonNull Context context, final @Nullable AttributeSet attrs) {
+  public RetryLinearLayout(final @NonNull Context context, final @Nullable AttributeSet attrs) {
     super(context, attrs);
 
     init(context);
@@ -36,7 +36,7 @@ public class RetryLayout extends LinearLayout {
 
     setOnClickListener(new OnClickListener() {
       @Override public void onClick(final @NonNull View v) {
-        RetryLayout.this.onClick();
+        RetryLinearLayout.this.onClick();
       }
     });
 
@@ -60,11 +60,11 @@ public class RetryLayout extends LinearLayout {
         .setDuration(getResources().getInteger(R.integer.retry_fade_duration_milliseconds))
         .setListener(new Animator.AnimatorListener() {
           @Override public void onAnimationStart(final @NonNull Animator animation) {
-            if (visibility == View.VISIBLE) RetryLayout.super.setVisibility(View.VISIBLE);
+            if (visibility == View.VISIBLE) RetryLinearLayout.super.setVisibility(View.VISIBLE);
           }
 
           @Override public void onAnimationEnd(final @NonNull Animator animation) {
-            if (visibility != View.VISIBLE) RetryLayout.super.setVisibility(visibility);
+            if (visibility != View.VISIBLE) RetryLinearLayout.super.setVisibility(visibility);
           }
 
           @Override public void onAnimationCancel(final @NonNull Animator animation) {

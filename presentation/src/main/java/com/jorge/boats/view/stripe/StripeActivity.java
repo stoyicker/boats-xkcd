@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import butterknife.Bind;
 import com.jorge.boats.R;
@@ -18,14 +19,15 @@ import com.jorge.boats.di.component.DaggerStripeComponent;
 import com.jorge.boats.di.module.StripeModule;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.entity.PresentationStripe;
-import com.jorge.boats.navigation.NavigationLayout;
+import com.jorge.boats.navigation.NavigationLinearLayout;
 import com.jorge.boats.navigation.NavigationLayoutGestureDetector;
 import com.jorge.boats.presenter.StripePresenter;
 import com.jorge.boats.util.ResourceUtil;
 import com.jorge.boats.view.activity.BaseVisualActivity;
 import com.jorge.boats.view.widget.CustomTitleToolbar;
-import com.jorge.boats.view.widget.RetryLayout;
+import com.jorge.boats.view.widget.RetryLinearLayout;
 import javax.inject.Inject;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class StripeActivity extends BaseVisualActivity implements StripeView {
 
@@ -34,17 +36,20 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
   private static final String INSTANCE_STATE_PARAM_STRIPE_NUM =
       StripeActivity.class.getName() + ".STATE_PARAM_STRIPE_NUM";
 
+  private final CharSequence[] mShareableRenderedData = new CharSequence[2]; //Title and link
+  private PhotoViewAttacher mAttacher;
+
   private long mStripeNum;
-  private CharSequence[] mShareableRenderedData = new CharSequence[2]; //Title and link
 
   @Inject NavigationLayoutGestureDetector mNavigationLayoutGestureDetector;
   @Inject StripePresenter mStripePresenter;
 
   @Bind(R.id.content) View mContent;
   @Bind(R.id.toolbar) CustomTitleToolbar mToolbar;
-  @Bind(R.id.navigation) NavigationLayout mNavigation;
+  @Bind(R.id.navigation) NavigationLinearLayout mNavigation;
   @Bind(R.id.progress_bar) View mLoading;
-  @Bind(R.id.retry) RetryLayout mRetry;
+  @Bind(R.id.retry) RetryLinearLayout mRetry;
+  @Bind(R.id.image) ImageView mImage;
 
   @NonNull
   public static Intent getCallingIntent(final @NonNull Context context, final long stripeNum) {
@@ -66,6 +71,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
     initializeStripePresenter();
     initializeNavigationLayout();
     initializeRetryView();
+    initializeView();
   }
 
   private void setupToolbar() {
@@ -153,6 +159,10 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
     this.mRetry.setStripePresenter(this.mStripePresenter);
   }
 
+  private void initializeView() {
+    this.mAttacher = new PhotoViewAttacher(this.mImage);
+  }
+
   @Override public void onResume() {
     super.onResume();
     this.mStripePresenter.resume();
@@ -174,7 +184,8 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
 
   @Override public void renderStripe(final @NonNull PresentationStripe model) {
     mToolbar.setTitle(model.getTitle());
-    //TODO Rest of render stripe
+    //TODO Set image using Glide
+    mAttacher.update();
 
     updateShareableData(model);
   }

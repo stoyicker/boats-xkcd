@@ -9,7 +9,7 @@ import com.jorge.boats.domain.interactor.UseCase;
 import com.jorge.boats.log.ApplicationLogger;
 import com.jorge.boats.mapper.PresentationEntityMapper;
 import com.jorge.boats.view.stripe.StripeView;
-import com.jorge.boats.view.widget.RetryLayout;
+import com.jorge.boats.view.widget.RetryLinearLayout;
 import javax.inject.Inject;
 import javax.inject.Named;
 import retrofit2.HttpException;
@@ -21,7 +21,7 @@ import rx.Subscriber;
   private final UseCase<DomainStripe> mStripeUseCase;
 
   @Inject PresentationEntityMapper mEntityMapper;
-  @Inject RetryLayout mRetry;
+  @Inject RetryLinearLayout mRetry;
 
   private StripeView mView;
 

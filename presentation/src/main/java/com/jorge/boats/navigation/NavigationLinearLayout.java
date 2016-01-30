@@ -24,7 +24,7 @@ import butterknife.OnClick;
 import com.jorge.boats.R;
 import com.jorge.boats.presenter.StripePresenter;
 
-public class NavigationLayout extends LinearLayout {
+public class NavigationLinearLayout extends LinearLayout {
 
   @Bind({ R.id.fab_index_zero, R.id.fab_index_one, R.id.fab_index_two }) View[] mButtons;
 
@@ -32,7 +32,7 @@ public class NavigationLayout extends LinearLayout {
 
   private StripePresenter mStripePresenter;
 
-  public NavigationLayout(final @NonNull Context context, final @Nullable AttributeSet attrs) {
+  public NavigationLinearLayout(final @NonNull Context context, final @Nullable AttributeSet attrs) {
     super(context, attrs);
 
     init(context);
