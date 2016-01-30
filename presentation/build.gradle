@@ -105,6 +105,7 @@ psync {
 dependencies {
   compile project(':domain')
   compile project(':data')
+  compile project(':photoview')
 
   final Collection<String> providedDependencies = providedPresentationDependencies.values()
   final Collection<String> debugCompileDependencies = debugCompilePresentationDependencies.
