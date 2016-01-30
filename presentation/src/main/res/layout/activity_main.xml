@@ -3,7 +3,6 @@
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:background="@color/content_background"
 		android:animateLayoutChanges="true">
 
   <include
@@ -18,9 +17,13 @@
 			layout="@layout/include_progress_bar"/>
 
 	<FrameLayout
+			android:id="@+id/content"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_below="@id/toolbar_wrapper">
+
+		<include
+				layout="@layout/include_image"/>
 
 		<include
 				android:id="@+id/retry"
@@ -32,4 +35,11 @@
 			android:id="@+id/navigation"
 			layout="@layout/include_navigation"/>
 
+	<include
+			android:id="@+id/ad_banner"
+			layout="@layout/include_ad_banner"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/content"
+			android:layout_alignParentBottom="true"/>
 </RelativeLayout>

@@ -21,6 +21,7 @@ import com.jorge.boats.entity.PresentationStripe;
 import com.jorge.boats.navigation.NavigationLayout;
 import com.jorge.boats.navigation.NavigationLayoutGestureDetector;
 import com.jorge.boats.presenter.StripePresenter;
+import com.jorge.boats.util.ResourceUtil;
 import com.jorge.boats.view.activity.BaseVisualActivity;
 import com.jorge.boats.view.widget.CustomTitleToolbar;
 import com.jorge.boats.view.widget.RetryLayout;
@@ -39,6 +40,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
   @Inject NavigationLayoutGestureDetector mNavigationLayoutGestureDetector;
   @Inject StripePresenter mStripePresenter;
 
+  @Bind(R.id.content) View mContent;
   @Bind(R.id.toolbar) CustomTitleToolbar mToolbar;
   @Bind(R.id.navigation) NavigationLayout mNavigation;
   @Bind(R.id.progress_bar) View mLoading;
@@ -191,10 +193,14 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
   }
 
   @Override public void showRetry() {
+    mContent.setBackgroundColor(
+        ResourceUtil.getColor(getResources(), R.color.content_background_error, getTheme()));
     mRetry.setVisibility(View.VISIBLE);
   }
 
   @Override public void hideRetry() {
+    mContent.setBackgroundColor(
+        ResourceUtil.getColor(getResources(), R.color.content_background_normal, getTheme()));
     mRetry.setVisibility(View.GONE);
   }
 
