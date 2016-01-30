@@ -9,7 +9,7 @@ import com.jorge.boats.domain.repository.XkcdStore;
 import com.jorge.boats.helper.ValueGenerator;
 import com.jorge.boats.mapper.PresentationEntityMapper;
 import com.jorge.boats.task.TypefaceLoadTask;
-import com.jorge.boats.view.stripe.StripeView;
+import com.jorge.boats.view.stripe.StripeContentView;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -28,7 +28,7 @@ public class StripePresenterTest extends PresentationModuleTestCase {
   @Mock private TypefaceLoadTask mMockTypefaceLoad;
   @Mock private XkcdStore mMockXkcdStore;
   @Mock private PresentationEntityMapper mMockEntityMapper;
-  @Mock private StripeView mMockStripeView;
+  @Mock private StripeContentView mMockStripeView;
 
   @Before @Override public void setUp() {
     super.setUp();

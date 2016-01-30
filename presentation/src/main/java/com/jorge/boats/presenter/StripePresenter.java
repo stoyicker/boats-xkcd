@@ -8,14 +8,14 @@ import com.jorge.boats.domain.interactor.GetStripeUseCase;
 import com.jorge.boats.domain.interactor.UseCase;
 import com.jorge.boats.log.ApplicationLogger;
 import com.jorge.boats.mapper.PresentationEntityMapper;
-import com.jorge.boats.view.stripe.StripeView;
+import com.jorge.boats.view.stripe.StripeContentView;
 import com.jorge.boats.view.widget.RetryLinearLayout;
 import javax.inject.Inject;
 import javax.inject.Named;
 import retrofit2.HttpException;
 import rx.Subscriber;
 
-@PerActivity public class StripePresenter implements Presenter<StripeView> {
+@PerActivity public class StripePresenter implements Presenter<StripeContentView> {
 
   private final UseCase<Typeface> mTypefaceUseCase;
   private final UseCase<DomainStripe> mStripeUseCase;
@@ -23,7 +23,7 @@ import rx.Subscriber;
   @Inject PresentationEntityMapper mEntityMapper;
   @Inject RetryLinearLayout mRetry;
 
-  private StripeView mView;
+  private StripeContentView mView;
 
   @Inject
   public StripePresenter(final @NonNull @Named("typeface") UseCase<Typeface> typefaceUseCase,
@@ -32,7 +32,7 @@ import rx.Subscriber;
     mStripeUseCase = stripeUseCase;
   }
 
-  public void setView(@NonNull StripeView view) {
+  public void setView(@NonNull StripeContentView view) {
     mView = view;
   }
 
@@ -129,6 +129,7 @@ import rx.Subscriber;
       mView.hideLoading();
       //Upon attempt of loading a non-existing stripe, do nothing instead
       if (!(e instanceof HttpException) || ((HttpException) e).code() != 404) {
+        mView.hideContent();
         mView.showError(e);
         mView.showRetry();
       }
@@ -136,6 +137,7 @@ import rx.Subscriber;
 
     @Override public void onNext(final @NonNull DomainStripe domainStripe) {
       mView.setStripeNum(domainStripe.getNum());
+      mView.showContent();
       mView.renderStripe(mEntityMapper.transform(domainStripe));
     }
   }

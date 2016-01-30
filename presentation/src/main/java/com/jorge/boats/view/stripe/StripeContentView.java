@@ -3,9 +3,9 @@ package com.jorge.boats.view.stripe;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import com.jorge.boats.entity.PresentationStripe;
-import com.jorge.boats.view.LoadView;
+import com.jorge.boats.view.ContentView;
 
-public interface StripeView extends LoadView {
+public interface StripeContentView extends ContentView {
 
   long getStripeNum();
 

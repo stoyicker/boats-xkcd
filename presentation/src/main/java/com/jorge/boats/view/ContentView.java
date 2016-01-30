@@ -2,7 +2,11 @@ package com.jorge.boats.view;
 
 import android.content.Context;
 
-public interface LoadView {
+public interface ContentView {
+
+  void showContent();
+
+  void hideContent();
 
   void showLoading();
 

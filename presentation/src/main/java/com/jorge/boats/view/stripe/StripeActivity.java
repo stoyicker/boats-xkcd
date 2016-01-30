@@ -30,7 +30,7 @@ import com.jorge.boats.view.widget.RetryLinearLayout;
 import javax.inject.Inject;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
-public class StripeActivity extends BaseVisualActivity implements StripeView {
+public class StripeActivity extends BaseVisualActivity implements StripeContentView {
 
   private static final String INTENT_EXTRA_PARAM_STRIPE_NUM =
       StripeActivity.class.getName() + ".INTENT_PARAM_STRIPE_NUM";
@@ -200,6 +200,15 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
     mShareableRenderedData[1] = model.getImg();
   }
 
+  @Override public void showContent() {
+    mContent.setBackgroundColor(
+        ResourceUtil.getColor(getResources(), R.color.content_background_normal, getTheme()));
+  }
+
+  @Override public void hideContent() {
+    mImage.setVisibility(View.INVISIBLE);
+  }
+
   @Override public void showLoading() {
     mLoading.setVisibility(View.VISIBLE);
   }
@@ -215,8 +224,6 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
   }
 
   @Override public void hideRetry() {
-    mContent.setBackgroundColor(
-        ResourceUtil.getColor(getResources(), R.color.content_background_normal, getTheme()));
     mRetry.setVisibility(View.GONE);
   }
 
