@@ -36,7 +36,6 @@
 			layout="@layout/include_navigation"/>
 
 	<include
-			android:id="@+id/ad_banner"
 			layout="@layout/include_ad_banner"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
