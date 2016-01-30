@@ -28,7 +28,6 @@ ext {
   jetbrainsAnnotationsVersion = "15.0"
   leakCanaryVersion = "1.4-beta1"
   materialProgressBarVersion = "1.1.4"
-  photoViewVersion = "1.2.4"
   glideVersion = "3.7.0"
   okHttp3Version = "3.0.1"
   glideOkHttp3IntegrationVersion = "1.4.0"
@@ -56,7 +55,6 @@ ext {
                                      supportAppCompat      : "com.android.support:appcompat-v7:${supportAppcompatVersion}",
                                      materialProgressBar   : "me.zhanghai.android.materialprogressbar:library:${materialProgressBarVersion}",
                                      supportDesign         : "com.android.support:design:${supportDesignVersion}",
-                                     photoView             : "com.commit451:PhotoView:${photoViewVersion}",
                                      glide                 : "com.github.bumptech.glide:glide:${glideVersion}",
                                      okHttpGlideIntegration: "com.github.bumptech.glide:okhttp3-integration:${glideOkHttp3IntegrationVersion}@aar"]
 
