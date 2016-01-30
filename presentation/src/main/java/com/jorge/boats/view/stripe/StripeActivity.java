@@ -3,6 +3,7 @@ package com.jorge.boats.view.stripe;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.RelativeLayout;
 import butterknife.Bind;
 import com.jorge.boats.R;
 import com.jorge.boats.di.component.DaggerStripeComponent;
@@ -19,12 +21,12 @@ import com.jorge.boats.entity.PresentationStripe;
 import com.jorge.boats.navigation.NavigationLayout;
 import com.jorge.boats.navigation.NavigationLayoutGestureDetector;
 import com.jorge.boats.presenter.StripePresenter;
-import com.jorge.boats.view.activity.BaseBrowsableActivity;
+import com.jorge.boats.view.activity.BaseVisualActivity;
 import com.jorge.boats.view.widget.CustomTitleToolbar;
 import com.jorge.boats.view.widget.RetryLayout;
 import javax.inject.Inject;
 
-public class StripeActivity extends BaseBrowsableActivity implements StripeView {
+public class StripeActivity extends BaseVisualActivity implements StripeView {
 
   private static final String INTENT_EXTRA_PARAM_STRIPE_NUM =
       StripeActivity.class.getName() + ".INTENT_PARAM_STRIPE_NUM";
@@ -34,11 +36,12 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
   private long mStripeNum;
   private CharSequence[] mShareableRenderedData = new CharSequence[2]; //Title and link
 
-  @Inject NavigationLayout mNavigationLayout;
   @Inject NavigationLayoutGestureDetector mNavigationLayoutGestureDetector;
   @Inject StripePresenter mStripePresenter;
-  @Inject CustomTitleToolbar mToolbar;
 
+  @Bind(R.id.toolbar) CustomTitleToolbar mToolbar;
+  @Bind(R.id.navigation) NavigationLayout mNavigation;
+  @Bind(R.id.progress_bar) View mLoading;
   @Bind(R.id.retry) RetryLayout mRetry;
 
   @NonNull
@@ -52,11 +55,44 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
   @Override public void onCreate(final @Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    createComponentAndInjectSelf();
 
+    setupToolbar();
+    setupNavigationLayout();
+    setupLoading();
     initializeActivity(savedInstanceState);
     initializeStripePresenter();
     initializeNavigationLayout();
     initializeRetryView();
+  }
+
+  private void setupToolbar() {
+    setSupportActionBar(mToolbar);
+  }
+
+  private void setupNavigationLayout() {
+    final RelativeLayout.LayoutParams navigationLayoutLp =
+        (RelativeLayout.LayoutParams) mNavigation.getLayoutParams();
+    final boolean isLandscape =
+        getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+
+    if (isLandscape) {
+      navigationLayoutLp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+    } else {
+      navigationLayoutLp.addRule(RelativeLayout.BELOW, mLoading.getId());
+      navigationLayoutLp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+    }
+
+    mNavigation.setLayoutParams(navigationLayoutLp);
+  }
+
+  private void setupLoading() {
+    final RelativeLayout.LayoutParams progressBarLayoutParams =
+        (RelativeLayout.LayoutParams) mLoading.getLayoutParams();
+
+    progressBarLayoutParams.addRule(RelativeLayout.BELOW, R.id.toolbar_wrapper);
+
+    mLoading.setLayoutParams(progressBarLayoutParams);
   }
 
   @Override public boolean onTouchEvent(final @NonNull MotionEvent event) {
@@ -66,7 +102,7 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
   @Override protected void createComponentAndInjectSelf() {
     DaggerStripeComponent.builder()
         .applicationComponent(getApplicationComponent())
-        .stripeModule(new StripeModule(super.getNavigationLayout(), super.getToolbar(), mRetry))
+        .stripeModule(new StripeModule(mNavigation, mToolbar, mRetry))
         .build()
         .inject(this);
   }
@@ -108,7 +144,7 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
   }
 
   private void initializeNavigationLayout() {
-    this.mNavigationLayout.setStripePresenter(this.mStripePresenter);
+    this.mNavigation.setStripePresenter(this.mStripePresenter);
   }
 
   private void initializeRetryView() {
@@ -147,11 +183,11 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
   }
 
   @Override public void showLoading() {
-    super.getLoadingView().setVisibility(View.VISIBLE);
+    mLoading.setVisibility(View.VISIBLE);
   }
 
   @Override public void hideLoading() {
-    super.getLoadingView().setVisibility(View.GONE);
+    mLoading.setVisibility(View.GONE);
   }
 
   @Override public void showRetry() {
@@ -163,7 +199,7 @@ public class StripeActivity extends BaseBrowsableActivity implements StripeView 
   }
 
   @Override public void showError(final @NonNull Throwable throwable) {
-    mNavigationLayout.hide();
+    mNavigation.hide();
     mToolbar.setTitle(getString(R.string.error_title));
   }
 
