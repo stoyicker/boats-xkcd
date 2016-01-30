@@ -29,6 +29,9 @@ ext {
   leakCanaryVersion = "1.4-beta1"
   materialProgressBarVersion = "1.1.4"
   photoViewVersion = "1.2.4"
+  glideVersion = "3.7.0"
+  okHttp3Version = "3.0.1"
+  glideOkHttp3IntegrationVersion = "1.4.0"
 
   //Testing
   espressoVersion = "2.2.1"
@@ -47,13 +50,15 @@ ext {
   debugCompilePresentationDependencies = [timber    : "com.jakewharton.timber:timber:${timberVersion}",
                                           leakCanary: "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"]
 
-  compilePresentationDependencies = [dagger             : "com.google.dagger:dagger:${daggerVersion}",
-                                     rxAndroid          : "io.reactivex:rxandroid:${rxAndroidVersion}",
-                                     butterknife        : "com.jakewharton:butterknife:${butterknifeVersion}",
-                                     supportAppCompat   : "com.android.support:appcompat-v7:${supportAppcompatVersion}",
-                                     materialProgressBar: "me.zhanghai.android.materialprogressbar:library:${materialProgressBarVersion}",
-                                     supportDesign      : "com.android.support:design:${supportDesignVersion}",
-                                     photoView          : "com.commit451:PhotoView:${photoViewVersion}"]
+  compilePresentationDependencies = [dagger                : "com.google.dagger:dagger:${daggerVersion}",
+                                     rxAndroid             : "io.reactivex:rxandroid:${rxAndroidVersion}",
+                                     butterknife           : "com.jakewharton:butterknife:${butterknifeVersion}",
+                                     supportAppCompat      : "com.android.support:appcompat-v7:${supportAppcompatVersion}",
+                                     materialProgressBar   : "me.zhanghai.android.materialprogressbar:library:${materialProgressBarVersion}",
+                                     supportDesign         : "com.android.support:design:${supportDesignVersion}",
+                                     photoView             : "com.commit451:PhotoView:${photoViewVersion}",
+                                     glide                 : "com.github.bumptech.glide:glide:${glideVersion}",
+                                     okHttpGlideIntegration: "com.github.bumptech.glide:okhttp3-integration:${glideOkHttp3IntegrationVersion}@aar"]
 
   releaseCompilePresentationDependencies =
       [leakCanaryNoOp: "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}"]

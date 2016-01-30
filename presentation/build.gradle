@@ -35,14 +35,14 @@ android {
     targetCompatibility javaVersion
   }
 
-//  signingConfigs {
-//    release {
-//      storeFile new File("boats.keystore")
-//      storePassword(new File("keystore.pwd").text.trim())
-//      keyAlias("boats")
-//      keyPassword(new File("key.pwd").text.trim())
-//    }
-//  }
+  //  signingConfigs {
+  //    release {
+  //      storeFile new File("boats.keystore")
+  //      storePassword(new File("keystore.pwd").text.trim())
+  //      keyAlias("boats")
+  //      keyPassword(new File("key.pwd").text.trim())
+  //    }
+  //  }
 
   buildTypes {
     debug {
@@ -54,7 +54,8 @@ android {
       minifyEnabled false
       shrinkResources false
       zipAlignEnabled false
-      proguardFiles = ["proguard/proguard-android-extensions.pro"]
+      proguardFiles =
+          ["proguard/proguard-android-extensions.pro", "proguard/proguard-glide-okhttp-module.pro"]
       proguardFiles += getDefaultProguardFile("proguard-android-optimize.txt")
       //    noinspection GroovyAssignabilityCheck
       final File f = java.nio.file.Paths.get(rootProject.rootDir.getAbsolutePath(), "presentation",
@@ -64,7 +65,7 @@ android {
         System.out.format(Locale.ENGLISH, "Adding %s\n", file.getName())
         proguardFiles += file
       }
-//      signingConfig signingConfigs.release
+      //      signingConfig signingConfigs.release
     }
   }
 

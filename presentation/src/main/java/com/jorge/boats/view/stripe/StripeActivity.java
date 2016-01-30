@@ -14,13 +14,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import butterknife.Bind;
+import com.bumptech.glide.Glide;
 import com.jorge.boats.R;
 import com.jorge.boats.di.component.DaggerStripeComponent;
 import com.jorge.boats.di.module.StripeModule;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.entity.PresentationStripe;
-import com.jorge.boats.navigation.NavigationLinearLayout;
 import com.jorge.boats.navigation.NavigationLayoutGestureDetector;
+import com.jorge.boats.navigation.NavigationLinearLayout;
 import com.jorge.boats.presenter.StripePresenter;
 import com.jorge.boats.util.ResourceUtil;
 import com.jorge.boats.view.activity.BaseVisualActivity;
@@ -184,7 +185,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
 
   @Override public void renderStripe(final @NonNull PresentationStripe model) {
     mToolbar.setTitle(model.getTitle());
-    //TODO Set image using Glide
+    Glide.with(this).load(model.getImg()).crossFade().into(mImage);
     mAttacher.update();
 
     updateShareableData(model);
