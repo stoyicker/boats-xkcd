@@ -196,8 +196,6 @@ public class NavigationLayout extends LinearLayout {
     final DisplayMetrics displayMetrics = new DisplayMetrics();
     final Context context;
 
-    //TODO For some reason this is not returning what it should when coming from an error view and generating out anims for the first button
-
     ((WindowManager) (context = target.getContext()).getSystemService(
         Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(displayMetrics);
 
