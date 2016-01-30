@@ -69,13 +69,13 @@ import javax.inject.Inject;
         }
 
         if (!isLayoutExpanded && start - end >= mLayoutShowMinimumDistancePixels) {
-          mNavigationLayout.show();
+          return mNavigationLayout.show();
         } else if (end - start >= mLayoutHideMinimumDistancePixels) {
-          mNavigationLayout.hide();
+          return mNavigationLayout.hide();
         }
       }
 
-      return false;
+      return true;
     }
 
     /**

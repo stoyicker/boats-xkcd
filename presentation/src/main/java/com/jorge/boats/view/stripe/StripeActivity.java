@@ -42,7 +42,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
 
   private long mStripeNum;
 
-  @Inject NavigationLayoutGestureDetector mNavigationLayoutGestureDetector;
+  @Inject NavigationLayoutGestureDetector mGestureDetector;
   @Inject StripePresenter mStripePresenter;
 
   @Bind(R.id.content) View mContent;
@@ -72,7 +72,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
     initializeStripePresenter();
     initializeNavigationLayout();
     initializeRetryView();
-    initializeView();
+    initializeImage();
   }
 
   private void setupToolbar() {
@@ -105,7 +105,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
   }
 
   @Override public boolean onTouchEvent(final @NonNull MotionEvent event) {
-    return this.mNavigationLayoutGestureDetector.onTouchEvent(event) || super.onTouchEvent(event);
+    return this.mGestureDetector.onTouchEvent(event) || super.onTouchEvent(event);
   }
 
   @Override protected void createComponentAndInjectSelf() {
@@ -160,8 +160,9 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
     this.mRetry.setStripePresenter(this.mStripePresenter);
   }
 
-  private void initializeView() {
+  private void initializeImage() {
     this.mAttacher = new PhotoViewAttacher(this.mImage);
+    this.mAttacher.setIntermediateGestureDetector(mGestureDetector);
   }
 
   @Override public void onResume() {
