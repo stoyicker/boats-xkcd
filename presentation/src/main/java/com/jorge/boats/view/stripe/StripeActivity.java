@@ -184,8 +184,11 @@ public class StripeActivity extends BaseVisualActivity implements StripeView {
   }
 
   @Override public void renderStripe(final @NonNull PresentationStripe model) {
-    mToolbar.setTitle(model.getTitle());
+    final CharSequence title;
+
+    mToolbar.setTitle(title = model.getTitle());
     Glide.with(this).load(model.getImg()).crossFade().into(mImage);
+    mImage.setContentDescription(title);
     mAttacher.update();
 
     updateShareableData(model);
