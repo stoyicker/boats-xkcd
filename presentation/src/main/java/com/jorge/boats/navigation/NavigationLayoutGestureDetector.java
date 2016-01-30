@@ -83,9 +83,9 @@ import javax.inject.Inject;
      */
     private boolean isPositionedOnRelevantEndBezel(final @NonNull MotionEvent event) {
       if (isLandscape) {
-        return event.getY() + mBezelGestureSpanPixels >= mScreenHeight;
+        return event.getRawY() + mBezelGestureSpanPixels >= mScreenHeight;
       } else {
-        return event.getX() + mBezelGestureSpanPixels >= mScreenWidth;
+        return event.getRawX() + mBezelGestureSpanPixels >= mScreenWidth;
       }
     }
   }
