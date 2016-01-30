@@ -39,7 +39,7 @@ import javax.inject.Named;
     return mNavigationLayout;
   }
 
-  @Provides @PerActivity RetryLayout provideErrorView() {
+  @Provides @PerActivity RetryLayout provideRetryView() {
     return mRetry;
   }
 
