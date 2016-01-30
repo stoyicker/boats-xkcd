@@ -1,10 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.jorge.boats">
+		xmlns:tools="http://schemas.android.com/tools"
+		package="com.jorge.boats">
+
+	<!-- Leak canary needs access to external storage to save heap dumps -->
+	<uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
   <application
-      android:vmSafeMode="true"
-      tools:replace="android:name"
-      android:name=".DebugApplication"/>
+			android:vmSafeMode="true"
+			tools:replace="android:name"
+			android:name=".DebugApplication"/>
 
 </manifest>
