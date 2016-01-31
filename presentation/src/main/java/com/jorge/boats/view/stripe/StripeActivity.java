@@ -208,6 +208,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
   @Override public void showContent() {
     mImage.setBackgroundColor(
         ResourceUtil.getColor(getResources(), R.color.content_background_normal, getTheme()));
+    mImage.setVisibility(View.VISIBLE);
   }
 
   @Override public void hideContent() {

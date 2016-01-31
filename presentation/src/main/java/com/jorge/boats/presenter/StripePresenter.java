@@ -116,12 +116,14 @@ import rx.Subscriber;
   private final class StripeSubscriber extends Subscriber<DomainStripe> {
 
     @Override public void onStart() {
-      mView.hideRetry();
       mView.showLoading();
+      mView.hideRetry();
     }
 
     @Override public void onCompleted() {
-      //Do nothing
+      mView.showContent();
+      mView.hideLoading();
+      mView.hideRetry();
     }
 
     @Override public void onError(final @NonNull Throwable e) {
@@ -138,9 +140,6 @@ import rx.Subscriber;
     @Override public void onNext(final @NonNull DomainStripe domainStripe) {
       mView.setStripeNum(domainStripe.getNum());
       mView.renderStripe(mEntityMapper.transform(domainStripe));
-      mView.hideLoading();
-      mView.hideRetry();
-      mView.showContent();
     }
   }
 }
