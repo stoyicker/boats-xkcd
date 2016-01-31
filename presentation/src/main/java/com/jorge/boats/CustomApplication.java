@@ -5,7 +5,6 @@ import com.jorge.boats.data.DataManager;
 import com.jorge.boats.di.component.ApplicationComponent;
 import com.jorge.boats.di.component.DaggerApplicationComponent;
 import com.jorge.boats.di.module.ApplicationModule;
-import com.squareup.leakcanary.LeakCanary;
 
 public class CustomApplication extends Application {
 
@@ -13,14 +12,10 @@ public class CustomApplication extends Application {
 
   @Override public void onCreate() {
     super.onCreate();
-    this.initializeInspectors();
+
     this.initializeInjector();
     this.initializeSharedPreferences();
     this.initializeData();
-  }
-
-  private void initializeInspectors() {
-    LeakCanary.install(this);
   }
 
   private void initializeInjector() {
