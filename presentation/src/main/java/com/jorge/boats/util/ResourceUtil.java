@@ -1,12 +1,15 @@
 package com.jorge.boats.util;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.AttrRes;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.TypedValue;
 
 public abstract class ResourceUtil {
 
@@ -42,5 +45,14 @@ public abstract class ResourceUtil {
 
     //noinspection ConstantConditions - Wrong
     return ret;
+  }
+
+  public static int getAttrColor(final @NonNull Context context, final @AttrRes int resId) {
+    final TypedValue typedValue = new TypedValue();
+    final Resources.Theme theme = context.getTheme();
+
+    theme.resolveAttribute(resId, typedValue, true);
+
+    return typedValue.data;
   }
 }
