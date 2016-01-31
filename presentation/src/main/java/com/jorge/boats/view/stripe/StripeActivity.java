@@ -24,6 +24,7 @@ import com.jorge.boats.navigation.NavigationLayoutGestureDetector;
 import com.jorge.boats.navigation.NavigationLinearLayout;
 import com.jorge.boats.presenter.StripePresenter;
 import com.jorge.boats.util.ResourceUtil;
+import com.jorge.boats.util.ViewServerDelegate;
 import com.jorge.boats.view.activity.BaseVisualActivity;
 import com.jorge.boats.view.widget.CustomTitleToolbar;
 import com.jorge.boats.view.widget.RetryLinearLayout;
@@ -73,6 +74,8 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     initializeNavigationLayout();
     initializeRetryView();
     initializeImage();
+
+    ViewServerDelegate.addWindow(this);
   }
 
   private void setupToolbar() {
@@ -168,6 +171,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
   @Override public void onResume() {
     super.onResume();
     this.mStripePresenter.resume();
+    ViewServerDelegate.setFocusedWindow(this);
   }
 
   @Override public void onPause() {
@@ -178,6 +182,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
   @Override public void onDestroy() {
     super.onDestroy();
     this.mStripePresenter.destroy();
+    ViewServerDelegate.removeWindow(this);
   }
 
   @Override public void setTitleTypeface(final @NonNull Typeface titleTypeface) {
