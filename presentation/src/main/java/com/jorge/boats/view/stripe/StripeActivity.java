@@ -227,7 +227,10 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     final CharSequence title;
 
     mToolbar.setTitle(title = model.getTitle());
-    Glide.with(this).load(model.getImg()).crossFade().into(mImage);
+    Glide.with(this)
+        .load(model.getImg())
+        .crossFade(getResources().getInteger(R.integer.content_in_duration_milliseconds))
+        .into(mImage);
     mImage.setContentDescription(title);
     mAttacher.update();
     this.mAttacher.setMinimumScale(this.mImage.getScale());
