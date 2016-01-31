@@ -44,5 +44,3 @@
 			android:id="@+id/navigation"
 			layout="@layout/include_navigation"/>
 </com.jorge.boats.view.widget.PhotoViewExceptionProofRelativeLayout>
-
-		<!--TODO Ripple on the error view-->

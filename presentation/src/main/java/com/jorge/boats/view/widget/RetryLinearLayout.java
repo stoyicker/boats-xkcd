@@ -7,14 +7,13 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.jorge.boats.R;
 import com.jorge.boats.presenter.StripePresenter;
 
-public class RetryLinearLayout extends LinearLayout {
+public class RetryLinearLayout extends ListenableRippleLinearLayout {
 
   @Bind(android.R.id.text1) TextView mText;
 

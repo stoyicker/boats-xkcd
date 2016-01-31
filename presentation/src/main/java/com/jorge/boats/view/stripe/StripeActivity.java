@@ -29,8 +29,8 @@ import com.jorge.boats.view.activity.BaseVisualActivity;
 import com.jorge.boats.view.widget.CustomTitleToolbar;
 import com.jorge.boats.view.widget.RetryLinearLayout;
 import javax.inject.Inject;
-import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.ForceFitCenterPhotoViewAttacher;
+import uk.co.senab.photoview.PhotoView;
 
 public class StripeActivity extends BaseVisualActivity implements StripeContentView {
 
@@ -218,6 +218,10 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
   }
 
   @Override public void showLoading() {
+    if (!mRetry.isShown()) {
+      mContent.setBackgroundColor(
+          ResourceUtil.getColor(getResources(), R.color.content_background_normal, getTheme()));
+    }
     mLoading.setVisibility(View.VISIBLE);
   }
 
