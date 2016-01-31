@@ -1,14 +1,19 @@
 package com.jorge.boats.view.stripe;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -26,6 +31,7 @@ import com.jorge.boats.presenter.StripePresenter;
 import com.jorge.boats.util.ResourceUtil;
 import com.jorge.boats.util.ViewServerDelegate;
 import com.jorge.boats.view.activity.BaseVisualActivity;
+import com.jorge.boats.view.settings.SettingsActivity;
 import com.jorge.boats.view.widget.CustomTitleToolbar;
 import com.jorge.boats.view.widget.RetryLinearLayout;
 import javax.inject.Inject;
@@ -110,6 +116,33 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
 
   @Override public boolean onTouchEvent(final @NonNull MotionEvent event) {
     return this.mGestureDetector.onTouchEvent(event) || super.onTouchEvent(event);
+  }
+
+  @Override public boolean onCreateOptionsMenu(final @NonNull Menu menu) {
+    final MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.activity_stripe, menu);
+
+    return super.onCreateOptionsMenu(menu);
+  }
+
+  @Override public boolean onOptionsItemSelected(final @NonNull MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.action_settings:
+        openSettings();
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
+  }
+
+  private void openSettings() {
+    final Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      //noinspection unchecked
+      startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+    } else {
+      startActivity(intent);
+    }
   }
 
   @Override protected void createComponentAndInjectSelf() {

@@ -21,6 +21,15 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
+		<activity
+				android:name=".view.settings.SettingsActivity"
+				android:label="@string/label_settings"
+				android:logo="@android:color/transparent"
+				android:theme="@style/SettingsTheme">
+		<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".view.stripe.StripeActivity"/>
+		</activity>
   </application>
 
 </manifest>
