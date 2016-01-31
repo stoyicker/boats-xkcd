@@ -61,11 +61,11 @@ import javax.inject.Inject;
 
       if (isLayoutExpanded || isGestureStartingFromCorrectBezel) {
         if (isLandscape) {
-          start = e1.getY();
-          end = e2.getY();
+          start = e1.getRawY();
+          end = e2.getRawY();
         } else {
-          start = e1.getX();
-          end = e2.getX();
+          start = e1.getRawX();
+          end = e2.getRawX();
         }
 
         if (!isLayoutExpanded && start - end >= mLayoutShowMinimumDistancePixels) {
