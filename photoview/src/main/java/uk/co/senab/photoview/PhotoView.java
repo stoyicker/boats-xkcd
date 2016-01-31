@@ -25,13 +25,13 @@ import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.widget.ImageView;
 
-import uk.co.senab.photoview.PhotoViewAttacher.OnMatrixChangedListener;
-import uk.co.senab.photoview.PhotoViewAttacher.OnPhotoTapListener;
-import uk.co.senab.photoview.PhotoViewAttacher.OnViewTapListener;
+import uk.co.senab.photoview.ForceFitCenterPhotoViewAttacher.OnMatrixChangedListener;
+import uk.co.senab.photoview.ForceFitCenterPhotoViewAttacher.OnPhotoTapListener;
+import uk.co.senab.photoview.ForceFitCenterPhotoViewAttacher.OnViewTapListener;
 
 public class PhotoView extends ImageView implements IPhotoView {
 
-    private PhotoViewAttacher mAttacher;
+    private ForceFitCenterPhotoViewAttacher mAttacher;
 
     private ScaleType mPendingScaleType;
 
@@ -51,7 +51,7 @@ public class PhotoView extends ImageView implements IPhotoView {
 
     protected void init() {
         if (null == mAttacher || null == mAttacher.getImageView()) {
-            mAttacher = new PhotoViewAttacher(this);
+            mAttacher = new ForceFitCenterPhotoViewAttacher(this);
         }
 
         if (null != mPendingScaleType) {
@@ -289,7 +289,7 @@ public class PhotoView extends ImageView implements IPhotoView {
     }
 
     @Override
-    public void setOnScaleChangeListener(PhotoViewAttacher.OnScaleChangeListener onScaleChangeListener) {
+    public void setOnScaleChangeListener(ForceFitCenterPhotoViewAttacher.OnScaleChangeListener onScaleChangeListener) {
         mAttacher.setOnScaleChangeListener(onScaleChangeListener);
     }
 

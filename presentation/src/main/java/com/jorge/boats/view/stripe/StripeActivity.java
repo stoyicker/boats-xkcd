@@ -11,10 +11,10 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import butterknife.Bind;
 import com.bumptech.glide.Glide;
+import com.jorge.boats.BuildConfig;
 import com.jorge.boats.R;
 import com.jorge.boats.di.component.DaggerStripeComponent;
 import com.jorge.boats.di.module.StripeModule;
@@ -29,7 +29,8 @@ import com.jorge.boats.view.activity.BaseVisualActivity;
 import com.jorge.boats.view.widget.CustomTitleToolbar;
 import com.jorge.boats.view.widget.RetryLinearLayout;
 import javax.inject.Inject;
-import uk.co.senab.photoview.PhotoViewAttacher;
+import uk.co.senab.photoview.PhotoView;
+import uk.co.senab.photoview.ForceFitCenterPhotoViewAttacher;
 
 public class StripeActivity extends BaseVisualActivity implements StripeContentView {
 
@@ -39,7 +40,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
       StripeActivity.class.getName() + ".STATE_PARAM_STRIPE_NUM";
 
   private final CharSequence[] mShareableRenderedData = new CharSequence[2]; //Title and link
-  private PhotoViewAttacher mAttacher;
+  private ForceFitCenterPhotoViewAttacher mAttacher;
 
   private long mStripeNum;
 
@@ -51,7 +52,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
   @Bind(R.id.navigation) NavigationLinearLayout mNavigation;
   @Bind(R.id.progress_bar) View mLoading;
   @Bind(R.id.retry) RetryLinearLayout mRetry;
-  @Bind(R.id.image) ImageView mImage;
+  @Bind(R.id.image) PhotoView mImage;
 
   @NonNull
   public static Intent getCallingIntent(final @NonNull Context context, final long stripeNum) {
@@ -71,8 +72,8 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     setupLoading();
     initializeActivity(savedInstanceState);
     initializeStripePresenter();
-    initializeNavigationLayout();
-    initializeRetryView();
+    initializeNavigation();
+    initializeRetry();
     initializeImage();
 
     ViewServerDelegate.addWindow(this);
@@ -155,16 +156,16 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     this.mStripePresenter.switchToStripeNum(mStripeNum);
   }
 
-  private void initializeNavigationLayout() {
+  private void initializeNavigation() {
     this.mNavigation.setStripePresenter(this.mStripePresenter);
   }
 
-  private void initializeRetryView() {
+  private void initializeRetry() {
     this.mRetry.setStripePresenter(this.mStripePresenter);
   }
 
   private void initializeImage() {
-    this.mAttacher = new PhotoViewAttacher(this.mImage);
+    this.mAttacher = new ForceFitCenterPhotoViewAttacher(this.mImage, true, BuildConfig.DEBUG);
     this.mAttacher.setIntermediateGestureDetector(mGestureDetector);
   }
 
@@ -196,6 +197,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     Glide.with(this).load(model.getImg()).crossFade().into(mImage);
     mImage.setContentDescription(title);
     mAttacher.update();
+    this.mAttacher.setMinimumScale(this.mImage.getScale());
 
     updateShareableData(model);
   }

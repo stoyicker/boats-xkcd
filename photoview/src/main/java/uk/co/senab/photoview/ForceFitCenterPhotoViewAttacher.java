@@ -22,7 +22,6 @@ import android.graphics.Matrix;
 import android.graphics.Matrix.ScaleToFit;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -43,14 +42,14 @@ import static android.view.MotionEvent.ACTION_CANCEL;
 import static android.view.MotionEvent.ACTION_DOWN;
 import static android.view.MotionEvent.ACTION_UP;
 
-public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener, OnGestureListener,
+public class ForceFitCenterPhotoViewAttacher implements IPhotoView, View.OnTouchListener, OnGestureListener,
     ViewTreeObserver.OnGlobalLayoutListener {
 
   private static final String LOG_TAG = "PhotoViewAttacher";
 
   // let debug flag be dynamic, but still Proguard can be used to remove from
   // release builds
-  private static final boolean DEBUG = Log.isLoggable(LOG_TAG, Log.DEBUG);
+  private static boolean DEBUG;
 
   static final Interpolator sInterpolator = new AccelerateDecelerateInterpolator();
   int ZOOM_DURATION = DEFAULT_ZOOM_DURATION;
@@ -142,12 +141,17 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener, OnGe
   private boolean mZoomEnabled;
   private ScaleType mScaleType = ScaleType.FIT_CENTER;
 
-  public PhotoViewAttacher(ImageView imageView) {
-    this(imageView, true);
+  public ForceFitCenterPhotoViewAttacher(ImageView imageView) {
+    this(imageView, true, false);
   }
 
-  public PhotoViewAttacher(ImageView imageView, boolean zoomable) {
+  public ForceFitCenterPhotoViewAttacher(ImageView imageView, boolean zoomable) {
+    this(imageView, zoomable, false);
+  }
+
+  public ForceFitCenterPhotoViewAttacher(ImageView imageView, boolean zoomable, boolean debuggable) {
     mImageView = new WeakReference<>(imageView);
+    DEBUG = debuggable;
 
     imageView.setDrawingCacheEnabled(true);
     imageView.setOnTouchListener(this);
@@ -422,7 +426,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener, OnGe
               focusY));
     }
 
-    if (getScale() < mMaxScale || scaleFactor < 1f) {
+    if (getScale() < mMaxScale && (scaleFactor >= 1.0f || getScale() > 1.0f)) {
       if (null != mScaleChangeListener) {
         mScaleChangeListener.onScaleChange(scaleFactor, focusX, focusY);
       }
