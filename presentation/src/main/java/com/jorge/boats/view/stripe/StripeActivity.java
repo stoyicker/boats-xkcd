@@ -102,7 +102,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     final RelativeLayout.LayoutParams progressBarLayoutParams =
         (RelativeLayout.LayoutParams) mLoading.getLayoutParams();
 
-    progressBarLayoutParams.addRule(RelativeLayout.BELOW, R.id.toolbar_wrapper);
+    progressBarLayoutParams.addRule(RelativeLayout.BELOW, R.id.ad_banner);
 
     mLoading.setLayoutParams(progressBarLayoutParams);
   }
