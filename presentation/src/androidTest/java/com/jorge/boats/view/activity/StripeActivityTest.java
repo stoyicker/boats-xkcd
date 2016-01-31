@@ -86,7 +86,7 @@ public class StripeActivityTest extends ActivityInstrumentationTestCase2<StripeA
 
     mActivity.runOnUiThread(new Runnable() {
       @Override public void run() {
-        mActivity.findViewById(R.id.fab_index_one).performClick();
+        mActivity.findViewById(R.id.fab_index_two).performClick();
       }
     });
 
@@ -102,7 +102,7 @@ public class StripeActivityTest extends ActivityInstrumentationTestCase2<StripeA
 
     new Handler(Looper.getMainLooper()).post(new Runnable() {
       @Override public void run() {
-        mActivity.findViewById(R.id.fab_index_two).performClick();
+        mActivity.findViewById(R.id.fab_index_three).performClick();
       }
     });
 

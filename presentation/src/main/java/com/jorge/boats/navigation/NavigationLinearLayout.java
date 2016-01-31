@@ -26,13 +26,15 @@ import com.jorge.boats.presenter.StripePresenter;
 
 public class NavigationLinearLayout extends LinearLayout {
 
-  @Bind({ R.id.fab_index_zero, R.id.fab_index_one, R.id.fab_index_two }) View[] mButtons;
+  @Bind({ R.id.fab_index_zero, R.id.fab_index_one, R.id.fab_index_two, R.id.fab_index_three })
+  View[] mButtons;
 
   private boolean isExpanded = false;
 
   private StripePresenter mStripePresenter;
 
-  public NavigationLinearLayout(final @NonNull Context context, final @Nullable AttributeSet attrs) {
+  public NavigationLinearLayout(final @NonNull Context context,
+      final @Nullable AttributeSet attrs) {
     super(context, attrs);
 
     init(context);
@@ -142,12 +144,16 @@ public class NavigationLinearLayout extends LinearLayout {
     mStripePresenter.actionPrevious();
   }
 
-  @OnClick(R.id.fab_index_one) void navigateToShare() {
+  @OnClick(R.id.fab_index_one) void navigateToRandom() {
+    mStripePresenter.actionRandom();
+  }
+
+  @OnClick(R.id.fab_index_two) void navigateToShare() {
     mStripePresenter.actionShare();
     hide();
   }
 
-  @OnClick(R.id.fab_index_two) void navigateToNext() {
+  @OnClick(R.id.fab_index_three) void navigateToNext() {
     mStripePresenter.actionNext();
   }
 

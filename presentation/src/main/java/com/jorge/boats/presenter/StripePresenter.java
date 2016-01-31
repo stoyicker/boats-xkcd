@@ -10,6 +10,7 @@ import com.jorge.boats.log.ApplicationLogger;
 import com.jorge.boats.mapper.PresentationEntityMapper;
 import com.jorge.boats.view.stripe.StripeContentView;
 import com.jorge.boats.view.widget.RetryLinearLayout;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.inject.Inject;
 import javax.inject.Named;
 import retrofit2.HttpException;
@@ -81,6 +82,10 @@ import rx.Subscriber;
     //There is no feasible way to know if this is the latest stripe without first trying
 
     switchToStripeNum(mView.getStripeNum() + 1);
+  }
+
+  public void actionRandom() {
+    switchToStripeNum(ThreadLocalRandom.current().nextLong(1, mView.getStripeNum()));
   }
 
   public void actionShare() {

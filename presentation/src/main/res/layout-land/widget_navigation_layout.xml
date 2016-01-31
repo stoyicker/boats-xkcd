@@ -48,7 +48,7 @@
 				android:layout_height="wrap_content"
 				android:layout_margin="@dimen/standard_margin"
 				android:scaleType="center"
-				android:src="@drawable/ic_share"
+				android:src="@drawable/ic_dice"
 				app:borderWidth="0dp"
 				app:fabSize="normal"/>
 	</RelativeLayout>
@@ -68,6 +68,30 @@
 				android:id="@+id/fab_index_two"
 				android:layout_centerHorizontal="true"
 				android:layout_below="@id/wall_two"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="@dimen/standard_margin"
+				android:scaleType="center"
+				android:src="@drawable/ic_share"
+				app:borderWidth="0dp"
+				app:fabSize="normal"/>
+	</RelativeLayout>
+
+	<RelativeLayout
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1">
+
+		<View
+				android:id="@+id/wall_three"
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_alignParentBottom="true"/>
+
+    <android.support.design.widget.FloatingActionButton
+				android:id="@+id/fab_index_three"
+				android:layout_centerHorizontal="true"
+				android:layout_below="@id/wall_three"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_margin="@dimen/standard_margin"
