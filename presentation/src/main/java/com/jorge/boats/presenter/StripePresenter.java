@@ -122,18 +122,19 @@ import rx.Subscriber;
 
     @Override public void onCompleted() {
       mView.hideLoading();
-      mView.showContent();
       mView.hideRetry();
+      mView.showContent();
     }
 
     @Override public void onError(final @NonNull Throwable e) {
       ApplicationLogger.e(e, e.getClass().getName());
       mView.hideLoading();
       //Upon attempt of loading a non-existing stripe, do nothing instead
-      if (!(e instanceof HttpException) || ((HttpException) e).code() != 404) {
-        mView.showRetry(e);
-        mView.hideContent();
+      if ((e instanceof HttpException) && ((HttpException) e).code() == 404) {
+        return;
       }
+      mView.showRetry(e);
+      mView.hideContent();
     }
 
     @Override public void onNext(final @NonNull DomainStripe domainStripe) {
