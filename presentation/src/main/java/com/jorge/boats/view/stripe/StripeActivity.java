@@ -214,22 +214,19 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
   }
 
   @Override public void hideLoading() {
-    mLoading.setVisibility(View.GONE);
+    mLoading.setVisibility(View.INVISIBLE);
   }
 
-  @Override public void showRetry() {
+  @Override public void showRetry(final @NonNull Throwable throwable) {
+    mNavigation.hide();
+    mToolbar.setTitle(getString(R.string.error_title));
     mContent.setBackgroundColor(
-        ResourceUtil.getColor(getResources(), R.color.content_background_error, getTheme()));
+        ResourceUtil.getColor(getResources(), R.color.content_background_empty, getTheme()));
     mRetry.setVisibility(View.VISIBLE);
   }
 
   @Override public void hideRetry() {
-    mRetry.setVisibility(View.GONE);
-  }
-
-  @Override public void showError(final @NonNull Throwable throwable) {
-    mNavigation.hide();
-    mToolbar.setTitle(getString(R.string.error_title));
+    mRetry.setVisibility(View.INVISIBLE);
   }
 
   @Override public Context getContext() {

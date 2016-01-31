@@ -1,6 +1,7 @@
 package com.jorge.boats.view;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 public interface ContentView {
 
@@ -12,11 +13,9 @@ public interface ContentView {
 
   void hideLoading();
 
-  void showRetry();
+  void showRetry(final @NonNull Throwable throwable);
 
   void hideRetry();
-
-  void showError(final Throwable throwable);
 
   Context getContext();
 }

@@ -1,6 +1,5 @@
 package com.jorge.boats.view.widget;
 
-import android.animation.Animator;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
@@ -53,27 +52,5 @@ public class RetryLinearLayout extends LinearLayout {
 
   public void setTextTypeface(final @NonNull Typeface typeface) {
     mText.setTypeface(typeface);
-  }
-
-  @Override public void setVisibility(final int visibility) {
-    animate().alpha(visibility == VISIBLE ? 1 : 0)
-        .setDuration(getResources().getInteger(R.integer.retry_fade_duration_milliseconds))
-        .setListener(new Animator.AnimatorListener() {
-          @Override public void onAnimationStart(final @NonNull Animator animation) {
-            if (visibility == View.VISIBLE) RetryLinearLayout.super.setVisibility(View.VISIBLE);
-          }
-
-          @Override public void onAnimationEnd(final @NonNull Animator animation) {
-            if (visibility != View.VISIBLE) RetryLinearLayout.super.setVisibility(visibility);
-          }
-
-          @Override public void onAnimationCancel(final @NonNull Animator animation) {
-
-          }
-
-          @Override public void onAnimationRepeat(final @NonNull Animator animation) {
-
-          }
-        });
   }
 }

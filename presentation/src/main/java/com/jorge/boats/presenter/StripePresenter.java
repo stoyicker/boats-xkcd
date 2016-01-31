@@ -123,6 +123,7 @@ import rx.Subscriber;
     @Override public void onCompleted() {
       mView.hideLoading();
       mView.showContent();
+      mView.hideRetry();
     }
 
     @Override public void onError(final @NonNull Throwable e) {
@@ -130,9 +131,8 @@ import rx.Subscriber;
       mView.hideLoading();
       //Upon attempt of loading a non-existing stripe, do nothing instead
       if (!(e instanceof HttpException) || ((HttpException) e).code() != 404) {
+        mView.showRetry(e);
         mView.hideContent();
-        mView.showError(e);
-        mView.showRetry();
       }
     }
 
