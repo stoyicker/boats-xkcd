@@ -8,9 +8,9 @@ import com.jorge.boats.domain.interactor.GetStripeUseCase;
 import com.jorge.boats.domain.interactor.UseCase;
 import com.jorge.boats.log.ApplicationLogger;
 import com.jorge.boats.mapper.PresentationEntityMapper;
+import com.jorge.boats.util.RandomUtil;
 import com.jorge.boats.view.stripe.StripeContentView;
 import com.jorge.boats.view.widget.RetryLinearLayout;
-import java.util.concurrent.ThreadLocalRandom;
 import javax.inject.Inject;
 import javax.inject.Named;
 import retrofit2.HttpException;
@@ -85,7 +85,7 @@ import rx.Subscriber;
   }
 
   public void actionRandom() {
-    switchToStripeNum(ThreadLocalRandom.current().nextLong(1, mView.getStripeNum()));
+    switchToStripeNum(RandomUtil.nextInt(1, (int) (mView.getStripeNum() - 1)));
   }
 
   public void actionShare() {
