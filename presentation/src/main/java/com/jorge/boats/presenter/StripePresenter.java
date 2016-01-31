@@ -121,9 +121,7 @@ import rx.Subscriber;
     }
 
     @Override public void onCompleted() {
-      mView.hideLoading();
-      mView.hideRetry();
-      mView.showContent();
+      //Do nothing
     }
 
     @Override public void onError(final @NonNull Throwable e) {
@@ -140,6 +138,9 @@ import rx.Subscriber;
     @Override public void onNext(final @NonNull DomainStripe domainStripe) {
       mView.setStripeNum(domainStripe.getNum());
       mView.renderStripe(mEntityMapper.transform(domainStripe));
+      mView.hideLoading();
+      mView.hideRetry();
+      mView.showContent();
     }
   }
 }
