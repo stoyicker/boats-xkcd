@@ -1,4 +1,4 @@
-master [![Build Status](https://travis-ci.org/stoyicker/boats-xkcd.svg?branch=master)](https://travis-ci.org/stoyicker/boats-xkcd)
+master
 ======
 
 Project setup
