@@ -7,6 +7,14 @@
   </issue>
   <issue id="IconMissingDensityFolder" severity="ignore"/>
   <issue severity="ignore" id="GoogleAppIndexingWarning"/>
+  <issue id="UnusedResources">
+    <!-- Eaten by PSync -->
+		<ignore path="*/prefs_*.xml"/>
+  </issue>
+	<issue id="CommitPrefEdits">
+		<!-- Intended PSync behavior -->
+		<ignore path="*/P.java"/>
+	</issue>
   <issue id="InvalidPackage">
     <ignore regexp="retrofit"/>
     <ignore regexp="okio"/>
