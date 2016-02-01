@@ -14,17 +14,12 @@ public class CustomApplication extends Application {
     super.onCreate();
 
     this.initializeInjector();
-    this.initializeSharedPreferences();
     this.initializeData();
   }
 
   private void initializeInjector() {
     this.mApplicationComponent =
         DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(this)).build();
-  }
-
-  private void initializeSharedPreferences() {
-    P.init(this);
   }
 
   private void initializeData() {

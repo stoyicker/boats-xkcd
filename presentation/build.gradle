@@ -93,15 +93,6 @@ dexcount {
   verbose = false
 }
 
-apply plugin: 'com.flipboard.psync'
-
-psync {
-  className = "P"
-  includesPattern = "**/xml/prefs_presentation_*.xml"
-  packageName = rootProject.ext.androidApplicationId
-  generateRx = false
-}
-
 dependencies {
   compile project(':domain')
   compile project(':data')

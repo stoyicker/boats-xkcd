@@ -7,10 +7,6 @@
   </issue>
   <issue id="IconMissingDensityFolder" severity="ignore"/>
   <issue severity="ignore" id="GoogleAppIndexingWarning"/>
-  <issue id="UnusedResources">
-    <!-- TODO Remove this ignore when the first preference is used as the build will no longer break -->
-    <ignore path="*/prefs_presentation_dump.xml"/>
-  </issue>
   <issue id="InvalidPackage">
     <ignore regexp="retrofit"/>
     <ignore regexp="okio"/>

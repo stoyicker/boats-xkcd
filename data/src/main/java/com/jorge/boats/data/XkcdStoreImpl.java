@@ -32,18 +32,41 @@ import rx.functions.Func1;
     mXkcdDatabaseHandler = xkcdDatabaseHandler;
   }
 
-  /**
-   * Unfortunately there is no reliable way to know the number of the current stripe without
-   * actually parsing it.
-   *
-   * @return {@link Observable<DomainStripe>}
-   */
   @Override public Observable<DomainStripe> currentStripe() {
-    return mClient.getCurrentStripe().map(new Func1<DataStripe, DomainStripe>() {
-      @Override public DomainStripe call(DataStripe dataStripe) {
-        return XkcdStoreImpl.this.mDomainEntityMapper.transform(dataStripe);
-      }
-    }).cache();
+    final Observable<DataStripe> lastSeenFromDatabase =
+        Observable.create(new Observable.OnSubscribe<DatabaseStripe>() {
+
+          private long mStripeNum;
+
+          private Observable.OnSubscribe<DatabaseStripe> init(final long _stripeNum) {
+            mStripeNum = _stripeNum;
+            return this;
+          }
+
+          @Override public void call(final @NonNull Subscriber<? super DatabaseStripe> subscriber) {
+            subscriber.onStart();
+
+            final DatabaseStripe retrievedFromDatabase =
+                XkcdStoreImpl.this.mXkcdDatabaseHandler.queryForStripeWithNum(mStripeNum);
+
+            if (retrievedFromDatabase != null) subscriber.onNext(retrievedFromDatabase);
+
+            subscriber.onCompleted();
+          }
+        }.init(P.lastShownStripeNum.get())).map(new Func1<DatabaseStripe, DataStripe>() {
+          @Override public DataStripe call(final DatabaseStripe databaseStripe) {
+            return XkcdStoreImpl.this.mDatabaseEntityMapper.transform(databaseStripe);
+          }
+        });
+
+    return mClient.getCurrentStripe()
+        .onErrorResumeNext(lastSeenFromDatabase)
+        .map(new Func1<DataStripe, DomainStripe>() {
+          @Override public DomainStripe call(DataStripe dataStripe) {
+            return XkcdStoreImpl.this.mDomainEntityMapper.transform(dataStripe);
+          }
+        })
+        .cache();
   }
 
   @Override public Observable<DomainStripe> stripeWithNum(final long stripeNum) {

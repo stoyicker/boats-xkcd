@@ -34,6 +34,15 @@ android {
   }
 }
 
+apply plugin: 'com.flipboard.psync'
+
+psync {
+  className = "P"
+  includesPattern = "**/xml/prefs_*.xml"
+  packageName = rootProject.ext.androidApplicationId + ".data"
+  generateRx = false
+}
+
 dependencies {
   compile project(":domain")
 

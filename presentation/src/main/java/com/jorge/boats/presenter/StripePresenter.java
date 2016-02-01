@@ -2,6 +2,7 @@ package com.jorge.boats.presenter;
 
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import com.jorge.boats.data.P;
 import com.jorge.boats.di.PerActivity;
 import com.jorge.boats.domain.entity.DomainStripe;
 import com.jorge.boats.domain.interactor.GetStripeUseCase;
@@ -54,8 +55,11 @@ import rx.Subscriber;
   }
 
   public void switchToStripeNum(final long stripeNum) {
-    ((GetStripeUseCase) mStripeUseCase).setRequestedStripeNum(stripeNum);
     requestStripe();
+  }
+
+  private void updateUseCase(final long stripeNum) {
+    ((GetStripeUseCase) mStripeUseCase).setRequestedStripeNum(stripeNum);
   }
 
   @Override public void resume() {
@@ -143,7 +147,11 @@ import rx.Subscriber;
     }
 
     @Override public void onNext(final @NonNull DomainStripe domainStripe) {
-      mView.setStripeNum(domainStripe.getNum());
+      final long num;
+
+      mView.setStripeNum(num = domainStripe.getNum());
+      updateUseCase(num);
+      P.lastShownStripeNum.put((int) num).apply();
       mView.renderStripe(mEntityMapper.transform(domainStripe));
     }
   }
