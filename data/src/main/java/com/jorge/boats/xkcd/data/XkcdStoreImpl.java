@@ -37,40 +37,17 @@ import rx.functions.Func1;
     Observable<DataStripe> base = mClient.getCurrentStripe();
 
     if (lastShownStripeNum != -1) {
-      base = base.onErrorResumeNext(Observable.create(new Observable.OnSubscribe<DatabaseStripe>() {
-
-        private long mStripeNum;
-
-        private Observable.OnSubscribe<DatabaseStripe> init(final long _stripeNum) {
-          mStripeNum = _stripeNum;
-          return this;
-        }
-
-        @Override public void call(final @NonNull Subscriber<? super DatabaseStripe> subscriber) {
-          subscriber.onStart();
-
-          final DatabaseStripe retrievedFromDatabase =
-              XkcdStoreImpl.this.mXkcdDatabaseHandler.queryForStripeWithNum(mStripeNum);
-
-          if (retrievedFromDatabase != null) subscriber.onNext(retrievedFromDatabase);
-
-          subscriber.onCompleted();
-        }
-      }.init(lastShownStripeNum)).map(new Func1<DatabaseStripe, DataStripe>() {
-        @Override public DataStripe call(final DatabaseStripe databaseStripe) {
-          return XkcdStoreImpl.this.mDatabaseEntityMapper.transform(databaseStripe);
-        }
-      }));
+      base = base.onErrorResumeNext(dataStripeWithNum(lastShownStripeNum));
     }
 
-    return base.map(new Func1<DataStripe, DomainStripe>() {
-      @Override public DomainStripe call(DataStripe dataStripe) {
-        return XkcdStoreImpl.this.mDomainEntityMapper.transform(dataStripe);
-      }
-    }).cache();
+    return mapToDomain(base).cache();
   }
 
   @Override public Observable<DomainStripe> stripeWithNum(final long stripeNum) {
+    return mapToDomain(dataStripeWithNum(stripeNum)).cache();
+  }
+
+  private Observable<DataStripe> dataStripeWithNum(final long stripeNum) {
     final Observable<DataStripe> fromDatabase =
         Observable.create(new Observable.OnSubscribe<DatabaseStripe>() {
 
@@ -139,10 +116,14 @@ import rx.functions.Func1;
           }
         }.init(stripeNum));
 
-    return fromDatabase.switchIfEmpty(fromInternet).map(new Func1<DataStripe, DomainStripe>() {
+    return fromDatabase.switchIfEmpty(fromInternet);
+  }
+
+  private Observable<DomainStripe> mapToDomain(final @NonNull Observable<DataStripe> observable) {
+    return observable.map(new Func1<DataStripe, DomainStripe>() {
       @Override public DomainStripe call(final DataStripe dataStripe) {
         return XkcdStoreImpl.this.mDomainEntityMapper.transform(dataStripe);
       }
-    }).cache();
+    });
   }
 }
