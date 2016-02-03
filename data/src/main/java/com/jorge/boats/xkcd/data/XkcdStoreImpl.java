@@ -34,7 +34,21 @@ import rx.functions.Func1;
 
   @Override public Observable<DomainStripe> currentStripe() {
     final long lastShownStripeNum = P.lastShownStripeNum.get();
-    Observable<DataStripe> base = mClient.getCurrentStripe();
+    Observable<DataStripe> base = Observable.create(new Observable.OnSubscribe<DataStripe>() {
+      @Override public void call(final @NonNull Subscriber<? super DataStripe> subscriber) {
+        subscriber.onStart();
+        final DataStripe currentRetrieved = mClient.getCurrentStripe().toBlocking().single();
+
+        if (currentRetrieved != null) {
+          subscriber.onNext(currentRetrieved);
+
+          XkcdStoreImpl.this.mXkcdDatabaseHandler.insertStripe(
+              XkcdStoreImpl.this.mDatabaseEntityMapper.transform(currentRetrieved));
+
+          subscriber.onCompleted();
+        }
+      }
+    });
 
     if (lastShownStripeNum != -1) {
       base = base.onErrorResumeNext(dataStripeWithNum(lastShownStripeNum));
@@ -110,9 +124,9 @@ import rx.functions.Func1;
 
               XkcdStoreImpl.this.mXkcdDatabaseHandler.insertStripe(
                   XkcdStoreImpl.this.mDatabaseEntityMapper.transform(retrievedFromInternet));
-            }
 
-            subscriber.onCompleted();
+              subscriber.onCompleted();
+            }
           }
         }.init(stripeNum));
 
