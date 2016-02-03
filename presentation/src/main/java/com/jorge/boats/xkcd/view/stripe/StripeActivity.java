@@ -267,7 +267,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
 
   @Override public void showRetry(final @NonNull Throwable throwable) {
     mNavigation.hide();
-    mToolbar.setTitle(getString(R.string.error_title));
+    mToolbar.setTitle(getString(R.string.content_error_title));
     mContent.setBackgroundColor(
         ResourceUtil.getColor(getResources(), R.color.content_background_empty, getTheme()));
     mRetry.setVisibility(View.VISIBLE);
