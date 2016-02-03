@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:tools="http://schemas.android.com/tools"
-		package="com.jorge.boats">
+		package="com.jorge.boats.xkcd">
 
 	<!-- Leak canary needs access to external storage to save heap dumps -->
 	<uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>

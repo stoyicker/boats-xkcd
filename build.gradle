@@ -53,7 +53,7 @@ allprojects {
     //Gradle wrapper version
     gradleWrapperVersion = '2.10'
 
-    androidApplicationId = "com.jorge.boats"
+    androidApplicationId = "com.jorge.boats.xkcd"
     javaVersion = JavaVersion.VERSION_1_7
 
     staticAnalysisReportTarget = staticAnalysisReportFolderTarget

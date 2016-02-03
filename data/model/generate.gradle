@@ -5,7 +5,7 @@ jsonSchema2Pojo {
   usePrimitives = true
   source = files("model/input")
   targetDirectory = file("${project.projectDir}/src/main/java")
-  targetPackage = "com.jorge.boats.data.model"
+  targetPackage = "com.jorge.boats.xkcd.data.model"
   propertyWordDelimiters = [] as char[]
   useLongIntegers = true
   useDoubleNumbers = false

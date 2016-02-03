@@ -7,4 +7,12 @@
     <ignore regexp="retrofit"/>
     <ignore regexp="okio"/>
   </issue>
+  <issue id="UnusedResources">
+    <!-- Eaten by PSync -->
+		<ignore path="*/prefs_*.xml"/>
+  </issue>
+	<issue id="CommitPrefEdits">
+		<!-- Intended PSync behavior -->
+		<ignore path="*/P.java"/>
+	</issue>
 </lint>
