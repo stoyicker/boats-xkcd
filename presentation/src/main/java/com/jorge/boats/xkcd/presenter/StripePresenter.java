@@ -55,6 +55,7 @@ import rx.Subscriber;
   }
 
   public void switchToStripeNum(final long stripeNum) {
+    updateUseCase(stripeNum);
     requestStripe();
   }
 

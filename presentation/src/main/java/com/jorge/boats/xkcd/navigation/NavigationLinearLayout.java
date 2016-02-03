@@ -18,6 +18,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.BaseInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -57,7 +58,7 @@ public class NavigationLinearLayout extends LinearLayout {
   }
 
   public boolean show() {
-    if (isExpanded() || mStripePresenter.isRetryViewShown()) return false;
+    if (isExpanded()) return false;
 
     animateIn();
     toggleExpanded();
@@ -142,19 +143,26 @@ public class NavigationLinearLayout extends LinearLayout {
 
   @OnClick(R.id.fab_index_zero) void navigateToPrevious() {
     mStripePresenter.actionPrevious();
+    hide();
   }
 
   @OnClick(R.id.fab_index_one) void navigateToRandom() {
     mStripePresenter.actionRandom();
+    hide();
   }
 
   @OnClick(R.id.fab_index_two) void navigateToShare() {
-    mStripePresenter.actionShare();
+    if (mStripePresenter.isRetryViewShown()) {
+      Toast.makeText(getContext(), R.string.content_error_action_share, Toast.LENGTH_LONG).show();
+    } else {
+      mStripePresenter.actionShare();
+    }
     hide();
   }
 
   @OnClick(R.id.fab_index_three) void navigateToNext() {
     mStripePresenter.actionNext();
+    hide();
   }
 
   private static final int ANIMATOR_TYPE_IN = -1, ANIMATOR_TYPE_OUT = 1;

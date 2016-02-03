@@ -33,40 +33,41 @@ import rx.functions.Func1;
   }
 
   @Override public Observable<DomainStripe> currentStripe() {
-    final Observable<DataStripe> lastSeenFromDatabase =
-        Observable.create(new Observable.OnSubscribe<DatabaseStripe>() {
+    final long lastShownStripeNum = P.lastShownStripeNum.get();
+    Observable<DataStripe> base = mClient.getCurrentStripe();
 
-          private long mStripeNum;
+    if (lastShownStripeNum != -1) {
+      base = base.onErrorResumeNext(Observable.create(new Observable.OnSubscribe<DatabaseStripe>() {
 
-          private Observable.OnSubscribe<DatabaseStripe> init(final long _stripeNum) {
-            mStripeNum = _stripeNum;
-            return this;
-          }
+        private long mStripeNum;
 
-          @Override public void call(final @NonNull Subscriber<? super DatabaseStripe> subscriber) {
-            subscriber.onStart();
+        private Observable.OnSubscribe<DatabaseStripe> init(final long _stripeNum) {
+          mStripeNum = _stripeNum;
+          return this;
+        }
 
-            final DatabaseStripe retrievedFromDatabase =
-                XkcdStoreImpl.this.mXkcdDatabaseHandler.queryForStripeWithNum(mStripeNum);
+        @Override public void call(final @NonNull Subscriber<? super DatabaseStripe> subscriber) {
+          subscriber.onStart();
 
-            if (retrievedFromDatabase != null) subscriber.onNext(retrievedFromDatabase);
+          final DatabaseStripe retrievedFromDatabase =
+              XkcdStoreImpl.this.mXkcdDatabaseHandler.queryForStripeWithNum(mStripeNum);
 
-            subscriber.onCompleted();
-          }
-        }.init(P.lastShownStripeNum.get())).map(new Func1<DatabaseStripe, DataStripe>() {
-          @Override public DataStripe call(final DatabaseStripe databaseStripe) {
-            return XkcdStoreImpl.this.mDatabaseEntityMapper.transform(databaseStripe);
-          }
-        });
+          if (retrievedFromDatabase != null) subscriber.onNext(retrievedFromDatabase);
 
-    return mClient.getCurrentStripe()
-        .onErrorResumeNext(lastSeenFromDatabase)
-        .map(new Func1<DataStripe, DomainStripe>() {
-          @Override public DomainStripe call(DataStripe dataStripe) {
-            return XkcdStoreImpl.this.mDomainEntityMapper.transform(dataStripe);
-          }
-        })
-        .cache();
+          subscriber.onCompleted();
+        }
+      }.init(lastShownStripeNum)).map(new Func1<DatabaseStripe, DataStripe>() {
+        @Override public DataStripe call(final DatabaseStripe databaseStripe) {
+          return XkcdStoreImpl.this.mDatabaseEntityMapper.transform(databaseStripe);
+        }
+      }));
+    }
+
+    return base.map(new Func1<DataStripe, DomainStripe>() {
+      @Override public DomainStripe call(DataStripe dataStripe) {
+        return XkcdStoreImpl.this.mDomainEntityMapper.transform(dataStripe);
+      }
+    }).cache();
   }
 
   @Override public Observable<DomainStripe> stripeWithNum(final long stripeNum) {

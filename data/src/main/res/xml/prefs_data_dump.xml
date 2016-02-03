@@ -2,5 +2,5 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 	<Preference
 			android:key="last_shown_stripe_num"
-			android:defaultValue="1"/>
+			android:defaultValue="-1"/>
 </resources>
