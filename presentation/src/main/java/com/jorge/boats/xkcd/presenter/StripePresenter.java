@@ -84,9 +84,11 @@ import rx.Subscriber;
   }
 
   public void actionNext() {
-    //There is no feasible way to know if this is the latest stripe without first trying
+    long target = mView.getStripeNum();
 
-    switchToStripeNum(mView.getStripeNum() + 1);
+    if (!isRetryViewShown()) target++;
+
+    switchToStripeNum(target);
   }
 
   public void actionRandom() {
@@ -98,13 +100,15 @@ import rx.Subscriber;
   }
 
   public void actionPrevious() {
-    final long currentlyShownStripeNum = mView.getStripeNum();
+    long targetContainer = mView.getStripeNum();
 
-    if (currentlyShownStripeNum == DomainStripe.STRIPE_NUM_FIRST) {
+    if (targetContainer == DomainStripe.STRIPE_NUM_FIRST) {
       return;
     }
 
-    switchToStripeNum(mView.getStripeNum() - 1);
+    if (!isRetryViewShown()) targetContainer--;
+
+    switchToStripeNum(targetContainer);
   }
 
   private final class TitleTypefaceSubscriber extends Subscriber<Typeface> {

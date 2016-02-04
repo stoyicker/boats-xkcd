@@ -195,11 +195,11 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
 
   private void initializeRetry() {
     this.mRetry.setStripePresenter(this.mStripePresenter);
+    this.mRetry.setIntermediateGestureDetector(this.mGestureDetector);
   }
 
   private void initializeImage() {
     this.mAttacher = new ForceFitCenterPhotoViewAttacher(this.mImage, true, BuildConfig.DEBUG);
-    this.mAttacher.setIntermediateGestureDetector(mGestureDetector);
   }
 
   @Override public void onResume() {
