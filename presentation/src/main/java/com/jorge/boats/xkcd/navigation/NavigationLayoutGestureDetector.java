@@ -56,10 +56,10 @@ import javax.inject.Inject;
       }
 
       final boolean isGestureStartingFromCorrectBezel = isPositionedOnRelevantEndBezel(e1);
-      final boolean isLayoutExpanded = mNavigationLayout.isExpanded();
+      final boolean isLayoutExpandedAndThusIDontNeedTheGestureToStartFromTheBezel = mNavigationLayout.isExpanded();
       final float start, end;
 
-      if (isLayoutExpanded || isGestureStartingFromCorrectBezel) {
+      if (isLayoutExpandedAndThusIDontNeedTheGestureToStartFromTheBezel || isGestureStartingFromCorrectBezel) {
         if (isLandscape) {
           start = e1.getRawY();
           end = e2.getRawY();
@@ -68,7 +68,7 @@ import javax.inject.Inject;
           end = e2.getRawX();
         }
 
-        if (!isLayoutExpanded && start - end >= mLayoutShowMinimumDistancePixels) {
+        if (!isLayoutExpandedAndThusIDontNeedTheGestureToStartFromTheBezel && start - end >= mLayoutShowMinimumDistancePixels) {
           return mNavigationLayout.show();
         } else if (end - start >= mLayoutHideMinimumDistancePixels) {
           return mNavigationLayout.hide();
