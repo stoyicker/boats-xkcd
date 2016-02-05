@@ -15,6 +15,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
 import com.jorge.boats.xkcd.R;
+import com.jorge.boats.xkcd.util.ResourceUtil;
 
 /**
  * Adapted from <a href="https://github.com/ANPez/RevealTextView">RevealTextView</a>
@@ -33,18 +34,18 @@ public class FlickAndRevealTextView extends TextView
   public FlickAndRevealTextView(final @NonNull Context context,
       final @Nullable AttributeSet attrs) {
     super(context, attrs);
-    init(
+    init(context,
         context.getTheme().obtainStyledAttributes(attrs, R.styleable.FlickAndRevealTextView, 0, 0));
   }
 
   public FlickAndRevealTextView(final @NonNull Context context, final @Nullable AttributeSet attrs,
       int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    init(
+    init(context,
         context.getTheme().obtainStyledAttributes(attrs, R.styleable.FlickAndRevealTextView, 0, 0));
   }
 
-  private void init(final @Nullable TypedArray attrs) {
+  private void init(final @NonNull Context context, final @Nullable TypedArray attrs) {
     if (attrs != null) {
       try {
         mInDuration =
@@ -55,6 +56,12 @@ public class FlickAndRevealTextView extends TextView
         attrs.recycle();
       }
     }
+
+    setShadowLayer(context);
+  }
+
+  private void setShadowLayer(final @NonNull Context context) {
+    setShadowLayer(1, 2, 2, ResourceUtil.getAttrColor(context, R.attr.colorPrimary));
   }
 
   private void refreshAlphas() {
