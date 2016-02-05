@@ -35,7 +35,7 @@ import com.jorge.boats.xkcd.view.settings.SettingsActivity;
 import com.jorge.boats.xkcd.view.widget.CustomTitleToolbar;
 import com.jorge.boats.xkcd.view.widget.RetryLinearLayout;
 import javax.inject.Inject;
-import uk.co.senab.photoview.ForceFitCenterPhotoViewAttacher;
+import uk.co.senab.photoview.PhotoViewAttacher;
 import uk.co.senab.photoview.PhotoView;
 
 public class StripeActivity extends BaseVisualActivity implements StripeContentView {
@@ -46,7 +46,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
       StripeActivity.class.getName() + ".STATE_PARAM_STRIPE_NUM";
 
   private final CharSequence[] mShareableRenderedData = new CharSequence[2]; //Title and link
-  private ForceFitCenterPhotoViewAttacher mAttacher;
+  private PhotoViewAttacher mAttacher;
 
   private long mStripeNum;
 
@@ -199,7 +199,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
   }
 
   private void initializeImage() {
-    this.mAttacher = new ForceFitCenterPhotoViewAttacher(this.mImage, true, BuildConfig.DEBUG);
+    this.mAttacher = new PhotoViewAttacher(this.mImage, true, BuildConfig.DEBUG);
     this.mAttacher.setIntermediateGestureDetector(this.mGestureDetector);
   }
 

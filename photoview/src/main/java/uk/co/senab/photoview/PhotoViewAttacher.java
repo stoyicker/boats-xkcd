@@ -42,14 +42,10 @@ import static android.view.MotionEvent.ACTION_CANCEL;
 import static android.view.MotionEvent.ACTION_DOWN;
 import static android.view.MotionEvent.ACTION_UP;
 
-public class ForceFitCenterPhotoViewAttacher implements IPhotoView, View.OnTouchListener, OnGestureListener,
+public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener, OnGestureListener,
     ViewTreeObserver.OnGlobalLayoutListener {
 
-  private static final String LOG_TAG = "PhotoViewAttacher";
-
-  // let debug flag be dynamic, but still Proguard can be used to remove from
-  // release builds
-  private static boolean DEBUG;
+  private static final String LOG_TAG = PhotoViewAttacher.class.getCanonicalName();
 
   static final Interpolator sInterpolator = new AccelerateDecelerateInterpolator();
   int ZOOM_DURATION = DEFAULT_ZOOM_DURATION;
@@ -63,8 +59,10 @@ public class ForceFitCenterPhotoViewAttacher implements IPhotoView, View.OnTouch
   private float mMidScale = DEFAULT_MID_SCALE;
   private float mMaxScale = DEFAULT_MAX_SCALE;
 
+  private final boolean mDebuggable;
   private boolean mAllowParentInterceptOnEdge = true;
   private boolean mBlockParentIntercept = false;
+
   private GestureDetector mIntermediateGestureDetector;
 
   private static void checkZoomLevels(float minZoom, float midZoom, float maxZoom) {
@@ -141,17 +139,13 @@ public class ForceFitCenterPhotoViewAttacher implements IPhotoView, View.OnTouch
   private boolean mZoomEnabled;
   private ScaleType mScaleType = ScaleType.FIT_CENTER;
 
-  public ForceFitCenterPhotoViewAttacher(ImageView imageView) {
+  public PhotoViewAttacher(ImageView imageView) {
     this(imageView, true, false);
   }
 
-  public ForceFitCenterPhotoViewAttacher(ImageView imageView, boolean zoomable) {
-    this(imageView, zoomable, false);
-  }
-
-  public ForceFitCenterPhotoViewAttacher(ImageView imageView, boolean zoomable, boolean debuggable) {
+  public PhotoViewAttacher(ImageView imageView, boolean zoomable, boolean debuggable) {
     mImageView = new WeakReference<>(imageView);
-    DEBUG = debuggable;
+    mDebuggable = debuggable;
 
     imageView.setDrawingCacheEnabled(true);
     imageView.setOnTouchListener(this);
@@ -337,7 +331,7 @@ public class ForceFitCenterPhotoViewAttacher implements IPhotoView, View.OnTouch
       return; // Do not drag if we are already scaling
     }
 
-    if (DEBUG) {
+    if (mDebuggable) {
       LogManager.getLogger().d(LOG_TAG, String.format("onDrag: dx: %.2f. dy: %.2f", dx, dy));
     }
 
@@ -368,7 +362,7 @@ public class ForceFitCenterPhotoViewAttacher implements IPhotoView, View.OnTouch
   }
 
   @Override public void onFling(float startX, float startY, float velocityX, float velocityY) {
-    if (DEBUG) {
+    if (mDebuggable) {
       LogManager.getLogger()
           .d(LOG_TAG, "onFling. sX: "
               + startX
@@ -420,13 +414,13 @@ public class ForceFitCenterPhotoViewAttacher implements IPhotoView, View.OnTouch
   }
 
   @Override public void onScale(float scaleFactor, float focusX, float focusY) {
-    if (DEBUG) {
+    if (mDebuggable) {
       LogManager.getLogger()
           .d(LOG_TAG, String.format("onScale: scale: %.2f. fX: %.2f. fY: %.2f", scaleFactor, focusX,
               focusY));
     }
 
-    if (getScale() < mMaxScale && (scaleFactor >= 1.0f || getScale() > 1.0f)) {
+    if (getScale() < mMaxScale || scaleFactor < 1f) {
       if (null != mScaleChangeListener) {
         mScaleChangeListener.onScaleChange(scaleFactor, focusX, focusY);
       }
@@ -997,7 +991,7 @@ public class ForceFitCenterPhotoViewAttacher implements IPhotoView, View.OnTouch
     }
 
     public void cancelFling() {
-      if (DEBUG) {
+      if (mDebuggable) {
         LogManager.getLogger().d(LOG_TAG, "Cancel Fling");
       }
       mScroller.forceFinished(true);
@@ -1030,7 +1024,7 @@ public class ForceFitCenterPhotoViewAttacher implements IPhotoView, View.OnTouch
       mCurrentX = startX;
       mCurrentY = startY;
 
-      if (DEBUG) {
+      if (mDebuggable) {
         LogManager.getLogger()
             .d(LOG_TAG, "fling. StartX:"
                 + startX
@@ -1059,7 +1053,7 @@ public class ForceFitCenterPhotoViewAttacher implements IPhotoView, View.OnTouch
         final int newX = mScroller.getCurrX();
         final int newY = mScroller.getCurrY();
 
-        if (DEBUG) {
+        if (mDebuggable) {
           LogManager.getLogger()
               .d(LOG_TAG, "fling run(). CurrentX:"
                   + mCurrentX

@@ -204,7 +204,7 @@ public interface IPhotoView {
    *
    * @param listener - Listener to be registered.
    */
-  void setOnMatrixChangeListener(ForceFitCenterPhotoViewAttacher.OnMatrixChangedListener listener);
+  void setOnMatrixChangeListener(PhotoViewAttacher.OnMatrixChangedListener listener);
 
   /**
    * Register a callback to be invoked when the Photo displayed by this View is tapped with a
@@ -212,7 +212,7 @@ public interface IPhotoView {
    *
    * @param listener - Listener to be registered.
    */
-  void setOnPhotoTapListener(ForceFitCenterPhotoViewAttacher.OnPhotoTapListener listener);
+  void setOnPhotoTapListener(PhotoViewAttacher.OnPhotoTapListener listener);
 
   /**
    * Returns a listener to be invoked when the Photo displayed by this View is tapped with a
@@ -220,14 +220,14 @@ public interface IPhotoView {
    *
    * @return PhotoViewAttacher.OnPhotoTapListener currently set, may be null
    */
-  ForceFitCenterPhotoViewAttacher.OnPhotoTapListener getOnPhotoTapListener();
+  PhotoViewAttacher.OnPhotoTapListener getOnPhotoTapListener();
 
   /**
    * Register a callback to be invoked when the View is tapped with a single tap.
    *
    * @param listener - Listener to be registered.
    */
-  void setOnViewTapListener(ForceFitCenterPhotoViewAttacher.OnViewTapListener listener);
+  void setOnViewTapListener(PhotoViewAttacher.OnViewTapListener listener);
 
   /**
    * Enables rotation via PhotoView internal functions.
@@ -248,7 +248,7 @@ public interface IPhotoView {
    *
    * @return PhotoViewAttacher.OnViewTapListener currently set, may be null
    */
-  ForceFitCenterPhotoViewAttacher.OnViewTapListener getOnViewTapListener();
+  PhotoViewAttacher.OnViewTapListener getOnViewTapListener();
 
   /**
    * Changes the current scale to the specified value.
@@ -338,5 +338,5 @@ public interface IPhotoView {
    *
    * @param onScaleChangeListener OnScaleChangeListener instance
    */
-  void setOnScaleChangeListener(ForceFitCenterPhotoViewAttacher.OnScaleChangeListener onScaleChangeListener);
+  void setOnScaleChangeListener(PhotoViewAttacher.OnScaleChangeListener onScaleChangeListener);
 }
