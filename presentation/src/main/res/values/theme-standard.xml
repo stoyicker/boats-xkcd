@@ -13,7 +13,7 @@
     <item name="android:actionModeBackground">?attr/colorPrimary</item>
     <item name="android:windowBackground">@null</item>
 		<item name="colorContentBackgroundNormal">@color/content_background_normal</item>
-		<item name="colorContentBackgroundError">@color/content_background_empty</item>
+		<item name="colorContentBackgroundEmpty">@color/content_background_empty</item>
   </style>
 
   <style name="SettingsTheme" parent="Theme.AppCompat.Light.DarkActionBar">
