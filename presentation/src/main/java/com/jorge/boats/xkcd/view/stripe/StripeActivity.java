@@ -261,8 +261,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
   }
 
   @Override public void showContent() {
-    mImage.setBackgroundColor(
-        ResourceUtil.getColor(this, R.color.content_background_normal, getTheme()));
+    mImage.setBackgroundColor(ResourceUtil.getAttrColor(this, R.attr.colorContentBackgroundNormal));
     mImage.setVisibility(View.VISIBLE);
   }
 
@@ -273,7 +272,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
   @Override public void showLoading() {
     if (!mRetry.isShown()) {
       mContent.setBackgroundColor(
-          ResourceUtil.getColor(this, R.color.content_background_normal, getTheme()));
+          ResourceUtil.getAttrColor(this, R.attr.colorContentBackgroundNormal));
     }
     mLoading.setVisibility(View.VISIBLE);
   }
@@ -286,7 +285,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     mNavigation.hide();
     mToolbar.setTitle(getString(R.string.content_error_title));
     mContent.setBackgroundColor(
-        ResourceUtil.getColor(this, R.color.content_background_empty, getTheme()));
+        ResourceUtil.getAttrColor(this, R.attr.colorContentBackgroundEmpty));
     mRetry.setVisibility(View.VISIBLE);
   }
 
