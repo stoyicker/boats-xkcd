@@ -2,13 +2,12 @@ package com.jorge.boats.xkcd.util;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.AttrRes;
 import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 
 public abstract class ResourceUtil {
@@ -17,33 +16,16 @@ public abstract class ResourceUtil {
     throw new IllegalAccessError("No instances.");
   }
 
-  public static int getColor(final @NonNull Resources resources, final @ColorRes int resId,
+  public static int getColor(final @NonNull Context context, final @ColorRes int resId,
       final @Nullable Resources.Theme theme) throws Resources.NotFoundException {
     final int ret;
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      ret = resources.getColor(resId, theme);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+      ret = context.getResources().getColor(resId, theme);
     } else {
-      //noinspection deprecation - Handled
-      ret = resources.getColor(resId);
+      ret = ContextCompat.getColor(context, resId);
     }
 
-    return ret;
-  }
-
-  @NonNull public static Drawable getDrawable(final @NonNull Resources resources,
-      final @DrawableRes int resId, final @Nullable Resources.Theme theme)
-      throws Resources.NotFoundException {
-    final Drawable ret;
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      ret = resources.getDrawable(resId, theme);
-    } else {
-      //noinspection deprecation - Handled
-      ret = resources.getDrawable(resId);
-    }
-
-    //noinspection ConstantConditions - Wrong
     return ret;
   }
 

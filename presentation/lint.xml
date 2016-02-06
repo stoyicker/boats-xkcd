@@ -1,7 +1,7 @@
 <lint>
-  <issue id="UnusedAttribute">
-    <ignore path="*/main/AndroidManifest.xml"/>
-  </issue>
+	<issue id="MergeRootFrame">
+		<ignore path="*/activity_settings.xml"/>
+	</issue>
   <issue id="AllowBackup" severity="ignore">
     <ignore path="debug/*/AndroidManifest.xml"/>
   </issue>
