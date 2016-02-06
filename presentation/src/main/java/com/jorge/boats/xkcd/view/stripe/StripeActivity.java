@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,6 +22,7 @@ import butterknife.Bind;
 import com.bumptech.glide.Glide;
 import com.jorge.boats.xkcd.BuildConfig;
 import com.jorge.boats.xkcd.R;
+import com.jorge.boats.xkcd.data.P;
 import com.jorge.boats.xkcd.di.component.DaggerStripeComponent;
 import com.jorge.boats.xkcd.di.module.StripeModule;
 import com.jorge.boats.xkcd.domain.entity.DomainStripe;
@@ -296,5 +298,24 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     intent.putExtra(Intent.EXTRA_TEXT, mShareableRenderedData[1]);
 
     startActivity(Intent.createChooser(intent, getString(R.string.action_share_title)));
+  }
+
+  @Override public boolean dispatchKeyEvent(final @NonNull KeyEvent event) {
+    if (!P.volumeButtonControlNavigationEnabled.get()) return false;
+
+    switch (event.getKeyCode()) {
+      case KeyEvent.KEYCODE_VOLUME_UP:
+        if (event.getAction() == KeyEvent.ACTION_UP) {
+          mStripePresenter.actionPrevious();
+        }
+        return true;
+      case KeyEvent.KEYCODE_VOLUME_DOWN:
+        if (event.getAction() == KeyEvent.ACTION_UP) {
+          mStripePresenter.actionNext();
+        }
+        return true;
+      default:
+        return super.dispatchKeyEvent(event);
+    }
   }
 }
