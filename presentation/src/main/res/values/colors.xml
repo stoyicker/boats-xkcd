@@ -6,6 +6,7 @@
   <color name="accent">#4CAF50</color>
   <color name="primary_text">#FFFFFF</color>
   <color name="secondary_text">#727272</color>
+  <color name="tertiary_text">#000000</color>
   <color name="divider">#B6B6B6</color>
   <color name="actionbar_background">#000000</color>
   <color name="content_background_normal">#FFFFFF</color>
