@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="xkcd_base_url">https://xkcd.com/</string>
-	<string name="pref_title_volume_button_navigation">Volume button navigation</string>
+	<string name="pref_title_volume_button_navigation">Browse using volume keys</string>
 </resources>

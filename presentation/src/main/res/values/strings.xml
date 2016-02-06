@@ -7,6 +7,6 @@
 	<string
 			name="content_error_action_share">Oh come on, you know there\'s nothing to share here.</string>
 	<string
-			name="pref_summary_volume_navigation_on">Use the volume buttons to browse stripes</string>
-	<string name="pref_summary_volume_navigation_off"/>
+			name="pref_summary_volume_navigation_on">Use volume keys to change stripes</string>
+	<string name="pref_summary_volume_navigation_off">Volume keys do nothing</string>
 </resources>

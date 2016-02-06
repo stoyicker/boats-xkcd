@@ -1,6 +1,5 @@
 package com.jorge.boats.xkcd.view.settings;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,27 +17,24 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
   public static final String FRAGMENT_TAG =
       SettingsPreferenceFragmentCompat.class.getCanonicalName();
 
-  private Subscription mVolumeControlSubtitleSubscription;
-
-  public SettingsPreferenceFragmentCompat() {
-  }
+  private Subscription mVolumeKeyNavigationSummary;
 
   @Override public void onCreatePreferences(final @Nullable Bundle bundle, final String rootKey) {
     setPreferencesFromResource(com.jorge.boats.xkcd.data.R.xml.prefs_user_editable, rootKey);
+
+    initializeInitializeVolumeKeyControlSummarySubscription();
   }
 
-  @Override public void onAttach(Context context) {
-    super.onAttach(context);
-
-    mVolumeControlSubtitleSubscription = P.volumeButtonControlNavigationEnabled.rx()
+  private void initializeInitializeVolumeKeyControlSummarySubscription() {
+    mVolumeKeyNavigationSummary = P.volumeButtonControlNavigationEnabled.rx()
         .asObservable()
         .subscribe(new VolumeButtonControlSubtitleAction(
             findPreference(P.volumeButtonControlNavigationEnabled.key)));
   }
 
   @Override public void onDetach() {
-    if (!mVolumeControlSubtitleSubscription.isUnsubscribed()) {
-      mVolumeControlSubtitleSubscription.unsubscribe();
+    if (!mVolumeKeyNavigationSummary.isUnsubscribed()) {
+      mVolumeKeyNavigationSummary.unsubscribe();
     }
 
     super.onDetach();
