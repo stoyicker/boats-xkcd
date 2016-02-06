@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 	<PreferenceCategory android:title="@string/preference_category_title_general">
 		<android.support.v7.preference.SwitchPreferenceCompat
-				android:defaultValue="true"
+				android:defaultValue="false"
 				android:key="volume_button_control_navigation_enabled"
 				android:title="@string/pref_title_volume_button_navigation"/>
 	</PreferenceCategory>

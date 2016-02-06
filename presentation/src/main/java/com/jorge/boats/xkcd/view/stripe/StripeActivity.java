@@ -5,7 +5,9 @@ import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -122,9 +124,21 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
 
   @Override public boolean onCreateOptionsMenu(final @NonNull Menu menu) {
     final MenuInflater inflater = getMenuInflater();
+
     inflater.inflate(R.menu.activity_stripe, menu);
 
     return super.onCreateOptionsMenu(menu);
+  }
+
+  @Override public boolean onPrepareOptionsMenu(final @NonNull Menu menu) {
+    final Drawable showSettings = menu.getItem(0).getIcon();
+
+    if (showSettings != null) {
+      showSettings.mutate();
+      showSettings.setColorFilter(ResourceUtil.getAttrColor(this, android.R.attr.textColorPrimary),
+          PorterDuff.Mode.SRC_ATOP);
+    }
+    return super.onPrepareOptionsMenu(menu);
   }
 
   @Override public boolean onOptionsItemSelected(final @NonNull MenuItem item) {
