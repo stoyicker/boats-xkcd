@@ -59,7 +59,7 @@ android {
           "proguard", "proguardDownloadContainer").
           toFile()
       f?.listFiles()?.each { file ->
-        System.out.format(Locale.ENGLISH, "Adding %s\n", file.getName())
+        System.out.println(String.format(Locale.ENGLISH, "Adding %s\n", file.getName()))
         proguardFiles += file
       }
       //      signingConfig signingConfigs.release
