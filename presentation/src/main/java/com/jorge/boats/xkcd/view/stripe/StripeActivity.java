@@ -307,11 +307,13 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
       case KeyEvent.KEYCODE_VOLUME_UP:
         if (event.getAction() == KeyEvent.ACTION_UP) {
           mStripePresenter.actionPrevious();
+          mNavigation.hide();
         }
         return true;
       case KeyEvent.KEYCODE_VOLUME_DOWN:
         if (event.getAction() == KeyEvent.ACTION_UP) {
           mStripePresenter.actionNext();
+          mNavigation.hide();
         }
         return true;
       default:
