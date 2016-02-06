@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-./gradlew testStandardRelease
+./gradlew test{Free,Pro}Release

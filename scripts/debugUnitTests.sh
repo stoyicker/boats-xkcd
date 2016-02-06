@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-./gradlew testStandardDebug
+./gradlew test{Free,Pro}Debug
