@@ -10,23 +10,19 @@ android {
   //noinspection GroovyAssignabilityCheck
   buildToolsVersion androidBuildToolsVersion
 
-  productFlavors {
-    standard {
-      //noinspection GroovyAssignabilityCheck
-      applicationId androidApplicationId
-      //noinspection GroovyAssignabilityCheck
-      versionCode androidVersionCode
-      //noinspection GroovyAssignabilityCheck
-      versionName androidVersionName
-      archivesBaseName = "$applicationId-$versionCode"
-      //noinspection GroovyAssignabilityCheck
-      minSdkVersion androidMinSdkVersion
-      //noinspection GroovyAssignabilityCheck
-      targetSdkVersion androidTargetSdkVersion
+  defaultConfig {
+    //noinspection GroovyAssignabilityCheck
+    versionCode androidVersionCode
+    //noinspection GroovyAssignabilityCheck
+    versionName androidVersionName
+    archivesBaseName = "$applicationId-$versionCode"
+    //noinspection GroovyAssignabilityCheck
+    minSdkVersion androidMinSdkVersion
+    //noinspection GroovyAssignabilityCheck
+    targetSdkVersion androidTargetSdkVersion
 
-      //noinspection GroovyAssignabilityCheck
-      testInstrumentationRunner androidTestInstrumentationRunner
-    }
+    //noinspection GroovyAssignabilityCheck
+    testInstrumentationRunner androidTestInstrumentationRunner
   }
 
   compileOptions {
@@ -49,6 +45,7 @@ android {
       minifyEnabled false
       shrinkResources false
     }
+
     release {
       //TODO Enable these three flags when ProGuard is setup and the product is ready to release
       minifyEnabled false
@@ -66,6 +63,20 @@ android {
         proguardFiles += file
       }
       //      signingConfig signingConfigs.release
+    }
+  }
+
+  flavorDimensions "power"
+
+  productFlavors {
+    free {
+      applicationId = String.format(Locale.ENGLISH, androidApplicationIdBase, "")
+      dimension "power"
+    }
+
+    pro {
+      applicationId = String.format(Locale.ENGLISH, androidApplicationIdBase, "pro")
+      dimension "power"
     }
   }
 

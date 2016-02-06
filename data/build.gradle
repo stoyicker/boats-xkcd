@@ -39,7 +39,7 @@ apply plugin: 'com.flipboard.psync'
 psync {
   className = "P"
   includesPattern = "**/xml/prefs_*.xml"
-  packageName = rootProject.ext.androidApplicationId + ".data"
+  packageName = String.format(Locale.ENGLISH, rootProject.ext.androidApplicationIdBase, ".data")
   generateRx = true
 }
 
