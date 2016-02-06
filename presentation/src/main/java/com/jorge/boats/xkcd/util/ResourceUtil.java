@@ -21,7 +21,7 @@ public abstract class ResourceUtil {
       final @Nullable Resources.Theme theme) throws Resources.NotFoundException {
     final int ret;
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       ret = resources.getColor(resId, theme);
     } else {
       //noinspection deprecation - Handled
@@ -36,7 +36,7 @@ public abstract class ResourceUtil {
       throws Resources.NotFoundException {
     final Drawable ret;
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       ret = resources.getDrawable(resId, theme);
     } else {
       //noinspection deprecation - Handled

@@ -16,6 +16,7 @@ ext {
   supportAnnotationsVersion = "23.1.1"
   supportAppcompatVersion = "23.1.1"
   supportDesignVersion = "23.1.1"
+  supportPreferenceVersion = "23.1.1"
   javaxAnnotationVersion = "1.0"
   daggerVersion = "2.0.2"
   rxJavaVersion = "1.1.0"
@@ -31,6 +32,7 @@ ext {
   glideVersion = "3.7.0"
   okHttp3Version = "3.0.1"
   glideOkHttp3IntegrationVersion = "1.4.0"
+  rxPreferencesVersion = "1.0.1"
 
   //Testing
   espressoVersion = "2.2.1"
@@ -91,7 +93,9 @@ ext {
                              retrofit             : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
                              retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
                              retrofitRxJavaAdapter: "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
-                             commonsLang3         : "org.apache.commons:commons-lang3:${commonsLang3Version}"]
+                             commonsLang3         : "org.apache.commons:commons-lang3:${commonsLang3Version}",
+                             supportPreference    : "com.android.support:preference-v7:${supportPreferenceVersion}",
+                             rxPreferences        : "com.f2prateek.rx.preferences:rx-preferences:${rxPreferencesVersion}"]
 
   aptDataDependencies = [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
                          dbFlowCompiler: "com.github.Raizlabs.DBFlow:dbflow-processor:${dbFlowVersion}"]

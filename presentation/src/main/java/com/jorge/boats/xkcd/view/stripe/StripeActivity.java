@@ -35,8 +35,8 @@ import com.jorge.boats.xkcd.view.settings.SettingsActivity;
 import com.jorge.boats.xkcd.view.widget.CustomTitleToolbar;
 import com.jorge.boats.xkcd.view.widget.RetryLinearLayout;
 import javax.inject.Inject;
-import uk.co.senab.photoview.PhotoViewAttacher;
 import uk.co.senab.photoview.PhotoView;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class StripeActivity extends BaseVisualActivity implements StripeContentView {
 

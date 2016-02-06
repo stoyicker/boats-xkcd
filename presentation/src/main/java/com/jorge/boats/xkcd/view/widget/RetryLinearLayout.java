@@ -9,13 +9,14 @@ import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.presenter.StripePresenter;
 
-public class RetryLinearLayout extends ListenableRippleLinearLayout {
+public class RetryLinearLayout extends LinearLayout {
 
   @Bind(android.R.id.text1) TextView mText;
 

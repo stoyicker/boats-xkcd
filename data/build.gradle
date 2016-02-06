@@ -40,7 +40,7 @@ psync {
   className = "P"
   includesPattern = "**/xml/prefs_*.xml"
   packageName = rootProject.ext.androidApplicationId + ".data"
-  generateRx = false
+  generateRx = true
 }
 
 dependencies {
