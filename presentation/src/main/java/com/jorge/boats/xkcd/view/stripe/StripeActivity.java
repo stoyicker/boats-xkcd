@@ -32,6 +32,7 @@ import com.jorge.boats.xkcd.entity.PresentationStripe;
 import com.jorge.boats.xkcd.navigation.NavigationLayoutGestureDetector;
 import com.jorge.boats.xkcd.navigation.NavigationLinearLayout;
 import com.jorge.boats.xkcd.presenter.StripePresenter;
+import com.jorge.boats.xkcd.util.ProductUtil;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ViewServerDelegate;
 import com.jorge.boats.xkcd.view.activity.BaseVisualActivity;
@@ -44,7 +45,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class StripeActivity extends BaseVisualActivity implements StripeContentView {
 
-  private static final String INTENT_EXTRA_PARAM_STRIPE_NUM =
+  public static final String INTENT_EXTRA_PARAM_STRIPE_NUM =
       StripeActivity.class.getName() + ".INTENT_PARAM_STRIPE_NUM";
   private static final String INSTANCE_STATE_PARAM_STRIPE_NUM =
       StripeActivity.class.getName() + ".STATE_PARAM_STRIPE_NUM";
@@ -221,8 +222,10 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
 
   @Override public void onResume() {
     super.onResume();
-    this.mStripePresenter.resume();
-    ViewServerDelegate.setFocusedWindow(this);
+    if (!ProductUtil.runMaxPowerIfAvailable(this, mStripeNum)) {
+      this.mStripePresenter.resume();
+      ViewServerDelegate.setFocusedWindow(this);
+    }
   }
 
   @Override public void onPause() {
