@@ -48,9 +48,12 @@ public abstract class ProductUtil {
    */
   public static boolean runMaxPowerIfAvailable(final @NonNull Activity activity,
       final long stripeNum) {
-    if (hasProPower()) return false;
+    if (hasProPower()) {
+      return false;
+    }
 
     final PackageManager pm = activity.getPackageManager();
+    boolean ret = true;
 
     try {
       final Intent launchIntent = pm.getLaunchIntentForPackage(getProPackageName(activity));
@@ -62,8 +65,9 @@ public abstract class ProductUtil {
       activity.finish();
     } catch (final @NonNull Exception e) {
       ApplicationLogger.e(e, e.getMessage());
+      ret = false;
     }
 
-    return true;
+    return ret;
   }
 }
