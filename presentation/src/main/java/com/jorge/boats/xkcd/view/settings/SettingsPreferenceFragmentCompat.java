@@ -8,6 +8,7 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.View;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.data.P;
+import com.jorge.boats.xkcd.util.ProductUtil;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import rx.Subscription;
 import rx.functions.Action1;
@@ -26,10 +27,25 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
   }
 
   private void initializeInitializeVolumeKeyControlSummarySubscription() {
+    final Preference volumeControlPreference;
+
     mVolumeKeyNavigationSummary = P.volumeButtonControlNavigationEnabled.rx()
         .asObservable()
         .subscribe(new VolumeButtonControlSubtitleAction(
-            findPreference(P.volumeButtonControlNavigationEnabled.key)));
+            volumeControlPreference = findPreference(P.volumeButtonControlNavigationEnabled.key)));
+    volumeControlPreference.setOnPreferenceChangeListener(
+        new Preference.OnPreferenceChangeListener() {
+          @Override public boolean onPreferenceChange(final @NonNull Preference preference,
+              final @NonNull Object o) {
+            if (ProductUtil.hasProPower()) {
+              return true;
+            } else {
+              ProductUtil.showProAppPlayStoreEntry(
+                  SettingsPreferenceFragmentCompat.this.getContext());
+              return false;
+            }
+          }
+        });
   }
 
   @Override public void onDetach() {
