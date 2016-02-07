@@ -1,6 +1,7 @@
 package com.jorge.boats.xkcd.view.settings;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -10,9 +11,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ThemeUtil;
 import com.jorge.boats.xkcd.util.UiUtil;
+import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -41,7 +43,13 @@ public class SettingsActivity extends AppCompatActivity {
   private void initActionBar() {
     final ActionBar actionBar = getSupportActionBar();
     if (actionBar != null) {
-      actionBar.setTitle(R.string.label_settings);
+      final int color = ResourceUtil.getAttrColor(this, R.attr.background);
+      final String htmlColor = String.format(Locale.ENGLISH, "#%06X",
+          (0xFFFFFF & Color.argb(0, Color.red(color), Color.green(color), Color.blue(color))));
+
+      actionBar.setTitle(Html.fromHtml(
+          String.format(Locale.ENGLISH, "<font color=%s>%s</font>", htmlColor,
+              getString(R.string.label_settings))));
       actionBar.setDisplayHomeAsUpEnabled(Boolean.TRUE);
     }
   }
@@ -70,16 +78,16 @@ public class SettingsActivity extends AppCompatActivity {
   @Override public boolean onOptionsItemSelected(final @NonNull MenuItem item) {
     switch (item.getItemId()) {
       case android.R.id.home:
-        NavUtils.navigateUpFromSameTask(this);
+        super.onBackPressed();
         return true;
       case R.id.action_linkedin:
-        openLinkedinProfile();
+        openLinkedInProfile();
         return true;
     }
     return super.onOptionsItemSelected(item);
   }
 
-  private void openLinkedinProfile() {
+  private void openLinkedInProfile() {
     startActivity(new Intent(Intent.ACTION_VIEW,
         Uri.parse("http://www.linkedin.com/profile/view?id=jorgediazbenitosoriano")));
   }
