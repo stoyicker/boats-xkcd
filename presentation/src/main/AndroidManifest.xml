@@ -15,7 +15,8 @@
 				android:label="@string/app_name"
 				android:launchMode="singleTask"
 				android:clearTaskOnLaunch="true"
-				android:windowSoftInputMode="stateHidden">
+				android:windowSoftInputMode="stateHidden"
+				android:excludeFromRecents="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.LAUNCHER"/>
