@@ -58,7 +58,7 @@ public class NavigationLinearLayout extends LinearLayout {
   }
 
   public boolean show() {
-    if (isExpanded() || mStripePresenter.isRetryViewShown()) return false;
+    if (isExpanded()) return false;
 
     animateIn();
     toggleExpanded();
