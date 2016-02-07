@@ -3,4 +3,7 @@
 	<Preference
 			android:key="last_shown_stripe_num"
 			android:defaultValue="-1"/>
+	<Preference
+			android:key="should_restart"
+			android:defaultValue="false"/>
 </resources>

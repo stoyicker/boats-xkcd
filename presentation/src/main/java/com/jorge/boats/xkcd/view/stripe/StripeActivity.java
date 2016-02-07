@@ -48,8 +48,6 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
 
   public static final String INTENT_EXTRA_PARAM_STRIPE_NUM =
       StripeActivity.class.getName() + ".INTENT_PARAM_STRIPE_NUM";
-  public static final String INTENT_EXTRA_PARAM_SHOULD_RESTART =
-      StripeActivity.class.getName() + ".INTENT_EXTRA_PARAM_SHOULD_RESTART";
   private static final String INSTANCE_STATE_PARAM_STRIPE_NUM =
       StripeActivity.class.getName() + ".STATE_PARAM_STRIPE_NUM";
 
@@ -228,13 +226,14 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
 
   @Override public void onResume() {
     super.onResume();
-    if (getIntent().getBooleanExtra(INTENT_EXTRA_PARAM_SHOULD_RESTART, false)) {
-      final Intent intent = getIntent();
-      intent.putExtra(INTENT_EXTRA_PARAM_SHOULD_RESTART, false);
+    if (P.shouldRestart.get()) {
+      P.shouldRestart.put(false).apply();
       ActivityUtil.restart(this);
-    } else if (!ProductUtil.runMaxPowerIfAvailable(this, mStripeNum)) {
-      this.mStripePresenter.resume();
-      ViewServerDelegate.setFocusedWindow(this);
+    } else {
+      if (!ProductUtil.runMaxPowerIfAvailable(this, mStripeNum)) {
+        this.mStripePresenter.resume();
+        ViewServerDelegate.setFocusedWindow(this);
+      }
     }
   }
 

@@ -1,6 +1,5 @@
 package com.jorge.boats.xkcd.view.settings;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,7 +11,6 @@ import com.jorge.boats.xkcd.data.P;
 import com.jorge.boats.xkcd.util.ActivityUtil;
 import com.jorge.boats.xkcd.util.ProductUtil;
 import com.jorge.boats.xkcd.util.ResourceUtil;
-import com.jorge.boats.xkcd.view.stripe.StripeActivity;
 import rx.Subscription;
 import rx.functions.Action1;
 
@@ -71,9 +69,8 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
       @Override public boolean onPreferenceChange(final @NonNull Preference preference,
           final @NonNull Object o) {
         if (!((String) o).contentEquals(P.themeName.get())) {
-          final Activity host = SettingsPreferenceFragmentCompat.this.getActivity();
-          host.getIntent().putExtra(StripeActivity.INTENT_EXTRA_PARAM_SHOULD_RESTART, true);
-          ActivityUtil.restart(host);
+          P.shouldRestart.put(true).apply();
+          ActivityUtil.restart(getActivity());
         }
         return true;
       }
