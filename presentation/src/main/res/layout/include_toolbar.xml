@@ -5,7 +5,7 @@
 		android:orientation="vertical"
 		android:layout_width="match_parent"
 		android:layout_height="?attr/actionBarSize"
-		android:background="@color/actionbar_background">
+		android:background="@color/standard_actionbar_background">
 
   <com.jorge.boats.xkcd.view.widget.CustomTitleToolbar
 			android:id="@+id/toolbar"

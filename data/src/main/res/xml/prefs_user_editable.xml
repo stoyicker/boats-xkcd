@@ -5,5 +5,14 @@
 				android:defaultValue="false"
 				android:key="volume_button_control_navigation_enabled"
 				android:title="@string/pref_title_volume_button_navigation"/>
+		<android.support.v7.preference.ListPreference
+				android:defaultValue="@string/theme_0_name"
+				android:key="theme_name"
+				android:title="@string/pref_title_theme_name"
+				android:entries="@array/theme_names"
+				android:entryValues="@array/theme_names"/>
+	</PreferenceCategory>
+	<PreferenceCategory android:title="@string/preference_category_title_about">
+
 	</PreferenceCategory>
 </PreferenceScreen>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="negative_primary">#8BC34A</color>
+  <color name="negative_primary_dark">#689F38</color>
+  <color name="negative_primary_light">#DCEDC8</color>
+  <color name="negative_accent">#4CAF50</color>
+  <color name="negative_primary_text">#FFFFFF</color>
+  <color name="negative_secondary_text">#727272</color>
+  <color name="negative_tertiary_text">#000000</color>
+  <color name="negative_divider">#B6B6B6</color>
+  <color name="negative_actionbar_background">#000000</color>
+  <color name="negative_content_background_normal">#FFFFFF</color>
+	<color name="negative_settings_window_background">#FFFFFF</color>
+</resources>

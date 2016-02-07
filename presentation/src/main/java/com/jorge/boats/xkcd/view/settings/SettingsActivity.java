@@ -18,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.util.ResourceUtil;
+import com.jorge.boats.xkcd.util.ThemeUtil;
 import com.jorge.boats.xkcd.util.UiUtil;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -25,6 +26,7 @@ public class SettingsActivity extends AppCompatActivity {
   @Override protected void onCreate(final @Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
+    setTheme(ThemeUtil.getSettingsTheme(this));
     setContentView(R.layout.activity_settings);
 
     initTaskDescription();
@@ -53,12 +55,14 @@ public class SettingsActivity extends AppCompatActivity {
   }
 
   @Override public boolean onPrepareOptionsMenu(final @NonNull Menu menu) {
-    final Drawable showLinkedIn = menu.getItem(0).getIcon();
+    if (menu.size() > 0) {
+      final Drawable showLinkedIn = menu.getItem(0).getIcon();
 
-    if (showLinkedIn != null) {
-      showLinkedIn.mutate();
-      showLinkedIn.setColorFilter(ResourceUtil.getAttrColor(this, R.attr.background),
-          PorterDuff.Mode.SRC_ATOP);
+      if (showLinkedIn != null) {
+        showLinkedIn.mutate();
+        showLinkedIn.setColorFilter(ResourceUtil.getAttrColor(this, R.attr.background),
+            PorterDuff.Mode.SRC_ATOP);
+      }
     }
     return super.onPrepareOptionsMenu(menu);
   }

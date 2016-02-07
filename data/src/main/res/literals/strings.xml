@@ -2,5 +2,7 @@
 <resources>
   <string name="xkcd_base_url">https://xkcd.com/</string>
 	<string name="pref_title_volume_button_navigation">Browse using volume keys</string>
+	<string name="pref_title_theme_name">Theme</string>
 	<string name="preference_category_title_general">GENERAL</string>
+	<string name="preference_category_title_about">ABOUT</string>
 </resources>
