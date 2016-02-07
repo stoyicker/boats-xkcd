@@ -55,6 +55,18 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
     mThemeSwitch = P.themeName.rx()
         .asObservable()
         .subscribe(new ThemeChangeAction(themePreference = findPreference(P.themeName.key)));
+    themePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+          @Override public boolean onPreferenceChange(final @NonNull Preference preference,
+              final @NonNull Object o) {
+            if (ProductUtil.hasProPower()) {
+              return true;
+            } else {
+              ProductUtil.showProAppPlayStoreEntry(
+                  SettingsPreferenceFragmentCompat.this.getContext());
+              return false;
+            }
+          }
+        });
   }
 
   @Override public void onDetach() {
