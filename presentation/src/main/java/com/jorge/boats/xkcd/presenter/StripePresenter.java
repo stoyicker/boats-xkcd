@@ -141,8 +141,9 @@ import rx.Subscriber;
     @Override public void onError(final @NonNull Throwable e) {
       ApplicationLogger.e(e, e.getClass().getName());
       mView.hideLoading();
-      //Upon attempt of loading a non-existing stripe, do nothing instead
+      //Upon attempt of loading a non-existing stripe, load the current stripe instead
       if ((e instanceof HttpException) && ((HttpException) e).code() == 404) {
+        switchToStripeNum(DomainStripe.STRIPE_NUM_CURRENT);
         return;
       }
       mView.showRetry(e);
