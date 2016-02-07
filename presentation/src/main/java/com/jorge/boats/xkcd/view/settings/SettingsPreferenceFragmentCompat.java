@@ -18,20 +18,21 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
   public static final String FRAGMENT_TAG =
       SettingsPreferenceFragmentCompat.class.getCanonicalName();
 
-  private Subscription mVolumeKeyNavigationSummary;
+  private Subscription mVolumeKeyNavigationSummary, mThemeSwitch;
 
   @Override public void onCreatePreferences(final @Nullable Bundle bundle, final String rootKey) {
     setPreferencesFromResource(com.jorge.boats.xkcd.data.R.xml.prefs_user_editable, rootKey);
 
-    initializeInitializeVolumeKeyControlSummarySubscription();
+    initializeVolumeKeyControlPreference();
+    initializeThemePreference();
   }
 
-  private void initializeInitializeVolumeKeyControlSummarySubscription() {
+  private void initializeVolumeKeyControlPreference() {
     final Preference volumeControlPreference;
 
     mVolumeKeyNavigationSummary = P.volumeButtonControlNavigationEnabled.rx()
         .asObservable()
-        .subscribe(new VolumeButtonControlSubtitleAction(
+        .subscribe(new VolumeButtonControlChangeAction(
             volumeControlPreference = findPreference(P.volumeButtonControlNavigationEnabled.key)));
     volumeControlPreference.setOnPreferenceChangeListener(
         new Preference.OnPreferenceChangeListener() {
@@ -46,6 +47,14 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
             }
           }
         });
+  }
+
+  private void initializeThemePreference() {
+    final Preference themePreference;
+
+    mThemeSwitch = P.themeName.rx()
+        .asObservable()
+        .subscribe(new ThemeChangeAction(themePreference = findPreference(P.themeName.key)));
   }
 
   @Override public void onDetach() {
@@ -63,11 +72,11 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
     view.setBackgroundColor(ResourceUtil.getAttrColor(getContext(), R.attr.background));
   }
 
-  private static class VolumeButtonControlSubtitleAction implements Action1<Boolean> {
+  private static class VolumeButtonControlChangeAction implements Action1<Boolean> {
 
     private final Preference mObservedPreference;
 
-    private VolumeButtonControlSubtitleAction(final @Nullable Preference observedPreference) {
+    private VolumeButtonControlChangeAction(final @Nullable Preference observedPreference) {
       mObservedPreference = observedPreference;
     }
 
@@ -76,6 +85,19 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
         mObservedPreference.setSummary(value ? R.string.pref_summary_volume_navigation_on
             : R.string.pref_summary_volume_navigation_off);
       }
+    }
+  }
+
+  private static class ThemeChangeAction implements Action1<String> {
+
+    private final Preference mObservedPreference;
+
+    private ThemeChangeAction(final @Nullable Preference observedPreference) {
+      mObservedPreference = observedPreference;
+    }
+
+    @Override public void call(final @NonNull String s) {
+      if (mObservedPreference != null) mObservedPreference.setSummary(s);
     }
   }
 }
