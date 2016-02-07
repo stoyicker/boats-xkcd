@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="content_empty_text">#FFFFFF</color>
+  <color name="content_background_empty">#000000</color>
+</resources>

@@ -22,5 +22,6 @@
 				android:text="@string/retry"
 				android:ellipsize="end"
 				android:textIsSelectable="false"
+				android:textColor="@color/content_empty_text"
 				style="@style/ToolbarTitle"/>
 </merge>
