@@ -18,7 +18,7 @@ public abstract class ThemeUtil {
         context.getString(R.string.theme_1_name);
 
     if ((themeName = P.themeName.get()).contentEquals(theme0Name)) {
-      return R.style.App;
+      return R.style.AppStandard;
     } else if (themeName.contentEquals(theme1Name)) {
       return R.style.AppNegative;
     } else {
@@ -32,9 +32,9 @@ public abstract class ThemeUtil {
         context.getString(R.string.theme_1_name);
 
     if ((themeName = P.themeName.get()).contentEquals(theme0Name)) {
-      return R.style.SettingsTheme;
+      return R.style.SettingsStandard;
     } else if (themeName.contentEquals(theme1Name)) {
-      return R.style.SettingsThemeNegative;
+      return R.style.SettingsNegative;
     } else {
       throw new IllegalStateException(
           String.format(Locale.ENGLISH, "Unrecognized theme name %s", themeName));

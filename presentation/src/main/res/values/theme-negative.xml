@@ -17,12 +17,21 @@
 		<item name="colorContentBackgroundEmpty">@color/content_background_empty</item>
   </style>
 
-  <style name="SettingsThemeNegative">
+  <style name="SettingsNegative" parent="Theme.AppCompat.Light.DarkActionBar">
     <item name="colorAccent">@color/negative_accent</item>
     <item name="background">@color/negative_settings_window_background</item>
     <item name="android:textColorPrimary">@color/negative_tertiary_text</item>
     <item name="android:textColorSecondary">@color/negative_secondary_text</item>
-    <item name="actionBarStyle">@style/SettingsActionBar</item>
+    <item name="actionBarStyle">@style/SettingsActionBarStyleNegative</item>
+    <item name="actionBarTheme">@style/SettingsActionBarThemeNegative</item>
 		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
   </style>
+
+	<style name="SettingsActionBarThemeNegative" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+		<item name="colorControlNormal">@color/negative_primary_text</item>
+	</style>
+
+	<style name="SettingsActionBarStyleNegative" parent="@style/BaseSettingsActionBarStyle">
+		<item name="titleTextStyle">@color/negative_primary_text</item>
+	</style>
 </resources>

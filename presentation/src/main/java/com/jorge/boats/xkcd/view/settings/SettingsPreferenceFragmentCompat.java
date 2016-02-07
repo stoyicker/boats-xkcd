@@ -56,23 +56,23 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
         .asObservable()
         .subscribe(new ThemeChangeAction(themePreference = findPreference(P.themeName.key)));
     themePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-          @Override public boolean onPreferenceChange(final @NonNull Preference preference,
-              final @NonNull Object o) {
-            if (ProductUtil.hasProPower()) {
-              return true;
-            } else {
-              ProductUtil.showProAppPlayStoreEntry(
-                  SettingsPreferenceFragmentCompat.this.getContext());
-              return false;
-            }
-          }
-        });
+      @Override public boolean onPreferenceChange(final @NonNull Preference preference,
+          final @NonNull Object o) {
+        if (ProductUtil.hasProPower()) {
+          return true;
+        } else {
+          ProductUtil.showProAppPlayStoreEntry(SettingsPreferenceFragmentCompat.this.getContext());
+          return false;
+        }
+      }
+    });
   }
 
   @Override public void onDetach() {
     if (!mVolumeKeyNavigationSummary.isUnsubscribed()) {
       mVolumeKeyNavigationSummary.unsubscribe();
     }
+    if (!mThemeSwitch.isUnsubscribed()) mThemeSwitch.unsubscribe();
 
     super.onDetach();
   }

@@ -10,7 +10,7 @@
 			android:icon="@mipmap/ic_launcher"
 			android:supportsRtl="false"
 			android:name=".CustomApplication"
-			android:theme="@style/App">
+			android:theme="@style/AppStandard">
     <activity android:name=".view.stripe.StripeActivity"
 				android:label="@string/app_name"
 				android:launchMode="singleTask"
@@ -25,7 +25,7 @@
 				android:name=".view.settings.SettingsActivity"
 				android:label="@string/label_settings"
 				android:logo="@android:color/transparent"
-				android:theme="@style/SettingsTheme">
+				android:theme="@style/SettingsStandard">
 			<meta-data
 					android:name="android.support.PARENT_ACTIVITY"
 					android:value=".view.stripe.StripeActivity"/>
