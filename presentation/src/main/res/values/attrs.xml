@@ -7,4 +7,5 @@
 
 	<attr name="colorContentBackgroundNormal" format="reference" />
 	<attr name="colorContentBackgroundEmpty" format="reference" />
+	<attr name="actionBarBackground" format="reference" />
 </resources>
