@@ -32,6 +32,7 @@ import com.jorge.boats.xkcd.entity.PresentationStripe;
 import com.jorge.boats.xkcd.navigation.NavigationLayoutGestureDetector;
 import com.jorge.boats.xkcd.navigation.NavigationLinearLayout;
 import com.jorge.boats.xkcd.presenter.StripePresenter;
+import com.jorge.boats.xkcd.util.ActivityUtil;
 import com.jorge.boats.xkcd.util.ProductUtil;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ViewServerDelegate;
@@ -47,6 +48,8 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
 
   public static final String INTENT_EXTRA_PARAM_STRIPE_NUM =
       StripeActivity.class.getName() + ".INTENT_PARAM_STRIPE_NUM";
+  public static final String INTENT_EXTRA_PARAM_SHOULD_RESTART =
+      StripeActivity.class.getName() + ".INTENT_EXTRA_PARAM_SHOULD_RESTART";
   private static final String INSTANCE_STATE_PARAM_STRIPE_NUM =
       StripeActivity.class.getName() + ".STATE_PARAM_STRIPE_NUM";
 
@@ -225,7 +228,11 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
 
   @Override public void onResume() {
     super.onResume();
-    if (!ProductUtil.runMaxPowerIfAvailable(this, mStripeNum)) {
+    if (getIntent().getBooleanExtra(INTENT_EXTRA_PARAM_SHOULD_RESTART, false)) {
+      final Intent intent = getIntent();
+      intent.putExtra(INTENT_EXTRA_PARAM_SHOULD_RESTART, false);
+      ActivityUtil.restart(this);
+    } else if (!ProductUtil.runMaxPowerIfAvailable(this, mStripeNum)) {
       this.mStripePresenter.resume();
       ViewServerDelegate.setFocusedWindow(this);
     }

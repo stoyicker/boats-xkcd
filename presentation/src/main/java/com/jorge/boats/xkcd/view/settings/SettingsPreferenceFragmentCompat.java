@@ -1,5 +1,6 @@
 package com.jorge.boats.xkcd.view.settings;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,8 +9,10 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.View;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.data.P;
+import com.jorge.boats.xkcd.util.ActivityUtil;
 import com.jorge.boats.xkcd.util.ProductUtil;
 import com.jorge.boats.xkcd.util.ResourceUtil;
+import com.jorge.boats.xkcd.view.stripe.StripeActivity;
 import rx.Subscription;
 import rx.functions.Action1;
 
@@ -34,16 +37,15 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
         .asObservable()
         .subscribe(new VolumeButtonControlChangeAction(
             volumeControlPreference = findPreference(P.volumeButtonControlNavigationEnabled.key)));
-    volumeControlPreference.setOnPreferenceChangeListener(
-        new Preference.OnPreferenceChangeListener() {
-          @Override public boolean onPreferenceChange(final @NonNull Preference preference,
-              final @NonNull Object o) {
+    volumeControlPreference.setOnPreferenceClickListener(
+        new Preference.OnPreferenceClickListener() {
+          @Override public boolean onPreferenceClick(final @NonNull Preference preference) {
             if (ProductUtil.hasProPower()) {
-              return true;
+              return false;
             } else {
               ProductUtil.showProAppPlayStoreEntry(
                   SettingsPreferenceFragmentCompat.this.getContext());
-              return false;
+              return true;
             }
           }
         });
@@ -55,15 +57,25 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
     mThemeSwitch = P.themeName.rx()
         .asObservable()
         .subscribe(new ThemeChangeAction(themePreference = findPreference(P.themeName.key)));
+    themePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+      @Override public boolean onPreferenceClick(final @NonNull Preference preference) {
+        if (ProductUtil.hasProPower()) {
+          return false;
+        } else {
+          ProductUtil.showProAppPlayStoreEntry(SettingsPreferenceFragmentCompat.this.getContext());
+          return true;
+        }
+      }
+    });
     themePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
       @Override public boolean onPreferenceChange(final @NonNull Preference preference,
           final @NonNull Object o) {
-        if (ProductUtil.hasProPower()) {
-          return true;
-        } else {
-          ProductUtil.showProAppPlayStoreEntry(SettingsPreferenceFragmentCompat.this.getContext());
-          return false;
+        if (!((String) o).contentEquals(P.themeName.get())) {
+          final Activity host = SettingsPreferenceFragmentCompat.this.getActivity();
+          host.getIntent().putExtra(StripeActivity.INTENT_EXTRA_PARAM_SHOULD_RESTART, true);
+          ActivityUtil.restart(host);
         }
+        return true;
       }
     });
   }
@@ -72,7 +84,9 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
     if (!mVolumeKeyNavigationSummary.isUnsubscribed()) {
       mVolumeKeyNavigationSummary.unsubscribe();
     }
-    if (!mThemeSwitch.isUnsubscribed()) mThemeSwitch.unsubscribe();
+    if (!mThemeSwitch.isUnsubscribed()) {
+      mThemeSwitch.unsubscribe();
+    }
 
     super.onDetach();
   }

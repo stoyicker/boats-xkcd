@@ -74,20 +74,6 @@ public class XkcdStoreImplTest extends DataModuleTestCase {
     testSubscriber.assertCompleted();
   }
 
-  @Test public void testGetStripeCurrentNoConnection() {
-    final Throwable error = generateNoInternetStubThrowable();
-
-    given(mMockClient.getCurrentStripe()).willReturn(Observable.<DataStripe>error(error));
-
-    final TestSubscriber<DomainStripe> testSubscriber = new TestSubscriber<>();
-
-    mSut.currentStripe().subscribe(testSubscriber);
-
-    testSubscriber.assertError(error);
-    testSubscriber.assertReceivedOnNext(Collections.<DomainStripe>emptyList());
-    testSubscriber.assertNotCompleted();
-  }
-
   @Test public void testGetStripeWithValidNumNoCachedSuccessful() {
     final DataStripe sourceStripe = generateRandomDataStripe();
     final DomainStripe targetStripe = generateRandomDomainStripe();
