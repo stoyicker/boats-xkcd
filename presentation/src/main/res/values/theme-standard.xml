@@ -2,7 +2,6 @@
 <resources>
   <style name="AppStandard" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="colorPrimary">@color/standard_primary</item>
-    <item name="colorPrimaryDark">@color/standard_primary_dark</item>
     <item name="colorAccent">@color/standard_accent</item>
     <item name="color">@color/standard_primary_light</item>
     <item name="android:textColorPrimary">@color/standard_primary_text</item>

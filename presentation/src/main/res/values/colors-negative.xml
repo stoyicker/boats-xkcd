@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <color name="negative_primary">#743CB5</color>
-  <color name="negative_primary_dark">#9760C7</color>
   <color name="negative_primary_light">#231237</color>
   <color name="negative_accent">#B350AF</color>
   <color name="negative_primary_text">#000000</color>
