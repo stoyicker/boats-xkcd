@@ -9,6 +9,5 @@
   <color name="negative_tertiary_text">#FFFFFF</color>
   <color name="negative_divider">#494949</color>
   <color name="negative_actionbar_background">#FFFFFF</color>
-  <color name="negative_content_background_normal">#000000</color>
 	<color name="negative_settings_window_background">#000000</color>
 </resources>

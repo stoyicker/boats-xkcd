@@ -13,8 +13,6 @@
     <item name="android:actionModeBackground">?attr/colorPrimary</item>
     <item name="android:windowBackground">@null</item>
 		<item name="actionBarBackground">@color/negative_actionbar_background</item>
-		<item name="colorContentBackgroundNormal">@color/negative_content_background_normal</item>
-		<item name="colorContentBackgroundEmpty">@color/content_background_empty</item>
   </style>
 
   <style name="SettingsNegative" parent="Theme.AppCompat.Light">
