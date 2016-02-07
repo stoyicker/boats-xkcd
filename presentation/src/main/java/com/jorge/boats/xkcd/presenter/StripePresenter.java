@@ -84,14 +84,13 @@ import rx.Subscriber;
   }
 
   public void actionNext() {
-    long target = mView.getStripeNum();
+    if (isRetryViewShown()) return;
 
-    if (!isRetryViewShown()) target++;
-
-    switchToStripeNum(target);
+    switchToStripeNum(mView.getStripeNum() + 1);
   }
 
   public void actionRandom() {
+    if (isRetryViewShown()) return;
     switchToStripeNum(RandomUtil.nextInt(1, (int) (mView.getStripeNum() - 1)));
   }
 
@@ -100,15 +99,14 @@ import rx.Subscriber;
   }
 
   public void actionPrevious() {
+    if (isRetryViewShown()) return;
     long targetContainer = mView.getStripeNum();
 
     if (targetContainer == DomainStripe.STRIPE_NUM_FIRST) {
       return;
     }
 
-    if (!isRetryViewShown()) targetContainer--;
-
-    switchToStripeNum(targetContainer);
+    switchToStripeNum(targetContainer - 1);
   }
 
   private final class TitleTypefaceSubscriber extends Subscriber<Typeface> {
