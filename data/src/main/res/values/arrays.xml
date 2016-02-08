@@ -3,5 +3,6 @@
 	<array name="theme_names">
 		<item>@string/theme_0_name</item>
 		<item>@string/theme_1_name</item>
+		<item>@string/theme_2_name</item>
 	</array>
 </resources>

@@ -2,4 +2,5 @@
 <resources>
   <string name="theme_0_name">Standard</string>
   <string name="theme_1_name">Negative</string>
+  <string name="theme_2_name">Web</string>
 </resources>

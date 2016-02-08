@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="AppWeb" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">@color/web_primary</item>
+    <item name="colorAccent">@color/web_accent</item>
+    <item name="color">@color/web_primary_light</item>
+    <item name="android:textColorPrimary">@color/web_primary_text</item>
+    <item name="android:textColorSecondary">@color/web_secondary_text</item>
+    <item name="divider">@color/web_divider</item>
+    <item name="windowActionBarOverlay">true</item>
+    <item name="android:windowActionModeOverlay">true</item>
+    <item name="android:actionModeBackground">?attr/colorPrimary</item>
+    <item name="android:windowBackground">@null</item>
+		<item name="actionBarBackground">@color/web_actionbar_background</item>
+  </style>
+
+  <style name="SettingsWeb" parent="Theme.AppCompat.Light">
+    <item name="colorAccent">@color/web_accent</item>
+    <item name="background">@color/web_settings_window_background</item>
+    <item name="android:textColorPrimary">@color/web_tertiary_text</item>
+    <item name="android:textColorSecondary">@color/web_secondary_text</item>
+    <item name="actionBarTheme">@style/SettingsActionBarThemeWeb</item>
+		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+		<item name="actionBarStyle">@style/BaseSettingsActionBarStyle</item>
+  </style>
+
+	<style name="SettingsActionBarThemeWeb" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+		<item name="colorControlNormal">@color/web_primary_text</item>
+	</style>
+</resources>
