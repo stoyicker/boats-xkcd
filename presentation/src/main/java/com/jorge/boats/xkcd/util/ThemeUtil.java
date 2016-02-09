@@ -16,7 +16,8 @@ public abstract class ThemeUtil {
   @StyleRes public static int getAppTheme(final @NonNull Context context) {
     final String themeName, theme0Name = context.getString(R.string.theme_0_name), theme1Name =
         context.getString(R.string.theme_1_name), theme2Name =
-        context.getString(R.string.theme_2_name);
+        context.getString(R.string.theme_2_name), theme3Name =
+        context.getString(R.string.theme_3_name);
 
     if ((themeName = P.themeName.get()).contentEquals(theme0Name)) {
       return R.style.AppStandard;
@@ -24,6 +25,8 @@ public abstract class ThemeUtil {
       return R.style.AppNegative;
     } else if (themeName.contentEquals(theme2Name)) {
       return R.style.AppWeb;
+    } else if (themeName.contentEquals(theme3Name)) {
+      return R.style.AppWarm;
     } else {
       throw new IllegalStateException(
           String.format(Locale.ENGLISH, "Unrecognized theme name %s", themeName));
@@ -33,7 +36,8 @@ public abstract class ThemeUtil {
   @StyleRes public static int getSettingsTheme(final @NonNull Context context) {
     final String themeName, theme0Name = context.getString(R.string.theme_0_name), theme1Name =
         context.getString(R.string.theme_1_name), theme2Name =
-        context.getString(R.string.theme_2_name);
+        context.getString(R.string.theme_2_name), theme3Name =
+        context.getString(R.string.theme_3_name);
 
     if ((themeName = P.themeName.get()).contentEquals(theme0Name)) {
       return R.style.SettingsStandard;
@@ -41,6 +45,8 @@ public abstract class ThemeUtil {
       return R.style.SettingsNegative;
     } else if (themeName.contentEquals(theme2Name)) {
       return R.style.SettingsWeb;
+    } else if (theme3Name.contentEquals(theme3Name)) {
+      return R.style.SettingsWarm;
     } else {
       throw new IllegalStateException(
           String.format(Locale.ENGLISH, "Unrecognized theme name %s", themeName));

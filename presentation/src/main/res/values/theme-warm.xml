@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="AppWarm" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">@color/warm_primary</item>
+    <item name="colorAccent">@color/warm_accent</item>
+    <item name="color">@color/warm_primary_light</item>
+    <item name="android:textColorPrimary">@color/warm_primary_text</item>
+    <item name="android:textColorSecondary">@color/warm_secondary_text</item>
+    <item name="divider">@color/warm_divider</item>
+    <item name="windowActionBarOverlay">true</item>
+    <item name="android:windowActionModeOverlay">true</item>
+    <item name="android:actionModeBackground">?attr/colorPrimary</item>
+    <item name="android:windowBackground">@null</item>
+		<item name="actionBarBackground">@color/warm_actionbar_background</item>
+  </style>
+
+  <style name="SettingsWarm" parent="Theme.AppCompat.Light">
+    <item name="colorAccent">@color/warm_accent</item>
+    <item name="background">@color/warm_settings_window_background</item>
+    <item name="android:textColorPrimary">@color/warm_tertiary_text</item>
+    <item name="android:textColorSecondary">@color/warm_secondary_text</item>
+    <item name="actionBarTheme">@style/SettingsActionBarThemeWarm</item>
+		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+		<item name="actionBarStyle">@style/BaseSettingsActionBarStyle</item>
+  </style>
+
+	<style name="SettingsActionBarThemeWarm" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+		<item name="colorControlNormal">@color/warm_primary_text</item>
+	</style>
+</resources>
