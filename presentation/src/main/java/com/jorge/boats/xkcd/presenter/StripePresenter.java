@@ -91,7 +91,7 @@ import rx.Subscriber;
 
   public void actionRandom() {
     if (isRetryViewShown()) return;
-    switchToStripeNum(RandomUtil.nextInt(1, (int) (mView.getStripeNum() - 1)));
+    switchToStripeNum(RandomUtil.nextLong(1, (int) (mView.getStripeNum() - 1)));
   }
 
   public void actionShare() {

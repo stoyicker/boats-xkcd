@@ -12,7 +12,7 @@ public abstract class RandomUtil {
     throw new IllegalAccessError("No instances.");
   }
 
-  public static long nextInt(final int min, final int max) {
+  public static long nextLong(final int min, final int max) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       return ThreadLocalRandom.current().nextLong(min, max + 1);
     } else {
