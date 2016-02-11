@@ -12,11 +12,11 @@ public abstract class ApplicationLogger {
   }
 
   public static void d(final @NonNull String message, final @Nullable Object... args) {
-    Timber.d(String.format(Locale.ENGLISH, message, args));
+    Timber.d(message, args);
   }
 
   public static void e(final @NonNull Throwable throwable, final @NonNull String message,
       final @Nullable Object... args) {
-    Timber.e(throwable, String.format(Locale.ENGLISH, message, args));
+    Timber.e(throwable, message, args);
   }
 }
