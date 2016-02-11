@@ -65,19 +65,12 @@ android {
     }
   }
 
-  flavorDimensions "power"
+  flavorDimensions "cost"
 
   productFlavors {
     free {
       applicationId = String.format(Locale.ENGLISH, androidApplicationIdBase, "")
-      dimension "power"
-      buildConfigField 'boolean', 'POWER_PRO', 'false'
-    }
-
-    pro {
-      applicationId = String.format(Locale.ENGLISH, androidApplicationIdBase, ".pro")
-      dimension "power"
-      buildConfigField 'boolean', 'POWER_PRO', 'true'
+      flavorDimension "cost"
     }
   }
 

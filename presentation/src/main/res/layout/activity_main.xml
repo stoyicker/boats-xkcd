@@ -13,13 +13,6 @@
 			android:layout_height="wrap_content"
 			android:layout_alignParentTop="true"/>
 
-	<include
-			android:id="@+id/ad_banner"
-			layout="@layout/include_ad_banner"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_below="@id/toolbar_wrapper"/>
-
   <include
 			android:id="@+id/progress_bar"
 			layout="@layout/include_progress_bar"/>

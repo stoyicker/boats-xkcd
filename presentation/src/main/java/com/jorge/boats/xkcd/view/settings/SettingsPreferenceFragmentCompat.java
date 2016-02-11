@@ -9,7 +9,6 @@ import android.view.View;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.data.P;
 import com.jorge.boats.xkcd.util.ActivityUtil;
-import com.jorge.boats.xkcd.util.ProductUtil;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import rx.Subscription;
 import rx.functions.Action1;
@@ -29,24 +28,11 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
   }
 
   private void initializeVolumeKeyControlPreference() {
-    final Preference volumeControlPreference;
 
     mVolumeKeyNavigationSummary = P.volumeButtonControlNavigationEnabled.rx()
         .asObservable()
         .subscribe(new VolumeButtonControlChangeAction(
-            volumeControlPreference = findPreference(P.volumeButtonControlNavigationEnabled.key)));
-    volumeControlPreference.setOnPreferenceClickListener(
-        new Preference.OnPreferenceClickListener() {
-          @Override public boolean onPreferenceClick(final @NonNull Preference preference) {
-            if (ProductUtil.hasProPower()) {
-              return false;
-            } else {
-              ProductUtil.showProAppPlayStoreEntry(
-                  SettingsPreferenceFragmentCompat.this.getContext());
-              return true;
-            }
-          }
-        });
+            findPreference(P.volumeButtonControlNavigationEnabled.key)));
   }
 
   private void initializeThemePreference() {
@@ -55,16 +41,6 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
     mThemeSwitch = P.themeName.rx()
         .asObservable()
         .subscribe(new ThemeChangeAction(themePreference = findPreference(P.themeName.key)));
-    themePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-      @Override public boolean onPreferenceClick(final @NonNull Preference preference) {
-        if (ProductUtil.hasProPower()) {
-          return false;
-        } else {
-          ProductUtil.showProAppPlayStoreEntry(SettingsPreferenceFragmentCompat.this.getContext());
-          return true;
-        }
-      }
-    });
     themePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
       @Override public boolean onPreferenceChange(final @NonNull Preference preference,
           final @NonNull Object o) {

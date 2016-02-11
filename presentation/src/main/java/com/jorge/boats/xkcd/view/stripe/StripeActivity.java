@@ -33,7 +33,6 @@ import com.jorge.boats.xkcd.navigation.NavigationLayoutGestureDetector;
 import com.jorge.boats.xkcd.navigation.NavigationLinearLayout;
 import com.jorge.boats.xkcd.presenter.StripePresenter;
 import com.jorge.boats.xkcd.util.ActivityUtil;
-import com.jorge.boats.xkcd.util.ProductUtil;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ViewServerDelegate;
 import com.jorge.boats.xkcd.view.activity.BaseVisualActivity;
@@ -115,7 +114,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     final RelativeLayout.LayoutParams progressBarLayoutParams =
         (RelativeLayout.LayoutParams) mLoading.getLayoutParams();
 
-    progressBarLayoutParams.addRule(RelativeLayout.BELOW, R.id.ad_banner);
+    progressBarLayoutParams.addRule(RelativeLayout.BELOW, R.id.toolbar_wrapper);
 
     mLoading.setLayoutParams(progressBarLayoutParams);
   }
@@ -230,10 +229,8 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
       P.shouldRestart.put(false).apply();
       ActivityUtil.restart(this);
     } else {
-      if (!ProductUtil.runMaxPowerIfAvailable(this, mStripeNum)) {
-        this.mStripePresenter.resume();
-        ViewServerDelegate.setFocusedWindow(this);
-      }
+      this.mStripePresenter.resume();
+      ViewServerDelegate.setFocusedWindow(this);
     }
   }
 
