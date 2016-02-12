@@ -10,4 +10,5 @@
 			name="pref_summary_volume_navigation_on">Use volume keys to change stripes</string>
 	<string name="pref_summary_volume_navigation_off">Volume keys do nothing</string>
 	<string name="label_about_the_author">About the author</string>
+	<string name="read_more">Read more…</string>
 </resources>
