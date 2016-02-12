@@ -3,11 +3,14 @@ package com.jorge.boats.xkcd.view.settings;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.View;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.data.P;
+import com.jorge.boats.xkcd.data.preference.AboutXkcdDialogPreference;
+import com.jorge.boats.xkcd.log.ApplicationLogger;
 import com.jorge.boats.xkcd.util.ActivityUtil;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import rx.Subscription;
@@ -21,7 +24,7 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
   private Subscription mVolumeKeyNavigationSummary, mThemeSwitch;
 
   @Override public void onCreatePreferences(final @Nullable Bundle bundle, final String rootKey) {
-    setPreferencesFromResource(com.jorge.boats.xkcd.data.R.xml.prefs_user_editable, rootKey);
+    setPreferencesFromResource(com.jorge.boats.xkcd.data.R.xml.prefs_settings, rootKey);
 
     initializeVolumeKeyControlPreference();
     initializeThemePreference();
@@ -69,6 +72,24 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
 
     //Avoid transparency
     view.setBackgroundColor(ResourceUtil.getAttrColor(getContext(), R.attr.background));
+  }
+
+  @Override public void onDisplayPreferenceDialog(final @NonNull Preference preference) {
+    ApplicationLogger.d("Work on the dialog");
+    if (preference instanceof AboutXkcdDialogPreference) {
+      showAboutXkcdDialog();
+    } else {
+      super.onDisplayPreferenceDialog(preference);
+    }
+  }
+
+  private void showAboutXkcdDialog() {
+    new AlertDialog.Builder(getContext()).setTitle(
+        com.jorge.boats.xkcd.data.R.string.pref_title_about_xkcd)
+        .setMessage(getString(com.jorge.boats.xkcd.data.R.string.pref_message_about_xkcd))
+        .setNegativeButton(android.R.string.cancel, null)
+        .create()
+        .show();
   }
 
   private static class VolumeButtonControlChangeAction implements Action1<Boolean> {

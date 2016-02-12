@@ -13,6 +13,10 @@
 				android:entryValues="@array/theme_names"/>
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/preference_category_title_about">
-
+		<com.jorge.boats.xkcd.data.preference.AboutXkcdDialogPreference
+				android:title="@string/pref_title_about_xkcd"
+				android:summary="@string/pref_summary_about_xkcd"
+				android:positiveButtonText="@null"
+				android:negativeButtonText="@null"/>
 	</PreferenceCategory>
 </PreferenceScreen>

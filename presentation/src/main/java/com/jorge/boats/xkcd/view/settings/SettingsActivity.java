@@ -21,6 +21,7 @@ import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ThemeUtil;
 import com.jorge.boats.xkcd.util.UiUtil;
+import com.jorge.boats.xkcd.util.ViewServerDelegate;
 import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -34,6 +35,8 @@ public class SettingsActivity extends AppCompatActivity {
     initTaskDescription();
     initActionBar();
     initFragment(savedInstanceState);
+
+    ViewServerDelegate.addWindow(this);
   }
 
   private void initTaskDescription() {
@@ -52,6 +55,18 @@ public class SettingsActivity extends AppCompatActivity {
               getString(R.string.label_settings))));
       actionBar.setDisplayHomeAsUpEnabled(Boolean.TRUE);
     }
+  }
+
+  @Override protected void onResume() {
+    super.onResume();
+
+    ViewServerDelegate.setFocusedWindow(this);
+  }
+
+  @Override protected void onDestroy() {
+    super.onDestroy();
+
+    ViewServerDelegate.removeWindow(this);
   }
 
   @Override public boolean onCreateOptionsMenu(final @NonNull Menu menu) {
