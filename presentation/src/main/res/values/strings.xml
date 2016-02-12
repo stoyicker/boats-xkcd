@@ -1,4 +1,5 @@
 <resources>
+	<string name="app_name">Boats</string>
 	<string name="content_error_title">Oops!</string>
 	<string name="action_share_title">Share with…</string>
 	<string name="retry">Nothing to do here\n(tap to retry!)</string>
