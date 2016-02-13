@@ -1,19 +1,14 @@
 package com.jorge.boats.xkcd.view.settings;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.View;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.data.P;
-import com.jorge.boats.xkcd.data.preference.AboutXkcdDialogPreference;
-import com.jorge.boats.xkcd.log.ApplicationLogger;
+import com.jorge.boats.xkcd.data.preference.CustomDialogPreference;
 import com.jorge.boats.xkcd.util.ActivityUtil;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import rx.Subscription;
@@ -78,30 +73,11 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
   }
 
   @Override public void onDisplayPreferenceDialog(final @NonNull Preference preference) {
-    ApplicationLogger.d("Work on the dialog");
-    if (preference instanceof AboutXkcdDialogPreference) {
-      showAboutXkcdDialog();
+    if (preference instanceof CustomDialogPreference) {
+      ((CustomDialogPreference) preference).buildDialog().show();
     } else {
       super.onDisplayPreferenceDialog(preference);
     }
-  }
-
-  private void showAboutXkcdDialog() {
-    new AlertDialog.Builder(getContext()).setTitle(
-        com.jorge.boats.xkcd.data.R.string.pref_title_about_xkcd)
-        .setMessage(getString(com.jorge.boats.xkcd.data.R.string.pref_message_about_xkcd))
-        .setNegativeButton(android.R.string.cancel, null)
-        .setPositiveButton(R.string.read_more, new DialogInterface.OnClickListener() {
-          @Override public void onClick(final @NonNull DialogInterface dialog, final int which) {
-            final String url = getString(R.string.xkcd_base_url);
-            final Intent i = new Intent(Intent.ACTION_VIEW);
-
-            i.setData(Uri.parse(url));
-            startActivity(i);
-          }
-        })
-        .create()
-        .show();
   }
 
   private static class VolumeButtonControlChangeAction implements Action1<Boolean> {

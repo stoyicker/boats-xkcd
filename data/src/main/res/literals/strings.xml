@@ -8,4 +8,5 @@
 	<string name="preference_category_title_general">GENERAL</string>
 	<string name="preference_category_title_about">ABOUT</string>
 	<string name="pref_summary_about_xkcd">License</string>
+	<string name="read_more">Read more…</string>
 </resources>
