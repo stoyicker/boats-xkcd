@@ -31,7 +31,7 @@ android {
   }
 
   //  signingConfigs {
-  //    release {
+  //    googleplay {
   //      storeFile new File("boats.keystore")
   //      storePassword(new File("keystore.pwd").text.trim())
   //      keyAlias("boats")
@@ -61,7 +61,7 @@ android {
         System.out.println(String.format(Locale.ENGLISH, "Adding %s\n", file.getName()))
         proguardFiles += file
       }
-      //      signingConfig signingConfigs.release
+      //      signingConfig signingConfigs.googleplay
     }
   }
 
