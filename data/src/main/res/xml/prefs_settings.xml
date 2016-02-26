@@ -18,5 +18,10 @@
 				android:summary="@string/pref_summary_about_xkcd"
 				android:positiveButtonText="@null"
 				android:negativeButtonText="@null"/>
+		<com.jorge.boats.xkcd.data.preference.AboutAppDialogPreference
+				android:title="@string/pref_title_about_app"
+				android:summary="@string/pref_summary_about_app"
+				android:positiveButtonText="@null"
+				android:negativeButtonText="@null"/>
 	</PreferenceCategory>
 </PreferenceScreen>
