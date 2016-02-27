@@ -13,6 +13,5 @@
 	<string name="pref_summary_about_app"/>
 	<string name="read_more">Read more…</string>
 	<string name="licenses">Licenses…</string>
-	<string
-			name="licenses_url">https://github.com/stoyicker/boats-xkcd/blob/master/THIRD_PARTY.html</string>
+	<string name="licenses_url">https://stoyicker.github.io/home/boats/third_party.html</string>
 </resources>
