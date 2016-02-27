@@ -6,7 +6,8 @@
 	<string name="pref_title_about_app">About the app</string>
 	<string name="pref_title_about_xkcd">xkcd</string>
 	<string name="pref_message_about_xkcd">xkcd, \"A webcomic of romance, sarcasm, math, and language\" is a work created by Randall Munroe, and it is licensed under a Creative Commons Attribution-NonCommercial 2.5 License. This means that it is free to copy and reuse as long as authorship acknowledgment is given.</string>
-	<string name="pref_message_about_app" formatted="false">Boats, by Jorge Antonio Diaz-Benito Soriano. Version %s/%d</string>
+	<string name="pref_message_about_app"><![CDATA[<b>Boats</b><br/><br/>by<br/><a
+			href="https://www.linkedin.com/in/jorgediazbenitosoriano">Jorge Antonio Diaz-Benito Soriano</a>]]></string>
 	<string name="preference_category_title_general">GENERAL</string>
 	<string name="preference_category_title_about">ABOUT</string>
 	<string name="pref_summary_about_xkcd">License</string>
@@ -14,4 +15,6 @@
 	<string name="read_more">Read more…</string>
 	<string name="licenses">Licenses…</string>
 	<string name="licenses_url">https://stoyicker.github.io/home/boats/third_party.html</string>
+	<string name="app_name">Boats</string>
+	<string name="version_tag" formatted="false">Version %s/%d.</string>
 </resources>

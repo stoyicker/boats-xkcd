@@ -1,5 +1,6 @@
 package com.jorge.boats.xkcd.data.preference;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,7 +11,14 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.TextView;
 import com.jorge.boats.xkcd.data.R;
 
 public class AboutAppDialogPreference extends CustomDialogPreference {
@@ -43,13 +51,53 @@ public class AboutAppDialogPreference extends CustomDialogPreference {
     }
 
     final AlertDialog.Builder ret =
-        new AlertDialog.Builder(context).setTitle(R.string.pref_title_about_xkcd);
+        new AlertDialog.Builder(context).setTitle(R.string.pref_title_about_app);
+
+    @SuppressLint("InflateParams") final View view =
+        ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
+            R.layout.preference_about_app, null, false);
+    final TextView body = (TextView) view.findViewById(R.id.body);
 
     if (packageInfo != null) {
-      ret.setMessage(context.getString(R.string.pref_message_about_app, packageInfo.versionName,
-          packageInfo.versionCode));
+      body.setText(Html.fromHtml(context.getString(R.string.pref_message_about_app)));
+      body.setMovementMethod(LinkMovementMethod.getInstance());
+
+      ((TextView) view.findViewById(R.id.version)).setText(
+          context.getString(R.string.version_tag, packageInfo.versionName,
+              packageInfo.versionCode));
     }
-    ret.setNegativeButton(android.R.string.cancel, null)
+
+    final ViewTreeObserver observer = body.getViewTreeObserver();
+
+    observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+
+      private boolean isExecuted = false;
+
+      @Override public void onGlobalLayout() {
+        if (!isExecuted) {
+          isExecuted = true;
+          execute();
+          if (observer.isAlive()) {
+            observer.removeOnGlobalLayoutListener(this);
+          } else {
+            body.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+          }
+        }
+      }
+
+      private void execute() {
+        final View icon;
+        final ViewGroup.LayoutParams layoutParams =
+            (icon = view.findViewById(R.id.icon)).getLayoutParams();
+
+        layoutParams.height = body.getHeight();
+
+        icon.setLayoutParams(layoutParams);
+      }
+    });
+
+    ret.setView(view)
+        .setNegativeButton(android.R.string.cancel, null)
         .setPositiveButton(R.string.licenses, new DialogInterface.OnClickListener() {
           @Override public void onClick(final @NonNull DialogInterface dialog, final int which) {
             final String url = context.getString(R.string.licenses_url);

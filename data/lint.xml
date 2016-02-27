@@ -15,4 +15,7 @@
 		<!-- Intended PSync behavior -->
 		<ignore path="*/P.java"/>
 	</issue>
+	<issue id="IconLocation">
+		<ignore path="*/ic_launcher.png"/>
+	</issue>
 </lint>
