@@ -11,6 +11,7 @@ Project setup
 
 https://github.com/square/java-code-styles
 
-Branching model
----------------
-http://nvie.com/posts/a-successful-git-branching-model/
+Third party licenses
+====================
+
+https://stoyicker.github.io/home/boats/third_party.html
