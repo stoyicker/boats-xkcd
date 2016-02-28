@@ -1,5 +1,6 @@
 package com.jorge.boats.xkcd.data.preference;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -8,7 +9,12 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 import com.jorge.boats.xkcd.data.R;
 
 public class AboutXkcdDialogPreference extends CustomDialogPreference {
@@ -33,11 +39,18 @@ public class AboutXkcdDialogPreference extends CustomDialogPreference {
   }
 
   @Override public Dialog buildDialog() {
-    final Context context;
+    final Context context = getContext();
+    @SuppressLint("InflateParams") final View view =
+        ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
+            R.layout.preference_about_xkcd, null, false);
+    final TextView body;
 
-    return new AlertDialog.Builder(context = getContext()).setTitle(
-        com.jorge.boats.xkcd.data.R.string.pref_title_about_xkcd)
-        .setMessage(context.getString(com.jorge.boats.xkcd.data.R.string.pref_message_about_xkcd))
+    (body = (TextView) view.findViewById(R.id.body)).setText(
+        Html.fromHtml(context.getString(R.string.pref_message_about_xkcd)));
+    body.setMovementMethod(LinkMovementMethod.getInstance());
+
+    return new AlertDialog.Builder(context).setTitle(R.string.pref_title_about_xkcd)
+        .setView(view)
         .setNegativeButton(android.R.string.cancel, null)
         .setPositiveButton(R.string.read_more, new DialogInterface.OnClickListener() {
           @Override public void onClick(final @NonNull DialogInterface dialog, final int which) {

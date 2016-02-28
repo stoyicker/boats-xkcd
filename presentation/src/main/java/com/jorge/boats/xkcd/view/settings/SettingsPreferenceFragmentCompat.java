@@ -1,5 +1,8 @@
 package com.jorge.boats.xkcd.view.settings;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,6 +29,7 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
 
     initializeVolumeKeyControlPreference();
     initializeThemePreference();
+    initializeSharePreference();
   }
 
   private void initializeVolumeKeyControlPreference() {
@@ -52,6 +56,30 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
         return true;
       }
     });
+  }
+
+  private void initializeSharePreference() {
+    findPreference(P.share.key).setOnPreferenceClickListener(
+        new Preference.OnPreferenceClickListener() {
+
+          @SuppressWarnings("InlinedApi") @Override
+          public boolean onPreferenceClick(final @NonNull Preference preference) {
+            final Intent intent = new Intent(Intent.ACTION_SEND);
+            final Context context;
+
+            intent.setType("text/plain");
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+              intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+            }
+            intent.putExtra(Intent.EXTRA_TEXT,
+                (context = getContext()).getString(R.string.market_base_url,
+                    context.getApplicationInfo().packageName));
+
+            startActivity(Intent.createChooser(intent, getString(R.string.action_share_title)));
+
+            return true;
+          }
+        });
   }
 
   @Override public void onDetach() {

@@ -23,5 +23,8 @@
 				android:summary="@string/pref_summary_about_app"
 				android:positiveButtonText="@null"
 				android:negativeButtonText="@null"/>
+		<Preference
+				android:title="@string/pref_title_share"
+				android:key="share"/>
 	</PreferenceCategory>
 </PreferenceScreen>

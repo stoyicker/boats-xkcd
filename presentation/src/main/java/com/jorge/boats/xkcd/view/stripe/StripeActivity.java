@@ -1,6 +1,5 @@
 package com.jorge.boats.xkcd.view.stripe;
 
-import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
@@ -307,16 +306,18 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     return getApplicationContext();
   }
 
-  @SuppressLint("InlinedApi") @Override public void share() {
+  @SuppressWarnings("InlinedApi") @Override public void share() {
     //Prevent trying to share "nothing"
     for (final CharSequence x : mShareableRenderedData) {
       if (TextUtils.isEmpty(x)) return;
     }
 
-    final Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+    final Intent intent = new Intent(Intent.ACTION_SEND);
 
     intent.setType("text/plain");
-    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+    }
     intent.putExtra(Intent.EXTRA_SUBJECT, mShareableRenderedData[0]);
     intent.putExtra(Intent.EXTRA_TEXT, mShareableRenderedData[1]);
 
