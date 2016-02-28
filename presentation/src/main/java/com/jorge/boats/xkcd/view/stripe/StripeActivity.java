@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -49,7 +50,10 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
   private static final String INSTANCE_STATE_PARAM_STRIPE_NUM =
       StripeActivity.class.getName() + ".STATE_PARAM_STRIPE_NUM";
 
-  private final CharSequence[] mShareableRenderedData = new CharSequence[2]; //Title and link
+  /**
+   * Title, image link and article number
+   */
+  private final CharSequence[] mShareableRenderedData = new CharSequence[3];
   private PhotoViewAttacher mAttacher;
 
   private long mStripeNum;
@@ -149,6 +153,9 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
       case R.id.action_settings:
         openSettings();
         return true;
+      case R.id.action_open_in_browser:
+        openModelInBrowser();
+        return true;
       default:
         return super.onOptionsItemSelected(item);
     }
@@ -160,6 +167,15 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
       //noinspection unchecked
       startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     } else {
+      startActivity(intent);
+    }
+  }
+
+  private void openModelInBrowser() {
+    if (!TextUtils.isEmpty(mShareableRenderedData[2])) {
+      Intent intent = new Intent(Intent.ACTION_VIEW);
+      intent.setData(Uri.parse(
+          getContext().getString(R.string.xkcd_mobile_link_pattern, mShareableRenderedData[2])));
       startActivity(intent);
     }
   }
@@ -266,6 +282,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
   private void updateShareableData(final @NonNull PresentationStripe model) {
     mShareableRenderedData[0] = model.getTitle();
     mShareableRenderedData[1] = model.getImg();
+    mShareableRenderedData[2] = String.valueOf(model.getNum());
   }
 
   @Override public void showContent() {

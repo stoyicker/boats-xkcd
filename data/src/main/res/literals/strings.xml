@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="xkcd_base_url">https://xkcd.com/</string>
+  <string name="xkcd_base_url" translatable="false">https://xkcd.com/</string>
 	<string name="pref_title_volume_button_navigation">Browse using volume keys</string>
 	<string name="pref_title_theme_name">Theme</string>
 	<string name="pref_title_about_app">About the app</string>
