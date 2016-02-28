@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:app="http://schemas.android.com/apk/res-auto">
   <item
+			android:id="@+id/action_open_in_browser"
+			android:icon="@drawable/ic_open_in_browser"
+			android:title="@string/label_open_in_browser"
+			app:showAsAction="ifRoom"/>
+  <item
 			android:id="@+id/action_settings"
 			android:icon="@drawable/ic_settings"
 			android:title="@string/label_settings"

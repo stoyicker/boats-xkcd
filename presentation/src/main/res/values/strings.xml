@@ -4,6 +4,7 @@
 	<string name="action_share_title">Share with…</string>
 	<string name="retry">Nothing to do here\n(tap to retry!)</string>
 	<string name="label_settings">Settings</string>
+	<string name="label_open_in_browser">Open in browser</string>
 	<string
 			name="content_error_action_share">Oh come on, you know there\'s nothing to share here.</string>
 	<string
