@@ -96,6 +96,11 @@ android {
   packagingOptions {
     exclude 'META-INF/services/javax.annotation.processing.Processor'
   }
+  
+  dexOptions {
+    incremental true
+    preDexLibraries true
+  }
 }
 
 apply plugin: "com.getkeepsafe.dexcount"
