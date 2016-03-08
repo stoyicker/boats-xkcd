@@ -32,6 +32,11 @@ android {
     quiet false
     warningsAsErrors true
   }
+  
+  dexOptions {
+    incremental true
+    preDexLibraries true
+  }
 }
 
 apply plugin: 'com.flipboard.psync'
