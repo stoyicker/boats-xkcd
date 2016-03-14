@@ -14,7 +14,7 @@ import com.jorge.boats.xkcd.view.stripe.StripeContentView;
 import com.jorge.boats.xkcd.view.widget.RetryLinearLayout;
 import javax.inject.Inject;
 import javax.inject.Named;
-import retrofit2.HttpException;
+import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 
 @PerActivity public class StripePresenter implements Presenter<StripeContentView> {

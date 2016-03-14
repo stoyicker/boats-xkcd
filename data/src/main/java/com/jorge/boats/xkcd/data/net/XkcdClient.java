@@ -9,10 +9,11 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import okhttp3.OkHttpClient;
-import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
-import retrofit2.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
+import rx.schedulers.Schedulers;
 
 @Singleton public class XkcdClient {
 
@@ -42,7 +43,7 @@ import rx.Observable;
             TimeUnit.MILLISECONDS)
         .build();
 
-    builder.addCallAdapterFactory(RxJavaCallAdapterFactory.create());
+    builder.addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io()));
     builder.addConverterFactory(GsonConverterFactory.create());
     builder.baseUrl(resources.getString(R.string.xkcd_base_url));
     builder.client(client);
