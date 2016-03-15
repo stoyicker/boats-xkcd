@@ -6,4 +6,7 @@
 	<Preference
 			android:key="should_restart"
 			android:defaultValue="false"/>
+	<Preference
+			android:key="remaining_stripes_until_review"
+			android:defaultValue="3"/>
 </resources>
