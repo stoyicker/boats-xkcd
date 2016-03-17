@@ -52,4 +52,12 @@ public abstract class ThemeUtil {
           String.format(Locale.ENGLISH, "Unrecognized theme name %s", themeName));
     }
   }
+
+  public static boolean isSelectedThemeDark(final @NonNull Context context) {
+    final String themeName, theme0Name = context.getString(R.string.theme_0_name), theme2Name =
+        context.getString(R.string.theme_2_name);
+
+    return (themeName = P.themeName.get()).contentEquals(theme0Name) || themeName.contentEquals(
+        theme2Name);
+  }
 }

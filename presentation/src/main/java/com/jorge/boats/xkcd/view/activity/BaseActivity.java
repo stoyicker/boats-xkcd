@@ -1,5 +1,6 @@
 package com.jorge.boats.xkcd.view.activity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -9,11 +10,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import com.jorge.boats.xkcd.CustomApplication;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.di.component.ApplicationComponent;
+import com.jorge.boats.xkcd.util.ThemeUtil;
 import java.util.Locale;
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -32,8 +33,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
   protected final void showRateAppDialog() {
     if (mRateAppDialog == null) {
-      mRateAppDialog = new AlertDialog.Builder(this).setTitle(
-          getString(R.string.rate_popup_title, getString(R.string.app_name)))
+      //noinspection deprecation -- Yes, deprecated, but the replacement is added in API 22
+      mRateAppDialog = new AlertDialog.Builder(this,
+          ThemeUtil.isSelectedThemeDark(this) ? android.app.AlertDialog.THEME_DEVICE_DEFAULT_DARK
+              : android.app.AlertDialog.THEME_DEVICE_DEFAULT_LIGHT).
+          setTitle(getString(R.string.rate_popup_title, getString(R.string.app_name)))
           .setMessage(R.string.rate_popup_body)
           .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override public void onClick(final @NonNull DialogInterface dialog, final int which) {
