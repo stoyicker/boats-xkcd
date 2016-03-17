@@ -135,13 +135,12 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
   }
 
   @Override public boolean onPrepareOptionsMenu(final @NonNull Menu menu) {
-    if (menu.size() > 0) {
-      final Drawable showSettings = menu.getItem(0).getIcon();
+    for (int i = 0; i < menu.size(); i++) {
+      Drawable icon = menu.getItem(i).getIcon();
 
-      if (showSettings != null) {
-        showSettings.mutate();
-        showSettings.setColorFilter(
-            ResourceUtil.getAttrColor(this, android.R.attr.textColorPrimary),
+      if (icon != null) {
+        icon.mutate();
+        icon.setColorFilter(ResourceUtil.getAttrColor(this, android.R.attr.textColorPrimary),
             PorterDuff.Mode.SRC_ATOP);
       }
     }
