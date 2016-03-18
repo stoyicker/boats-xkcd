@@ -81,16 +81,19 @@ public class NavigationLinearLayout extends LinearLayout {
   }
 
   public boolean hideTutorial() {
-    isShownAsTutorial = false;
-
     hide(getContext().getResources()
-        .getInteger(R.integer.navigation_layout_tutorial_hide_animation_duration_milliseconds));
+        .getInteger(R.integer.navigation_layout_tutorial_hide_animation_duration_milliseconds),
+        true);
 
-    return isShownAsTutorial;
+    return isShownAsTutorial = false;
   }
 
   private boolean hide(final int durationMillis) {
-    if (isShownAsTutorial || !isExpanded()) return false;
+    return hide(durationMillis, false);
+  }
+
+  private boolean hide(final int durationMillis, final boolean force) {
+    if (!force && (isShownAsTutorial || !isExpanded())) return false;
 
     animateOut(durationMillis);
     toggleExpanded();
