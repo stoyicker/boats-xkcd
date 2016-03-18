@@ -4,12 +4,15 @@ import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -276,7 +279,36 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     this.mAttacher.setMinimumScale(this.mImage.getScale());
 
     updateShareableData(model);
+    showNavigationTutorial();
     processRateDialogCountUpdate();
+  }
+
+  private void showNavigationTutorial() {
+    final Resources resources;
+    final boolean isLandscape = (resources = getResources()).getConfiguration().orientation
+        == Configuration.ORIENTATION_LANDSCAPE;
+
+    if (isLandscape) {
+      if (!P.tutorialShownLandscape.get()) {
+        mNavigation.showTutorial();
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+          @Override public void run() {
+            P.tutorialShownLandscape.put(true).apply();
+            mNavigation.hideTutorial();
+          }
+        }, resources.getInteger(R.integer.tutorial_show_duration_milliseconds));
+      }
+    } else {
+      if (!P.tutorialShownPortrait.get()) {
+        mNavigation.showTutorial();
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+          @Override public void run() {
+            P.tutorialShownPortrait.put(true).apply();
+            mNavigation.hideTutorial();
+          }
+        }, resources.getInteger(R.integer.tutorial_show_duration_milliseconds));
+      }
+    }
   }
 
   private void processRateDialogCountUpdate() {

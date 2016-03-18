@@ -33,6 +33,7 @@ public class NavigationLinearLayout extends LinearLayout {
   private boolean isExpanded = false;
 
   private StripePresenter mStripePresenter;
+  private boolean isShownAsTutorial;
 
   public NavigationLinearLayout(final @NonNull Context context,
       final @Nullable AttributeSet attrs) {
@@ -66,10 +67,32 @@ public class NavigationLinearLayout extends LinearLayout {
     return true;
   }
 
-  public boolean hide() {
-    if (!isExpanded()) return false;
+  public boolean showTutorial() {
+    final boolean ret = show();
 
-    animateOut();
+    isShownAsTutorial = ret;
+
+    return ret;
+  }
+
+  public boolean hide() {
+    return hide(getContext().getResources()
+        .getInteger(R.integer.navigation_layout_global_animation_duration_milliseconds));
+  }
+
+  public boolean hideTutorial() {
+    isShownAsTutorial = false;
+
+    hide(getContext().getResources()
+        .getInteger(R.integer.navigation_layout_tutorial_hide_animation_duration_milliseconds));
+
+    return isShownAsTutorial;
+  }
+
+  private boolean hide(final int durationMillis) {
+    if (isShownAsTutorial || !isExpanded()) return false;
+
+    animateOut(durationMillis);
     toggleExpanded();
 
     return true;
@@ -108,15 +131,13 @@ public class NavigationLinearLayout extends LinearLayout {
     }
   }
 
-  private void animateOut() {
+  private void animateOut(final int animationDurationMillis) {
     final Context context = getContext();
     final Resources resources = context.getResources();
     final boolean isLandscape =
         resources.getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
     final int navigationLayoutPerButtonDelayMillis =
         resources.getInteger(R.integer.navigation_layout_element_animation_delay_milliseconds);
-    final int animationDurationMillis =
-        resources.getInteger(R.integer.navigation_layout_global_animation_duration_milliseconds);
     int delayMs = navigationLayoutPerButtonDelayMillis * (mButtons.length - 1);
     //Using AnimationSet does not work
     Animator rotation, translation;

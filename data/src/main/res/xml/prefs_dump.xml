@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-	<Preference
-			android:key="last_shown_stripe_num"
-			android:defaultValue="-1"/>
-	<Preference
-			android:key="should_restart"
-			android:defaultValue="false"/>
-	<Preference
-			android:key="remaining_stripes_until_review"
-			android:defaultValue="3"/>
+	<Preference android:key="last_shown_stripe_num" android:defaultValue="-1"/>
+	<Preference android:key="should_restart" android:defaultValue="false"/>
+	<Preference android:key="remaining_stripes_until_review" android:defaultValue="3"/>
+	<Preference android:key="tutorial_shown_portrait" android:defaultValue="false"/>
+	<Preference android:key="tutorial_shown_landscape" android:defaultValue="false"/>
 </resources>
