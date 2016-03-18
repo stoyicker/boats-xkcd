@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import com.jorge.boats.xkcd.CustomApplication;
 import com.jorge.boats.xkcd.R;
+import com.jorge.boats.xkcd.data.P;
 import com.jorge.boats.xkcd.di.component.ApplicationComponent;
 import com.jorge.boats.xkcd.util.ThemeUtil;
 import java.util.Locale;
@@ -32,6 +33,9 @@ public abstract class BaseActivity extends AppCompatActivity {
   }
 
   protected final void showRateAppDialog() {
+    if (P.ratedGooglePlay.get()) {
+      return;
+    }
     if (mRateAppDialog == null) {
       //noinspection deprecation -- Yes, deprecated, but the replacement is added in API 22
       mRateAppDialog = new AlertDialog.Builder(this,
@@ -58,6 +62,7 @@ public abstract class BaseActivity extends AppCompatActivity {
               try {
                 startActivity(intent);
               } catch (ActivityNotFoundException e) {
+                P.ratedGooglePlay.put(true).apply();
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
                     String.format(Locale.ENGLISH, "http://play.google.com/store/apps/details?id=%s",
                         packageName))));
@@ -65,6 +70,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
           })
           .setNegativeButton(android.R.string.cancel, null)
+          .setCancelable(false)
           .create();
     }
     mRateAppDialog.show();

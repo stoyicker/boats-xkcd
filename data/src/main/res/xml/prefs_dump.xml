@@ -5,4 +5,5 @@
 	<Preference android:key="remaining_stripes_until_review" android:defaultValue="3"/>
 	<Preference android:key="tutorial_shown_portrait" android:defaultValue="false"/>
 	<Preference android:key="tutorial_shown_landscape" android:defaultValue="false"/>
+	<Preference android:key="rated_google_play" android:defaultValue="false"/>
 </resources>
