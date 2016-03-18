@@ -59,7 +59,7 @@ public class NavigationLinearLayout extends LinearLayout {
   }
 
   public boolean show() {
-    if (isExpanded() || mStripePresenter.isRetryViewShown()) return false;
+    if (isShownAsTutorial || isExpanded() || mStripePresenter.isRetryViewShown()) return false;
 
     animateIn();
     toggleExpanded();
@@ -81,11 +81,9 @@ public class NavigationLinearLayout extends LinearLayout {
   }
 
   public boolean hideTutorial() {
-    hide(getContext().getResources()
-        .getInteger(R.integer.navigation_layout_tutorial_hide_animation_duration_milliseconds),
+    return hide(getContext().getResources()
+            .getInteger(R.integer.navigation_layout_tutorial_hide_animation_duration_milliseconds),
         true);
-
-    return isShownAsTutorial = false;
   }
 
   private boolean hide(final int durationMillis) {
@@ -153,6 +151,25 @@ public class NavigationLinearLayout extends LinearLayout {
       translation.setDuration(animationDurationMillis);
       translation.setInterpolator(interpolator);
       translation.setStartDelay(delayMs);
+      if (mButtons[mButtons.length - 1] == button) {
+        translation.addListener(new Animator.AnimatorListener() {
+          @Override public void onAnimationStart(Animator animation) {
+
+          }
+
+          @Override public void onAnimationEnd(Animator animation) {
+            isShownAsTutorial = false;
+          }
+
+          @Override public void onAnimationCancel(Animator animation) {
+
+          }
+
+          @Override public void onAnimationRepeat(Animator animation) {
+
+          }
+        });
+      }
 
       rotation.setDuration(animationDurationMillis);
       rotation.setInterpolator(interpolator);
