@@ -1,6 +1,7 @@
 package com.jorge.boats.xkcd.data.preference;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,7 +11,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
@@ -42,7 +42,7 @@ public class AboutAppDialogPreference extends CustomDialogPreference {
     super(context, attrs, defStyleAttr, defStyleRes);
   }
 
-  @Override public Dialog buildDialog() {
+  @Override public Dialog buildDialog(final @NonNull AlertDialog.Builder builder) {
     final Context context = getContext();
     PackageInfo packageInfo = null;
     try {
@@ -50,8 +50,7 @@ public class AboutAppDialogPreference extends CustomDialogPreference {
     } catch (final PackageManager.NameNotFoundException ignored) {
     }
 
-    final AlertDialog.Builder ret =
-        new AlertDialog.Builder(context).setTitle(R.string.pref_title_about_app);
+    final AlertDialog.Builder ret = builder.setTitle(R.string.pref_title_about_app);
 
     @SuppressLint("InflateParams") final View view =
         ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(

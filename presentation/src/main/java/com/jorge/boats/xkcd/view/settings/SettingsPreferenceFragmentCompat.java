@@ -1,5 +1,6 @@
 package com.jorge.boats.xkcd.view.settings;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -14,6 +15,7 @@ import com.jorge.boats.xkcd.data.P;
 import com.jorge.boats.xkcd.data.preference.CustomDialogPreference;
 import com.jorge.boats.xkcd.util.ActivityUtil;
 import com.jorge.boats.xkcd.util.ResourceUtil;
+import com.jorge.boats.xkcd.util.ThemeUtil;
 import rx.Subscription;
 import rx.functions.Action1;
 
@@ -102,7 +104,12 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
 
   @Override public void onDisplayPreferenceDialog(final @NonNull Preference preference) {
     if (preference instanceof CustomDialogPreference) {
-      ((CustomDialogPreference) preference).buildDialog().show();
+      final Context context;
+
+      ((CustomDialogPreference) preference).buildDialog(
+          new AlertDialog.Builder(context = getContext(),
+              ThemeUtil.isSelectedThemeDark(context) ? AlertDialog.THEME_DEVICE_DEFAULT_LIGHT
+                  : AlertDialog.THEME_DEVICE_DEFAULT_DARK)).show();
     } else {
       super.onDisplayPreferenceDialog(preference);
     }
