@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.GcmTaskService;
@@ -15,6 +14,7 @@ import com.google.android.gms.gcm.PeriodicTask;
 import com.google.android.gms.gcm.Task;
 import com.google.android.gms.gcm.TaskParams;
 import com.jorge.boats.xkcd.R;
+import com.jorge.boats.xkcd.data.P;
 import com.jorge.boats.xkcd.view.stripe.StripeActivity;
 
 public class UserRetentionGcmTaskService extends GcmTaskService {
@@ -24,14 +24,13 @@ public class UserRetentionGcmTaskService extends GcmTaskService {
 
     @Override
     public int onRunTask(final @Nullable TaskParams taskParams) {
-//        if (System.currentTimeMillis() - Long.parseLong(P.lastOpenedEpoch.get()) > APP_IGNORED_LIMIT_MILLISECONDS) {
-        showReengageNotification();
-//        }
+        if (System.currentTimeMillis() - Long.parseLong(P.lastOpenedEpoch.get()) > APP_IGNORED_LIMIT_MILLISECONDS) {
+            showReengageNotification();
+        }
         return GcmNetworkManager.RESULT_SUCCESS;
     }
 
     private void showReengageNotification() {
-        Log.d("JORGETEST", "Showing 17");
         final Context appContext;
         final Intent intent = new Intent(appContext = getApplicationContext(), StripeActivity.class);
 
@@ -48,7 +47,6 @@ public class UserRetentionGcmTaskService extends GcmTaskService {
                 .setSmallIcon(R.drawable.ic_new_box)
                 .setContentIntent(PendingIntent.getActivity(appContext, -1, intent, PendingIntent.FLAG_ONE_SHOT));
 
-
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             notificationBuilder.setCategory(Notification.CATEGORY_RECOMMENDATION);
         }
@@ -57,12 +55,11 @@ public class UserRetentionGcmTaskService extends GcmTaskService {
     }
 
     public static Task buildPeriodicScrapTask() {
-        Log.d("JORGETEST", "Buidlging 17");
         return new PeriodicTask.Builder()
                 .setFlex(1)
                 .setPeriod(1)
-//                .setFlex(30 * 60)
-//                .setPeriod(45 * 60)
+                .setFlex(30 * 60)
+                .setPeriod(45 * 60)
                 .setRequiredNetwork(Task.NETWORK_STATE_ANY)
                 .setRequiresCharging(false)
                 .setService(UserRetentionGcmTaskService.class)

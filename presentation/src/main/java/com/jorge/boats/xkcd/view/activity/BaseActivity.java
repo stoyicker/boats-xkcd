@@ -16,8 +16,9 @@ import com.google.android.gms.gcm.GcmNetworkManager;
 import com.jorge.boats.xkcd.CustomApplication;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.data.P;
-import com.jorge.boats.xkcd.task.BackgroundTaskManager;
 import com.jorge.boats.xkcd.di.component.ApplicationComponent;
+import com.jorge.boats.xkcd.task.BackgroundTaskManager;
+import com.jorge.boats.xkcd.util.GooglePlayUtil;
 import com.jorge.boats.xkcd.util.ThemeUtil;
 
 import java.util.Locale;
@@ -50,7 +51,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     private void initializeBackgroundTasks() {
-        BackgroundTaskManager.initialize(GcmNetworkManager.getInstance(this));
+        if (GooglePlayUtil.isServicesAvailable(this))
+            BackgroundTaskManager.initialize(GcmNetworkManager.getInstance(this));
     }
 
     protected final void showRateAppDialog() {
