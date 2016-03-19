@@ -48,6 +48,7 @@ public class UserRetentionGcmTaskService extends GcmTaskService {
                 .setContentIntent(PendingIntent.getActivity(appContext, -1, intent, PendingIntent.FLAG_ONE_SHOT));
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            //noinspection InlinedApi -- To not to pop lint
             notificationBuilder.setCategory(Notification.CATEGORY_RECOMMENDATION);
         }
 
