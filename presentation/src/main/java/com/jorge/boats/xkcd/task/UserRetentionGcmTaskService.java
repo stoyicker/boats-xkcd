@@ -57,8 +57,6 @@ public class UserRetentionGcmTaskService extends GcmTaskService {
 
     public static Task buildPeriodicScrapTask() {
         return new PeriodicTask.Builder()
-                .setFlex(1)
-                .setPeriod(1)
                 .setFlex(30 * 60)
                 .setPeriod(45 * 60)
                 .setRequiredNetwork(Task.NETWORK_STATE_ANY)
