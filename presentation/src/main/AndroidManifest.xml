@@ -2,6 +2,10 @@
     package="com.jorge.boats.xkcd">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- To fix a bug with the notifications in Android 4.2: -->
+    <uses-permission
+        android:name="android.permission.VIBRATE"
+        android:maxSdkVersion="18" />
 
     <application
         android:name=".CustomApplication"

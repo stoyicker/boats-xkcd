@@ -31,6 +31,7 @@ public class UserRetentionGcmTaskService extends GcmTaskService {
     }
 
     private void showReengageNotification() {
+        Log.d("JORGETEST", "Showing 17");
         final Context appContext;
         final Intent intent = new Intent(appContext = getApplicationContext(), StripeActivity.class);
 
@@ -40,22 +41,23 @@ public class UserRetentionGcmTaskService extends GcmTaskService {
                 notificationBuilder = new NotificationCompat.Builder(appContext)
                 .setAutoCancel(true)
                 .setContentTitle(getString(R.string.notification_title_user_retention))
-                .setSubText(getString(R.string.notification_user_retention_content))
+                .setContentText(getString(R.string.notification_user_retention_content))
                 .setShowWhen(false)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setLocalOnly(true)
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setContentIntent(PendingIntent.getActivity(appContext, R.id.notification_user_retention, intent, PendingIntent.FLAG_ONE_SHOT));
+                .setSmallIcon(R.drawable.ic_new_box)
+                .setContentIntent(PendingIntent.getActivity(appContext, -1, intent, PendingIntent.FLAG_ONE_SHOT));
+
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             notificationBuilder.setCategory(Notification.CATEGORY_RECOMMENDATION);
         }
 
-        ((NotificationManager) appContext.getSystemService(NOTIFICATION_SERVICE)).notify(0, notificationBuilder.build());
+        ((NotificationManager) appContext.getSystemService(NOTIFICATION_SERVICE)).notify(R.id.notification_user_retention, notificationBuilder.build());
     }
 
     public static Task buildPeriodicScrapTask() {
-        Log.d("JORGETEST", "Buidlging 2");
+        Log.d("JORGETEST", "Buidlging 17");
         return new PeriodicTask.Builder()
                 .setFlex(1)
                 .setPeriod(1)
