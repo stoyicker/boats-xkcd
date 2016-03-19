@@ -51,7 +51,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     private void initializeBackgroundTasks() {
-        if (GooglePlayUtil.isServicesAvailable(this))
+        if (GooglePlayUtil.isServicesAvailable(this, false))
             BackgroundTaskManager.initialize(GcmNetworkManager.getInstance(this));
     }
 

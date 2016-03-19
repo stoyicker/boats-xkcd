@@ -2,10 +2,10 @@ package com.jorge.boats.xkcd.util;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.jorge.boats.xkcd.log.ApplicationLogger;
 
 public abstract class GooglePlayUtil {
 
@@ -15,16 +15,16 @@ public abstract class GooglePlayUtil {
         throw new IllegalAccessError("No instances");
     }
 
-    public static boolean isServicesAvailable(final @NonNull Activity activity) {
+    public static boolean isServicesAvailable(final @NonNull Activity activity, final boolean showErrorDialogIfAvailable) {
         final GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
         final int resultCode = apiAvailability.isGooglePlayServicesAvailable(activity);
 
         if (resultCode != ConnectionResult.SUCCESS) {
-            if (apiAvailability.isUserResolvableError(resultCode)) {
+            if (apiAvailability.isUserResolvableError(resultCode) && showErrorDialogIfAvailable) {
                 apiAvailability.getErrorDialog(activity, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
                         .show();
             } else {
-                Log.i(GooglePlayUtil.class.getName(), "Google Play Services not available.");
+                ApplicationLogger.i("Google Play Services not available.");
             }
             return false;
         }
