@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-	<Preference android:key="last_shown_stripe_num" android:defaultValue="-1"/>
-	<Preference android:key="should_restart" android:defaultValue="false"/>
-	<Preference android:key="remaining_stripes_until_review" android:defaultValue="3"/>
-	<Preference android:key="tutorial_shown_portrait" android:defaultValue="false"/>
-	<Preference android:key="tutorial_shown_landscape" android:defaultValue="false"/>
-	<Preference android:key="rated_google_play" android:defaultValue="false"/>
+    <Preference
+        android:defaultValue="-1"
+        android:key="last_shown_stripe_num" />
+    <Preference
+        android:defaultValue="false"
+        android:key="should_restart" />
+    <Preference
+        android:defaultValue="3"
+        android:key="remaining_stripes_until_review" />
+    <Preference
+        android:defaultValue="false"
+        android:key="tutorial_shown_portrait" />
+    <Preference
+        android:defaultValue="false"
+        android:key="tutorial_shown_landscape" />
+    <Preference
+        android:defaultValue="false"
+        android:key="rated_google_play" />
+    <Preference
+        android:defaultValue="stub"
+        android:key="last_opened_epoch" />
 </resources>

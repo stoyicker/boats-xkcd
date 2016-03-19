@@ -1,4 +1,4 @@
-package com.jorge.boats.xkcd.task;
+package com.jorge.boats.xkcd.view.task;
 
 import android.content.Context;
 import android.graphics.Typeface;

@@ -8,7 +8,7 @@ import com.jorge.boats.xkcd.domain.interactor.GetStripeUseCase;
 import com.jorge.boats.xkcd.domain.repository.XkcdStore;
 import com.jorge.boats.xkcd.helper.ValueGenerator;
 import com.jorge.boats.xkcd.mapper.PresentationEntityMapper;
-import com.jorge.boats.xkcd.task.TypefaceLoadTask;
+import com.jorge.boats.xkcd.view.task.TypefaceLoadTask;
 import com.jorge.boats.xkcd.view.stripe.StripeContentView;
 import org.junit.Before;
 import org.junit.Test;

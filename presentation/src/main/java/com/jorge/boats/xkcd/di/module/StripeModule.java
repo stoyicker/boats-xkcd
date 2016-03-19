@@ -11,7 +11,7 @@ import com.jorge.boats.xkcd.domain.interactor.GetStripeUseCase;
 import com.jorge.boats.xkcd.domain.interactor.UseCase;
 import com.jorge.boats.xkcd.domain.repository.XkcdStore;
 import com.jorge.boats.xkcd.navigation.NavigationLinearLayout;
-import com.jorge.boats.xkcd.task.TypefaceLoadTask;
+import com.jorge.boats.xkcd.view.task.TypefaceLoadTask;
 import com.jorge.boats.xkcd.view.widget.CustomTitleToolbar;
 import com.jorge.boats.xkcd.view.widget.RetryLinearLayout;
 import dagger.Module;
