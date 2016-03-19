@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.data.P;
@@ -105,11 +106,12 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
   @Override public void onDisplayPreferenceDialog(final @NonNull Preference preference) {
     if (preference instanceof CustomDialogPreference) {
       final Context context;
+      final boolean isDark;
 
-      ((CustomDialogPreference) preference).buildDialog(
-          new AlertDialog.Builder(context = getContext(),
-              ThemeUtil.isSelectedThemeDark(context) ? AlertDialog.THEME_DEVICE_DEFAULT_LIGHT
-                  : AlertDialog.THEME_DEVICE_DEFAULT_DARK)).show();
+      ((CustomDialogPreference) preference).buildDialog(new AlertDialog.Builder(
+          new ContextThemeWrapper(context = getContext(),
+              (isDark = ThemeUtil.isSettingsThemeDark(context)) ? R.style.DarkDialog
+                  : R.style.LightDialog)), isDark).show();
     } else {
       super.onDisplayPreferenceDialog(preference);
     }

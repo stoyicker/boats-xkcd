@@ -29,5 +29,6 @@ public abstract class CustomDialogPreference extends DialogPreference {
     super(context, attrs, defStyleAttr, defStyleRes);
   }
 
-  public abstract Dialog buildDialog(final @NonNull AlertDialog.Builder builder);
+  public abstract Dialog buildDialog(final @NonNull AlertDialog.Builder builder,
+      final boolean isDark);
 }

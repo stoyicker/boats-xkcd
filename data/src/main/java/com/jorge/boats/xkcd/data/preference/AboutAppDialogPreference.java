@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -42,7 +43,8 @@ public class AboutAppDialogPreference extends CustomDialogPreference {
     super(context, attrs, defStyleAttr, defStyleRes);
   }
 
-  @Override public Dialog buildDialog(final @NonNull AlertDialog.Builder builder) {
+  @Override
+  public Dialog buildDialog(final @NonNull AlertDialog.Builder builder, final boolean isDark) {
     final Context context = getContext();
     PackageInfo packageInfo = null;
     try {
@@ -50,20 +52,27 @@ public class AboutAppDialogPreference extends CustomDialogPreference {
     } catch (final PackageManager.NameNotFoundException ignored) {
     }
 
-    final AlertDialog.Builder ret = builder.setTitle(R.string.pref_title_about_app);
+    builder.setTitle(R.string.pref_title_about_app);
 
     @SuppressLint("InflateParams") final View view =
         ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
             R.layout.preference_about_app, null, false);
-    final TextView body = (TextView) view.findViewById(R.id.body);
+    final TextView body = (TextView) view.findViewById(R.id.body), version =
+        (TextView) view.findViewById(R.id.version);
 
     if (packageInfo != null) {
-      body.setText(Html.fromHtml(context.getString(R.string.pref_message_about_app)));
+      if (isDark) {
+        body.setTextColor(Color.WHITE);
+        version.setTextColor(Color.WHITE);
+      } else {
+        body.setTextColor(Color.BLACK);
+        version.setTextColor(Color.BLACK);
+      }
       body.setMovementMethod(LinkMovementMethod.getInstance());
+      body.setText(Html.fromHtml(context.getString(R.string.pref_message_about_app)));
 
-      ((TextView) view.findViewById(R.id.version)).setText(
-          context.getString(R.string.version_tag, packageInfo.versionName,
-              packageInfo.versionCode));
+      version.setText(context.getString(R.string.version_tag, packageInfo.versionName,
+          packageInfo.versionCode));
     }
 
     final ViewTreeObserver observer = body.getViewTreeObserver();
@@ -95,7 +104,7 @@ public class AboutAppDialogPreference extends CustomDialogPreference {
       }
     });
 
-    ret.setView(view)
+    builder.setView(view)
         .setNegativeButton(android.R.string.cancel, null)
         .setPositiveButton(R.string.licenses, new DialogInterface.OnClickListener() {
           @Override public void onClick(final @NonNull DialogInterface dialog, final int which) {
@@ -107,6 +116,6 @@ public class AboutAppDialogPreference extends CustomDialogPreference {
           }
         });
 
-    return ret.create();
+    return builder.create();
   }
 }

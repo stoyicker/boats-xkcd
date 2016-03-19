@@ -53,11 +53,15 @@ public abstract class ThemeUtil {
     }
   }
 
-  public static boolean isSelectedThemeDark(final @NonNull Context context) {
+  public static boolean isAppThemeDark(final @NonNull Context context) {
     final String themeName, theme0Name = context.getString(R.string.theme_0_name), theme2Name =
         context.getString(R.string.theme_2_name);
 
     return (themeName = P.themeName.get()).contentEquals(theme0Name) || themeName.contentEquals(
         theme2Name);
+  }
+
+  public static boolean isSettingsThemeDark(final @NonNull Context context) {
+    return !isAppThemeDark(context);
   }
 }

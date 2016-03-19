@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -38,16 +39,17 @@ public class AboutXkcdDialogPreference extends CustomDialogPreference {
     super(context, attrs, defStyleAttr, defStyleRes);
   }
 
-  @Override public Dialog buildDialog(final @NonNull AlertDialog.Builder builder) {
+  @Override
+  public Dialog buildDialog(final @NonNull AlertDialog.Builder builder, final boolean isDark) {
     final Context context = getContext();
     @SuppressLint("InflateParams") final View view =
         ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
             R.layout.preference_about_xkcd, null, false);
-    final TextView body;
+    final TextView body = (TextView) view.findViewById(R.id.body);
 
-    (body = (TextView) view.findViewById(R.id.body)).setText(
-        Html.fromHtml(context.getString(R.string.pref_message_about_xkcd)));
+    body.setTextColor(isDark ? Color.WHITE : Color.BLACK);
     body.setMovementMethod(LinkMovementMethod.getInstance());
+    body.setText(Html.fromHtml(context.getString(R.string.pref_message_about_xkcd)));
 
     return builder.setTitle(R.string.pref_title_about_xkcd)
         .setView(view)
