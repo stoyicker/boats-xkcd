@@ -5,7 +5,7 @@
 				android:defaultValue="false"
 				android:key="volume_button_control_navigation_enabled"
 				android:title="@string/pref_title_volume_button_navigation"/>
-		<android.support.v7.preference.ListPreference
+		<com.jorge.boats.xkcd.data.preference.list.StyledListPreference
 				android:defaultValue="@string/theme_0_name"
 				android:key="theme_name"
 				android:title="@string/pref_title_theme_name"

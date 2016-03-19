@@ -14,6 +14,7 @@ import android.view.View;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.data.P;
 import com.jorge.boats.xkcd.data.preference.CustomDialogPreference;
+import com.jorge.boats.xkcd.data.preference.list.StyledListPreference;
 import com.jorge.boats.xkcd.util.ActivityUtil;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ThemeUtil;
@@ -25,13 +26,14 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
   public static final String FRAGMENT_TAG =
       SettingsPreferenceFragmentCompat.class.getCanonicalName();
 
-  private Subscription mVolumeKeyNavigationSummary, mThemeSwitch;
+  private Subscription mVolumeKeyNavigationSummary;
+  private StyledListPreference.ThemeChangeListener mThemeChangeListener;
 
   @Override public void onCreatePreferences(final @Nullable Bundle bundle, final String rootKey) {
     setPreferencesFromResource(com.jorge.boats.xkcd.data.R.xml.prefs_settings, rootKey);
 
     initializeVolumeKeyControlPreference();
-    initializeThemePreference();
+    initializeThemeChangeListener();
     initializeSharePreference();
   }
 
@@ -43,22 +45,13 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
             findPreference(P.volumeButtonControlNavigationEnabled.key)));
   }
 
-  private void initializeThemePreference() {
-    final Preference themePreference;
-
-    mThemeSwitch = P.themeName.rx()
-        .asObservable()
-        .subscribe(new ThemeChangeAction(themePreference = findPreference(P.themeName.key)));
-    themePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-      @Override public boolean onPreferenceChange(final @NonNull Preference preference,
-          final @NonNull Object o) {
-        if (!((String) o).contentEquals(P.themeName.get())) {
-          P.shouldRestart.put(true).apply();
-          ActivityUtil.restart(getActivity());
-        }
-        return true;
+  private void initializeThemeChangeListener() {
+    mThemeChangeListener = new StyledListPreference.ThemeChangeListener() {
+      @Override public void onThemeChanged() {
+        P.shouldRestart.put(true).apply();
+        ActivityUtil.restart(getActivity());
       }
-    });
+    };
   }
 
   private void initializeSharePreference() {
@@ -89,9 +82,6 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
     if (!mVolumeKeyNavigationSummary.isUnsubscribed()) {
       mVolumeKeyNavigationSummary.unsubscribe();
     }
-    if (!mThemeSwitch.isUnsubscribed()) {
-      mThemeSwitch.unsubscribe();
-    }
 
     super.onDetach();
   }
@@ -104,16 +94,19 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
   }
 
   @Override public void onDisplayPreferenceDialog(final @NonNull Preference preference) {
-    if (preference instanceof CustomDialogPreference) {
-      final Context context;
-      final boolean isDark;
+    final Context context;
+    final boolean isDark;
 
+    if (preference instanceof CustomDialogPreference) {
       ((CustomDialogPreference) preference).buildDialog(new AlertDialog.Builder(
           new ContextThemeWrapper(context = getContext(),
               (isDark = ThemeUtil.isSettingsThemeDark(context)) ? R.style.DarkDialog
                   : R.style.LightDialog)), isDark).show();
-    } else {
-      super.onDisplayPreferenceDialog(preference);
+    } else if (preference instanceof StyledListPreference) {
+      ((StyledListPreference) preference).buildDialog(new AlertDialog.Builder(
+          new ContextThemeWrapper(context = getContext(),
+              (isDark = ThemeUtil.isSettingsThemeDark(context)) ? R.style.DarkDialog
+                  : R.style.LightDialog)), isDark, mThemeChangeListener).show();
     }
   }
 
