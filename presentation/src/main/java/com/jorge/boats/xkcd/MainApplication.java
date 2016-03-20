@@ -1,6 +1,9 @@
 package com.jorge.boats.xkcd;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.multidex.MultiDex;
 
 import com.jorge.boats.xkcd.data.DataManager;
 import com.jorge.boats.xkcd.di.component.ApplicationComponent;
@@ -10,6 +13,12 @@ import com.jorge.boats.xkcd.di.module.ApplicationModule;
 public class MainApplication extends Application {
 
     private ApplicationComponent mApplicationComponent;
+
+    @Override
+    protected void attachBaseContext(final @NonNull Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     @Override
     public void onCreate() {
