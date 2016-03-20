@@ -10,7 +10,8 @@ task downloadProguardFiles {
                  "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-okio.pro",
                  "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-glide.pro",
                  "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-retrofit2.pro",
-                 "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-crashlytics-2.pro"])
+                 "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-crashlytics-2.pro",
+                 "https://raw.githubusercontent.com/JakeWharton/timber/master/timber/consumer-proguard-rules.pro"])
         dest "proguard/proguardDownloadContainer"
         overwrite true
         onlyIfNewer true
