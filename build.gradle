@@ -14,7 +14,6 @@ buildscript {
     def dexcountPluginVersion = "0.3.1"
     def androidAptPluginVersion = "1.8"
     def pSyncPluginVersion = "1.1.5"
-    def fileDownloadPluginVersion = "2.1.0"
     def jsonSchema2PojoPluginVersion = "0.4.18"
     def fabricToolsPluginVersion = "1.21.5"
 
@@ -22,7 +21,6 @@ buildscript {
                                  dexcountPlugin       : "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${dexcountPluginVersion}",
                                  androidAptPlugin     : "com.neenbedankt.gradle.plugins:android-apt:${androidAptPluginVersion}",
                                  pSync                : "gradle.plugin.com.flipboard:psync:${pSyncPluginVersion}",
-                                 fileDownloadPlugin   : "de.undercouch:gradle-download-task:${fileDownloadPluginVersion}",
                                  jsonSchema2PojoPlugin: "org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:${jsonSchema2PojoPluginVersion}",
                                  fabricToolsPlugin    : "io.fabric.tools:gradle:${fabricToolsPluginVersion}"]
 
@@ -31,7 +29,6 @@ buildscript {
         classpath classpathDependencies.dexcountPlugin
         classpath classpathDependencies.androidAptPlugin
         classpath classpathDependencies.pSync
-        classpath classpathDependencies.fileDownloadPlugin
         classpath classpathDependencies.jsonSchema2PojoPlugin
         classpath classpathDependencies.fabricToolsPlugin
     }

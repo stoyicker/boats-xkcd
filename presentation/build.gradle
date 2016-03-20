@@ -2,8 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 apply plugin: 'com.neenbedankt.android-apt'
 
-apply from: "proguard/proguard.gradle"
-
 android {
 
     //noinspection GroovyAssignabilityCheck
@@ -24,7 +22,7 @@ android {
         //noinspection GroovyAssignabilityCheck
         testInstrumentationRunner androidTestInstrumentationRunner
 
-        manifestPlaceholders = [fabricApiKey:"$System.env.FABRIC_API_KEY"]
+        manifestPlaceholders = [fabricApiKey: "$System.env.FABRIC_API_KEY"]
     }
 
     compileOptions {
@@ -33,38 +31,26 @@ android {
         targetCompatibility javaVersion
     }
 
-    //  signingConfigs {
-    //    googleplay {
-    //      storeFile new File("boats.keystore")
-    //      storePassword(new File("keystore.pwd").text.trim())
-    //      keyAlias("boats")
-    //      keyPassword(new File("key.pwd").text.trim())
-    //    }
-    //  }
+      signingConfigs {
+        googlePlay {
+          storeFile new File("boats.keystore")
+          storePassword(new File("keystore.pwd").text.trim())
+          keyAlias("boats")
+          keyPassword(new File("key.pwd").text.trim())
+        }
+      }
 
     buildTypes {
         debug {
             minifyEnabled false
-            shrinkResources false
+            shrinkResources true
         }
 
         release {
-            //TODO Enable these three flags when ProGuard is setup and the product is ready to release
             minifyEnabled false
-            shrinkResources false
-            zipAlignEnabled false
-            proguardFiles =
-                    ["proguard/proguard-android-extensions.pro", "proguard/proguard-glide-okhttp-module.pro"]
-            proguardFiles += getDefaultProguardFile("proguard-android-optimize.txt")
-            //    noinspection GroovyAssignabilityCheck
-            final File f = java.nio.file.Paths.get(rootProject.rootDir.getAbsolutePath(), "presentation",
-                    "proguard", "proguardDownloadContainer").
-                    toFile()
-            f?.listFiles()?.each { file ->
-                System.out.println(String.format(Locale.ENGLISH, "Adding %s\n", file.getName()))
-                proguardFiles += file
-            }
-            //      signingConfig signingConfigs.googleplay
+            shrinkResources true
+            zipAlignEnabled true
+            signingConfig signingConfigs.googlePlay
         }
     }
 
