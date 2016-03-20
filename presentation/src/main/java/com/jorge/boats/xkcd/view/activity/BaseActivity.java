@@ -13,7 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.gcm.GcmNetworkManager;
-import com.jorge.boats.xkcd.CustomApplication;
+import com.jorge.boats.xkcd.MainApplication;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.data.P;
 import com.jorge.boats.xkcd.di.component.ApplicationComponent;
@@ -35,7 +35,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void createComponentAndInjectSelf();
 
     protected final ApplicationComponent getApplicationComponent() {
-        return ((CustomApplication) getApplication()).getApplicationComponent();
+        return ((MainApplication) getApplication()).getApplicationComponent();
     }
 
     @Override

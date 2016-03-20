@@ -8,7 +8,7 @@
         android:maxSdkVersion="18" />
 
     <application
-        android:name=".CustomApplication"
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup"
         android:icon="@mipmap/ic_launcher"
@@ -36,15 +36,6 @@
                 android:value=".view.stripe.StripeActivity" />
         </activity>
 
-        <service
-            android:name=".task.UserRetentionGcmTaskService"
-            android:exported="true"
-            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
-            <intent-filter>
-                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY" />
-                <action android:name="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE" />
-            </intent-filter>
-        </service>
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="${fabricApiKey}" />

@@ -7,13 +7,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.GcmTaskService;
-import com.google.android.gms.gcm.PeriodicTask;
-import com.google.android.gms.gcm.Task;
 import com.google.android.gms.gcm.TaskParams;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.data.P;
@@ -21,21 +17,14 @@ import com.jorge.boats.xkcd.view.stripe.StripeActivity;
 
 public class UserRetentionGcmTaskService extends GcmTaskService {
 
-    private static final String TASK_TAG = UserRetentionGcmTaskService.class.getName();
     private static final long APP_IGNORED_LIMIT_MILLISECONDS = 1000 * 60 * 60 * 24 * 4;
 
     @Override
     public int onRunTask(final @Nullable TaskParams taskParams) {
-        try {
-            if (System.currentTimeMillis() - Long.parseLong(P.lastOpenedEpoch.get()) > APP_IGNORED_LIMIT_MILLISECONDS) {
-                showReengageNotification();
-            }
-            return GcmNetworkManager.RESULT_SUCCESS;
-        } catch (final @Nullable Exception componentNotRegistered) {
-            Log.w(UserRetentionGcmTaskService.class.getName(), componentNotRegistered.getMessage()); // We don't want ApplicationLogger here
-            Crashlytics.logException(componentNotRegistered);
-            return GcmNetworkManager.RESULT_RESCHEDULE;
+        if (System.currentTimeMillis() - Long.parseLong(P.lastOpenedEpoch.get()) > APP_IGNORED_LIMIT_MILLISECONDS) {
+            showReengageNotification();
         }
+        return GcmNetworkManager.RESULT_SUCCESS;
     }
 
     private void showReengageNotification() {
@@ -61,17 +50,5 @@ public class UserRetentionGcmTaskService extends GcmTaskService {
         }
 
         ((NotificationManager) appContext.getSystemService(NOTIFICATION_SERVICE)).notify(R.id.notification_user_retention, notificationBuilder.build());
-    }
-
-    public static Task buildPeriodicScrapTask() {
-        return new PeriodicTask.Builder()
-                .setFlex(30 * 60)
-                .setPeriod(45 * 60)
-                .setRequiredNetwork(Task.NETWORK_STATE_ANY)
-                .setRequiresCharging(false)
-                .setService(UserRetentionGcmTaskService.class)
-                .setTag(TASK_TAG)
-                .setUpdateCurrent(true)
-                .build();
     }
 }

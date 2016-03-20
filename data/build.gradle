@@ -54,10 +54,12 @@ dependencies {
     final Collection<String> providedDependencies = providedDataDependencies.values()
     final Collection<String> compileDependencies = compileDataDependencies.values()
     final Collection<String> aptDependencies = aptDataDependencies.values()
+    final Collection<String> releaseCompileDataDependencies = releaseCompileDataDependencies.values()
     final Collection<String> testCompileDataDependencies = testCompileDataDependencies.values()
 
     for (final String dependency : providedDependencies) provided dependency
     for (final String dependency : compileDependencies) compile dependency
     for (final String dependency : aptDependencies) apt dependency
+    for (final String dependency : releaseCompileDataDependencies) releaseCompile dependency
     for (final String dependency : testCompileDataDependencies) testCompile dependency
 }

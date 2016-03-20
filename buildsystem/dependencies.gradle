@@ -110,8 +110,9 @@ ext {
                                retrofitRxJavaAdapter: "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
                                commonsLang3         : "org.apache.commons:commons-lang3:${commonsLang3Version}",
                                supportPreference    : "com.android.support:preference-v7:${supportPreferenceVersion}",
-                               rxPreferences        : "com.f2prateek.rx.preferences:rx-preferences:${rxPreferencesVersion}",
-                               crashlytics          : "com.crashlytics.sdk.android:crashlytics:${crashlyticsVersion}"]
+                               rxPreferences        : "com.f2prateek.rx.preferences:rx-preferences:${rxPreferencesVersion}"]
+
+    releaseCompileDataDependencies = [crashlytics: "com.crashlytics.sdk.android:crashlytics:${crashlyticsVersion}"]
 
     aptDataDependencies = [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
                            dbFlowCompiler: "com.github.Raizlabs.DBFlow:dbflow-processor:${dbFlowVersion}"]
