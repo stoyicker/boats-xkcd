@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.GcmTaskService;
 import com.google.android.gms.gcm.PeriodicTask;
@@ -32,6 +33,7 @@ public class UserRetentionGcmTaskService extends GcmTaskService {
             return GcmNetworkManager.RESULT_SUCCESS;
         } catch (final @Nullable Exception componentNotRegistered) {
             Log.w(UserRetentionGcmTaskService.class.getName(), componentNotRegistered.getMessage()); // We don't want ApplicationLogger here
+            Crashlytics.logException(componentNotRegistered);
             return GcmNetworkManager.RESULT_RESCHEDULE;
         }
     }
