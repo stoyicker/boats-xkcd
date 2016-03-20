@@ -45,6 +45,9 @@
                 <action android:name="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE" />
             </intent-filter>
         </service>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="${fabricApiKey}" />
     </application>
 
 </manifest>

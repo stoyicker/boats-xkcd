@@ -6,58 +6,58 @@ apply from: "model/generate.gradle"
 
 android {
 
-  //noinspection GroovyAssignabilityCheck
-  compileSdkVersion androidCompileSdkVersion
-  //noinspection GroovyAssignabilityCheck
-  buildToolsVersion androidBuildToolsVersion
-
-  defaultConfig {
     //noinspection GroovyAssignabilityCheck
-    minSdkVersion androidMinSdkVersion
+    compileSdkVersion androidCompileSdkVersion
     //noinspection GroovyAssignabilityCheck
-    targetSdkVersion androidTargetSdkVersion
-  }
+    buildToolsVersion androidBuildToolsVersion
 
-  compileOptions {
-    //noinspection GroovyAssignabilityCheck
-    sourceCompatibility javaVersion
-    targetCompatibility javaVersion
-  }
+    defaultConfig {
+        //noinspection GroovyAssignabilityCheck
+        minSdkVersion androidMinSdkVersion
+        //noinspection GroovyAssignabilityCheck
+        targetSdkVersion androidTargetSdkVersion
+    }
 
-  lintOptions {
-    abortOnError !rootProject.ext.executingOnCI
-    absolutePaths true
-    checkAllWarnings true
-    htmlOutput = new File("${staticAnalysisReportTarget}/data/lint.html")
-    quiet false
-    warningsAsErrors true
-  }
-  
-  dexOptions {
-    incremental true
-    preDexLibraries true
-  }
+    compileOptions {
+        //noinspection GroovyAssignabilityCheck
+        sourceCompatibility javaVersion
+        targetCompatibility javaVersion
+    }
+
+    lintOptions {
+        abortOnError !rootProject.ext.executingOnCI
+        absolutePaths true
+        checkAllWarnings true
+        htmlOutput = new File("${staticAnalysisReportTarget}/data/lint.html")
+        quiet false
+        warningsAsErrors true
+    }
+
+    dexOptions {
+        incremental true
+        preDexLibraries true
+    }
 }
 
 apply plugin: 'com.flipboard.psync'
 
 psync {
-  className = "P"
-  includesPattern = "**/xml/prefs_*.xml"
-  packageName = String.format(Locale.ENGLISH, rootProject.ext.androidApplicationIdBase, ".data")
-  generateRx = true
+    className = "P"
+    includesPattern = "**/xml/prefs_*.xml"
+    packageName = String.format(Locale.ENGLISH, rootProject.ext.androidApplicationIdBase, ".data")
+    generateRx = true
 }
 
 dependencies {
-  compile project(":domain")
+    compile project(":domain")
 
-  final Collection<String> providedDependencies = providedDataDependencies.values()
-  final Collection<String> compileDependencies = compileDataDependencies.values()
-  final Collection<String> aptDependencies = aptDataDependencies.values()
-  final Collection<String> testCompileDataDependencies = testCompileDataDependencies.values()
+    final Collection<String> providedDependencies = providedDataDependencies.values()
+    final Collection<String> compileDependencies = compileDataDependencies.values()
+    final Collection<String> aptDependencies = aptDataDependencies.values()
+    final Collection<String> testCompileDataDependencies = testCompileDataDependencies.values()
 
-  for (final String dependency : providedDependencies) provided dependency
-  for (final String dependency : compileDependencies) compile dependency
-  for (final String dependency : aptDependencies) apt dependency
-  for (final String dependency : testCompileDataDependencies) testCompile dependency
+    for (final String dependency : providedDependencies) provided dependency
+    for (final String dependency : compileDependencies) compile dependency
+    for (final String dependency : aptDependencies) apt dependency
+    for (final String dependency : testCompileDataDependencies) testCompile dependency
 }
