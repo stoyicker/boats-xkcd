@@ -47,6 +47,7 @@ ext {
     rxPreferencesVersion = "1.0.1"
     gcmVersion = "8.4.0"
     crashlyticsVersion = "2.5.5"
+    multidexSupportVersion = "1.0.1"
 
     //Testing
     espressoVersion = "2.2.1"
@@ -73,7 +74,8 @@ ext {
                                        supportDesign         : "com.android.support:design:${supportDesignVersion}",
                                        glide                 : "com.github.bumptech.glide:glide:${glideVersion}",
                                        okHttpGlideIntegration: "com.github.bumptech.glide:okhttp3-integration:${glideOkHttp3IntegrationVersion}@aar",
-                                       gcm                   : "com.google.android.gms:play-services-gcm:${gcmVersion}"]
+                                       gcm                   : "com.google.android.gms:play-services-gcm:${gcmVersion}",
+                                       multidexSupport: "com.android.support:multidex:${multidexSupportVersion}"]
 
     aptPresentationDependencies =
             [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}"]

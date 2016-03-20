@@ -23,6 +23,8 @@ android {
         testInstrumentationRunner androidTestInstrumentationRunner
 
         manifestPlaceholders = [fabricApiKey: "$System.env.FABRIC_API_KEY"]
+
+        multiDexEnabled true
     }
 
     compileOptions {
@@ -31,37 +33,42 @@ android {
         targetCompatibility javaVersion
     }
 
-      signingConfigs {
+    signingConfigs {
         googlePlay {
-          storeFile new File("boats.keystore")
-          storePassword(new File("keystore.pwd").text.trim())
-          keyAlias("boats")
-          keyPassword(new File("key.pwd").text.trim())
+            storeFile new File("boats.keystore")
+            storePassword(new File("keystore.pwd").text.trim())
+            keyAlias("boats")
+            keyPassword(new File("key.pwd").text.trim())
         }
-      }
+    }
 
     buildTypes {
         debug {
-            minifyEnabled true
-            proguardFiles "proguard-rules.pro"
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
         }
 
         release {
-            minifyEnabled true
-            proguardFiles "proguard-rules.pro"
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
             zipAlignEnabled true
             signingConfig signingConfigs.googlePlay
         }
     }
 
-    flavorDimensions "cost"
+    flavorDimensions "stage", "base"
 
     productFlavors {
-        free {
+        dev {
+            minSdkVersion 21
+            dimension "stage"
+        }
+        prod {
+            dimension "stage"
+        }
+        core {
             applicationId String.format(Locale.ENGLISH, androidApplicationIdBase, "")
-            dimension "cost"
+            dimension "base"
         }
     }
 
