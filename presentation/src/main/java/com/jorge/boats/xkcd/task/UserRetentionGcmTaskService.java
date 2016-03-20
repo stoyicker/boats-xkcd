@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.GcmTaskService;
@@ -24,10 +25,15 @@ public class UserRetentionGcmTaskService extends GcmTaskService {
 
     @Override
     public int onRunTask(final @Nullable TaskParams taskParams) {
-        if (System.currentTimeMillis() - Long.parseLong(P.lastOpenedEpoch.get()) > APP_IGNORED_LIMIT_MILLISECONDS) {
-            showReengageNotification();
+        try {
+            if (System.currentTimeMillis() - Long.parseLong(P.lastOpenedEpoch.get()) > APP_IGNORED_LIMIT_MILLISECONDS) {
+                showReengageNotification();
+            }
+            return GcmNetworkManager.RESULT_SUCCESS;
+        } catch (final @Nullable Exception componentNotRegistered) {
+            Log.w(UserRetentionGcmTaskService.class.getName(), componentNotRegistered.getMessage()); // We don't want ApplicationLogger here
+            return GcmNetworkManager.RESULT_RESCHEDULE;
         }
-        return GcmNetworkManager.RESULT_SUCCESS;
     }
 
     private void showReengageNotification() {
