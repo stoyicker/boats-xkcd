@@ -1,19 +1,20 @@
 apply plugin: 'de.undercouch.download'
 
 task downloadProguardFiles {
-  download {
-    src(
-        ["https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-butterknife-7.pro",
-         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-gson.pro",
-         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-rx-java.pro", "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-support-design.pro",
-         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-okhttp.pro",
-         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-okio.pro",
-         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-glide.pro",
-         "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-retrofit2.pro"])
-    dest "proguard/proguardDownloadContainer"
-    overwrite true
-    onlyIfNewer true
-    compress false
-    acceptAnyCertificate false
-  }
+    download {
+        src(
+                ["https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-butterknife-7.pro",
+                 "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-gson.pro",
+                 "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-rx-java.pro", "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-support-design.pro",
+                 "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-okhttp.pro",
+                 "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-okio.pro",
+                 "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-glide.pro",
+                 "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-square-retrofit2.pro",
+                 "https://raw.githubusercontent.com/krschultz/android-proguard-snippets/master/libraries/proguard-crashlytics-2.pro"])
+        dest "proguard/proguardDownloadContainer"
+        overwrite true
+        onlyIfNewer true
+        compress false
+        acceptAnyCertificate false
+    }
 }
