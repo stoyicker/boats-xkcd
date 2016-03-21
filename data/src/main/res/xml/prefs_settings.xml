@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<PreferenceCategory android:title="@string/preference_category_title_general">
-		<android.support.v7.preference.SwitchPreferenceCompat
-				android:defaultValue="false"
-				android:key="volume_button_control_navigation_enabled"
-				android:title="@string/pref_title_volume_button_navigation"/>
-		<com.jorge.boats.xkcd.data.preference.list.StyledListPreference
-				android:defaultValue="@string/theme_0_name"
-				android:key="theme_name"
-				android:title="@string/pref_title_theme_name"
-				android:entries="@array/theme_names"
-				android:entryValues="@array/theme_names"/>
-	</PreferenceCategory>
-	<PreferenceCategory android:title="@string/preference_category_title_about">
-		<com.jorge.boats.xkcd.data.preference.AboutXkcdDialogPreference
-				android:title="@string/pref_title_about_xkcd"
-				android:summary="@string/pref_summary_about_xkcd"
-				android:positiveButtonText="@null"
-				android:negativeButtonText="@null"/>
-		<com.jorge.boats.xkcd.data.preference.AboutAppDialogPreference
-				android:title="@string/pref_title_about_app"
-				android:summary="@string/pref_summary_about_app"
-				android:positiveButtonText="@null"
-				android:negativeButtonText="@null"/>
-		<Preference
-				android:title="@string/pref_title_share"
-				android:key="share"/>
-	</PreferenceCategory>
+    <PreferenceCategory android:title="@string/preference_category_title_general">
+        <android.support.v7.preference.SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="volume_button_control_navigation_enabled"
+            android:title="@string/pref_title_volume_button_navigation" />
+        <com.jorge.boats.xkcd.data.preference.list.StyledListPreference
+            android:defaultValue="@string/theme_0_name"
+            android:entries="@array/theme_names"
+            android:entryValues="@array/theme_names"
+            android:key="theme_name"
+            android:title="@string/pref_title_theme_name" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/preference_category_title_about">
+        <com.jorge.boats.xkcd.data.preference.AboutXkcdDialogPreference
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:summary="@string/pref_summary_about_xkcd"
+            android:title="@string/pref_title_about_xkcd" />
+        <com.jorge.boats.xkcd.data.preference.AboutAppDialogPreference
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:summary="@string/pref_summary_about_app"
+            android:title="@string/pref_title_about_app" />
+        <Preference
+            android:key="share"
+            android:title="@string/pref_title_share" />
+    </PreferenceCategory>
 </PreferenceScreen>
