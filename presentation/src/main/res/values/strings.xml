@@ -13,4 +13,5 @@
     <string name="rate_popup_body">I know you\'re having fun, so what about a short break to rate the app?</string>
     <string name="notification_title_user_retention">New stripes</string>
     <string name="notification_user_retention_content">Tap to see them!</string>
+    <string name="label_random">Random</string>
 </resources>

@@ -84,9 +84,9 @@ public abstract class BaseActivity extends AppCompatActivity {
                             }
 
                             try {
+                                P.ratedGooglePlay.put(true).apply();
                                 startActivity(intent);
                             } catch (ActivityNotFoundException e) {
-                                P.ratedGooglePlay.put(true).apply();
                                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
                                         String.format(Locale.ENGLISH, "http://play.google.com/store/apps/details?id=%s",
                                                 packageName))));

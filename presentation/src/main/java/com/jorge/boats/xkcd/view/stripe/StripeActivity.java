@@ -171,6 +171,9 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
             case R.id.action_settings:
                 openSettings();
                 return true;
+            case R.id.action_random:
+                mStripePresenter.actionRandom();
+                return true;
             case R.id.action_open_in_browser:
                 openModelInBrowser();
                 return true;

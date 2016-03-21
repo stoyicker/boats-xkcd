@@ -1,106 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:app="http://schemas.android.com/apk/res-auto"
-		xmlns:tools="http://schemas.android.com/tools"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		tools:ignore="RtlHardcoded">
-	<!-- I explicitly stated in the manifest that there is no RTL support and I don't want to add extra "maybe-fix, maybe-crash" code -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="RtlHardcoded">
+    <!-- I explicitly stated in the manifest that there is no RTL support and I don't want to add extra "maybe-fix, maybe-crash" code -->
 
-	<RelativeLayout
-			android:layout_width="wrap_content"
-			android:layout_height="0dp"
-			android:layout_weight="1">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-		<View
-				android:id="@+id/wall_zero"
-				android:layout_width="1dp"
-				android:layout_height="match_parent"
-				android:layout_alignParentRight="true"/>
+        <View
+            android:id="@+id/wall_zero"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true" />
 
-    <android.support.design.widget.FloatingActionButton
-				android:id="@+id/fab_index_zero"
-				android:layout_centerVertical="true"
-				android:layout_toRightOf="@id/wall_zero"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_margin="@dimen/standard_margin"
-				android:scaleType="center"
-				android:src="@drawable/ic_arrow_left"
-				app:borderWidth="0dp"
-				app:fabSize="normal"/>
-	</RelativeLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_index_zero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/standard_margin"
+            android:layout_toRightOf="@id/wall_zero"
+            android:scaleType="center"
+            android:src="@drawable/ic_arrow_left"
+            app:borderWidth="0dp"
+            app:fabSize="normal" />
+    </RelativeLayout>
 
-	<RelativeLayout
-				android:layout_width="wrap_content"
-				android:layout_height="0dp"
-				android:layout_weight="1">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-		<View
-				android:id="@+id/wall_one"
-				android:layout_width="1dp"
-				android:layout_height="match_parent"
-				android:layout_alignParentRight="true"/>
+        <View
+            android:id="@+id/wall_one"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true" />
 
-    <android.support.design.widget.FloatingActionButton
-				android:id="@+id/fab_index_one"
-				android:layout_centerVertical="true"
-				android:layout_toRightOf="@id/wall_one"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_margin="@dimen/standard_margin"
-				android:scaleType="center"
-				android:src="@drawable/ic_dice"
-				app:borderWidth="0dp"
-				app:fabSize="normal"/>
-	</RelativeLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_index_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/standard_margin"
+            android:layout_toRightOf="@id/wall_one"
+            android:scaleType="center"
+            android:src="@drawable/ic_dice"
+            app:borderWidth="0dp"
+            app:fabSize="normal" />
+    </RelativeLayout>
 
-	<RelativeLayout
-			android:layout_width="wrap_content"
-			android:layout_height="0dp"
-			android:layout_weight="1">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-		<View
-				android:id="@+id/wall_two"
-				android:layout_width="1dp"
-				android:layout_height="match_parent"
-				android:layout_alignParentRight="true"/>
+        <View
+            android:id="@+id/wall_two"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true" />
 
-    <android.support.design.widget.FloatingActionButton
-				android:id="@+id/fab_index_two"
-				android:layout_centerVertical="true"
-				android:layout_toRightOf="@id/wall_two"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_margin="@dimen/standard_margin"
-				android:scaleType="center"
-				android:src="@drawable/ic_share"
-				app:borderWidth="0dp"
-				app:fabSize="normal"/>
-	</RelativeLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_index_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/standard_margin"
+            android:layout_toRightOf="@id/wall_two"
+            android:scaleType="center"
+            android:src="@drawable/ic_share"
+            app:borderWidth="0dp"
+            app:fabSize="normal" />
+    </RelativeLayout>
 
-	<RelativeLayout
-			android:layout_width="wrap_content"
-			android:layout_height="0dp"
-			android:layout_weight="1">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-		<View
-				android:id="@+id/wall_three"
-				android:layout_width="1dp"
-				android:layout_height="match_parent"
-				android:layout_alignParentRight="true"/>
+        <View
+            android:id="@+id/wall_three"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true" />
 
-    <android.support.design.widget.FloatingActionButton
-				android:id="@+id/fab_index_three"
-				android:layout_centerVertical="true"
-				android:layout_toRightOf="@id/wall_three"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_margin="@dimen/standard_margin"
-				android:scaleType="center"
-				android:src="@drawable/ic_arrow_right"
-				app:borderWidth="0dp"
-				app:fabSize="normal"/>
-	</RelativeLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_index_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/standard_margin"
+            android:layout_toRightOf="@id/wall_three"
+            android:scaleType="center"
+            android:src="@drawable/ic_arrow_right"
+            app:borderWidth="0dp"
+            app:fabSize="normal" />
+    </RelativeLayout>
 </merge>
