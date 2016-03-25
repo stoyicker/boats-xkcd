@@ -32,7 +32,7 @@ import com.jorge.boats.xkcd.di.component.DaggerStripeComponent;
 import com.jorge.boats.xkcd.di.module.StripeModule;
 import com.jorge.boats.xkcd.domain.entity.DomainStripe;
 import com.jorge.boats.xkcd.entity.PresentationStripe;
-import com.jorge.boats.xkcd.navigation.NavigationLayoutGestureDetector;
+import com.jorge.boats.xkcd.navigation.NavigationGestureDetector;
 import com.jorge.boats.xkcd.navigation.NavigationLinearLayout;
 import com.jorge.boats.xkcd.presenter.StripePresenter;
 import com.jorge.boats.xkcd.util.ActivityUtil;
@@ -65,7 +65,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     private long mStripeNum;
 
     @Inject
-    NavigationLayoutGestureDetector mGestureDetector;
+    NavigationGestureDetector mGestureDetector;
     @Inject
     StripePresenter mStripePresenter;
 

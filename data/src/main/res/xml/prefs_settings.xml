@@ -5,6 +5,10 @@
             android:defaultValue="true"
             android:key="volume_button_control_navigation_enabled"
             android:title="@string/pref_title_volume_button_navigation" />
+        <android.support.v7.preference.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="swipe_control_navigation_enabled"
+            android:title="@string/pref_title_swipe_navigation" />
         <com.jorge.boats.xkcd.data.preference.list.StyledListPreference
             android:defaultValue="@string/theme_0_name"
             android:entries="@array/theme_names"
