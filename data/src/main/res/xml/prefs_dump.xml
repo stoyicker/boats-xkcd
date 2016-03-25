@@ -7,7 +7,7 @@
         android:defaultValue="false"
         android:key="should_restart" />
     <Preference
-        android:defaultValue="3"
+        android:defaultValue="10"
         android:key="remaining_stripes_until_review" />
     <Preference
         android:defaultValue="false"
