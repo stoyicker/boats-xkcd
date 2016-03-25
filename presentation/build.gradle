@@ -22,6 +22,8 @@ android {
         //noinspection GroovyAssignabilityCheck
         testInstrumentationRunner androidTestInstrumentationRunner
 
+        manifestPlaceholders = [fabricApiKey: "$System.env.FABRIC_API_KEY"]
+
         multiDexEnabled true
     }
 
