@@ -67,10 +67,11 @@ public class NavigationGestureDetector extends GestureDetector {
                 return false;
             }
 
-            if (!P.swipeControlNavigationEnabled.get() || !checkForNavigationSwipe(e1, e2)) {
 
-                final boolean isGestureStartingFromCorrectBezel = isPositionedOnRelevantEndBezel(e1);
-                final boolean isLayoutExpandedAndThusIDontNeedTheGestureToStartFromTheBezel = mNavigationLayout.isExpanded();
+            final boolean isGestureStartingFromCorrectBezel = isPositionedOnRelevantEndBezel(e1);
+            final boolean isLayoutExpandedAndThusIDontNeedTheGestureToStartFromTheBezel = mNavigationLayout.isExpanded();
+
+            if (isLayoutExpandedAndThusIDontNeedTheGestureToStartFromTheBezel || isGestureStartingFromCorrectBezel || !P.swipeControlNavigationEnabled.get() || !checkForNavigationSwipe(e1, e2)) {
                 final float start, end;
 
                 if (isLayoutExpandedAndThusIDontNeedTheGestureToStartFromTheBezel || isGestureStartingFromCorrectBezel) {
@@ -101,9 +102,9 @@ public class NavigationGestureDetector extends GestureDetector {
                     final float difference;
                     if (Math.abs(difference = e2.getRawX() - e1.getRawX()) > mNavigationSwipeMinimumLength) {
                         if (difference > 0) {
-                            mNavigationLayout.navigateToNext();
-                        } else {
                             mNavigationLayout.navigateToPrevious();
+                        } else {
+                            mNavigationLayout.navigateToNext();
                         }
                         return true;
                     }
