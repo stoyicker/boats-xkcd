@@ -1,7 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.jorge.boats.xkcd">
 
-    <application>
+    <application
+        android:name=".ReleaseApplication"
+        tools:replace="android:name">
         <service
             android:name=".task.UserRetentionSafeGcmTaskService"
             android:exported="true"

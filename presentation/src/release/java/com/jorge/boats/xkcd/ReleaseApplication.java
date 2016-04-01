@@ -14,6 +14,6 @@ public final class ReleaseApplication extends MainApplication {
     }
 
     private void initializeCreepers() {
-        Fabric.with(this, new Crashlytics());
+        Fabric.with(new Fabric.Builder(this).kits(new Crashlytics()).build());
     }
 }
