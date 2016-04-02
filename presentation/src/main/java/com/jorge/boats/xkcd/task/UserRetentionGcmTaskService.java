@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 
@@ -21,10 +22,15 @@ public class UserRetentionGcmTaskService extends GcmTaskService {
 
     @Override
     public int onRunTask(final @Nullable TaskParams taskParams) {
-        if (System.currentTimeMillis() - Long.parseLong(P.lastOpenedEpoch.get()) > APP_IGNORED_LIMIT_MILLISECONDS) {
-            showReengageNotification();
+        try {
+            if (System.currentTimeMillis() - Long.parseLong(P.lastOpenedEpoch.get()) > APP_IGNORED_LIMIT_MILLISECONDS) {
+                showReengageNotification();
+            }
+            return GcmNetworkManager.RESULT_SUCCESS;
+        } catch (final @NonNull NumberFormatException e) {
+            //The preference has not been written yet, so just reschedule and move on
+            return GcmNetworkManager.RESULT_RESCHEDULE;
         }
-        return GcmNetworkManager.RESULT_SUCCESS;
     }
 
     private void showReengageNotification() {
