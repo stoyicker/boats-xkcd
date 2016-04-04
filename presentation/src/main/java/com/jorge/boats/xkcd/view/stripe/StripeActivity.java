@@ -76,7 +76,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     @Bind(R.id.toolbar)
     CustomTitleToolbar mToolbar;
     @Bind(R.id.navigation)
-    NavigationLinearLayout mNavigation;
+    NavigationLinearLayout mNavigationLayout;
     @Bind(R.id.progress_bar)
     View mLoading;
     @Bind(R.id.retry)
@@ -116,7 +116,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
 
     private void setupNavigationLayout() {
         final RelativeLayout.LayoutParams navigationLayoutLp =
-                (RelativeLayout.LayoutParams) mNavigation.getLayoutParams();
+                (RelativeLayout.LayoutParams) mNavigationLayout.getLayoutParams();
         final boolean isLandscape =
                 getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
 
@@ -127,7 +127,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
             navigationLayoutLp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         }
 
-        mNavigation.setLayoutParams(navigationLayoutLp);
+        mNavigationLayout.setLayoutParams(navigationLayoutLp);
     }
 
     private void setupLoading() {
@@ -141,7 +141,19 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
 
     @Override
     public boolean onTouchEvent(final @NonNull MotionEvent event) {
-        return this.mGestureDetector.onTouchEvent(event) || super.onTouchEvent(event);
+        return handleTriplePointerMenuToggle(event) || this.mGestureDetector.onTouchEvent(event) || super.onTouchEvent(event);
+    }
+
+    private boolean handleTriplePointerMenuToggle(final @NonNull MotionEvent event) {
+        if (event.getPointerCount() == 3 && event.getActionMasked() == MotionEvent.ACTION_POINTER_UP) {
+            if (mNavigationLayout.isExpanded()) {
+                mNavigationLayout.hide();
+            } else {
+                mNavigationLayout.show();
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -207,7 +219,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     protected void createComponentAndInjectSelf() {
         DaggerStripeComponent.builder()
                 .applicationComponent(getApplicationComponent())
-                .stripeModule(new StripeModule(mNavigation, mToolbar, mRetry))
+                .stripeModule(new StripeModule(mNavigationLayout, mToolbar, mRetry))
                 .build()
                 .inject(this);
     }
@@ -253,7 +265,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     }
 
     private void initializeNavigation() {
-        this.mNavigation.setStripePresenter(this.mStripePresenter);
+        this.mNavigationLayout.setStripePresenter(this.mStripePresenter);
     }
 
     private void initializeRetry() {
@@ -321,23 +333,23 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
 
         if (isLandscape) {
             if (!P.tutorialShownLandscape.get()) {
-                mNavigation.showTutorial();
+                mNavigationLayout.showTutorial();
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         P.tutorialShownLandscape.put(true).apply();
-                        mNavigation.hideTutorial();
+                        mNavigationLayout.hideTutorial();
                     }
                 }, resources.getInteger(R.integer.tutorial_show_duration_milliseconds));
             }
         } else {
             if (!P.tutorialShownPortrait.get()) {
-                mNavigation.showTutorial();
+                mNavigationLayout.showTutorial();
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         P.tutorialShownPortrait.put(true).apply();
-                        mNavigation.hideTutorial();
+                        mNavigationLayout.hideTutorial();
                     }
                 }, resources.getInteger(R.integer.tutorial_show_duration_milliseconds));
             }
@@ -389,7 +401,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
 
     @Override
     public void showRetry(final @NonNull Throwable throwable) {
-        mNavigation.hide();
+        mNavigationLayout.hide();
         mToolbar.setTitle(getString(R.string.content_error_title));
         mContent.setBackgroundColor(
                 ResourceUtil.getColor(this, R.color.content_background_empty, getTheme()));
@@ -438,13 +450,13 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
             case KeyEvent.KEYCODE_VOLUME_UP:
                 if (event.getAction() == KeyEvent.ACTION_UP) {
                     mStripePresenter.actionPrevious();
-                    mNavigation.hide();
+                    mNavigationLayout.hide();
                 }
                 return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
                 if (event.getAction() == KeyEvent.ACTION_UP) {
                     mStripePresenter.actionNext();
-                    mNavigation.hide();
+                    mNavigationLayout.hide();
                 }
                 return true;
             default:
