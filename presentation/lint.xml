@@ -1,14 +1,17 @@
 <lint>
-	<issue id="MergeRootFrame">
-		<ignore path="*/activity_settings.xml"/>
-	</issue>
-  <issue id="AllowBackup" severity="ignore">
-    <ignore path="debug/*/AndroidManifest.xml"/>
-  </issue>
-  <issue id="IconMissingDensityFolder" severity="ignore"/>
-  <issue severity="ignore" id="GoogleAppIndexingWarning"/>
-  <issue id="InvalidPackage">
-    <ignore regexp="retrofit"/>
-    <ignore regexp="okio"/>
-  </issue>
+    <issue id="MergeRootFrame">
+        <ignore path="*/activity_settings.xml" />
+    </issue>
+    <issue id="AllowBackup" severity="ignore">
+        <ignore path="debug/*/AndroidManifest.xml" />
+    </issue>
+    <issue id="IconMissingDensityFolder" severity="ignore" />
+    <issue id="GoogleAppIndexingWarning" severity="ignore" />
+    <issue id="InvalidPackage">
+        <ignore regexp="retrofit" />
+        <ignore regexp="okio" />
+    </issue>
+    <issue id="LogNotTimber">
+        <ignore path="*/ViewServer.java"
+    </issue>
 </lint>

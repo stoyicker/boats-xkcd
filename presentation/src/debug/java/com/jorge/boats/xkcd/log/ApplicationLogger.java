@@ -15,6 +15,10 @@ public abstract class ApplicationLogger {
         Timber.d(message, args);
     }
 
+    public static void w(final @NonNull String message, final @Nullable Object... args) {
+        Timber.w(message, args);
+    }
+
     public static void e(final @NonNull Throwable throwable, final @NonNull String message,
                          final @Nullable Object... args) {
         Timber.e(throwable, message, args);
