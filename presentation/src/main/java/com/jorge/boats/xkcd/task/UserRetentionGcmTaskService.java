@@ -16,7 +16,7 @@ import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.data.P;
 import com.jorge.boats.xkcd.view.stripe.StripeActivity;
 
-public class UserRetentionGcmTaskService extends GcmTaskService {
+public abstract class UserRetentionGcmTaskService extends GcmTaskService {
 
     private static final long APP_IGNORED_LIMIT_MILLISECONDS = 1000 * 60 * 60 * 24 * 4;
 
