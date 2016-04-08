@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AnticipateInterpolator;
-import android.view.animation.BaseInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -113,7 +112,7 @@ public class NavigationLinearLayout extends LinearLayout {
         int delayMs = 0;
         //Using AnimationSet does not work
         Animator rotation, translation;
-        final BaseInterpolator interpolator = new OvershootInterpolator();
+        final OvershootInterpolator interpolator = new OvershootInterpolator();
 
         for (final View button : mButtons) {
             rotation = generateRotationInAnimator(button);
@@ -144,7 +143,7 @@ public class NavigationLinearLayout extends LinearLayout {
         int delayMs = navigationLayoutPerButtonDelayMillis * (mButtons.length - 1);
         //Using AnimationSet does not work
         Animator rotation, translation;
-        final BaseInterpolator interpolator = new AnticipateInterpolator();
+        final AnticipateInterpolator interpolator = new AnticipateInterpolator();
 
         for (final View button : mButtons) {
             rotation = generateRotationOutAnimator(button);

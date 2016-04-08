@@ -12,6 +12,6 @@
         <ignore regexp="okio" />
     </issue>
     <issue id="LogNotTimber">
-        <ignore path="*/ViewServer.java"
+        <ignore path="*/ViewServer.java" />
     </issue>
 </lint>

@@ -1,22 +1,22 @@
 <lint>
-  <issue id="AllowBackup">
-    <ignore path="debug/*/AndroidManifest.xml"/>
-  </issue>
-  <issue severity="ignore" id="GoogleAppIndexingWarning"/>
-  <issue id="InvalidPackage">
-    <ignore regexp="retrofit"/>
-    <ignore regexp="okio"/>
-  </issue>
-  <issue id="UnusedResources">
-    <!-- Eaten by PSync -->
-		<ignore path="*/prefs_*.xml"/>
-  </issue>
-	<issue id="CommitPrefEdits">
-		<!-- Intended PSync behavior -->
-		<ignore path="*/P.java"/>
-	</issue>
-	<issue id="IconLocation">
-		<ignore path="*/ic_launcher.png"/>
-	</issue>
-	<issue id="RtlHardcoded" severity="ignore"/>
+    <issue id="AllowBackup">
+        <ignore path="debug/*/AndroidManifest.xml" />
+    </issue>
+    <issue id="GoogleAppIndexingWarning" severity="ignore" />
+    <issue id="InvalidPackage">
+        <ignore regexp="retrofit" />
+        <ignore regexp="okio" />
+    </issue>
+    <issue id="UnusedResources">
+        <!-- Eaten by PSync -->
+        <ignore path="*/prefs_*.xml" />
+    </issue>
+    <issue id="CommitPrefEdits">
+        <!-- Intended PSync behavior -->
+        <ignore path="*/P.java" />
+    </issue>
+    <issue id="IconLocation">
+        <ignore path="*/ic_launcher.png" />
+    </issue>
+    <issue id="RtlHardcoded" severity="ignore" />
 </lint>
