@@ -322,8 +322,15 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
         this.mAttacher.setMinimumScale(this.mImage.getScale());
 
         updateShareableData(model);
+        saveMaxShownStripe(model.getNum());
         showNavigationTutorial();
         processRateDialogCountUpdate();
+    }
+
+    private void saveMaxShownStripe(final long newStripeId) {
+        if (newStripeId > P.maxShownStripeNum.get()) {
+            P.maxShownStripeNum.put((int) newStripeId).apply();
+        }
     }
 
     private void showNavigationTutorial() {

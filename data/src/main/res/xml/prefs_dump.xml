@@ -4,6 +4,9 @@
         android:defaultValue="-1"
         android:key="last_shown_stripe_num" />
     <Preference
+        android:defaultValue="2"
+        android:key="max_shown_stripe_num" />
+    <Preference
         android:defaultValue="false"
         android:key="should_restart" />
     <Preference
