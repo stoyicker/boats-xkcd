@@ -47,7 +47,7 @@ import com.jorge.boats.xkcd.view.widget.RetryLinearLayout;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
@@ -71,17 +71,17 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     @Inject
     StripePresenter mStripePresenter;
 
-    @Bind(R.id.content)
+    @BindView(R.id.content)
     View mContent;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     CustomTitleToolbar mToolbar;
-    @Bind(R.id.navigation)
+    @BindView(R.id.navigation)
     NavigationLinearLayout mNavigationLayout;
-    @Bind(R.id.progress_bar)
+    @BindView(R.id.progress_bar)
     View mLoading;
-    @Bind(R.id.retry)
+    @BindView(R.id.retry)
     RetryLinearLayout mRetry;
-    @Bind(R.id.image)
+    @BindView(R.id.image)
     PhotoView mImage;
 
     @NonNull
