@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jorge.boats.xkcd.view.widget.PhotoViewExceptionProofRelativeLayout
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:background="@color/content_background_empty"
-		android:animateLayoutChanges="true">
+<com.jorge.boats.xkcd.view.widget.PhotoViewExceptionProofRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/content_background_empty">
 
-  <include
-			android:id="@+id/toolbar_wrapper"
-			layout="@layout/include_toolbar"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_alignParentTop="true"/>
+    <include
+        android:id="@+id/toolbar_wrapper"
+        layout="@layout/include_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
 
-  <include
-			android:id="@+id/progress_bar"
-			layout="@layout/include_progress_bar"/>
+    <include
+        android:id="@+id/progress_bar"
+        layout="@layout/include_progress_bar" />
 
-	<FrameLayout
-			android:id="@+id/content"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_below="@id/progress_bar">
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/progress_bar">
 
-		<include
-				android:id="@+id/image"
-				layout="@layout/include_image"/>
+        <include
+            android:id="@+id/image"
+            layout="@layout/include_image" />
 
-		<include
-				android:id="@+id/retry"
-				layout="@layout/include_retry"
-				android:visibility="gone"/>
-	</FrameLayout>
+        <include
+            android:id="@+id/retry"
+            layout="@layout/include_retry"
+            android:visibility="gone" />
+    </FrameLayout>
 
-  <include
-			android:id="@+id/navigation"
-			layout="@layout/include_navigation"/>
+    <include
+        android:id="@+id/navigation"
+        layout="@layout/include_navigation" />
 </com.jorge.boats.xkcd.view.widget.PhotoViewExceptionProofRelativeLayout>

@@ -22,13 +22,13 @@ import android.widget.Toast;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.presenter.StripePresenter;
 
-import butterknife.BindViews;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class NavigationLinearLayout extends LinearLayout {
 
-    @BindViews({R.id.fab_index_zero, R.id.fab_index_one, R.id.fab_index_two, R.id.fab_index_three})
+    @Bind({R.id.fab_index_zero, R.id.fab_index_one, R.id.fab_index_two, R.id.fab_index_three})
     View[] mButtons;
 
     private boolean isExpanded = false;

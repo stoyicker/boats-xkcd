@@ -35,7 +35,7 @@ ext {
     rxAndroidVersion = "1.1.0"
     timberVersion = "4.1.0"
     dbFlowVersion = "3.0.0-beta5"
-    butterknifeVersion = "8.0.0"
+    butterknifeVersion = "7.0.1" //Frozen
     retrofitVersion = "2.0.0"
     commonsLang3Version = "3.4"
     jetbrainsAnnotationsVersion = "15.0"
