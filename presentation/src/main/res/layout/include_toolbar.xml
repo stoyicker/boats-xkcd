@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:app="http://schemas.android.com/apk/res-auto"
-		android:orientation="vertical"
-		android:layout_width="match_parent"
-		android:layout_height="?attr/actionBarSize"
-		android:background="?attr/actionBarBackground">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorAccent">
 
-  <com.jorge.boats.xkcd.view.widget.CustomTitleToolbar
-			android:id="@+id/toolbar"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent">
+    <com.jorge.boats.xkcd.view.widget.CustomTitleToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-  <com.jorge.boats.xkcd.view.widget.FlickAndRevealTextView
-			android:id="@+id/toolbar_title"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:singleLine="true"
-			app:in_duration_millis="@integer/content_in_duration_milliseconds"
-			app:out_duration_millis="@integer/toolbar_text_out_duration_milliseconds"
-			android:ellipsize="end"
-			android:textIsSelectable="true"
-			style="@style/ToolbarTitle"/>
-  </com.jorge.boats.xkcd.view.widget.CustomTitleToolbar>
+        <com.jorge.boats.xkcd.view.widget.FlickAndRevealTextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:singleLine="true"
+                app:in_duration_millis="@integer/content_in_duration_milliseconds"
+                app:out_duration_millis="@integer/toolbar_text_out_duration_milliseconds"
+                android:ellipsize="end"
+                android:textIsSelectable="true"
+                style="@style/ToolbarTitle"/>
+    </com.jorge.boats.xkcd.view.widget.CustomTitleToolbar>
 
-  <View
-			android:layout_width="match_parent"
-			android:layout_height="@dimen/toolbar_shadow_height"
-			android:background="@drawable/toolbar_drop_shadow"/>
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_shadow_height"
+            android:background="@drawable/toolbar_drop_shadow"/>
 </LinearLayout>
