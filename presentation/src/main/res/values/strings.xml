@@ -16,4 +16,5 @@
     <string name="notification_title_user_retention">New stripes</string>
     <string name="notification_user_retention_content">Tap to see them!</string>
     <string name="label_random">Random</string>
+    <string name="no_more_stripes">No new stripes!</string>
 </resources>

@@ -2,6 +2,7 @@ package com.jorge.boats.xkcd.view;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 
 public interface ContentView {
 
@@ -18,4 +19,6 @@ public interface ContentView {
   void hideRetry();
 
   Context getContext();
+
+  void showMessage(final @StringRes int messageRes);
 }

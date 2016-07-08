@@ -1,29 +1,5 @@
 package com.jorge.boats.xkcd.view.stripe;
 
-import android.app.ActivityOptions;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.graphics.PorterDuff;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.RelativeLayout;
-
 import com.bumptech.glide.Glide;
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.ShareEvent;
@@ -44,6 +20,32 @@ import com.jorge.boats.xkcd.view.activity.BaseVisualActivity;
 import com.jorge.boats.xkcd.view.settings.SettingsActivity;
 import com.jorge.boats.xkcd.view.widget.CustomTitleToolbar;
 import com.jorge.boats.xkcd.view.widget.RetryLinearLayout;
+
+import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import javax.inject.Inject;
 
@@ -423,6 +425,11 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     @Override
     public Context getContext() {
         return getApplicationContext();
+    }
+
+    @Override
+    public void showMessage(@StringRes int messageRes) {
+        Toast.makeText(this, messageRes, Toast.LENGTH_SHORT).show();
     }
 
     @SuppressWarnings("InlinedApi")

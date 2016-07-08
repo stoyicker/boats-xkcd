@@ -1,8 +1,6 @@
 package com.jorge.boats.xkcd.presenter;
 
-import android.graphics.Typeface;
-import android.support.annotation.NonNull;
-
+import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.data.P;
 import com.jorge.boats.xkcd.di.PerActivity;
 import com.jorge.boats.xkcd.domain.entity.DomainStripe;
@@ -13,6 +11,9 @@ import com.jorge.boats.xkcd.mapper.PresentationEntityMapper;
 import com.jorge.boats.xkcd.util.RandomUtil;
 import com.jorge.boats.xkcd.view.stripe.StripeContentView;
 import com.jorge.boats.xkcd.view.widget.RetryLinearLayout;
+
+import android.graphics.Typeface;
+import android.support.annotation.NonNull;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -173,7 +174,11 @@ public class StripePresenter implements Presenter<StripeContentView> {
 
             mView.setStripeNum(num = domainStripe.getNum());
             updateUseCase(num);
-            P.lastShownStripeNum.put((int) num).apply();
+            if (P.lastShownStripeNum.get() == num) {
+                mView.showMessage(R.string.no_more_stripes);
+            } else {
+                P.lastShownStripeNum.put((int) num).apply();
+            }
             mView.renderStripe(mEntityMapper.transform(domainStripe));
         }
     }
