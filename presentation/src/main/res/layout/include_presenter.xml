@@ -10,7 +10,8 @@
             android:background="@color/stripe_info_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.AppCompat.Title"/>
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_alignParentBottom="true"/>
 
     <uk.co.senab.photoview.PhotoView
             android:id="@+id/image"
