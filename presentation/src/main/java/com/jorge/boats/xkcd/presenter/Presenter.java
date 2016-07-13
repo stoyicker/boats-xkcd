@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
  */
 interface Presenter<ViewType> {
 
-  void setView(final @NonNull ViewType view);
+  void setStripeContentView(final @NonNull ViewType view);
 
   void resume();
 

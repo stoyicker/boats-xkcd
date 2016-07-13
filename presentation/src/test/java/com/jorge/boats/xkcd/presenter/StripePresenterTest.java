@@ -47,7 +47,7 @@ public class StripePresenterTest extends PresentationModuleTestCase {
     given(mMockXkcdStore.currentStripe()).willReturn(
         Observable.just(ValueGenerator.generateRandomDomainStripe()));
     mSut.initialize();
-    mSut.setView(mMockStripeView);
+    mSut.setStripeContentView(mMockStripeView);
 
     mSut.switchToStripeNum(STRIPE_NUM_CURRENT);
 

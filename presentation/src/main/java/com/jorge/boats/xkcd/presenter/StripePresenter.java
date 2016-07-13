@@ -9,6 +9,7 @@ import com.jorge.boats.xkcd.domain.interactor.UseCase;
 import com.jorge.boats.xkcd.log.ApplicationLogger;
 import com.jorge.boats.xkcd.mapper.PresentationEntityMapper;
 import com.jorge.boats.xkcd.util.RandomUtil;
+import com.jorge.boats.xkcd.view.BaseView;
 import com.jorge.boats.xkcd.view.stripe.StripeContentView;
 import com.jorge.boats.xkcd.view.widget.RetryLinearLayout;
 
@@ -32,7 +33,8 @@ public class StripePresenter implements Presenter<StripeContentView> {
     @Inject
     RetryLinearLayout mRetry;
 
-    private StripeContentView mView;
+    private BaseView mBaseView;
+    private StripeContentView mStripeContentView;
 
     @Inject
     public StripePresenter(final @NonNull @Named("typeface") UseCase<Typeface> typefaceUseCase,
@@ -41,8 +43,12 @@ public class StripePresenter implements Presenter<StripeContentView> {
         mStripeUseCase = stripeUseCase;
     }
 
-    public void setView(@NonNull StripeContentView view) {
-        mView = view;
+    public void setBaseView(final @NonNull BaseView baseView) {
+        mBaseView = baseView;
+    }
+
+    public void setStripeContentView(final @NonNull StripeContentView stripeContentView) {
+        mStripeContentView = stripeContentView;
     }
 
     public void initialize() {
@@ -98,7 +104,7 @@ public class StripePresenter implements Presenter<StripeContentView> {
     public void actionNext() {
         if (isRetryViewShown()) return;
 
-        switchToStripeNum(mView.getStripeNum() + 1);
+        switchToStripeNum(mStripeContentView.getStripeNum() + 1);
     }
 
     public void actionRandom() {
@@ -107,12 +113,12 @@ public class StripePresenter implements Presenter<StripeContentView> {
     }
 
     public void actionShare() {
-        mView.share();
+        mStripeContentView.share();
     }
 
     public void actionPrevious() {
         if (isRetryViewShown()) return;
-        long targetContainer = mView.getStripeNum();
+        long targetContainer = mStripeContentView.getStripeNum();
 
         if (targetContainer == DomainStripe.STRIPE_NUM_FIRST) {
             return;
@@ -135,7 +141,7 @@ public class StripePresenter implements Presenter<StripeContentView> {
 
         @Override
         public void onNext(final @NonNull Typeface typeface) {
-            mView.setTitleTypeface(typeface);
+            mBaseView.setTitleTypeface(typeface);
             mRetry.setTextTypeface(typeface);
         }
     }
@@ -144,42 +150,42 @@ public class StripePresenter implements Presenter<StripeContentView> {
 
         @Override
         public void onStart() {
-            mView.showLoading();
-            mView.hideRetry();
+            mStripeContentView.showLoading();
+            mStripeContentView.hideRetry();
         }
 
         @Override
         public void onCompleted() {
-            mView.showContent();
-            mView.hideLoading();
-            mView.hideRetry();
+            mStripeContentView.showContent();
+            mStripeContentView.hideLoading();
+            mStripeContentView.hideRetry();
         }
 
         @Override
         public void onError(final @NonNull Throwable e) {
             ApplicationLogger.e(e, e.getClass().getName());
-            mView.hideLoading();
+            mStripeContentView.hideLoading();
             //Upon attempt of loading a non-existing stripe, load the current stripe instead
             if ((e instanceof HttpException) && ((HttpException) e).code() == 404) {
                 switchToStripeNum(DomainStripe.STRIPE_NUM_CURRENT);
                 return;
             }
-            mView.showRetry(e);
-            mView.hideContent();
+            mStripeContentView.showRetry(e);
+            mStripeContentView.hideContent();
         }
 
         @Override
         public void onNext(final @NonNull DomainStripe domainStripe) {
             final long num;
 
-            mView.setStripeNum(num = domainStripe.getNum());
+            mStripeContentView.setStripeNum(num = domainStripe.getNum());
             updateUseCase(num);
             if (P.lastShownStripeNum.get() == num) {
-                mView.showMessage(R.string.no_more_stripes);
+                mStripeContentView.showMessage(R.string.no_more_stripes);
             } else {
                 P.lastShownStripeNum.put((int) num).apply();
             }
-            mView.renderStripe(mEntityMapper.transform(domainStripe));
+            mStripeContentView.renderStripe(mEntityMapper.transform(domainStripe));
         }
     }
 }

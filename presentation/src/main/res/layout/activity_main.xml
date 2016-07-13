@@ -25,8 +25,8 @@
             android:layout_below="@id/progress_bar">
 
         <include
-                android:id="@+id/image"
-                layout="@layout/include_image"/>
+                android:id="@+id/stripe_presenter"
+                layout="@layout/include_presenter"/>
 
         <include
                 android:id="@+id/retry"

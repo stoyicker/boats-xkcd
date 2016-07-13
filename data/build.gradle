@@ -60,5 +60,4 @@ dependencies {
     for (final String dependency : compileDependencies) compile dependency
     for (final String dependency : aptDependencies) apt dependency
     for (final String dependency : testCompileDataDependencies) testCompile dependency
-    releaseCompile releaseCompileDataDependencies["crashlytics"]
 }

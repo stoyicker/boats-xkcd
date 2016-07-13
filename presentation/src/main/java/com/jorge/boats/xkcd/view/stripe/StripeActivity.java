@@ -16,6 +16,7 @@ import com.jorge.boats.xkcd.presenter.StripePresenter;
 import com.jorge.boats.xkcd.util.ActivityUtil;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ViewServerDelegate;
+import com.jorge.boats.xkcd.view.BaseView;
 import com.jorge.boats.xkcd.view.activity.BaseVisualActivity;
 import com.jorge.boats.xkcd.view.settings.SettingsActivity;
 import com.jorge.boats.xkcd.view.widget.CustomTitleToolbar;
@@ -45,6 +46,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import javax.inject.Inject;
@@ -53,7 +55,7 @@ import butterknife.Bind;
 import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
-public class StripeActivity extends BaseVisualActivity implements StripeContentView {
+public class StripeActivity extends BaseVisualActivity implements BaseView, StripeContentView {
 
     public static final String INTENT_EXTRA_PARAM_STRIPE_NUM =
             StripeActivity.class.getName() + ".INTENT_PARAM_STRIPE_NUM";
@@ -83,8 +85,12 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     View mLoading;
     @Bind(R.id.retry)
     RetryLinearLayout mRetry;
+    @Bind(R.id.stripe_presenter)
+    View mStripePresenterViewGroup;
     @Bind(R.id.image)
     PhotoView mImage;
+    @Bind(R.id.title)
+    TextView mTitle;
 
     @NonNull
     public static Intent getCallingIntent(final @NonNull Context context, final long stripeNum) {
@@ -113,6 +119,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     }
 
     private void setupToolbar() {
+        mToolbar.setTitle(getString(R.string.app_name));
         setSupportActionBar(mToolbar);
     }
 
@@ -261,7 +268,8 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     }
 
     private void initializeStripePresenter() {
-        this.mStripePresenter.setView(this);
+        this.mStripePresenter.setBaseView(this);
+        this.mStripePresenter.setStripeContentView(this);
         this.mStripePresenter.initialize();
         this.mStripePresenter.switchToStripeNum(mStripeNum);
     }
@@ -314,7 +322,7 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     public void renderStripe(final @NonNull PresentationStripe model) {
         final CharSequence title;
 
-        mToolbar.setTitle(title = model.getTitle());
+        mTitle.setText(title = model.getTitle());
         Glide.with(this)
                 .load(model.getImg())
                 .crossFade(getResources().getInteger(R.integer.content_in_duration_milliseconds))
@@ -384,14 +392,14 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
 
     @Override
     public void showContent() {
-        mImage.setBackgroundColor(
+        mStripePresenterViewGroup.setBackgroundColor(
                 ResourceUtil.getColor(this, R.color.content_background_normal, getTheme()));
-        mImage.setVisibility(View.VISIBLE);
+        mStripePresenterViewGroup.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideContent() {
-        mImage.setVisibility(View.INVISIBLE);
+        mStripePresenterViewGroup.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -411,7 +419,6 @@ public class StripeActivity extends BaseVisualActivity implements StripeContentV
     @Override
     public void showRetry(final @NonNull Throwable throwable) {
         mNavigationLayout.hide();
-        mToolbar.setTitle(getString(R.string.content_error_title));
         mContent.setBackgroundColor(
                 ResourceUtil.getColor(this, R.color.content_background_empty, getTheme()));
         mRetry.setVisibility(View.VISIBLE);

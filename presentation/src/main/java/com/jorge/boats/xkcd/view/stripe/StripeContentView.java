@@ -9,8 +9,6 @@ public interface StripeContentView extends ContentView {
 
   long getStripeNum();
 
-  void setTitleTypeface(final @NonNull Typeface titleTypeface);
-
   void renderStripe(final @NonNull PresentationStripe model);
 
   void setStripeNum(final long num);

@@ -1,5 +1,13 @@
 package com.jorge.boats.xkcd.task;
 
+import com.google.android.gms.gcm.GcmNetworkManager;
+import com.google.android.gms.gcm.GcmTaskService;
+import com.google.android.gms.gcm.TaskParams;
+
+import com.jorge.boats.xkcd.R;
+import com.jorge.boats.xkcd.data.P;
+import com.jorge.boats.xkcd.view.stripe.StripeActivity;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,14 +17,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 
-import com.google.android.gms.gcm.GcmNetworkManager;
-import com.google.android.gms.gcm.GcmTaskService;
-import com.google.android.gms.gcm.TaskParams;
-import com.jorge.boats.xkcd.R;
-import com.jorge.boats.xkcd.data.P;
-import com.jorge.boats.xkcd.view.stripe.StripeActivity;
-
-public abstract class UserRetentionGcmTaskService extends GcmTaskService {
+public final class UserRetentionGcmTaskService extends GcmTaskService {
 
     private static final long APP_IGNORED_LIMIT_MILLISECONDS = 1000 * 60 * 60 * 24 * 4;
 
