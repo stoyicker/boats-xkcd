@@ -13,6 +13,7 @@
             android:layout_marginStart="@dimen/standard_margin"
             android:layout_marginBottom="@dimen/standard_margin"
             style="@style/TextAppearance.AppCompat.Body1"
+            android:textIsSelectable="true"
             android:textColor="@color/text_invariant_body"
             android:layout_alignParentBottom="true"/>
 
@@ -23,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/standard_margin"
             android:layout_marginTop="@dimen/standard_margin"
+            android:textIsSelectable="true"
             style="@style/TextAppearance.AppCompat.Title"
             android:textColor="@color/text_invariant_title"
             android:layout_above="@id/description"/>
