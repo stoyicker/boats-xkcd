@@ -1,5 +1,13 @@
 package com.jorge.boats.xkcd.view.settings;
 
+import com.jorge.boats.xkcd.R;
+import com.jorge.boats.xkcd.data.P;
+import com.jorge.boats.xkcd.data.preference.CustomDialogPreference;
+import com.jorge.boats.xkcd.data.preference.list.StyledListPreference;
+import com.jorge.boats.xkcd.util.ActivityUtil;
+import com.jorge.boats.xkcd.util.ResourceUtil;
+import com.jorge.boats.xkcd.util.ThemeUtil;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -11,14 +19,6 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.ContextThemeWrapper;
 import android.view.View;
-
-import com.jorge.boats.xkcd.R;
-import com.jorge.boats.xkcd.data.P;
-import com.jorge.boats.xkcd.data.preference.CustomDialogPreference;
-import com.jorge.boats.xkcd.data.preference.list.StyledListPreference;
-import com.jorge.boats.xkcd.util.ActivityUtil;
-import com.jorge.boats.xkcd.util.ResourceUtil;
-import com.jorge.boats.xkcd.util.ThemeUtil;
 
 import rx.Subscription;
 import rx.functions.Action1;
@@ -96,6 +96,9 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
     public void onDetach() {
         if (!mVolumeKeyNavigationSummary.isUnsubscribed()) {
             mVolumeKeyNavigationSummary.unsubscribe();
+        }
+        if (!mSwipeNavigationSummary.isUnsubscribed()) {
+            mSwipeNavigationSummary.unsubscribe();
         }
 
         super.onDetach();
