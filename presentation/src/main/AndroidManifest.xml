@@ -1,44 +1,45 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jorge.boats.xkcd">
+          package="com.jorge.boats.xkcd">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <!-- To fix a bug with the notifications in Android 4.2: -->
     <uses-permission
-        android:name="android.permission.VIBRATE"
-        android:maxSdkVersion="18" />
+            android:name="android.permission.VIBRATE"
+            android:maxSdkVersion="18"/>
 
     <application
-        android:name=".MainApplication"
-        android:allowBackup="true"
-        android:fullBackupContent="@xml/backup"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:supportsRtl="false"
-        android:theme="@style/AppStandard">
-        <activity
-            android:name=".view.stripe.StripeActivity"
-            android:clearTaskOnLaunch="true"
+            android:name=".MainApplication"
+            android:allowBackup="true"
+            android:fullBackupContent="@xml/backup"
+            android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="stateHidden">
+            android:supportsRtl="false"
+            android:theme="@style/AppStandard">
+        <activity
+                android:name=".view.stripe.StripeActivity"
+                android:clearTaskOnLaunch="true"
+                android:label="@string/app_name"
+                android:launchMode="singleTask"
+                android:configChanges="screenSize|orientation|keyboardHidden"
+                android:windowSoftInputMode="stateHidden">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.settings.SettingsActivity"
-            android:label="@string/label_settings"
-            android:logo="@android:color/transparent"
-            android:theme="@style/SettingsStandard">
+                android:name=".view.settings.SettingsActivity"
+                android:label="@string/label_settings"
+                android:logo="@android:color/transparent"
+                android:theme="@style/SettingsStandard">
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.stripe.StripeActivity" />
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".view.stripe.StripeActivity"/>
         </activity>
 
         <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="${fabricApiKey}" />
+                android:name="io.fabric.ApiKey"
+                android:value="${fabricApiKey}"/>
     </application>
 
 </manifest>

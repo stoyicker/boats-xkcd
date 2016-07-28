@@ -181,7 +181,11 @@ public class StripePresenter implements Presenter<StripeContentView> {
             mStripeContentView.setStripeNum(num = domainStripe.getNum());
             updateUseCase(num);
             if (P.lastShownStripeNum.get() == num) {
-                mStripeContentView.showMessage(R.string.no_more_stripes);
+                if (P.scheduledStripeReload.get()) {
+                    P.scheduledStripeReload.put(false).apply();
+                } else {
+                    mStripeContentView.showMessage(R.string.no_more_stripes);
+                }
             } else {
                 P.lastShownStripeNum.put((int) num).apply();
             }

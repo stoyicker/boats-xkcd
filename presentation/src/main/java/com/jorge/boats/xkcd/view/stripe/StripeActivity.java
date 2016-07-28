@@ -294,6 +294,7 @@ public class StripeActivity extends BaseVisualActivity implements BaseView, Stri
     public void onResume() {
         super.onResume();
         if (P.shouldRestart.get()) {
+            P.scheduledStripeReload.put(true).apply();
             P.shouldRestart.put(false).apply();
             ActivityUtil.restart(this);
         } else {
@@ -486,5 +487,11 @@ public class StripeActivity extends BaseVisualActivity implements BaseView, Stri
             default:
                 return super.dispatchKeyEvent(event);
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        P.scheduledStripeReload.put(true).apply();
+        super.onConfigurationChanged(newConfig);
     }
 }
