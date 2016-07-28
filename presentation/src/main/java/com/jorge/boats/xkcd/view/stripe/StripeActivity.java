@@ -91,6 +91,8 @@ public class StripeActivity extends BaseVisualActivity implements BaseView, Stri
     PhotoView mImage;
     @Bind(R.id.title)
     TextView mTitle;
+    @Bind(R.id.description)
+    TextView mDescription;
 
     @NonNull
     public static Intent getCallingIntent(final @NonNull Context context, final long stripeNum) {
@@ -323,6 +325,7 @@ public class StripeActivity extends BaseVisualActivity implements BaseView, Stri
         final CharSequence title;
 
         mTitle.setText(title = model.getTitle());
+        mDescription.setText(model.getAlt());
         Glide.with(this)
                 .load(model.getImg())
                 .crossFade(getResources().getInteger(R.integer.content_in_duration_milliseconds))

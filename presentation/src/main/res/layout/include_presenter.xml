@@ -6,12 +6,26 @@
         android:layout_height="match_parent">
 
     <TextView
+            android:id="@+id/description"
+            android:background="@color/stripe_info_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/standard_margin"
+            android:layout_marginBottom="@dimen/standard_margin"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/text_invariant_body"
+            android:layout_alignParentBottom="true"/>
+
+    <TextView
             android:id="@+id/title"
             android:background="@color/stripe_info_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/standard_margin"
             style="@style/TextAppearance.AppCompat.Title"
-            android:layout_alignParentBottom="true"/>
+            android:textColor="@color/text_invariant_title"
+            android:layout_above="@id/description"/>
 
     <uk.co.senab.photoview.PhotoView
             android:id="@+id/image"

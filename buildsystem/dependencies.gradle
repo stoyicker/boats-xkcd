@@ -19,16 +19,16 @@ rootProject.project("data") {
 
 ext {
     //Android
-    androidBuildToolsVersion = "23.0.3"
+    androidBuildToolsVersion = "24.0.1"
     androidMinSdkVersion = 16
-    androidTargetSdkVersion = 23
-    androidCompileSdkVersion = 23
+    androidTargetSdkVersion = 24
+    androidCompileSdkVersion = 24
 
     //Dependencies
-    supportAnnotationsVersion = "23.3.0"
-    supportAppcompatVersion = "23.3.0"
-    supportDesignVersion = "23.3.0"
-    supportPreferenceVersion = "23.3.0"
+    supportAnnotationsVersion = "24.1.1"
+    supportAppcompatVersion = "24.1.1"
+    supportDesignVersion = "24.1.1"
+    supportPreferenceVersion = "24.1.1"
     javaxAnnotationVersion = "1.0"
     daggerVersion = "2.0.2"
     rxJavaVersion = "1.1.0"

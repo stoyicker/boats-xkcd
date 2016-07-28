@@ -50,7 +50,7 @@ allprojects {
         androidTestInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
 
         //Gradle wrapper version
-        gradleWrapperVersion = '2.14'
+        gradleWrapperVersion = '2.14.1'
 
         androidApplicationIdBase = "com.jorge.boats.xkcd%s"
         javaVersion = JavaVersion.VERSION_1_7
