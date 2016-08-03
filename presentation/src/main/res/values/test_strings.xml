@@ -1,6 +1,9 @@
 <!-- Apparently having test resources within instrumentation-scope only is not supported yet. -->
 <resources>
-	<string name="stub_stripe_title" translatable="false">Centrifugal Force</string>
-	<string name="stub_previous_stripe_title" translatable="false">Quirky Girls</string>
-	<string name="stub_next_stripe_title" translatable="false">Blogofractal</string>
+    <string name="stub_stripe_title" translatable="false">Centrifugal Force</string>
+    <string name="stub_stripe_description" translatable="false">You spin me right round, baby, right round, in a manner depriving me of an inertial reference frame. Baby.</string>
+    <string name="stub_previous_stripe_title" translatable="false">Quirky Girls</string>
+    <string name="stub_previous_stripe_description" translatable="false">Romantic comedy heroines, I\'m talking to you.</string>
+    <string name="stub_next_stripe_title" translatable="false">Blogofractal</string>
+    <string name="stub_next_stripe_description" translatable="false">Edward Tufte\'s \'The Visual Display of Quantitative Information\' is a fantastic book, and should be required reading for anyone in either the sciences or graphic design.</string>
 </resources>

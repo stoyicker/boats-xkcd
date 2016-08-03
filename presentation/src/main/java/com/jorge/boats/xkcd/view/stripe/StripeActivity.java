@@ -52,6 +52,7 @@ import android.widget.Toast;
 import javax.inject.Inject;
 
 import butterknife.Bind;
+import io.fabric.sdk.android.Fabric;
 import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
@@ -460,9 +461,10 @@ public class StripeActivity extends BaseVisualActivity implements BaseView, Stri
         intent.putExtra(Intent.EXTRA_SUBJECT, mShareableRenderedData[0]);
         intent.putExtra(Intent.EXTRA_TEXT, mShareableRenderedData[1]);
 
-        Answers.getInstance().logShare(new ShareEvent()
-                .putContentId(mShareableRenderedData[2].toString())
-                .putContentName(mShareableRenderedData[0].toString()));
+        if (Fabric.isInitialized())
+            Answers.getInstance().logShare(new ShareEvent()
+                    .putContentId(mShareableRenderedData[2].toString())
+                    .putContentName(mShareableRenderedData[0].toString()));
 
         startActivity(Intent.createChooser(intent, getString(R.string.action_share_title)));
     }
