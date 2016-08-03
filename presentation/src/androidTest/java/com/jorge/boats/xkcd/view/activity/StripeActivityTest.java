@@ -59,7 +59,8 @@ public class StripeActivityTest extends ActivityInstrumentationTestCase2<StripeA
   }
 
   public void testPrevious() {
-    final ViewInteraction titleInteraction = onView(withId(R.id.toolbar_title));
+    final ViewInteraction titleInteraction = onView(withId(R.id.title)), descriptionInteraction =
+        onView(withId(R.id.description));
 
     waitForLoad();
 
@@ -71,6 +72,7 @@ public class StripeActivityTest extends ActivityInstrumentationTestCase2<StripeA
 
     titleInteraction.check(matches(CustomViewMatchers.withText(equalTo(
         getInstrumentation().getTargetContext().getString(R.string.stub_previous_stripe_title)))));
+    //TODO Check description interaction
 
     onView(withId(R.id.retry)).check(matches(not((isDisplayed()))));
   }
@@ -96,7 +98,8 @@ public class StripeActivityTest extends ActivityInstrumentationTestCase2<StripeA
   }
 
   public void testNext() {
-    final ViewInteraction titleInteraction = onView(withId(R.id.toolbar_title));
+    final ViewInteraction titleInteraction = onView(withId(R.id.title)), descriptionInteraction =
+        onView(withId(R.id.description));
 
     waitForLoad();
 
@@ -108,6 +111,7 @@ public class StripeActivityTest extends ActivityInstrumentationTestCase2<StripeA
 
     titleInteraction.check(matches(CustomViewMatchers.withText(equalTo(
         getInstrumentation().getTargetContext().getString(R.string.stub_next_stripe_title)))));
+    //TODO Check description interaction
 
     onView(withId(R.id.retry)).check(matches(not((isDisplayed()))));
   }
