@@ -1,39 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.jorge.boats.xkcd.view.widget.PhotoViewExceptionProofRelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/description"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/standard_margin"
+        android:layout_marginEnd="@dimen/standard_margin"
+        android:layout_marginStart="@dimen/standard_margin"
+        android:background="@color/stripe_info_background"
+        android:textColor="@color/text_invariant_body"
+        android:textIsSelectable="true"
+        style="@style/TextAppearance.AppCompat.Body1"/>
 
     <TextView
-            android:id="@+id/description"
-            android:background="@color/stripe_info_background"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/standard_margin"
-            android:layout_marginBottom="@dimen/standard_margin"
-            style="@style/TextAppearance.AppCompat.Body1"
-            android:textIsSelectable="true"
-            android:textColor="@color/text_invariant_body"
-            android:layout_alignParentBottom="true"/>
-
-    <TextView
-            android:id="@+id/title"
-            android:background="@color/stripe_info_background"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/standard_margin"
-            android:layout_marginTop="@dimen/standard_margin"
-            android:textIsSelectable="true"
-            style="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@color/text_invariant_title"
-            android:layout_above="@id/description"/>
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/description"
+        android:layout_marginEnd="@dimen/standard_margin"
+        android:layout_marginStart="@dimen/standard_margin"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:background="@color/stripe_info_background"
+        android:textColor="@color/text_invariant_title"
+        android:textIsSelectable="true"
+        style="@style/TextAppearance.AppCompat.Title"/>
 
     <uk.co.senab.photoview.PhotoView
-            android:id="@+id/image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:ignore="ContentDescription"
-            android:layout_above="@id/title"/>
-    <!-- Content description is added through code -->
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/title"
+        tools:ignore="ContentDescription"/>
+  <!-- Content description is added through code -->
 </com.jorge.boats.xkcd.view.widget.PhotoViewExceptionProofRelativeLayout>
