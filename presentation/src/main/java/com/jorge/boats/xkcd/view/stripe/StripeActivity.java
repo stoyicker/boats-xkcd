@@ -501,5 +501,6 @@ public class StripeActivity extends BaseVisualActivity implements BaseView, Stri
     public void onConfigurationChanged(final @NonNull Configuration newConfig) {
         P.scheduledStripeReload.put(true).apply();
         super.onConfigurationChanged(newConfig);
+        recreate();
     }
 }
