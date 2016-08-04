@@ -20,6 +20,7 @@ import com.jorge.boats.xkcd.view.BaseView;
 import com.jorge.boats.xkcd.view.activity.BaseVisualActivity;
 import com.jorge.boats.xkcd.view.settings.SettingsActivity;
 import com.jorge.boats.xkcd.view.widget.CustomTitleToolbar;
+import com.jorge.boats.xkcd.view.widget.PhotoViewExceptionProofRelativeLayout;
 import com.jorge.boats.xkcd.view.widget.RetryLinearLayout;
 
 import android.app.ActivityOptions;
@@ -87,7 +88,7 @@ public class StripeActivity extends BaseVisualActivity implements BaseView, Stri
     @Bind(R.id.retry)
     RetryLinearLayout mRetry;
     @Bind(R.id.stripe_presenter)
-    View mStripePresenterViewGroup;
+    PhotoViewExceptionProofRelativeLayout mStripePresenterViewGroup;
     @Bind(R.id.image)
     PhotoView mImage;
     @Bind(R.id.title)
@@ -117,6 +118,7 @@ public class StripeActivity extends BaseVisualActivity implements BaseView, Stri
         initializeNavigation();
         initializeRetry();
         initializeImage();
+        initializePresenterLayout();
 
         ViewServerDelegate.addWindow(this);
     }
@@ -289,6 +291,10 @@ public class StripeActivity extends BaseVisualActivity implements BaseView, Stri
     private void initializeImage() {
         this.mAttacher = new PhotoViewAttacher(this.mImage, true, BuildConfig.DEBUG);
         this.mAttacher.setIntermediateGestureDetector(this.mGestureDetector);
+    }
+
+    private void initializePresenterLayout() {
+        this.mStripePresenterViewGroup.setIntermediateGestureDetector(mGestureDetector);
     }
 
     @Override
@@ -492,7 +498,7 @@ public class StripeActivity extends BaseVisualActivity implements BaseView, Stri
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(final @NonNull Configuration newConfig) {
         P.scheduledStripeReload.put(true).apply();
         super.onConfigurationChanged(newConfig);
     }
