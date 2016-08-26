@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="xkcd_base_url" translatable="false">https://xkcd.com/</string>
-  <string name="pref_title_volume_button_navigation">Browse using volume keys</string>
-  <string name="pref_title_swipe_navigation">Browse swiping the screen</string>
+  <string name="pref_title_volume_button_navigation">Volume keys</string>
+  <string name="pref_title_swipe_navigation">Horizontal swipes</string>
   <string name="pref_title_theme_name">Theme</string>
   <string name="pref_title_about_app">About the app</string>
   <string name="pref_title_about_xkcd">xkcd</string>
@@ -11,7 +11,7 @@
     <![CDATA[xkcd, \"A webcomic of romance, sarcasm, math, and language\" is a work created by Randall Munroe, and it is licensed under a <a href=\"https://creativecommons.org/licenses/by-nc/2.5/\">Creative Commons Attribution-NonCommercial 2.5 License</a>.\nThis means that it is free to copy and reuse as long as authorship acknowledgment is given.]]></string>
   <string name="pref_message_about_app">
     <![CDATA[<b>Boats</b><br/><br/>by<br/><a href="https://www.linkedin.com/in/jorgediazbenitosoriano">Jorge Antonio Diaz-Benito Soriano</a>]]></string>
-  <string name="preference_category_title_general">GENERAL</string>
+  <string name="preference_category_title_user_experience">USER EXPERIENCE</string>
   <string name="preference_category_title_about">ABOUT</string>
   <string name="pref_summary_about_xkcd">License</string>
   <string name="pref_summary_about_app"/>
