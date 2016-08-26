@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ThemeUtil;
-import com.jorge.boats.xkcd.util.ViewServerDelegate;
 import com.jorge.boats.xkcd.view.activity.ButterknifeActivity;
 import com.jorge.boats.xkcd.view.widget.CustomTitleToolbar;
 
@@ -37,8 +36,6 @@ public class SettingsActivity extends ButterknifeActivity {
     setupToolbar();
     initFragment(savedInstanceState);
     setTheme(ThemeUtil.getSettingsTheme(this));
-
-    ViewServerDelegate.addWindow(this);
   }
 
   private void setupToolbar() {
@@ -53,20 +50,6 @@ public class SettingsActivity extends ButterknifeActivity {
     upArrow.setColorFilter(ResourceUtil.getAttrColor(this, android.R.attr.textColorPrimary),
         PorterDuff.Mode.SRC_ATOP);
     actionBar.setHomeAsUpIndicator(upArrow);
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-
-    ViewServerDelegate.setFocusedWindow(this);
-  }
-
-  @Override
-  protected void onDestroy() {
-    super.onDestroy();
-
-    ViewServerDelegate.removeWindow(this);
   }
 
   @Override

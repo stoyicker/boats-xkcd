@@ -50,7 +50,6 @@ import com.jorge.boats.xkcd.util.ActivityUtil;
 import com.jorge.boats.xkcd.util.GooglePlayUtil;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ThemeUtil;
-import com.jorge.boats.xkcd.util.ViewServerDelegate;
 import com.jorge.boats.xkcd.view.BaseView;
 import com.jorge.boats.xkcd.view.activity.ButterknifeDaggerActivity;
 import com.jorge.boats.xkcd.view.settings.SettingsActivity;
@@ -130,8 +129,6 @@ public class StripeActivity extends ButterknifeDaggerActivity
     initializeRetry();
     initializeImage();
     initializePresenterLayout();
-
-    ViewServerDelegate.addWindow(this);
   }
 
   private void updateLastOpenedEpoch() {
@@ -377,7 +374,6 @@ public class StripeActivity extends ButterknifeDaggerActivity
       ActivityUtil.restart(this);
     } else {
       this.mStripePresenter.resume();
-      ViewServerDelegate.setFocusedWindow(this);
     }
   }
 
@@ -391,7 +387,6 @@ public class StripeActivity extends ButterknifeDaggerActivity
   public void onDestroy() {
     super.onDestroy();
     this.mStripePresenter.destroy();
-    ViewServerDelegate.removeWindow(this);
   }
 
   @Override
