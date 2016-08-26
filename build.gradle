@@ -10,20 +10,21 @@ buildscript {
     jcenter()
   }
 
-  def androidPluginVersion = "2.2.0-beta1"
-  def dexcountPluginVersion = "0.5.6"
-  def androidAptPluginVersion = "1.8"
-  def pSyncPluginVersion = "1.1.5"
-  def jsonSchema2PojoPluginVersion = "0.4.19"
+  final def androidPluginVersion = "2.2.0-beta1"
+  final def dexcountPluginVersion = "0.5.6"
+  final def androidAptPluginVersion = "1.8"
+  final def pSyncPluginVersion = "1.1.5"
   //Frozen
-  def fabricToolsPluginVersion = "1.21.7"
+  final def jsonSchema2PojoPluginVersion = "0.4.19"
+  final def fabricToolsPluginVersion = "1.21.7"
 
-  def classpathDependencies = [androidPlugin        : "com.android.tools.build:gradle:${androidPluginVersion}",
-                               dexcountPlugin       : "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${dexcountPluginVersion}",
-                               androidAptPlugin     : "com.neenbedankt.gradle.plugins:android-apt:${androidAptPluginVersion}",
-                               pSync                : "gradle.plugin.com.flipboard:psync:${pSyncPluginVersion}",
-                               jsonSchema2PojoPlugin: "org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:${jsonSchema2PojoPluginVersion}",
-                               fabricToolsPlugin    : "io.fabric.tools:gradle:${fabricToolsPluginVersion}"]
+  final
+  def classpathDependencies = [androidPlugin        : "com.android.tools" + "" + "" + ".build:gradle:${androidPluginVersion}",
+                               dexcountPlugin       : "com.getkeepsafe" + "" + "" + ".dexcount:dexcount-gradle-plugin:${dexcountPluginVersion}",
+                               androidAptPlugin     : "com.neenbedankt.gradle" + "" + "" + ".plugins:android-apt:${androidAptPluginVersion}",
+                               pSync                : "gradle.plugin.com" + "" + "" + ".flipboard:psync:${pSyncPluginVersion}",
+                               jsonSchema2PojoPlugin: "org" + "" + "" + ".jsonschema2pojo:jsonschema2pojo-gradle-plugin:${jsonSchema2PojoPluginVersion}",
+                               fabricToolsPlugin    : "io.fabric" + "" + "" + ".tools:gradle:${fabricToolsPluginVersion}"]
 
   dependencies {
     classpath classpathDependencies.androidPlugin
@@ -36,11 +37,13 @@ buildscript {
 }
 
 //If this is modified, remember to update the script(s) accordingly
-def staticAnalysisReportFolderTarget = project.rootDir.getAbsolutePath() + "/staticAnalysisReport"
+final def staticAnalysisReportFolderTarget = project.rootDir.absolutePath + "/staticAnalysisReport"
 
-// Query git for the tag and commit count. Use these to automate versioning. (https://github.com/nickbutcher/plaid/blob/master/app/build.gradle)
-def gitTag = 'git describe --tags'.execute([], project.rootDir).text.trim()
-def gitCommitCount = 100 + Integer.parseInt('git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
+// Query git for the tag and commit count. Use these to automate versioning. (https://github
+// .com/nickbutcher/plaid/blob/master/app/build.gradle)
+final def gitTag = 'git describe --tags'.execute([], project.rootDir).text.trim()
+final def gitCommitCount = 100 + Integer.parseInt('git rev-list --count HEAD'.execute([], project
+    .rootDir).text.trim())
 
 allprojects {
   ext {
@@ -62,7 +65,7 @@ task clean(type: Delete, overwrite: true) {
 
   for (final Project x : rootProject.allprojects) {
     delete x.buildDir
-    delete Paths.get(x.getProjectDir().absolutePath, staticAnalysisReportFolderTarget).
+    delete Paths.get(x.projectDir.absolutePath, staticAnalysisReportFolderTarget).
         toAbsolutePath().
         toString()
   }
