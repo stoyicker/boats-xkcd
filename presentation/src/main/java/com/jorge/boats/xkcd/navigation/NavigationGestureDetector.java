@@ -68,8 +68,8 @@ public class NavigationGestureDetector extends GestureDetector {
       }
 
       final boolean isGestureStartingFromCorrectBezel = isPositionedOnRelevantEndBezel(e1);
-      final boolean isLayoutExpandedAndThusIDontNeedTheGestureToStartFromTheBezel = mNavigationLayout
-          .isExpanded();
+      final boolean isLayoutExpandedAndThusIDontNeedTheGestureToStartFromTheBezel =
+          mNavigationLayout.isExpanded();
 
       if (isLayoutExpandedAndThusIDontNeedTheGestureToStartFromTheBezel
           || isGestureStartingFromCorrectBezel || !P.swipeControlNavigationEnabled.get()

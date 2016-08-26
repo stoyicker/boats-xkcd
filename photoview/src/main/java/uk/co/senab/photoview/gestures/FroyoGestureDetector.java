@@ -27,7 +27,8 @@ public class FroyoGestureDetector extends EclairGestureDetector {
 
   public FroyoGestureDetector(Context context) {
     super(context);
-    ScaleGestureDetector.OnScaleGestureListener mScaleListener = new ScaleGestureDetector.OnScaleGestureListener() {
+    ScaleGestureDetector.OnScaleGestureListener mScaleListener = new ScaleGestureDetector
+        .OnScaleGestureListener() {
 
       @Override
       public boolean onScale(ScaleGestureDetector detector) {

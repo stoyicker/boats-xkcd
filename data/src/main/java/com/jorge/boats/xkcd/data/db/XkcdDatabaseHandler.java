@@ -26,7 +26,8 @@ public class XkcdDatabaseHandler {
     final ContentValues values = new ContentValues();
 
     @SuppressWarnings("unchecked")
-    final ModelAdapter<DatabaseStripe> adapter = (ModelAdapter<DatabaseStripe>) databaseStripe.getModelAdapter();
+    final ModelAdapter<DatabaseStripe> adapter = (ModelAdapter<DatabaseStripe>) databaseStripe
+        .getModelAdapter();
 
     adapter.bindToContentValues(values, databaseStripe);
 

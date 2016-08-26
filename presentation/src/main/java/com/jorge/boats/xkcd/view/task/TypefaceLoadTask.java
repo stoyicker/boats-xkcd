@@ -24,7 +24,7 @@ public class TypefaceLoadTask extends UseCase<Typeface> {
     mContext = context;
   }
 
-  //TODO Change this to use rx.single, remove Frodo
+  //TODO Change this to use rx.single
   @Override
   protected Observable<Typeface> buildUseCaseObservable() {
     return Observable.just(FontManager.get(mContext, FontManager.FONT_APP));

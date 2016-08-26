@@ -121,8 +121,9 @@ dependencies {
 
   final Collection<String> compileDependencies = compilePresentationDependencies.values()
   final Collection<String> aptDependencies = aptPresentationDependencies.values()
-  final Collection<String> androidTestCompileDependencies = androidTestCompilePresentationDependencies.
-      values()
+  final Collection<String> androidTestCompileDependencies =
+      androidTestCompilePresentationDependencies.
+          values()
   final Collection<String> testCompileDependencies = testCompilePresentationDependencies.
       values()
   for (final String dependency : providedDependencies) provided dependency

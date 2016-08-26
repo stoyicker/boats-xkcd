@@ -1,12 +1,12 @@
-def buildTag = System.getenv("CI")
+final def buildTag = System.getenv("CI")
 ext {
   executingOnCI = buildTag != null
 }
 // Since for CI we always do full clean builds, we don't want to pre-dex
 subprojects {
-  project.plugins.whenPluginAdded { plugin ->
-    if ('com.android.build.gradle.AppPlugin'.equals(plugin.class.name) ||
-        'com.android.build.gradle.LibraryPlugin'.equals(plugin.class.name)) {
+  project.plugins.whenPluginAdded { final plugin ->
+    if ('com.android.build.gradle.AppPlugin'.equals(plugin.class.name) || ('com.android.build' +
+        '.gradle.LibraryPlugin').equals(plugin.class.name)) {
       project.android.dexOptions.preDexLibraries = !executingOnCI
     }
   }

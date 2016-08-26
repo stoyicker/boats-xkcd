@@ -161,7 +161,8 @@ public interface IPhotoView {
   void setMidScale(float midScale);
 
   /*
-   * Sets the medium scale level. What this value represents depends on the current {@link android.widget.ImageView.ScaleType}.
+   * Sets the medium scale level. What this value represents depends on the current
+   * {@link android.widget.ImageView.ScaleType}.
    *
    * @param mediumScale medium scale preset
    */
@@ -316,7 +317,8 @@ public interface IPhotoView {
   Bitmap getVisibleRectangleBitmap();
 
   /**
-   * Allows to change zoom transition speed, default value is 200 (PhotoViewAttacher.DEFAULT_ZOOM_DURATION).
+   * Allows to change zoom transition speed, default value is 200 (PhotoViewAttacher
+   * .DEFAULT_ZOOM_DURATION).
    * Will default to 200 if provided negative value
    *
    * @param milliseconds duration of zoom interpolation
@@ -333,7 +335,8 @@ public interface IPhotoView {
 
   /**
    * Sets custom double tap listener, to intercept default given functions. To reset behavior to
-   * default, you can just pass in "null" or public field of PhotoViewAttacher.defaultOnDoubleTapListener
+   * default, you can just pass in "null" or public field of PhotoViewAttacher
+   * .defaultOnDoubleTapListener
    *
    * @param newOnDoubleTapListener custom OnDoubleTapListener to be set on ImageView
    */

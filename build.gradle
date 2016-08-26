@@ -14,7 +14,8 @@ buildscript {
   def dexcountPluginVersion = "0.5.6"
   def androidAptPluginVersion = "1.8"
   def pSyncPluginVersion = "1.1.5"
-  def jsonSchema2PojoPluginVersion = "0.4.19" //Frozen
+  def jsonSchema2PojoPluginVersion = "0.4.19"
+  //Frozen
   def fabricToolsPluginVersion = "1.21.7"
 
   def classpathDependencies = [androidPlugin        : "com.android.tools.build:gradle:${androidPluginVersion}",
