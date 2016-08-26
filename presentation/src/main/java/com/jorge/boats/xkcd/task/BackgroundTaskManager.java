@@ -9,30 +9,30 @@ import com.google.android.gms.gcm.Task;
 
 public abstract class BackgroundTaskManager {
 
-    private BackgroundTaskManager() {
-        throw new IllegalAccessError("No instances");
-    }
+  private BackgroundTaskManager() {
+    throw new IllegalAccessError("No instances");
+  }
 
-    public static void initialize(final @NonNull GcmNetworkManager networkManager) {
-        scheduleScrappingTask(networkManager);
-    }
+  public static void initialize(final @NonNull GcmNetworkManager networkManager) {
+    scheduleScrappingTask(networkManager);
+  }
 
-    private static void scheduleScrappingTask(final @NonNull GcmNetworkManager networkManager) {
-        networkManager.schedule(buildUserRetentionTask());
-    }
+  private static void scheduleScrappingTask(final @NonNull GcmNetworkManager networkManager) {
+    networkManager.schedule(buildUserRetentionTask());
+  }
 
-    private static Task buildUserRetentionTask() {
-        final Class<? extends GcmTaskService> taskClass = TaskProvider.provideUserRetentionTask();
-        final String taskTag = taskClass.getName();
+  private static Task buildUserRetentionTask() {
+    final Class<? extends GcmTaskService> taskClass = TaskProvider.provideUserRetentionTask();
+    final String taskTag = taskClass.getName();
 
-        return new PeriodicTask.Builder()
-                .setFlex(30 * 60)
-                .setPeriod(45 * 60)
-                .setRequiredNetwork(Task.NETWORK_STATE_ANY)
-                .setRequiresCharging(false)
-                .setService(taskClass)
-                .setTag(taskTag)
-                .setUpdateCurrent(true)
-                .build();
-    }
+    return new PeriodicTask.Builder()
+        .setFlex(30 * 60)
+        .setPeriod(45 * 60)
+        .setRequiredNetwork(Task.NETWORK_STATE_ANY)
+        .setRequiresCharging(false)
+        .setService(taskClass)
+        .setTag(taskTag)
+        .setUpdateCurrent(true)
+        .build();
+  }
 }

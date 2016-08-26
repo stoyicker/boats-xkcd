@@ -6,14 +6,14 @@ import io.fabric.sdk.android.Fabric;
 
 public final class ReleaseApplication extends MainApplication {
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
+  @Override
+  public void onCreate() {
+    super.onCreate();
 
-        this.initializeCreepers();
-    }
+    this.initializeCreepers();
+  }
 
-    private void initializeCreepers() {
-        Fabric.with(new Fabric.Builder(this).kits(new Crashlytics()).build());
-    }
+  private void initializeCreepers() {
+    Fabric.with(new Fabric.Builder(this).kits(new Crashlytics()).build());
+  }
 }

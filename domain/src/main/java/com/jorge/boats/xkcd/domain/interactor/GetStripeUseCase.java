@@ -11,23 +11,23 @@ import rx.Observable;
 
 public class GetStripeUseCase extends UseCase<DomainStripe> {
 
-    private long mStripeNum;
-    private final XkcdStore mStore;
+  private long mStripeNum;
+  private final XkcdStore mStore;
 
-    @Inject
-    public GetStripeUseCase(final XkcdStore store, final ThreadExecutor threadExecutor,
-                            final PostExecutionThread postExecutionThread) {
-        super(threadExecutor, postExecutionThread);
-        mStore = store;
-    }
+  @Inject
+  public GetStripeUseCase(final XkcdStore store, final ThreadExecutor threadExecutor,
+      final PostExecutionThread postExecutionThread) {
+    super(threadExecutor, postExecutionThread);
+    mStore = store;
+  }
 
-    public void setRequestedStripeNum(final long stripeNum) {
-        mStripeNum = stripeNum;
-    }
+  public void setRequestedStripeNum(final long stripeNum) {
+    mStripeNum = stripeNum;
+  }
 
-    @Override
-    protected Observable<DomainStripe> buildUseCaseObservable() {
-        return mStripeNum == DomainStripe.STRIPE_NUM_CURRENT ? mStore.currentStripe()
-                : mStore.stripeWithNum(mStripeNum);
-    }
+  @Override
+  protected Observable<DomainStripe> buildUseCaseObservable() {
+    return mStripeNum == DomainStripe.STRIPE_NUM_CURRENT ? mStore.currentStripe()
+        : mStore.stripeWithNum(mStripeNum);
+  }
 }

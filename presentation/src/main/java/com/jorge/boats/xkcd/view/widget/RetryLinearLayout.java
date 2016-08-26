@@ -20,57 +20,57 @@ import butterknife.ButterKnife;
 
 public class RetryLinearLayout extends LinearLayout {
 
-    @Bind(android.R.id.text1)
-    TextView mText;
+  @Bind(android.R.id.text1)
+  TextView mText;
 
-    private StripePresenter mStripePresenter;
-    private GestureDetector mIntermediateGestureDetector;
+  private StripePresenter mStripePresenter;
+  private GestureDetector mIntermediateGestureDetector;
 
-    public RetryLinearLayout(final @NonNull Context context, final @Nullable AttributeSet attrs) {
-        super(context, attrs);
+  public RetryLinearLayout(final @NonNull Context context, final @Nullable AttributeSet attrs) {
+    super(context, attrs);
 
-        init(context);
+    init(context);
+  }
+
+  private void init(final @NonNull Context context) {
+    if (!isInEditMode()) {
+      LayoutInflater.from(context).inflate(R.layout.widget_retry, this);
     }
 
-    private void init(final @NonNull Context context) {
-        if (!isInEditMode()) {
-            LayoutInflater.from(context).inflate(R.layout.widget_retry, this);
-        }
+    setOrientation(VERTICAL);
 
-        setOrientation(VERTICAL);
+    setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(final @NonNull View v) {
+        RetryLinearLayout.this.onClick();
+      }
+    });
 
-        setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(final @NonNull View v) {
-                RetryLinearLayout.this.onClick();
-            }
-        });
+    ButterKnife.bind(this);
+  }
 
-        ButterKnife.bind(this);
+  public void setStripePresenter(final @NonNull StripePresenter stripePresenter) {
+    this.mStripePresenter = stripePresenter;
+  }
+
+  private void onClick() {
+    mStripePresenter.requestRetry();
+  }
+
+  @Override
+  public boolean onTouchEvent(final @NonNull MotionEvent event) {
+    if (mIntermediateGestureDetector != null) {
+      return mIntermediateGestureDetector.onTouchEvent(event) || super.onTouchEvent(event);
+    } else {
+      return super.onTouchEvent(event);
     }
+  }
 
-    public void setStripePresenter(final @NonNull StripePresenter stripePresenter) {
-        this.mStripePresenter = stripePresenter;
-    }
+  public void setTextTypeface(final @NonNull Typeface typeface) {
+    mText.setTypeface(typeface);
+  }
 
-    private void onClick() {
-        mStripePresenter.requestRetry();
-    }
-
-    @Override
-    public boolean onTouchEvent(final @NonNull MotionEvent event) {
-        if (mIntermediateGestureDetector != null) {
-            return mIntermediateGestureDetector.onTouchEvent(event) || super.onTouchEvent(event);
-        } else {
-            return super.onTouchEvent(event);
-        }
-    }
-
-    public void setTextTypeface(final @NonNull Typeface typeface) {
-        mText.setTypeface(typeface);
-    }
-
-    public void setIntermediateGestureDetector(final @NonNull GestureDetector gestureDetector) {
-        this.mIntermediateGestureDetector = gestureDetector;
-    }
+  public void setIntermediateGestureDetector(final @NonNull GestureDetector gestureDetector) {
+    this.mIntermediateGestureDetector = gestureDetector;
+  }
 }

@@ -1,12 +1,16 @@
 package com.jorge.boats.xkcd.view.activity;
 
 import android.support.annotation.LayoutRes;
-import butterknife.ButterKnife;
+import android.support.v7.app.AppCompatActivity;
+
 import com.jorge.boats.xkcd.util.ThemeUtil;
 
-public abstract class BaseVisualActivity extends BaseActivity {
+import butterknife.ButterKnife;
 
-  @Override public void setContentView(final @LayoutRes int layoutResID) {
+public abstract class ButterknifeActivity extends AppCompatActivity {
+
+  @Override
+  public void setContentView(final @LayoutRes int layoutResID) {
     setTheme(ThemeUtil.getAppTheme(this));
     super.setContentView(layoutResID);
     initButterKnife();

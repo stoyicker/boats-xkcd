@@ -1,21 +1,27 @@
 package com.jorge.boats.xkcd.data.mapper;
 
 import android.support.annotation.Nullable;
+
 import com.jorge.boats.xkcd.data.model.DataStripe;
 import com.jorge.boats.xkcd.domain.entity.DomainStripe;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+
 import org.jetbrains.annotations.Contract;
 
-@Singleton public class DomainEntityMapper {
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
+public class DomainEntityMapper {
 
   /**
    * Make explicit that this constructor can be used to inject the class.
    */
-  @Inject public DomainEntityMapper() {
+  @Inject
+  public DomainEntityMapper() {
   }
 
-  @Contract("null -> null") public DomainStripe transform(final @Nullable DataStripe dataStripe) {
+  @Contract("null -> null")
+  public DomainStripe transform(final @Nullable DataStripe dataStripe) {
     DomainStripe ret = null;
 
     if (dataStripe != null) {

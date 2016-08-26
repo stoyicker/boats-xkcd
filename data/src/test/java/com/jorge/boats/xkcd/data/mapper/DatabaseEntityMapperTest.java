@@ -1,8 +1,10 @@
 package com.jorge.boats.xkcd.data.mapper;
 
 import android.support.annotation.NonNull;
+
 import com.jorge.boats.xkcd.data.db.DatabaseStripe;
 import com.jorge.boats.xkcd.data.model.DataStripe;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,19 +17,23 @@ public class DatabaseEntityMapperTest {
 
   private DatabaseEntityMapper mSut;
 
-  @Before public void setUp() {
+  @Before
+  public void setUp() {
     mSut = new DatabaseEntityMapper();
   }
 
-  @Test public void testTransformFromDataNull() {
+  @Test
+  public void testTransformFromDataNull() {
     assertThat(mSut.transform((DataStripe) null)).isNull();
   }
 
-  @Test public void testTransformFromDatabaseNull() {
+  @Test
+  public void testTransformFromDatabaseNull() {
     assertThat(mSut.transform((DatabaseStripe) null)).isNull();
   }
 
-  @Test public void testTransformFromDataAllFieldsNull() {
+  @Test
+  public void testTransformFromDataAllFieldsNull() {
     final DataStripe source = new DataStripe();
 
     source.setAlt(generateString(Value.NULL));
@@ -45,7 +51,8 @@ public class DatabaseEntityMapperTest {
     assertEquivalent(source, mSut.transform(source));
   }
 
-  @Test public void testTransformFromDataAllFieldsRegular() {
+  @Test
+  public void testTransformFromDataAllFieldsRegular() {
     final DataStripe source = new DataStripe();
 
     source.setAlt(generateString(Value.REGULAR));
@@ -63,7 +70,8 @@ public class DatabaseEntityMapperTest {
     assertEquivalent(source, mSut.transform(source));
   }
 
-  @Test public void testTransformFromDatabaseAllFieldsNull() {
+  @Test
+  public void testTransformFromDatabaseAllFieldsNull() {
     final DatabaseStripe source = new DatabaseStripe();
 
     source.setAlt(generateString(Value.NULL));
@@ -81,7 +89,8 @@ public class DatabaseEntityMapperTest {
     assertEquivalent(mSut.transform(source), source);
   }
 
-  @Test public void testTransformFromDatabaseAllFieldsRegular() {
+  @Test
+  public void testTransformFromDatabaseAllFieldsRegular() {
     final DatabaseStripe source = new DatabaseStripe();
 
     source.setAlt(generateString(Value.REGULAR));

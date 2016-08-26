@@ -3,8 +3,10 @@ package com.jorge.boats.xkcd.util;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
+
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.data.P;
+
 import java.util.Locale;
 
 public abstract class ThemeUtil {
@@ -13,7 +15,8 @@ public abstract class ThemeUtil {
     throw new IllegalAccessError("No instances.");
   }
 
-  @StyleRes public static int getAppTheme(final @NonNull Context context) {
+  @StyleRes
+  public static int getAppTheme(final @NonNull Context context) {
     final String themeName, theme0Name = context.getString(R.string.theme_0_name), theme1Name =
         context.getString(R.string.theme_1_name), theme2Name =
         context.getString(R.string.theme_2_name), theme3Name =
@@ -33,7 +36,8 @@ public abstract class ThemeUtil {
     }
   }
 
-  @StyleRes public static int getSettingsTheme(final @NonNull Context context) {
+  @StyleRes
+  public static int getSettingsTheme(final @NonNull Context context) {
     final String themeName, theme0Name = context.getString(R.string.theme_0_name), theme1Name =
         context.getString(R.string.theme_1_name), theme2Name =
         context.getString(R.string.theme_2_name), theme3Name =

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<array name="theme_names">
-		<item>@string/theme_0_name</item>
-		<item>@string/theme_1_name</item>
-		<item>@string/theme_2_name</item>
-		<item>@string/theme_3_name</item>
-	</array>
+  <array name="theme_names">
+    <item>@string/theme_0_name</item>
+    <item>@string/theme_1_name</item>
+    <item>@string/theme_2_name</item>
+    <item>@string/theme_3_name</item>
+  </array>
 </resources>

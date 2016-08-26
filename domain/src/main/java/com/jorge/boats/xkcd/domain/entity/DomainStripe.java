@@ -173,11 +173,13 @@ public class DomainStripe {
     this.day = day;
   }
 
-  @Override public String toString() {
+  @Override
+  public String toString() {
     return ToStringBuilder.reflectionToString(this);
   }
 
-  @Override public int hashCode() {
+  @Override
+  public int hashCode() {
     return new HashCodeBuilder().append(month)
         .append(num)
         .append(link)
@@ -192,7 +194,8 @@ public class DomainStripe {
         .toHashCode();
   }
 
-  @Override public boolean equals(Object other) {
+  @Override
+  public boolean equals(Object other) {
     if (other == this) {
       return true;
     }

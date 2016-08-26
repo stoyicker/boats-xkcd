@@ -8,5 +8,5 @@
   <color name="warm_tertiary_text">#FFFFFF</color>
   <color name="warm_divider">#494949</color>
   <color name="warm_actionbar_background">#FF7733</color>
-	<color name="warm_settings_window_background">#000000</color>
+  <color name="warm_settings_window_background">#000000</color>
 </resources>

@@ -12,11 +12,13 @@ import org.robolectric.annotation.Config;
 @Config(constants = BuildConfig.class, application = StubApplication.class, sdk = 21)
 public abstract class PresentationModuleTestCase {
 
-  @Before protected void setUp() {
+  @Before
+  protected void setUp() {
     MockitoAnnotations.initMocks(this);
   }
 
-  @After public void tearDown() {
+  @After
+  public void tearDown() {
 
   }
 }

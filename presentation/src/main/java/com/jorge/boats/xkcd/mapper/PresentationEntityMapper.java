@@ -1,18 +1,23 @@
 package com.jorge.boats.xkcd.mapper;
 
 import android.support.annotation.Nullable;
+
 import com.jorge.boats.xkcd.di.PerActivity;
 import com.jorge.boats.xkcd.domain.entity.DomainStripe;
 import com.jorge.boats.xkcd.entity.PresentationStripe;
-import javax.inject.Inject;
+
 import org.jetbrains.annotations.Contract;
 
-@PerActivity public class PresentationEntityMapper {
+import javax.inject.Inject;
+
+@PerActivity
+public class PresentationEntityMapper {
 
   /**
    * Make explicit that this constructor can be used to inject the class.
    */
-  @Inject public PresentationEntityMapper() {
+  @Inject
+  public PresentationEntityMapper() {
   }
 
   @Contract("null -> null")

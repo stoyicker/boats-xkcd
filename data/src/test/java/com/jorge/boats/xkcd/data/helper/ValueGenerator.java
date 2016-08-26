@@ -3,8 +3,10 @@ package com.jorge.boats.xkcd.data.helper;
 import com.jorge.boats.xkcd.data.db.DatabaseStripe;
 import com.jorge.boats.xkcd.data.model.DataStripe;
 import com.jorge.boats.xkcd.domain.entity.DomainStripe;
-import java.util.Random;
+
 import org.apache.commons.lang3.RandomStringUtils;
+
+import java.util.Random;
 
 public abstract class ValueGenerator {
 

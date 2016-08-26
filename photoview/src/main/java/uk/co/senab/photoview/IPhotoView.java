@@ -67,7 +67,8 @@ public interface IPhotoView {
    * @return The current minimum scale level. What this value represents depends on the current
    * {@link android.widget.ImageView.ScaleType}.
    */
-  @Deprecated float getMinScale();
+  @Deprecated
+  float getMinScale();
 
   /**
    * @return The current minimum scale level. What this value represents depends on the current
@@ -81,7 +82,8 @@ public interface IPhotoView {
    * @return The current middle scale level. What this value represents depends on the current
    * {@link android.widget.ImageView.ScaleType}.
    */
-  @Deprecated float getMidScale();
+  @Deprecated
+  float getMidScale();
 
   /**
    * @return The current medium scale level. What this value represents depends on the current
@@ -95,7 +97,8 @@ public interface IPhotoView {
    * @return The current maximum scale level. What this value represents depends on the current
    * {@link android.widget.ImageView.ScaleType}.
    */
-  @Deprecated float getMaxScale();
+  @Deprecated
+  float getMaxScale();
 
   /**
    * @return The current maximum scale level. What this value represents depends on the current
@@ -134,7 +137,8 @@ public interface IPhotoView {
    *
    * @param minScale minimum allowed scale
    */
-  @Deprecated void setMinScale(float minScale);
+  @Deprecated
+  void setMinScale(float minScale);
 
   /**
    * Sets the minimum scale level. What this value represents depends on the current {@link
@@ -153,7 +157,8 @@ public interface IPhotoView {
    *
    * @param midScale medium scale preset
    */
-  @Deprecated void setMidScale(float midScale);
+  @Deprecated
+  void setMidScale(float midScale);
 
   /*
    * Sets the medium scale level. What this value represents depends on the current {@link android.widget.ImageView.ScaleType}.
@@ -171,7 +176,8 @@ public interface IPhotoView {
    *
    * @param maxScale maximum allowed scale preset
    */
-  @Deprecated void setMaxScale(float maxScale);
+  @Deprecated
+  void setMaxScale(float maxScale);
 
   /**
    * Sets the maximum scale level. What this value represents depends on the current {@link

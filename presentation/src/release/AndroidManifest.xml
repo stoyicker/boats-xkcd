@@ -1,18 +1,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.jorge.boats.xkcd">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.jorge.boats.xkcd">
 
-    <application
-        android:name=".ReleaseApplication"
-        tools:replace="android:name">
-        <service
-            android:name=".task.UserRetentionSafeGcmTaskService"
-            android:exported="true"
-            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
-            <intent-filter>
-                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY" />
-                <action android:name="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE" />
-            </intent-filter>
-        </service>
-    </application>
+  <application
+    android:name=".ReleaseApplication"
+    tools:replace="android:name">
+    <service
+      android:name=".task.UserRetentionSafeGcmTaskService"
+      android:exported="true"
+      android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
+      <intent-filter>
+        <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
+        <action android:name="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE"/>
+      </intent-filter>
+    </service>
+  </application>
 </manifest>

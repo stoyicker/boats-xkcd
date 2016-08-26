@@ -3,6 +3,7 @@ package com.jorge.boats.xkcd.data;
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
+
 import com.jorge.boats.xkcd.data.di.component.DaggerDataComponent;
 import com.jorge.boats.xkcd.data.di.module.DataModule;
 import com.raizlabs.android.dbflow.config.FlowManager;

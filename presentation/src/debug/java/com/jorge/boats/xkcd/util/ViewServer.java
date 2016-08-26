@@ -25,6 +25,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewDebug;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -106,7 +107,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * }
  * </pre>
  */
-@SuppressWarnings("unused") class ViewServer implements Runnable {
+@SuppressWarnings("unused")
+class ViewServer implements Runnable {
   /**
    * The default port used to start view servers.
    */
@@ -499,37 +501,47 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
     private NoopViewServer() {
     }
 
-    @Override public boolean start() throws IOException {
+    @Override
+    public boolean start() throws IOException {
       return false;
     }
 
-    @Override public boolean stop() {
+    @Override
+    public boolean stop() {
       return false;
     }
 
-    @Override public boolean isRunning() {
+    @Override
+    public boolean isRunning() {
       return false;
     }
 
-    @Override public void addWindow(Activity activity) {
+    @Override
+    public void addWindow(Activity activity) {
     }
 
-    @Override public void removeWindow(Activity activity) {
+    @Override
+    public void removeWindow(Activity activity) {
     }
 
-    @Override public void addWindow(View view, String name) {
+    @Override
+    public void addWindow(View view, String name) {
     }
 
-    @Override public void removeWindow(View view) {
+    @Override
+    public void removeWindow(View view) {
     }
 
-    @Override public void setFocusedWindow(Activity activity) {
+    @Override
+    public void setFocusedWindow(Activity activity) {
     }
 
-    @Override public void setFocusedWindow(View view) {
+    @Override
+    public void setFocusedWindow(View view) {
     }
 
-    @Override public void run() {
+    @Override
+    public void run() {
     }
   }
 

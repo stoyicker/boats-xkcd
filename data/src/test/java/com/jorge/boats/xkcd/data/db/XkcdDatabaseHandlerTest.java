@@ -1,8 +1,10 @@
 package com.jorge.boats.xkcd.data.db;
 
 import android.text.TextUtils;
+
 import com.jorge.boats.xkcd.data.DataModuleTestCase;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
+
 import org.assertj.core.api.Condition;
 import org.junit.Before;
 import org.junit.Rule;
@@ -20,13 +22,15 @@ public class XkcdDatabaseHandlerTest extends DataModuleTestCase {
 
   @Rule public final ExpectedException mExceptionExpectation = ExpectedException.none();
 
-  @Before public void setUp() {
+  @Before
+  public void setUp() {
     super.setUp();
 
     mSut = new XkcdDatabaseHandler();
   }
 
-  @Test public void testInsertValid() {
+  @Test
+  public void testInsertValid() {
     final DatabaseStripe stripe = generateRandomDatabaseStripe();
 
     mSut.insertStripe(stripe);
@@ -34,7 +38,8 @@ public class XkcdDatabaseHandlerTest extends DataModuleTestCase {
     assertThat(SQLite.select().from(DatabaseStripe.class).query().getCount()).isEqualTo(1);
   }
 
-  @Test public void testInsertRepeatedPrimaryKey() {
+  @Test
+  public void testInsertRepeatedPrimaryKey() {
     final DatabaseStripe oldStripe = generateRandomDatabaseStripe(), newStripe =
         generateRandomDatabaseStripe();
 
@@ -45,7 +50,8 @@ public class XkcdDatabaseHandlerTest extends DataModuleTestCase {
     newStripe.setNum(oldStripe.getNum());
 
     final Condition<DatabaseStripe> equivalentToOldStripe = new Condition<DatabaseStripe>() {
-      @Override public boolean matches(final DatabaseStripe value) {
+      @Override
+      public boolean matches(final DatabaseStripe value) {
         return TextUtils.equals(oldStripe.getMonth(), value.getMonth())
             && TextUtils.equals(oldStripe.getLink(), value.getLink())
             && TextUtils.equals(oldStripe.getYear(), value.getYear())
@@ -68,11 +74,13 @@ public class XkcdDatabaseHandlerTest extends DataModuleTestCase {
         newStripe);
   }
 
-  @Test public void testSelectFromEmpty() {
+  @Test
+  public void testSelectFromEmpty() {
     assertThat(mSut.queryForStripeWithNum(generateLong(Value.REGULAR))).isNull();
   }
 
-  @Test public void testSelectFromNonEmptyNoMatches() {
+  @Test
+  public void testSelectFromNonEmptyNoMatches() {
     final DatabaseStripe stripeOne = generateRandomDatabaseStripe(), stripeTwo =
         generateRandomDatabaseStripe();
     final long numberOne = 10, numberTwo = 12, numberThree = 13;
@@ -85,7 +93,8 @@ public class XkcdDatabaseHandlerTest extends DataModuleTestCase {
     assertThat(mSut.queryForStripeWithNum(numberThree)).isNull();
   }
 
-  @Test public void testSelectMatchingFromSize1() {
+  @Test
+  public void testSelectMatchingFromSize1() {
     final DatabaseStripe stripe = generateRandomDatabaseStripe();
 
     mSut.insertStripe(stripe);
@@ -93,7 +102,8 @@ public class XkcdDatabaseHandlerTest extends DataModuleTestCase {
     assertThat(mSut.queryForStripeWithNum(stripe.getNum())).isEqualToComparingFieldByField(stripe);
   }
 
-  @Test public void testSelectMatchingFromSizeSeveral() {
+  @Test
+  public void testSelectMatchingFromSizeSeveral() {
     final DatabaseStripe targetStripe = generateRandomDatabaseStripe(), extraStripeOne =
         generateRandomDatabaseStripe(), extraStripeTwo = generateRandomDatabaseStripe(),
         extraStripeThree = generateRandomDatabaseStripe();

@@ -1,7 +1,7 @@
 package com.jorge.boats.xkcd.view.stripe;
 
-import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+
 import com.jorge.boats.xkcd.entity.PresentationStripe;
 import com.jorge.boats.xkcd.view.ContentView;
 

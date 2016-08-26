@@ -2,13 +2,16 @@ package com.jorge.boats.xkcd.domain.interactor;
 
 import com.jorge.boats.xkcd.domain.executor.PostExecutionThread;
 import com.jorge.boats.xkcd.domain.executor.ThreadExecutor;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import rx.Observable;
 import rx.observers.TestSubscriber;
 import rx.schedulers.Schedulers;
@@ -22,21 +25,24 @@ public class UseCaseTest {
   private UseCase<List<Integer>> mSut;
 
   private final ThreadExecutor mThreadExecutor = new ThreadExecutor() {
-    @Override public void execute(@SuppressWarnings("NullableProblems") final Runnable command) {
+    @Override
+    public void execute(@SuppressWarnings("NullableProblems") final Runnable command) {
       command.run();
     }
   };
 
   @Mock private PostExecutionThread mMockPostExecutionThread;
 
-  @Before public void setUp() {
+  @Before
+  public void setUp() {
     MockitoAnnotations.initMocks(this);
     mSut = new IntegerListUseCase(mThreadExecutor, mMockPostExecutionThread);
 
     given(mMockPostExecutionThread.getScheduler()).willReturn(Schedulers.immediate());
   }
 
-  @Test public void testBuildUseCaseObservableReturnsCorrectResult() {
+  @Test
+  public void testBuildUseCaseObservableReturnsCorrectResult() {
     final TestSubscriber<List<Integer>> testSubscriber = new TestSubscriber<>();
 
     mSut.execute(testSubscriber);
@@ -46,7 +52,8 @@ public class UseCaseTest {
     testSubscriber.assertCompleted();
   }
 
-  @Test public void testDestroy() {
+  @Test
+  public void testDestroy() {
     final TestSubscriber<List<Integer>> testSubscriber = new TestSubscriber<>();
 
     mSut.execute(testSubscriber);
@@ -64,7 +71,8 @@ public class UseCaseTest {
       super(threadExecutor, postExecutionThread);
     }
 
-    @Override protected Observable<List<Integer>> buildUseCaseObservable() {
+    @Override
+    protected Observable<List<Integer>> buildUseCaseObservable() {
       return Observable.just(STUB);
     }
   }

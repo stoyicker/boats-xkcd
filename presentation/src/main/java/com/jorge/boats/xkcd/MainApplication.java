@@ -12,32 +12,32 @@ import com.jorge.boats.xkcd.di.module.ApplicationModule;
 
 public class MainApplication extends Application {
 
-    private ApplicationComponent mApplicationComponent;
+  private ApplicationComponent mApplicationComponent;
 
-    @Override
-    protected void attachBaseContext(final @NonNull Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(this);
-    }
+  @Override
+  protected void attachBaseContext(final @NonNull Context base) {
+    super.attachBaseContext(base);
+    MultiDex.install(this);
+  }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
+  @Override
+  public void onCreate() {
+    super.onCreate();
 
-        this.initializeInjector();
-        this.initializeData();
-    }
+    this.initializeInjector();
+    this.initializeData();
+  }
 
-    private void initializeInjector() {
-        this.mApplicationComponent =
-                DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(this)).build();
-    }
+  private void initializeInjector() {
+    this.mApplicationComponent =
+        DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(this)).build();
+  }
 
-    private void initializeData() {
-        DataManager.initialize(this);
-    }
+  private void initializeData() {
+    DataManager.initialize(this);
+  }
 
-    public ApplicationComponent getApplicationComponent() {
-        return this.mApplicationComponent;
-    }
+  public ApplicationComponent getApplicationComponent() {
+    return this.mApplicationComponent;
+  }
 }

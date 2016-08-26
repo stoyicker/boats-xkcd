@@ -1,8 +1,10 @@
 package com.jorge.boats.xkcd.mapper;
 
 import android.support.annotation.NonNull;
+
 import com.jorge.boats.xkcd.domain.entity.DomainStripe;
 import com.jorge.boats.xkcd.entity.PresentationStripe;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,19 +17,23 @@ public class PresentationEntityMapperTest {
 
   private PresentationEntityMapper mSut;
 
-  @Before public void setUp() {
+  @Before
+  public void setUp() {
     mSut = new PresentationEntityMapper();
   }
 
-  @Test public void testTransformFromDomainNull() {
+  @Test
+  public void testTransformFromDomainNull() {
     assertThat(mSut.transform((DomainStripe) null)).isNull();
   }
 
-  @Test public void testTransformFromPresentationNull() {
+  @Test
+  public void testTransformFromPresentationNull() {
     assertThat(mSut.transform((PresentationStripe) null)).isNull();
   }
 
-  @Test public void testTransformFromDomainAllFieldsNull() {
+  @Test
+  public void testTransformFromDomainAllFieldsNull() {
     final DomainStripe source = new DomainStripe();
 
     source.setAlt(generateString(Value.NULL));
@@ -45,7 +51,8 @@ public class PresentationEntityMapperTest {
     assertEquivalent(source, mSut.transform(source));
   }
 
-  @Test public void testTransformFromDomainAllFieldsRegular() {
+  @Test
+  public void testTransformFromDomainAllFieldsRegular() {
     final DomainStripe source = new DomainStripe();
 
     source.setAlt(generateString(Value.REGULAR));
@@ -63,7 +70,8 @@ public class PresentationEntityMapperTest {
     assertEquivalent(source, mSut.transform(source));
   }
 
-  @Test public void testTransformFromPresentationAllFieldsNull() {
+  @Test
+  public void testTransformFromPresentationAllFieldsNull() {
     final PresentationStripe source = new PresentationStripe();
 
     source.setAlt(generateString(Value.NULL));
@@ -81,7 +89,8 @@ public class PresentationEntityMapperTest {
     assertEquivalent(mSut.transform(source), source);
   }
 
-  @Test public void testTransformFromPresentationAllFieldsRegular() {
+  @Test
+  public void testTransformFromPresentationAllFieldsRegular() {
     final PresentationStripe source = new PresentationStripe();
 
     source.setAlt(generateString(Value.REGULAR));

@@ -4,6 +4,7 @@ import com.jorge.boats.xkcd.domain.entity.DomainStripe;
 import com.jorge.boats.xkcd.domain.executor.PostExecutionThread;
 import com.jorge.boats.xkcd.domain.executor.ThreadExecutor;
 import com.jorge.boats.xkcd.domain.repository.XkcdStore;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -25,22 +26,26 @@ public class GetStripeUseCaseTest {
   @Mock private ThreadExecutor mMockThreadExecutor;
   @Mock private PostExecutionThread mMockPostExecutionThread;
 
-  @Before public void setUp() {
+  @Before
+  public void setUp() {
     MockitoAnnotations.initMocks(this);
     mSut = new GetStripeUseCase(mMockXkcdStore, mMockThreadExecutor, mMockPostExecutionThread);
   }
 
-  @Test public void testGetStripeWithInvalidNum() {
+  @Test
+  public void testGetStripeWithInvalidNum() {
     mSut.setRequestedStripeNum(STRIPE_NUM_INVALID);
     runVerificationsForStripeNum(STRIPE_NUM_INVALID);
   }
 
-  @Test public void testGetStripeWithCurrentNum() {
+  @Test
+  public void testGetStripeWithCurrentNum() {
     mSut.setRequestedStripeNum(STRIPE_NUM_CURRENT);
     runVerificationsForCurrentStripe();
   }
 
-  @Test public void testGetStripeWithArbitraryValidNum() {
+  @Test
+  public void testGetStripeWithArbitraryValidNum() {
     mSut.setRequestedStripeNum(STRIPE_NUM_ARBITRARY_VALID);
     runVerificationsForStripeNum(STRIPE_NUM_ARBITRARY_VALID);
   }

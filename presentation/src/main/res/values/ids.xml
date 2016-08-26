@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="notification_user_retention" type="id" />
+  <item name="notification_user_retention" type="id"/>
 </resources>

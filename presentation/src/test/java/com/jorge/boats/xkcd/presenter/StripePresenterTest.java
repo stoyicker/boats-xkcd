@@ -8,11 +8,13 @@ import com.jorge.boats.xkcd.domain.interactor.GetStripeUseCase;
 import com.jorge.boats.xkcd.domain.repository.XkcdStore;
 import com.jorge.boats.xkcd.helper.ValueGenerator;
 import com.jorge.boats.xkcd.mapper.PresentationEntityMapper;
-import com.jorge.boats.xkcd.view.task.TypefaceLoadTask;
 import com.jorge.boats.xkcd.view.stripe.StripeContentView;
+import com.jorge.boats.xkcd.view.task.TypefaceLoadTask;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
+
 import rx.Observable;
 import rx.Subscriber;
 
@@ -30,20 +32,24 @@ public class StripePresenterTest extends PresentationModuleTestCase {
   @Mock private PresentationEntityMapper mMockEntityMapper;
   @Mock private StripeContentView mMockStripeView;
 
-  @Before @Override public void setUp() {
+  @Before
+  @Override
+  public void setUp() {
     super.setUp();
 
     mSut = new StripePresenter(mMockTypefaceLoad,
         new GetStripeUseCase(mMockXkcdStore, new JobExecutor(), new UIThread()));
   }
 
-  @Test public void testInitialize() {
+  @Test
+  public void testInitialize() {
     mSut.initialize();
     //noinspection unchecked
     verify(mMockTypefaceLoad).execute(any(Subscriber.class));
   }
 
-  @Test public void testLoadCurrent() {
+  @Test
+  public void testLoadCurrent() {
     given(mMockXkcdStore.currentStripe()).willReturn(
         Observable.just(ValueGenerator.generateRandomDomainStripe()));
     mSut.initialize();

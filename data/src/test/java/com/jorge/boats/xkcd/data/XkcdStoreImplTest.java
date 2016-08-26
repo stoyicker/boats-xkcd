@@ -8,14 +8,17 @@ import com.jorge.boats.xkcd.data.mapper.DomainEntityMapper;
 import com.jorge.boats.xkcd.data.model.DataStripe;
 import com.jorge.boats.xkcd.data.net.XkcdClient;
 import com.jorge.boats.xkcd.domain.entity.DomainStripe;
-import java.net.UnknownHostException;
-import java.util.Collections;
-import okhttp3.internal.http.RealResponseBody;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mock;
+
+import java.net.UnknownHostException;
+import java.util.Collections;
+
+import okhttp3.internal.http.RealResponseBody;
 import retrofit2.Response;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Observable;
@@ -41,7 +44,9 @@ public class XkcdStoreImplTest extends DataModuleTestCase {
 
   @Rule public final ExpectedException mExceptionExpectation = ExpectedException.none();
 
-  @Before @Override public void setUp() {
+  @Before
+  @Override
+  public void setUp() {
     super.setUp();
 
     mSut = new XkcdStoreImpl(mMockClient, mMockDatabaseEntityMapper, mMockDomainEntityMapper,
@@ -57,7 +62,8 @@ public class XkcdStoreImplTest extends DataModuleTestCase {
     return new HttpException(Response.error(404, new RealResponseBody(null, null)));
   }
 
-  @Test public void testGetStripeCurrentSuccessful() {
+  @Test
+  public void testGetStripeCurrentSuccessful() {
     final DataStripe sourceStripe = generateRandomDataStripe();
     final DomainStripe targetStripe = generateRandomDomainStripe();
 
@@ -74,7 +80,8 @@ public class XkcdStoreImplTest extends DataModuleTestCase {
     testSubscriber.assertCompleted();
   }
 
-  @Test public void testGetStripeWithValidNumNoCachedSuccessful() {
+  @Test
+  public void testGetStripeWithValidNumNoCachedSuccessful() {
     final DataStripe sourceStripe = generateRandomDataStripe();
     final DomainStripe targetStripe = generateRandomDomainStripe();
     final long generatedNum;
@@ -96,7 +103,8 @@ public class XkcdStoreImplTest extends DataModuleTestCase {
     testSubscriber.assertCompleted();
   }
 
-  @Test public void testGetStripeWithValidNumNoCachedNoConnection() {
+  @Test
+  public void testGetStripeWithValidNumNoCachedNoConnection() {
     final Throwable error = generateNoInternetStubThrowable();
     final long generatedNum;
 
@@ -114,7 +122,8 @@ public class XkcdStoreImplTest extends DataModuleTestCase {
     testSubscriber.assertNotCompleted();
   }
 
-  @Test public void testGetStripeWithValidNumCached() {
+  @Test
+  public void testGetStripeWithValidNumCached() {
     final DatabaseStripe sourceStripe = generateRandomDatabaseStripe();
     final DataStripe intermediateStripe = generateRandomDataStripe();
     final DomainStripe targetStripe = generateRandomDomainStripe();
@@ -136,7 +145,8 @@ public class XkcdStoreImplTest extends DataModuleTestCase {
     verify(mMockClient, never()).getStripeWithId(anyLong());
   }
 
-  @Test public void testGetStripeWithNotFoundNumNoCachedSuccessful() {
+  @Test
+  public void testGetStripeWithNotFoundNumNoCachedSuccessful() {
     final Throwable error = generateNotFoundStubThrowable();
     final long generatedNum;
 

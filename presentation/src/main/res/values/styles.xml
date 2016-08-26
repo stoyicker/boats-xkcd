@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
   <style name="ToolbarTitle" parent="@android:style/TextAppearance.Medium">
     <item name="android:textColor">?android:attr/textColorPrimary</item>
     <item name="android:textStyle">bold</item>
@@ -9,7 +10,7 @@
     <item name="android:textColor">?android:attr/textColorPrimary</item>
   </style>
 
-	<style name="LightDialog" parent="Base.Theme.AppCompat.Light.Dialog"/>
+  <style name="LightDialog" parent="Base.Theme.AppCompat.Light.Dialog"/>
 
-	<style name="DarkDialog" parent="Base.Theme.AppCompat.Dialog"/>
+  <style name="DarkDialog" parent="Base.Theme.AppCompat.Dialog"/>
 </resources>

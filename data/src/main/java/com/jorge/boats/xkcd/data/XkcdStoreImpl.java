@@ -1,6 +1,7 @@
 package com.jorge.boats.xkcd.data;
 
 import android.support.annotation.NonNull;
+
 import com.jorge.boats.xkcd.data.db.DatabaseStripe;
 import com.jorge.boats.xkcd.data.db.XkcdDatabaseHandler;
 import com.jorge.boats.xkcd.data.mapper.DatabaseEntityMapper;
@@ -9,20 +10,24 @@ import com.jorge.boats.xkcd.data.model.DataStripe;
 import com.jorge.boats.xkcd.data.net.XkcdClient;
 import com.jorge.boats.xkcd.domain.entity.DomainStripe;
 import com.jorge.boats.xkcd.domain.repository.XkcdStore;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
 import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Func1;
 
-@Singleton public class XkcdStoreImpl implements XkcdStore {
+@Singleton
+public class XkcdStoreImpl implements XkcdStore {
 
   private final XkcdClient mClient;
   private final DatabaseEntityMapper mDatabaseEntityMapper;
   private final DomainEntityMapper mDomainEntityMapper;
   private final XkcdDatabaseHandler mXkcdDatabaseHandler;
 
-  @Inject public XkcdStoreImpl(final @NonNull XkcdClient client,
+  @Inject
+  public XkcdStoreImpl(final @NonNull XkcdClient client,
       final @NonNull DatabaseEntityMapper databaseEntityMapper,
       final @NonNull DomainEntityMapper entityMapper,
       final @NonNull XkcdDatabaseHandler xkcdDatabaseHandler) {
@@ -32,10 +37,12 @@ import rx.functions.Func1;
     mXkcdDatabaseHandler = xkcdDatabaseHandler;
   }
 
-  @Override public Observable<DomainStripe> currentStripe() {
+  @Override
+  public Observable<DomainStripe> currentStripe() {
     final long lastShownStripeNum = P.lastShownStripeNum.get();
     Observable<DataStripe> base = Observable.create(new Observable.OnSubscribe<DataStripe>() {
-      @Override public void call(final @NonNull Subscriber<? super DataStripe> subscriber) {
+      @Override
+      public void call(final @NonNull Subscriber<? super DataStripe> subscriber) {
         subscriber.onStart();
         final DataStripe currentRetrieved = mClient.getCurrentStripe().toBlocking().single();
 
@@ -57,7 +64,8 @@ import rx.functions.Func1;
     return mapToDomain(base).cache();
   }
 
-  @Override public Observable<DomainStripe> stripeWithNum(final long stripeNum) {
+  @Override
+  public Observable<DomainStripe> stripeWithNum(final long stripeNum) {
     return mapToDomain(dataStripeWithNum(stripeNum)).cache();
   }
 
@@ -72,18 +80,22 @@ import rx.functions.Func1;
             return this;
           }
 
-          @Override public void call(final @NonNull Subscriber<? super DatabaseStripe> subscriber) {
+          @Override
+          public void call(final @NonNull Subscriber<? super DatabaseStripe> subscriber) {
             subscriber.onStart();
 
             final DatabaseStripe retrievedFromDatabase =
                 XkcdStoreImpl.this.mXkcdDatabaseHandler.queryForStripeWithNum(mStripeNum);
 
-            if (retrievedFromDatabase != null) subscriber.onNext(retrievedFromDatabase);
+            if (retrievedFromDatabase != null) {
+              subscriber.onNext(retrievedFromDatabase);
+            }
 
             subscriber.onCompleted();
           }
         }.init(stripeNum)).map(new Func1<DatabaseStripe, DataStripe>() {
-          @Override public DataStripe call(final DatabaseStripe databaseStripe) {
+          @Override
+          public DataStripe call(final DatabaseStripe databaseStripe) {
             return XkcdStoreImpl.this.mDatabaseEntityMapper.transform(databaseStripe);
           }
         });
@@ -98,7 +110,8 @@ import rx.functions.Func1;
             return this;
           }
 
-          @Override public void call(final @NonNull Subscriber<? super DataStripe> subscriber) {
+          @Override
+          public void call(final @NonNull Subscriber<? super DataStripe> subscriber) {
             subscriber.onStart();
             final DataStripe retrievedFromInternet = mClient.getStripeWithId(mStripeNum)
                 .onErrorReturn(new Func1<Throwable, DataStripe>() {
@@ -111,7 +124,8 @@ import rx.functions.Func1;
                     return this;
                   }
 
-                  @Override public DataStripe call(final Throwable throwable) {
+                  @Override
+                  public DataStripe call(final Throwable throwable) {
                     mSubscriber.onError(throwable);
                     return null;
                   }
@@ -135,7 +149,8 @@ import rx.functions.Func1;
 
   private Observable<DomainStripe> mapToDomain(final @NonNull Observable<DataStripe> observable) {
     return observable.map(new Func1<DataStripe, DomainStripe>() {
-      @Override public DomainStripe call(final DataStripe dataStripe) {
+      @Override
+      public DomainStripe call(final DataStripe dataStripe) {
         return XkcdStoreImpl.this.mDomainEntityMapper.transform(dataStripe);
       }
     });

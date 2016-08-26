@@ -4,141 +4,141 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 android {
 
+  //noinspection GroovyAssignabilityCheck
+  compileSdkVersion androidCompileSdkVersion
+  //noinspection GroovyAssignabilityCheck
+  buildToolsVersion androidBuildToolsVersion
+
+  defaultConfig {
     //noinspection GroovyAssignabilityCheck
-    compileSdkVersion androidCompileSdkVersion
+    versionCode androidVersionCode
     //noinspection GroovyAssignabilityCheck
-    buildToolsVersion androidBuildToolsVersion
+    versionName androidVersionName
+    //noinspection GroovyAssignabilityCheck
+    minSdkVersion androidMinSdkVersion
+    //noinspection GroovyAssignabilityCheck
+    targetSdkVersion androidTargetSdkVersion
 
-    defaultConfig {
-        //noinspection GroovyAssignabilityCheck
-        versionCode androidVersionCode
-        //noinspection GroovyAssignabilityCheck
-        versionName androidVersionName
-        //noinspection GroovyAssignabilityCheck
-        minSdkVersion androidMinSdkVersion
-        //noinspection GroovyAssignabilityCheck
-        targetSdkVersion androidTargetSdkVersion
+    //noinspection GroovyAssignabilityCheck
+    testInstrumentationRunner androidTestInstrumentationRunner
 
-        //noinspection GroovyAssignabilityCheck
-        testInstrumentationRunner androidTestInstrumentationRunner
+    manifestPlaceholders = [fabricApiKey: "$System.env.FABRIC_API_KEY"]
 
-        manifestPlaceholders = [fabricApiKey: "$System.env.FABRIC_API_KEY"]
+    multiDexEnabled true
+  }
 
-        multiDexEnabled true
+  compileOptions {
+    //noinspection GroovyAssignabilityCheck
+    sourceCompatibility javaVersion
+    targetCompatibility javaVersion
+  }
+
+  signingConfigs {
+    googlePlay {
+      storeFile new File("boats.keystore")
+      storePassword(new File("keystore.pwd").text.trim())
+      keyAlias("boats")
+      keyPassword(new File("key.pwd").text.trim())
+    }
+  }
+
+  buildTypes {
+    debug {
+      minifyEnabled false
+      shrinkResources false
     }
 
-    compileOptions {
-        //noinspection GroovyAssignabilityCheck
-        sourceCompatibility javaVersion
-        targetCompatibility javaVersion
+    release {
+      minifyEnabled false
+      shrinkResources false
+      zipAlignEnabled true
+      signingConfig signingConfigs.googlePlay
     }
+  }
 
-    signingConfigs {
-        googlePlay {
-            storeFile new File("boats.keystore")
-            storePassword(new File("keystore.pwd").text.trim())
-            keyAlias("boats")
-            keyPassword(new File("key.pwd").text.trim())
-        }
+  flavorDimensions "stage", "base"
+
+  productFlavors {
+    dev {
+      minSdkVersion 21
+      dimension "stage"
     }
-
-    buildTypes {
-        debug {
-            minifyEnabled false
-            shrinkResources false
-        }
-
-        release {
-            minifyEnabled false
-            shrinkResources false
-            zipAlignEnabled true
-            signingConfig signingConfigs.googlePlay
-        }
+    prod {
+      dimension "stage"
     }
-
-    flavorDimensions "stage", "base"
-
-    productFlavors {
-        dev {
-            minSdkVersion 21
-            dimension "stage"
-        }
-        prod {
-            dimension "stage"
-        }
-        core {
-            applicationId String.format(Locale.ENGLISH, androidApplicationIdBase, "")
-            dimension "base"
-        }
+    core {
+      applicationId String.format(Locale.ENGLISH, androidApplicationIdBase, "")
+      dimension "base"
     }
+  }
 
-    applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            def apk = output.outputFile
-            def newName = String.format(Locale.ENGLISH, "%s-%s-%d.apk", variant.productFlavors[0].name,
-                    variant.buildType.name, variant.versionCode)
+  applicationVariants.all { variant ->
+    variant.outputs.each { output ->
+      def apk = output.outputFile
+      def newName = String.format(Locale.ENGLISH, "%s-%s-%d.apk", variant.productFlavors[0].name,
+          variant.buildType.name, variant.versionCode)
 
-            output.outputFile = new File(apk.parentFile, newName);
-        }
+      output.outputFile = new File(apk.parentFile, newName);
     }
+  }
 
-    lintOptions {
-        abortOnError !rootProject.ext.executingOnCI
-        absolutePaths true
-        checkAllWarnings true
-        htmlOutput = new File("${staticAnalysisReportTarget}/presentation/lint.html")
-        quiet false
-        warningsAsErrors true
-    }
+  lintOptions {
+    abortOnError !rootProject.ext.executingOnCI
+    absolutePaths true
+    checkAllWarnings true
+    htmlOutput = new File("${staticAnalysisReportTarget}/presentation/lint.html")
+    quiet false
+    warningsAsErrors true
+  }
 
-    packagingOptions {
-        exclude 'META-INF/services/javax.annotation.processing.Processor'
-    }
+  packagingOptions {
+    exclude 'META-INF/services/javax.annotation.processing.Processor'
+  }
 
-    dexOptions {
-        incremental true
-        preDexLibraries true
-    }
+  dexOptions {
+    incremental true
+    preDexLibraries true
+  }
 }
 
 apply plugin: "com.getkeepsafe.dexcount"
 
 dexcount {
-    includeClasses = true
-    includeFieldCount = false
-    printAsTree = false
-    orderByMethodCount = true
-    verbose = false
+  includeClasses = true
+  includeFieldCount = false
+  printAsTree = false
+  orderByMethodCount = true
+  verbose = false
 }
 
 dependencies {
-    compile project(':domain')
-    compile project(':data')
-    compile project(':photoview')
+  compile project(':domain')
+  compile project(':data')
+  compile project(':photoview')
 
-    final Collection<String> providedDependencies = providedPresentationDependencies.values()
-    final Collection<String> debugCompileDependencies = debugCompilePresentationDependencies.
-            values()
+  final Collection<String> providedDependencies = providedPresentationDependencies.values()
+  final Collection<String> debugCompileDependencies = debugCompilePresentationDependencies.
+      values()
 
-    final Collection<String> compileDependencies = compilePresentationDependencies.values()
-    final Collection<String> aptDependencies = aptPresentationDependencies.values()
-    final Collection<String> androidTestCompileDependencies = androidTestCompilePresentationDependencies.
-            values()
-    final Collection<String> testCompileDependencies = testCompilePresentationDependencies.
-            values()
-    for (final String dependency : providedDependencies) provided dependency
-    for (final String dependency : compileDependencies) compile dependency
-    for (final String dependency : aptDependencies) apt dependency
-    for (final String dependency : androidTestCompileDependencies) {
-        if (dependency.contains("support.test")) {
-            androidTestCompile(dependency) {
-                exclude group: 'com.android.support', module: 'support-v4'
-                exclude group: 'com.android.support', module: 'support-annotations'
-            }
-        } else {
-            androidTestCompile dependency
-        }
+  final Collection<String> compileDependencies = compilePresentationDependencies.values()
+  final Collection<String> aptDependencies = aptPresentationDependencies.values()
+  final Collection<String> androidTestCompileDependencies = androidTestCompilePresentationDependencies.
+      values()
+  final Collection<String> testCompileDependencies = testCompilePresentationDependencies.
+      values()
+  for (final String dependency : providedDependencies) provided dependency
+  for (final String dependency : compileDependencies) compile dependency
+  for (final String dependency : aptDependencies) apt dependency
+  for (final String dependency : androidTestCompileDependencies) {
+    if (dependency.contains("support.test")) {
+      androidTestCompile(dependency) {
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'
+      }
+    } else {
+      androidTestCompile dependency
     }
-    for (final String dependency : debugCompileDependencies) debugCompile dependency
-    for (final String dependency : testCompileDependencies) testCompile dependency
+  }
+  for (final String dependency : debugCompileDependencies) debugCompile dependency
+  for (final String dependency : testCompileDependencies) testCompile dependency
 }

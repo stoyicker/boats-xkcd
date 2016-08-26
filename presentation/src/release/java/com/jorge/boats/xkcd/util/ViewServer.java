@@ -10,7 +10,9 @@ public class ViewServer {
 
   public static ViewServer get(final @Nullable Context context) {
 
-    if (instance == null) instance = new ViewServer();
+    if (instance == null) {
+      instance = new ViewServer();
+    }
 
     return instance;
   }

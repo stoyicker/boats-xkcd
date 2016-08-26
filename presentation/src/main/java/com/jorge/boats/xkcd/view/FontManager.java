@@ -4,8 +4,10 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
+
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.log.ApplicationLogger;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.Map;
@@ -15,7 +17,9 @@ public abstract class FontManager {
 
   public static final int FONT_APP = R.string.app_font;
 
-  @IntDef({ FONT_APP }) @Retention(RetentionPolicy.CLASS) public @interface Font {
+  @IntDef({ FONT_APP })
+  @Retention(RetentionPolicy.CLASS)
+  public @interface Font {
   }
 
   private FontManager() {

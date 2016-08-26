@@ -1,8 +1,10 @@
 package com.jorge.boats.xkcd.data.mapper;
 
 import android.support.annotation.NonNull;
+
 import com.jorge.boats.xkcd.data.model.DataStripe;
 import com.jorge.boats.xkcd.domain.entity.DomainStripe;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,15 +17,18 @@ public class DomainEntityMapperTest {
 
   private DomainEntityMapper mSut;
 
-  @Before public void setUp() {
+  @Before
+  public void setUp() {
     mSut = new DomainEntityMapper();
   }
 
-  @Test public void testTransformNull() {
+  @Test
+  public void testTransformNull() {
     assertThat(mSut.transform(null)).isNull();
   }
 
-  @Test public void testTransformDataAllFieldsNull() {
+  @Test
+  public void testTransformDataAllFieldsNull() {
     final DataStripe source = new DataStripe();
 
     source.setAlt(generateString(Value.NULL));
@@ -41,7 +46,8 @@ public class DomainEntityMapperTest {
     assertEquivalent(source, mSut.transform(source));
   }
 
-  @Test public void testTransformDataAllFieldsRegular() {
+  @Test
+  public void testTransformDataAllFieldsRegular() {
     final DataStripe source = new DataStripe();
 
     source.setAlt(generateString(Value.REGULAR));

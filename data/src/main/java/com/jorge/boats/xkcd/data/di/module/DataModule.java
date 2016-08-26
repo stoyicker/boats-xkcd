@@ -2,12 +2,16 @@ package com.jorge.boats.xkcd.data.di.module;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+
 import com.jorge.boats.xkcd.data.net.XkcdClient;
-import dagger.Module;
-import dagger.Provides;
+
 import javax.inject.Singleton;
 
-@Module public class DataModule {
+import dagger.Module;
+import dagger.Provides;
+
+@Module
+public class DataModule {
 
   private final Context mContext;
 
@@ -15,11 +19,14 @@ import javax.inject.Singleton;
     mContext = context;
   }
 
-  @Provides Context provideContext() {
+  @Provides
+  Context provideContext() {
     return mContext;
   }
 
-  @Provides @Singleton XkcdClient provideXkcdClient(final @NonNull Context context) {
+  @Provides
+  @Singleton
+  XkcdClient provideXkcdClient(final @NonNull Context context) {
     return new XkcdClient(context);
   }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
   <style name="AppNegative" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="colorPrimary">@color/negative_primary</item>
     <item name="colorAccent">@color/negative_accent</item>
@@ -11,7 +12,7 @@
     <item name="android:windowActionModeOverlay">true</item>
     <item name="android:actionModeBackground">?attr/colorPrimary</item>
     <item name="android:windowBackground">@null</item>
-		<item name="actionBarBackground">@color/negative_actionbar_background</item>
+    <item name="actionBarBackground">@color/negative_actionbar_background</item>
   </style>
 
   <style name="SettingsNegative" parent="Theme.AppCompat.Light">
@@ -20,11 +21,11 @@
     <item name="android:textColorPrimary">@color/negative_tertiary_text</item>
     <item name="android:textColorSecondary">@color/negative_secondary_text</item>
     <item name="actionBarTheme">@style/SettingsActionBarThemeNegative</item>
-		<item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
-		<item name="actionBarStyle">@style/BaseSettingsActionBarStyle</item>
+    <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+    <item name="actionBarStyle">@style/BaseSettingsActionBarStyle</item>
   </style>
 
-	<style name="SettingsActionBarThemeNegative" parent="@style/ThemeOverlay.AppCompat.ActionBar">
-		<item name="colorControlNormal">@color/negative_primary_text</item>
-	</style>
+  <style name="SettingsActionBarThemeNegative" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+    <item name="colorControlNormal">@color/negative_primary_text</item>
+  </style>
 </resources>

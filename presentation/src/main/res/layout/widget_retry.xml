@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:background="?attr/selectableItemBackground">
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="?attr/selectableItemBackground">
 
-	<ImageView
-			android:layout_width="match_parent"
-			android:layout_height="0dp"
-			android:layout_weight="2"
-			android:contentDescription="@string/content_error_title"
-			android:scaleType="centerInside"
-			android:src="@drawable/jetpack_guy"/>
+  <ImageView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="2"
+    android:contentDescription="@string/content_error_title"
+    android:scaleType="centerInside"
+    android:src="@drawable/jetpack_guy"/>
 
-	  <TextView
-				android:id="@android:id/text1"
-				android:layout_width="match_parent"
-				android:layout_height="0dp"
-				android:layout_weight="1"
-				android:gravity="center"
-				android:text="@string/retry"
-				android:ellipsize="end"
-				android:textIsSelectable="false"
-				android:textColor="@color/content_empty_text"
-				style="@style/ToolbarTitle"/>
+  <TextView
+    android:id="@android:id/text1"
+    style="@style/ToolbarTitle"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:ellipsize="end"
+    android:gravity="center"
+    android:text="@string/retry"
+    android:textColor="@color/content_empty_text"
+    android:textIsSelectable="false"/>
 </merge>

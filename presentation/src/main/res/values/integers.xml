@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="content_in_duration_milliseconds">400</integer>
-    <integer name="toolbar_text_out_duration_milliseconds">100</integer>
-    <integer name="bezel_gesture_span_pixels">150</integer>
-    <integer name="navigation_layout_show_minimum_distance_pixels">60</integer>
-    <integer name="navigation_layout_hide_minimum_distance_pixels">40</integer>
-    <integer name="navigation_layout_element_animation_delay_milliseconds">50</integer>
-    <integer name="navigation_layout_global_animation_duration_milliseconds">50</integer>
-    <integer name="rate_popup_required_stripes_rendered">20</integer>
-    <integer name="tutorial_show_duration_milliseconds">2500</integer>
-    <integer name="navigation_layout_tutorial_hide_animation_duration_milliseconds">1000</integer>
-    <integer name="navigation_swipe_time_limit_millis">900</integer>
-    <integer name="navigation_swipe_minimum_length">150</integer>
+  <integer name="content_in_duration_milliseconds">400</integer>
+  <integer name="toolbar_text_out_duration_milliseconds">100</integer>
+  <integer name="bezel_gesture_span_pixels">150</integer>
+  <integer name="navigation_layout_show_minimum_distance_pixels">60</integer>
+  <integer name="navigation_layout_hide_minimum_distance_pixels">40</integer>
+  <integer name="navigation_layout_element_animation_delay_milliseconds">50</integer>
+  <integer name="navigation_layout_global_animation_duration_milliseconds">50</integer>
+  <integer name="rate_popup_required_stripes_rendered">20</integer>
+  <integer name="tutorial_show_duration_milliseconds">2500</integer>
+  <integer name="navigation_layout_tutorial_hide_animation_duration_milliseconds">1000</integer>
+  <integer name="navigation_swipe_time_limit_millis">900</integer>
+  <integer name="navigation_swipe_minimum_length">150</integer>
 </resources>

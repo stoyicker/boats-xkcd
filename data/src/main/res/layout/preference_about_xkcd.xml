@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-		android:id="@+id/body"
-		android:paddingLeft="@dimen/dialog_view_padding_horizontal"
-		android:paddingRight="@dimen/dialog_view_padding_horizontal"
-		android:paddingTop="@dimen/dialog_view_padding_vertical"
-		android:paddingBottom="@dimen/dialog_view_padding_vertical"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:textIsSelectable="false"
-		android:gravity="left|center_vertical"/>
+          android:id="@+id/body"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="left|center_vertical"
+          android:paddingBottom="@dimen/dialog_view_padding_vertical"
+          android:paddingLeft="@dimen/dialog_view_padding_horizontal"
+          android:paddingRight="@dimen/dialog_view_padding_horizontal"
+          android:paddingTop="@dimen/dialog_view_padding_vertical"
+          android:textIsSelectable="false"/>

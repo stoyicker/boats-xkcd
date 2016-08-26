@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppStandard" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/standard_primary</item>
-        <item name="colorAccent">@color/standard_accent</item>
-        <item name="color">@color/standard_primary_light</item>
-        <item name="android:textColorPrimary">@color/standard_primary_text</item>
-        <item name="android:textColorSecondary">@color/standard_secondary_text</item>
-        <item name="divider">@color/standard_divider</item>
-        <item name="windowActionBarOverlay">true</item>
-        <item name="android:windowActionModeOverlay">true</item>
-        <item name="android:actionModeBackground">?attr/colorPrimary</item>
-        <item name="android:windowBackground">@null</item>
-        <item name="actionBarBackground">@color/standard_actionbar_background</item>
-    </style>
 
-    <style name="SettingsStandard" parent="Theme.AppCompat.Light">
-        <item name="colorAccent">@color/standard_accent</item>
-        <item name="background">@color/standard_settings_window_background</item>
-        <item name="android:textColorPrimary">@color/standard_tertiary_text</item>
-        <item name="android:textColorSecondary">@color/standard_secondary_text</item>
-        <item name="actionBarTheme">@style/SettingsActionBarThemeStandard</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
-        <item name="actionBarStyle">@style/BaseSettingsActionBarStyle</item>
-    </style>
+  <style name="AppStandard" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">@color/standard_primary</item>
+    <item name="colorAccent">@color/standard_accent</item>
+    <item name="color">@color/standard_primary_light</item>
+    <item name="android:textColorPrimary">@color/standard_primary_text</item>
+    <item name="android:textColorSecondary">@color/standard_secondary_text</item>
+    <item name="divider">@color/standard_divider</item>
+    <item name="windowActionBarOverlay">true</item>
+    <item name="android:windowActionModeOverlay">true</item>
+    <item name="android:actionModeBackground">?attr/colorPrimary</item>
+    <item name="android:windowBackground">@null</item>
+    <item name="actionBarBackground">@color/standard_actionbar_background</item>
+  </style>
 
-    <style name="SettingsActionBarThemeStandard" parent="@style/ThemeOverlay.AppCompat.ActionBar">
-        <item name="colorControlNormal">@color/standard_primary_text</item>
-    </style>
+  <style name="SettingsStandard" parent="Theme.AppCompat.Light">
+    <item name="colorAccent">@color/standard_accent</item>
+    <item name="background">@color/standard_settings_window_background</item>
+    <item name="android:textColorPrimary">@color/standard_tertiary_text</item>
+    <item name="android:textColorSecondary">@color/standard_secondary_text</item>
+    <item name="actionBarTheme">@style/SettingsActionBarThemeStandard</item>
+    <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+    <item name="actionBarStyle">@style/BaseSettingsActionBarStyle</item>
+  </style>
+
+  <style name="SettingsActionBarThemeStandard" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+    <item name="colorControlNormal">@color/standard_primary_text</item>
+  </style>
 </resources>

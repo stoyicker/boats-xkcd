@@ -2,5 +2,5 @@
 <resources>
   <string name="app_font" translatable="false">chewy.ttf</string>
   <string name="market_base_url" formatted="false" translatable="false">market://details?id=%s</string>
-  <string name="xkcd_mobile_link_pattern" translatable="false" formatted="false">https://m.xkcd.com/%s</string>
+  <string name="xkcd_mobile_link_pattern" formatted="false" translatable="false">https://m.xkcd.com/%s</string>
 </resources>

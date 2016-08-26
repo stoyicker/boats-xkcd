@@ -5,5 +5,5 @@
     <attr name="out_duration_millis" format="integer"/>
   </declare-styleable>
 
-	<attr name="actionBarBackground" format="reference"/>
+  <attr name="actionBarBackground" format="reference"/>
 </resources>

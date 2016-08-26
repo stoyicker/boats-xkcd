@@ -1,18 +1,23 @@
 package com.jorge.boats.xkcd.data.mapper;
 
 import android.support.annotation.Nullable;
+
 import com.jorge.boats.xkcd.data.db.DatabaseStripe;
 import com.jorge.boats.xkcd.data.model.DataStripe;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+
 import org.jetbrains.annotations.Contract;
 
-@Singleton public class DatabaseEntityMapper {
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
+public class DatabaseEntityMapper {
 
   /**
    * Make explicit that this constructor can be used to inject the class.
    */
-  @Inject public DatabaseEntityMapper() {
+  @Inject
+  public DatabaseEntityMapper() {
   }
 
   @Contract("null -> null")
@@ -37,7 +42,8 @@ import org.jetbrains.annotations.Contract;
     return ret;
   }
 
-  @Contract("null -> null") public DatabaseStripe transform(final @Nullable DataStripe dataStripe) {
+  @Contract("null -> null")
+  public DatabaseStripe transform(final @Nullable DataStripe dataStripe) {
     DatabaseStripe ret = null;
 
     if (dataStripe != null) {

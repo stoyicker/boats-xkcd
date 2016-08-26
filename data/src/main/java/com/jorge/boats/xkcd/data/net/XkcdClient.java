@@ -3,11 +3,15 @@ package com.jorge.boats.xkcd.data.net;
 import android.content.Context;
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
+
 import com.jorge.boats.xkcd.data.R;
 import com.jorge.boats.xkcd.data.model.DataStripe;
+
 import java.util.concurrent.TimeUnit;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -15,11 +19,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.schedulers.Schedulers;
 
-@Singleton public class XkcdClient {
+@Singleton
+public class XkcdClient {
 
   private final XkcdService mService;
 
-  @Inject public XkcdClient(final @NonNull Context context) {
+  @Inject
+  public XkcdClient(final @NonNull Context context) {
     mService = createRetrofit(context).create(XkcdService.class);
   }
 

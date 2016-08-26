@@ -14,30 +14,30 @@ import butterknife.ButterKnife;
 
 public class CustomTitleToolbar extends Toolbar {
 
-    @Bind(R.id.toolbar_title)
-    TextView mTitleView;
+  @Bind(R.id.toolbar_title)
+  TextView mTitleView;
 
-    public CustomTitleToolbar(final @NonNull Context context, final @Nullable AttributeSet attrs) {
-        super(context, attrs);
-    }
+  public CustomTitleToolbar(final @NonNull Context context, final @Nullable AttributeSet attrs) {
+    super(context, attrs);
+  }
 
-    @Override
-    protected void onFinishInflate() {
-        initButterKnife();
+  @Override
+  protected void onFinishInflate() {
+    initButterKnife();
 
-        super.onFinishInflate();
-    }
+    super.onFinishInflate();
+  }
 
-    public TextView getTitleView() {
-        return mTitleView;
-    }
+  public TextView getTitleView() {
+    return mTitleView;
+  }
 
-    private void initButterKnife() {
-        ButterKnife.bind(this);
-    }
+  private void initButterKnife() {
+    ButterKnife.bind(this);
+  }
 
-    @Override
-    public void setTitle(final @Nullable CharSequence title) {
-        ((FlickAndRevealTextView) mTitleView).playAndSetText(title);
-    }
+  @Override
+  public void setTitle(final @Nullable CharSequence title) {
+    ((FlickAndRevealTextView) mTitleView).playAndSetText(title);
+  }
 }

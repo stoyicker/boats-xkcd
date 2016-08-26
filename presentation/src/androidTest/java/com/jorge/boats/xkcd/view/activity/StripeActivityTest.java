@@ -1,10 +1,5 @@
 package com.jorge.boats.xkcd.view.activity;
 
-import com.jorge.boats.xkcd.CustomViewMatchers;
-import com.jorge.boats.xkcd.R;
-import com.jorge.boats.xkcd.domain.entity.DomainStripe;
-import com.jorge.boats.xkcd.view.stripe.StripeActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
@@ -12,6 +7,11 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.test.espresso.ViewInteraction;
 import android.test.ActivityInstrumentationTestCase2;
+
+import com.jorge.boats.xkcd.CustomViewMatchers;
+import com.jorge.boats.xkcd.R;
+import com.jorge.boats.xkcd.domain.entity.DomainStripe;
+import com.jorge.boats.xkcd.view.stripe.StripeActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;

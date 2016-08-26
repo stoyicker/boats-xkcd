@@ -1,20 +1,20 @@
 <resources>
-    <string name="app_name">Boats</string>
-    <string name="content_error_title">Oops!</string>
-    <string name="action_share_title">Share with…</string>
-    <string name="retry">Nothing to do here\n(tap to retry!)</string>
-    <string name="label_settings">Settings</string>
-    <string name="label_open_in_browser">Open in browser</string>
-    <string name="content_error_action_share">Oh come on, you know there\'s nothing to share here.</string>
-    <string name="pref_summary_volume_navigation_on">Use volume keys to change stripes</string>
-    <string name="pref_summary_volume_navigation_off">Volume keys do nothing</string>
-    <string name="pref_summary_swipe_navigation_on">One-finger swipes change stripes</string>
-    <string name="pref_summary_swipe_navigation_off" />
-    <string name="label_about_the_author">About the author</string>
-    <string name="rate_popup_title" formatted="false">I can see you like %s!</string>
-    <string name="rate_popup_body">I know you\'re having fun, so what about a short break to rate the app?</string>
-    <string name="notification_title_user_retention">New stripes</string>
-    <string name="notification_user_retention_content">Tap to see them!</string>
-    <string name="label_random">Random</string>
-    <string name="no_more_stripes">No new stripes!</string>
+  <string name="app_name">Boats</string>
+  <string name="content_error_title">Oops!</string>
+  <string name="action_share_title">Share with…</string>
+  <string name="retry">Nothing to do here\n(tap to retry!)</string>
+  <string name="label_settings">Settings</string>
+  <string name="label_open_in_browser">Open in browser</string>
+  <string name="content_error_action_share">Oh come on, you know there\'s nothing to share here.</string>
+  <string name="pref_summary_volume_navigation_on">Use volume keys to change stripes</string>
+  <string name="pref_summary_volume_navigation_off">Volume keys do nothing</string>
+  <string name="pref_summary_swipe_navigation_on">One-finger swipes change stripes</string>
+  <string name="pref_summary_swipe_navigation_off"/>
+  <string name="label_about_the_author">About the author</string>
+  <string name="rate_popup_title" formatted="false">I can see you like %s!</string>
+  <string name="rate_popup_body">I know you\'re having fun, so what about a short break to rate the app?</string>
+  <string name="notification_title_user_retention">New stripes</string>
+  <string name="notification_user_retention_content">Tap to see them!</string>
+  <string name="label_random">Random</string>
+  <string name="no_more_stripes">No new stripes!</string>
 </resources>

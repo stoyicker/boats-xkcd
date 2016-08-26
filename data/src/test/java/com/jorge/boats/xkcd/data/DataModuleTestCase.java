@@ -13,12 +13,14 @@ import org.robolectric.annotation.Config;
 @Config(constants = BuildConfig.class, application = StubApplication.class, sdk = 21)
 public abstract class DataModuleTestCase {
 
-  @Before public void setUp() {
+  @Before
+  public void setUp() {
     DataManager.initialize(RuntimeEnvironment.application);
     MockitoAnnotations.initMocks(this);
   }
 
-  @After public void tearDown() {
+  @After
+  public void tearDown() {
     DataManager.destroy();
   }
 }
