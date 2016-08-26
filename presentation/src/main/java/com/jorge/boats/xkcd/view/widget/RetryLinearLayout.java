@@ -15,12 +15,12 @@ import android.widget.TextView;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.presenter.StripePresenter;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RetryLinearLayout extends LinearLayout {
 
-  @Bind(android.R.id.text1)
+  @BindView(android.R.id.text1)
   TextView mText;
 
   private StripePresenter mStripePresenter;

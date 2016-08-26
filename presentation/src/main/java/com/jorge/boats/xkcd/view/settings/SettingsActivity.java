@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,14 +19,13 @@ import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ThemeUtil;
 import com.jorge.boats.xkcd.view.activity.ButterknifeActivity;
-import com.jorge.boats.xkcd.view.widget.CustomTitleToolbar;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 public class SettingsActivity extends ButterknifeActivity {
 
-  @Bind(R.id.toolbar)
-  CustomTitleToolbar mToolbar;
+  @BindView(R.id.toolbar)
+  Toolbar mToolbar;
 
   @Override
   protected void onCreate(final @Nullable Bundle savedInstanceState) {

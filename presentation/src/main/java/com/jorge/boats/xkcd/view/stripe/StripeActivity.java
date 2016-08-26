@@ -61,7 +61,7 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import io.fabric.sdk.android.Fabric;
 import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;
@@ -88,23 +88,23 @@ public class StripeActivity extends ButterknifeDaggerActivity
   @Inject
   StripePresenter mStripePresenter;
 
-  @Bind(R.id.content)
+  @BindView(R.id.content)
   View mContent;
-  @Bind(R.id.toolbar)
+  @BindView(R.id.toolbar)
   CustomTitleToolbar mToolbar;
-  @Bind(R.id.navigation)
+  @BindView(R.id.navigation)
   NavigationLinearLayout mNavigationLayout;
-  @Bind(R.id.progress_bar)
+  @BindView(R.id.progress_bar)
   View mLoading;
-  @Bind(R.id.retry)
+  @BindView(R.id.retry)
   RetryLinearLayout mRetry;
-  @Bind(R.id.stripe_presenter)
+  @BindView(R.id.stripe_presenter)
   PhotoViewExceptionProofRelativeLayout mStripePresenterViewGroup;
-  @Bind(R.id.image)
+  @BindView(R.id.image)
   PhotoView mImage;
-  @Bind(R.id.title)
+  @BindView(R.id.title)
   TextView mTitle;
-  @Bind(R.id.description)
+  @BindView(R.id.description)
   TextView mDescription;
 
   @NonNull
