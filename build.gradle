@@ -4,34 +4,34 @@ apply from: 'buildsystem/ci.gradle'
 apply from: 'buildsystem/dependencies.gradle'
 
 buildscript {
-    repositories {
-        maven { url "https://plugins.gradle.org/m2/" }
-        maven { url 'https://maven.fabric.io/public' }
-        jcenter()
-    }
+  repositories {
+    maven { url "https://plugins.gradle.org/m2/" }
+    maven { url 'https://maven.fabric.io/public' }
+    jcenter()
+  }
 
-    def androidPluginVersion = "2.1.2"
-    def dexcountPluginVersion = "0.3.1"
-    def androidAptPluginVersion = "1.8"
-    def pSyncPluginVersion = "1.1.5"
-    def jsonSchema2PojoPluginVersion = "0.4.18"
-    def fabricToolsPluginVersion = "1.21.5"
+  def androidPluginVersion = "2.1.2"
+  def dexcountPluginVersion = "0.3.1"
+  def androidAptPluginVersion = "1.8"
+  def pSyncPluginVersion = "1.1.5"
+  def jsonSchema2PojoPluginVersion = "0.4.18"
+  def fabricToolsPluginVersion = "1.21.5"
 
-    def classpathDependencies = [androidPlugin        : "com.android.tools.build:gradle:${androidPluginVersion}",
-                                 dexcountPlugin       : "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${dexcountPluginVersion}",
-                                 androidAptPlugin     : "com.neenbedankt.gradle.plugins:android-apt:${androidAptPluginVersion}",
-                                 pSync                : "gradle.plugin.com.flipboard:psync:${pSyncPluginVersion}",
-                                 jsonSchema2PojoPlugin: "org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:${jsonSchema2PojoPluginVersion}",
-                                 fabricToolsPlugin    : "io.fabric.tools:gradle:${fabricToolsPluginVersion}"]
+  def classpathDependencies = [androidPlugin        : "com.android.tools.build:gradle:${androidPluginVersion}",
+                               dexcountPlugin       : "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${dexcountPluginVersion}",
+                               androidAptPlugin     : "com.neenbedankt.gradle.plugins:android-apt:${androidAptPluginVersion}",
+                               pSync                : "gradle.plugin.com.flipboard:psync:${pSyncPluginVersion}",
+                               jsonSchema2PojoPlugin: "org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:${jsonSchema2PojoPluginVersion}",
+                               fabricToolsPlugin    : "io.fabric.tools:gradle:${fabricToolsPluginVersion}"]
 
-    dependencies {
-        classpath classpathDependencies.androidPlugin
-        classpath classpathDependencies.dexcountPlugin
-        classpath classpathDependencies.androidAptPlugin
-        classpath classpathDependencies.pSync
-        classpath classpathDependencies.jsonSchema2PojoPlugin
-        classpath classpathDependencies.fabricToolsPlugin
-    }
+  dependencies {
+    classpath classpathDependencies.androidPlugin
+    classpath classpathDependencies.dexcountPlugin
+    classpath classpathDependencies.androidAptPlugin
+    classpath classpathDependencies.pSync
+    classpath classpathDependencies.jsonSchema2PojoPlugin
+    classpath classpathDependencies.fabricToolsPlugin
+  }
 }
 
 //If this is modified, remember to update the script(s) accordingly
@@ -39,42 +39,41 @@ def staticAnalysisReportFolderTarget = project.rootDir.getAbsolutePath() + "/sta
 
 // Query git for the tag and commit count. Use these to automate versioning. (https://github.com/nickbutcher/plaid/blob/master/app/build.gradle)
 def gitTag = 'git describe --tags'.execute([], project.rootDir).text.trim()
-def gitCommitCount = 100 + Integer.parseInt(
-        'git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
+def gitCommitCount = 100 + Integer.parseInt('git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
 
 allprojects {
-    ext {
-        //Application details
-        androidVersionCode = gitCommitCount
-        androidVersionName = gitTag
-        androidTestInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+  ext {
+    //Application details
+    androidVersionCode = gitCommitCount
+    androidVersionName = gitTag
+    androidTestInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
 
-        //Gradle wrapper version
-        gradleWrapperVersion = '2.14.1'
+    //Gradle wrapper version
+    gradleWrapperVersion = '2.14.1'
 
-        androidApplicationIdBase = "com.jorge.boats.xkcd%s"
-        javaVersion = JavaVersion.VERSION_1_7
+    androidApplicationIdBase = "com.jorge.boats.xkcd%s"
+    javaVersion = JavaVersion.VERSION_1_7
 
-        staticAnalysisReportTarget = staticAnalysisReportFolderTarget
-    }
+    staticAnalysisReportTarget = staticAnalysisReportFolderTarget
+  }
 }
 
 task wrapper(type: Wrapper) {
-    group "Build Setup"
-    description "Creates the gradle wrapper."
+  group "Build Setup"
+  description "Creates the gradle wrapper."
 
-    //noinspection GroovyAssignabilityCheck
-    gradleVersion rootProject.ext.gradleWrapperVersion
+  //noinspection GroovyAssignabilityCheck
+  gradleVersion rootProject.ext.gradleWrapperVersion
 }
 
 task clean(type: Delete, overwrite: true) {
-    group "Verification"
-    description "Deletes the build directories of the whole project and the static analysis result."
+  group "Verification"
+  description "Deletes the build directories of the whole project and the static analysis result."
 
-    for (final Project x : rootProject.allprojects) {
-        delete x.buildDir
-        delete Paths.get(x.getProjectDir().absolutePath, staticAnalysisReportFolderTarget).
-                toAbsolutePath().
-                toString()
-    }
+  for (final Project x : rootProject.allprojects) {
+    delete x.buildDir
+    delete Paths.get(x.getProjectDir().absolutePath, staticAnalysisReportFolderTarget).
+        toAbsolutePath().
+        toString()
+  }
 }
