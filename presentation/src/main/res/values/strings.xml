@@ -17,4 +17,6 @@
   <string name="notification_user_retention_content">Tap to see them!</string>
   <string name="label_random">Random</string>
   <string name="no_more_stripes">No new stripes!</string>
+  <string name="market_intent_template"><![CDATA[market://details?id=%s]]></string>
+  <string name="market_link_template"><![CDATA[http://play.google.com/store/apps/details?id=%s]]></string>
 </resources>

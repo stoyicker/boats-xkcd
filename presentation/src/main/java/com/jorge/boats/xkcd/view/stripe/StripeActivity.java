@@ -57,8 +57,6 @@ import com.jorge.boats.xkcd.view.widget.CustomTitleToolbar;
 import com.jorge.boats.xkcd.view.widget.PhotoViewExceptionProofRelativeLayout;
 import com.jorge.boats.xkcd.view.widget.RetryLinearLayout;
 
-import java.util.Locale;
-
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -156,7 +154,7 @@ public class StripeActivity extends ButterknifeDaggerActivity
             @Override
             public void onClick(final @NonNull DialogInterface dialog, final int which) {
               final String packageName;
-              final Uri uri = Uri.parse(String.format(Locale.ENGLISH, "market://details?id=%s",
+              final Uri uri = Uri.parse(getString(R.string.market_intent_template,
                   packageName = StripeActivity.this.getPackageName()));
               final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 
@@ -173,9 +171,8 @@ public class StripeActivity extends ButterknifeDaggerActivity
                 P.ratedGooglePlay.put(true).apply();
                 startActivity(intent);
               } catch (ActivityNotFoundException e) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
-                    String.format(Locale.ENGLISH, "http://play.google.com/store/apps/details?id=%s",
-                        packageName))));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string
+                    .market_link_template, packageName))));
               }
             }
           })
