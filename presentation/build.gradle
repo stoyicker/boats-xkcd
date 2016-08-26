@@ -96,7 +96,6 @@ android {
   }
 
   dexOptions {
-    incremental true
     preDexLibraries true
   }
 }
@@ -106,7 +105,7 @@ apply plugin: "com.getkeepsafe.dexcount"
 dexcount {
   includeClasses = true
   includeFieldCount = false
-  printAsTree = false
+  format = "json"
   orderByMethodCount = true
   verbose = false
 }
