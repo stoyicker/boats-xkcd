@@ -55,64 +55,66 @@ ext {
   testingSupportLibraryRunnerVersion = "0.5"
   robolectricVersion = "3.1.2"
   jUnitVersion = "4.12"
-  assertJVersion = "1.7.1"
+  assertJVersion = "1.7.1" //Frozen
   mockitoVersion = "2.0.2-beta"
 
-  providedPresentationDependencies = [supportAnnotations  : "com.android" + "" + ".support:support-annotations:${supportAnnotationsVersion}",
-                                      javaxAnnotation     : "javax" + "" + ".annotation:jsr250-api:${javaxAnnotationVersion}",
-                                      jetbrainsAnnotations: "org" + "" + ".jetbrains:annotations:${jetbrainsAnnotationsVersion}"]
+  providedPresentationDependencies = [supportAnnotations  : "com.android" + "" + "" + "" + ".support:support-annotations:${supportAnnotationsVersion}",
+                                      javaxAnnotation     : "javax" + "" + "" + "" + ".annotation:jsr250-api:${javaxAnnotationVersion}",
+                                      jetbrainsAnnotations: "org" + "" + "" + "" + ".jetbrains:annotations:${jetbrainsAnnotationsVersion}"]
 
-  debugCompilePresentationDependencies = [timber    : "com.jakewharton" + "" + ".timber:timber:${timberVersion}",
-                                          leakCanary: "com.squareup" + "" + ".leakcanary:leakcanary-android:${leakCanaryVersion}"]
+  debugCompilePresentationDependencies = [timber    : "com.jakewharton" + "" + "" + "" + ".timber:timber:${timberVersion}",
+                                          leakCanary: "com.squareup" + "" + "" + "" + ".leakcanary:leakcanary-android:${leakCanaryVersion}"]
 
-  compilePresentationDependencies = [dagger                : "com.google" + "" + ".dagger:dagger:${daggerVersion}",
-                                     rxAndroid             : "io" + "" + ".reactivex:rxandroid:${rxAndroidVersion}",
-                                     butterknife           : "com" + "" + ".jakewharton:butterknife:${butterknifeVersion}",
-                                     supportFragment       : "com.android" + "" + ".support:support-fragment:${supportFragmentVersion}",
-                                     materialProgressBar   : "me.zhanghai.android" + "" + ".materialprogressbar:library:${materialProgressBarVersion}",
-                                     supportDesign         : "com.android" + "" + ".support:design:${supportDesignVersion}",
-                                     glide                 : "com.github.bumptech" + "" + ".glide:glide:${glideVersion}",
-                                     okHttpGlideIntegration: "com.github.bumptech" + "" + ".glide:okhttp-integration:${glideOkHttp3IntegrationVersion}@aar",
-                                     gcm                   : "com.google.android" + "" + ".gms:play-services-gcm:${gcmVersion}",
-                                     multidexSupport       : "com.android" + "" + ".support:multidex:${multidexSupportVersion}"]
+  compilePresentationDependencies = [dagger                : "com.google" + "" + "" + "" + ".dagger:dagger:${daggerVersion}",
+                                     rxAndroid             : "io" + "" + "" + "" + ".reactivex:rxandroid:${rxAndroidVersion}",
+                                     butterknife           : "com" + "" + "" + "" + ".jakewharton:butterknife:${butterknifeVersion}",
+                                     supportFragment       : "com.android" + "" + "" + "" + ".support:support-fragment:${supportFragmentVersion}",
+                                     materialProgressBar   : "me.zhanghai.android" + "" + "" + "" + ".materialprogressbar:library:${materialProgressBarVersion}",
+                                     supportDesign         : "com.android" + "" + "" + "" + ".support:design:${supportDesignVersion}",
+                                     glide                 : "com.github.bumptech" + "" + "" + "" + ".glide:glide:${glideVersion}",
+                                     okHttpGlideIntegration: "com.github.bumptech" + "" + "" + "" + ".glide:okhttp-integration:${glideOkHttp3IntegrationVersion}@aar",
+                                     gcm                   : "com.google.android" + "" + "" + "" + ".gms:play-services-gcm:${gcmVersion}",
+                                     multidexSupport       : "com.android" + "" + "" + "" + ".support:multidex:${multidexSupportVersion}"]
 
-  aptPresentationDependencies = [daggerCompiler: "com.google" + "" + ".dagger:dagger-compiler:${daggerVersion}"]
+  aptPresentationDependencies = [daggerCompiler: "com.google" + "" + "" + "" + ".dagger:dagger-compiler:${daggerVersion}"]
 
-  androidTestCompilePresentationDependencies = [espresso                   : "com.android" + ".support" + ".test.espresso:espresso-core:${espressoVersion}",
-                                                testingSupportLibraryRunner: "com.android" + ".support" + ".test:runner:${testingSupportLibraryRunnerVersion}"]
+  androidTestCompilePresentationDependencies = [espresso                   : "com.android" + "" +
+      ".support" + ".test.espresso:espresso-core:${espressoVersion}",
+                                                testingSupportLibraryRunner: "com.android" + "" +
+                                                    ".support" + "" + ".test:runner:${testingSupportLibraryRunnerVersion}"]
 
   testCompilePresentationDependencies = [junit      : "junit:junit:${jUnitVersion}",
                                          mockito    : "org.mockito:mockito-core:${mockitoVersion}",
                                          assertj    : "org.assertj:assertj-core:${assertJVersion}",
-                                         robolectric: "org" + "" + ".robolectric:robolectric:${robolectricVersion}"]
+                                         robolectric: "org" + "" + "" + "" + ".robolectric:robolectric:${robolectricVersion}"]
 
   compileDomainDependencies = [rxJava         : "io.reactivex:rxjava:${rxJavaVersion}",
-                               javaxAnnotation: "javax" + "" + ".annotation:jsr250-api:${javaxAnnotationVersion}",
-                               daggerCompiler : "com.google" + "" + ".dagger:dagger-compiler:${daggerVersion}",
+                               javaxAnnotation: "javax" + "" + "" + "" + ".annotation:jsr250-api:${javaxAnnotationVersion}",
+                               daggerCompiler : "com.google" + "" + "" + "" + ".dagger:dagger-compiler:${daggerVersion}",
                                dagger         : "com.google.dagger:dagger:${daggerVersion}",
-                               commonsLang3   : "org.apache" + "" + ".commons:commons-lang3:${commonsLang3Version}"]
+                               commonsLang3   : "org.apache" + "" + "" + "" + ".commons:commons-lang3:${commonsLang3Version}"]
 
   testCompileDomainDependencies = [junit  : "junit:junit:${jUnitVersion}",
                                    mockito: "org.mockito:mockito-core:${mockitoVersion}",
                                    assertj: "org.assertj:assertj-core:${assertJVersion}"]
 
-  providedDataDependencies = [supportAnnotations  : "com.android" + "" + ".support:support-annotations:${supportAnnotationsVersion}",
-                              javaxAnnotation     : "javax" + "" + ".annotation:jsr250-api:${javaxAnnotationVersion}",
-                              jetbrainsAnnotations: "org" + "" + ".jetbrains:annotations:${jetbrainsAnnotationsVersion}"]
+  providedDataDependencies = [supportAnnotations  : "com.android" + "" + "" + "" + ".support:support-annotations:${supportAnnotationsVersion}",
+                              javaxAnnotation     : "javax" + "" + "" + "" + ".annotation:jsr250-api:${javaxAnnotationVersion}",
+                              jetbrainsAnnotations: "org" + "" + "" + "" + ".jetbrains:annotations:${jetbrainsAnnotationsVersion}"]
 
   compileDataDependencies = [dagger               : "com.google.dagger:dagger:${daggerVersion}",
-                             dbFlowCore           : "com.github.Raizlabs" + "" + ".DBFlow:dbflow-core:${dbFlowVersion}",
-                             dbFlow               : "com.github.Raizlabs" + "" + ".DBFlow:dbflow:${dbFlowVersion}",
-                             retrofit             : "com.squareup" + "" + ".retrofit2:retrofit:${retrofitVersion}",
-                             retrofitGsonConverter: "com.squareup" + "" + ".retrofit2:converter-gson:${retrofitVersion}",
-                             retrofitRxJavaAdapter: "com.squareup" + "" + ".retrofit2:adapter-rxjava:${retrofitVersion}",
-                             commonsLang3         : "org.apache" + "" + ".commons:commons-lang3:${commonsLang3Version}",
-                             supportPreference    : "com.android" + "" + ".support:preference-v7:${supportPreferenceVersion}",
-                             rxPreferences        : "com.f2prateek.rx" + "" + ".preferences:rx-preferences:${rxPreferencesVersion}",
-                             crashlytics          : "com.crashlytics.sdk" + "" + ".android:crashlytics:${crashlyticsVersion}"]
+                             dbFlowCore           : "com.github.Raizlabs" + "" + "" + "" + ".DBFlow:dbflow-core:${dbFlowVersion}",
+                             dbFlow               : "com.github.Raizlabs" + "" + "" + "" + ".DBFlow:dbflow:${dbFlowVersion}",
+                             retrofit             : "com.squareup" + "" + "" + "" + ".retrofit2:retrofit:${retrofitVersion}",
+                             retrofitGsonConverter: "com.squareup" + "" + "" + "" + ".retrofit2:converter-gson:${retrofitVersion}",
+                             retrofitRxJavaAdapter: "com.squareup" + "" + "" + "" + ".retrofit2:adapter-rxjava:${retrofitVersion}",
+                             commonsLang3         : "org.apache" + "" + "" + "" + ".commons:commons-lang3:${commonsLang3Version}",
+                             supportPreference    : "com.android" + "" + "" + "" + ".support:preference-v7:${supportPreferenceVersion}",
+                             rxPreferences        : "com.f2prateek.rx" + "" + "" + "" + ".preferences:rx-preferences:${rxPreferencesVersion}",
+                             crashlytics          : "com.crashlytics.sdk" + "" + "" + "" + ".android:crashlytics:${crashlyticsVersion}"]
 
   aptDataDependencies = [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
-                         dbFlowCompiler: "com.github.Raizlabs" + "" + ".DBFlow:dbflow-processor:${dbFlowVersion}"]
+                         dbFlowCompiler: "com.github.Raizlabs" + "" + "" + "" + ".DBFlow:dbflow-processor:${dbFlowVersion}"]
 
   testCompileDataDependencies = [junit      : "junit:junit:${jUnitVersion}",
                                  assertj    : "org.assertj:assertj-core:${assertJVersion}",
