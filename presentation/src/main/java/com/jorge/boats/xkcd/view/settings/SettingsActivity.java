@@ -9,12 +9,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.util.ResourceUtil;
+import com.jorge.boats.xkcd.util.ThemeUtil;
 import com.jorge.boats.xkcd.util.ViewServerDelegate;
 import com.jorge.boats.xkcd.view.activity.ButterknifeActivity;
 import com.jorge.boats.xkcd.view.widget.CustomTitleToolbar;
@@ -34,6 +36,7 @@ public class SettingsActivity extends ButterknifeActivity {
 
     setupToolbar();
     initFragment(savedInstanceState);
+    setTheme(ThemeUtil.getSettingsTheme(this));
 
     ViewServerDelegate.addWindow(this);
   }
@@ -41,6 +44,15 @@ public class SettingsActivity extends ButterknifeActivity {
   private void setupToolbar() {
     mToolbar.setTitle(R.string.label_settings);
     setSupportActionBar(mToolbar);
+
+    final ActionBar actionBar = getSupportActionBar();
+    //noinspection ConstantConditions
+    actionBar.setDisplayHomeAsUpEnabled(Boolean.TRUE);
+    final Drawable upArrow = ResourceUtil.getDrawable(this, R.drawable.ic_arrow_left, getTheme());
+    //noinspection ConstantConditions
+    upArrow.setColorFilter(ResourceUtil.getAttrColor(this, android.R.attr.textColorPrimary),
+        PorterDuff.Mode.SRC_ATOP);
+    actionBar.setHomeAsUpIndicator(upArrow);
   }
 
   @Override

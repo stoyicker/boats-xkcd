@@ -2,9 +2,11 @@ package com.jorge.boats.xkcd.util;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.AttrRes;
 import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -36,5 +38,19 @@ public abstract class ResourceUtil {
     theme.resolveAttribute(resId, typedValue, true);
 
     return typedValue.data;
+  }
+
+  @Nullable
+  public static Drawable getDrawable(final @NonNull Context context, final @DrawableRes int resId,
+      final @Nullable Resources.Theme theme) throws Resources.NotFoundException {
+    final Drawable ret;
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+      ret = context.getResources().getDrawable(resId, theme);
+    } else {
+      ret = ContextCompat.getDrawable(context, resId);
+    }
+
+    return ret;
   }
 }
