@@ -5,6 +5,7 @@ local.properties
 .idea
 *.iml
 */gradle.properties
+fabric.properties
 staticAnalysisReport
 *.keystore
 *.pwd
