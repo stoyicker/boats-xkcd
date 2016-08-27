@@ -51,7 +51,7 @@ import com.jorge.boats.xkcd.util.GooglePlayUtil;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ThemeUtil;
 import com.jorge.boats.xkcd.view.BaseView;
-import com.jorge.boats.xkcd.view.activity.ButterknifeDaggerActivity;
+import com.jorge.boats.xkcd.view.activity.ButterKnifeDaggerActivity;
 import com.jorge.boats.xkcd.view.settings.SettingsActivity;
 import com.jorge.boats.xkcd.view.widget.CustomTitleToolbar;
 import com.jorge.boats.xkcd.view.widget.PhotoViewExceptionProofRelativeLayout;
@@ -64,7 +64,7 @@ import io.fabric.sdk.android.Fabric;
 import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
-public class StripeActivity extends ButterknifeDaggerActivity
+public class StripeActivity extends ButterKnifeDaggerActivity
     implements BaseView, StripeContentView {
 
   public static final String INTENT_EXTRA_PARAM_STRIPE_NUM =
@@ -297,6 +297,11 @@ public class StripeActivity extends ButterknifeDaggerActivity
         .stripeModule(new StripeModule(mNavigationLayout, mToolbar, mRetry))
         .build()
         .inject(this);
+  }
+
+  @Override
+  protected final void onButterKnifeBound() {
+    createComponentAndInjectSelf();
   }
 
   @Override

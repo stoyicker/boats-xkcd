@@ -5,7 +5,7 @@ import android.support.annotation.LayoutRes;
 import com.jorge.boats.xkcd.MainApplication;
 import com.jorge.boats.xkcd.di.component.ApplicationComponent;
 
-public abstract class ButterknifeDaggerActivity extends ButterknifeActivity {
+public abstract class ButterKnifeDaggerActivity extends ButterKnifeActivity {
 
   protected abstract void createComponentAndInjectSelf();
 
@@ -16,6 +16,5 @@ public abstract class ButterknifeDaggerActivity extends ButterknifeActivity {
   @Override
   public void setContentView(final @LayoutRes int layoutResID) {
     super.setContentView(layoutResID);
-    createComponentAndInjectSelf();
   }
 }

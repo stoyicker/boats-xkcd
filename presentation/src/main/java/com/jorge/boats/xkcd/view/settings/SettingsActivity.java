@@ -18,11 +18,11 @@ import android.view.MenuItem;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ThemeUtil;
-import com.jorge.boats.xkcd.view.activity.ButterknifeActivity;
+import com.jorge.boats.xkcd.view.activity.ButterKnifeActivity;
 
 import butterknife.BindView;
 
-public class SettingsActivity extends ButterknifeActivity {
+public class SettingsActivity extends ButterKnifeActivity {
 
   @BindView(R.id.toolbar)
   Toolbar mToolbar;
