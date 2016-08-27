@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.jorge.boats.xkcd.util.ViewServerDelegate;
 
-public abstract class ViewServerActivity extends AppCompatActivity {
+public abstract class ViewServerAppCompatActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {

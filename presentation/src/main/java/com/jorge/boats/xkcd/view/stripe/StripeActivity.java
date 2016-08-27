@@ -36,6 +36,7 @@ import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.ShareEvent;
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.jorge.boats.xkcd.BuildConfig;
+import com.jorge.boats.xkcd.MainApplication;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.data.P;
 import com.jorge.boats.xkcd.di.component.DaggerStripeComponent;
@@ -51,7 +52,7 @@ import com.jorge.boats.xkcd.util.GooglePlayUtil;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ThemeUtil;
 import com.jorge.boats.xkcd.view.BaseView;
-import com.jorge.boats.xkcd.view.activity.ButterKnifeDaggerActivity;
+import com.jorge.boats.xkcd.view.activity.ViewServerAppCompatActivity;
 import com.jorge.boats.xkcd.view.settings.SettingsActivity;
 import com.jorge.boats.xkcd.view.widget.CustomTitleToolbar;
 import com.jorge.boats.xkcd.view.widget.PhotoViewExceptionProofRelativeLayout;
@@ -60,11 +61,12 @@ import com.jorge.boats.xkcd.view.widget.RetryLinearLayout;
 import javax.inject.Inject;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import io.fabric.sdk.android.Fabric;
 import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
-public class StripeActivity extends ButterKnifeDaggerActivity
+public class StripeActivity extends ViewServerAppCompatActivity
     implements BaseView, StripeContentView {
 
   public static final String INTENT_EXTRA_PARAM_STRIPE_NUM =
@@ -117,6 +119,9 @@ public class StripeActivity extends ButterKnifeDaggerActivity
   public void onCreate(final @Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    ButterKnife.bind(this);
+
+    createComponentAndInjectSelf();
 
     setupToolbar();
     setupNavigationLayout();
@@ -290,18 +295,12 @@ public class StripeActivity extends ButterKnifeDaggerActivity
     }
   }
 
-  @Override
   protected void createComponentAndInjectSelf() {
     DaggerStripeComponent.builder()
-        .applicationComponent(getApplicationComponent())
+        .applicationComponent(((MainApplication) getApplication()).getApplicationComponent())
         .stripeModule(new StripeModule(mNavigationLayout, mToolbar, mRetry))
         .build()
         .inject(this);
-  }
-
-  @Override
-  protected final void onButterKnifeBound() {
-    createComponentAndInjectSelf();
   }
 
   @Override
@@ -373,7 +372,12 @@ public class StripeActivity extends ButterKnifeDaggerActivity
     if (P.shouldRestart.get()) {
       P.scheduledStripeReload.put(true).apply();
       P.shouldRestart.put(false).apply();
-      ActivityUtil.restart(this);
+      new Handler(Looper.myLooper()).postDelayed(new Runnable() {
+        @Override
+        public void run() {
+          ActivityUtil.restart(StripeActivity.this);
+        }
+      }, 1);
     } else {
       this.mStripePresenter.resume();
     }

@@ -15,7 +15,7 @@
     <item name="actionBarBackground">@color/warm_actionbar_background</item>
   </style>
 
-  <style name="SettingsWarm" parent="Theme.AppCompat.Light">
+  <style name="SettingsWarm" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="colorAccent">@color/warm_accent</item>
     <item name="background">@color/warm_settings_window_background</item>
     <item name="android:textColorPrimary">@color/warm_tertiary_text</item>

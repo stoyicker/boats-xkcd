@@ -43,7 +43,6 @@ ext {
   materialProgressBarVersion = "1.1.4"
   glideVersion = "3.7.0"
   okHttpVersion = "3.3.1"
-  glideOkHttp3IntegrationVersion = "1.4.0"
   rxPreferencesVersion = "1.0.1"
   gcmVersion = "8.4.0"
   crashlyticsVersion = "2.6.2"
@@ -69,7 +68,6 @@ ext {
                                      materialProgressBar   : "me.zhanghai.android.materialprogressbar:library:${materialProgressBarVersion}",
                                      supportDesign         : "com.android.support:design:${supportDesignVersion}",
                                      glide                 : "com.github.bumptech.glide:glide:${glideVersion}",
-                                     okHttpGlideIntegration: "com.github.bumptech.glide:okhttp-integration:${glideOkHttp3IntegrationVersion}@aar",
                                      gcm                   : "com.google.android.gms:play-services-gcm:${gcmVersion}",
                                      multidexSupport       : "com.android.support:multidex:${multidexSupportVersion}"]
 

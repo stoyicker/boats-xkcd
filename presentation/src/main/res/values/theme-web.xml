@@ -15,7 +15,7 @@
     <item name="actionBarBackground">@color/web_actionbar_background</item>
   </style>
 
-  <style name="SettingsWeb" parent="Theme.AppCompat.Light">
+  <style name="SettingsWeb" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="colorAccent">@color/web_accent</item>
     <item name="background">@color/web_settings_window_background</item>
     <item name="android:textColorPrimary">@color/web_tertiary_text</item>

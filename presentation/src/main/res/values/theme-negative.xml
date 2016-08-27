@@ -15,7 +15,7 @@
     <item name="actionBarBackground">@color/negative_actionbar_background</item>
   </style>
 
-  <style name="SettingsNegative" parent="Theme.AppCompat.Light">
+  <style name="SettingsNegative" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="colorAccent">@color/negative_accent</item>
     <item name="background">@color/negative_settings_window_background</item>
     <item name="android:textColorPrimary">@color/negative_tertiary_text</item>

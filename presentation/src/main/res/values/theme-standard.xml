@@ -15,7 +15,7 @@
     <item name="actionBarBackground">@color/standard_actionbar_background</item>
   </style>
 
-  <style name="SettingsStandard" parent="Theme.AppCompat.Light">
+  <style name="SettingsStandard" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="colorAccent">@color/standard_accent</item>
     <item name="background">@color/standard_settings_window_background</item>
     <item name="android:textColorPrimary">@color/standard_tertiary_text</item>

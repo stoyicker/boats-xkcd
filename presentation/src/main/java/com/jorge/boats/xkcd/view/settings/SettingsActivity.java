@@ -18,11 +18,12 @@ import android.view.MenuItem;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ThemeUtil;
-import com.jorge.boats.xkcd.view.activity.ButterKnifeActivity;
+import com.jorge.boats.xkcd.view.activity.ViewServerAppCompatActivity;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
-public class SettingsActivity extends ButterKnifeActivity {
+public class SettingsActivity extends ViewServerAppCompatActivity {
 
   @Bind(R.id.toolbar)
   Toolbar mToolbar;
@@ -32,6 +33,7 @@ public class SettingsActivity extends ButterKnifeActivity {
     super.onCreate(savedInstanceState);
 
     setContentView(R.layout.activity_settings);
+    ButterKnife.bind(this);
 
     setupToolbar();
     initFragment(savedInstanceState);
