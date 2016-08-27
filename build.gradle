@@ -10,7 +10,7 @@ buildscript {
     jcenter()
   }
 
-  final def androidPluginVersion = "2.2.0-beta1"
+  final def androidPluginVersion = "2.1.0"
   final def dexcountPluginVersion = "0.5.6"
   final def androidAptPluginVersion = "1.8"
   final def pSyncPluginVersion = "1.1.5"
