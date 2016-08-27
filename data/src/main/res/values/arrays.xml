@@ -6,5 +6,6 @@
     <item>@string/theme_2_name</item>
     <item>@string/theme_3_name</item>
     <item>@string/theme_4_name</item>
+    <item>@string/theme_5_name</item>
   </array>
 </resources>

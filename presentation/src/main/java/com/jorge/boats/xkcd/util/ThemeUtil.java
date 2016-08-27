@@ -21,7 +21,7 @@ public abstract class ThemeUtil {
         context.getString(R.string.theme_1_name), theme2Name =
         context.getString(R.string.theme_2_name), theme3Name =
         context.getString(R.string.theme_3_name), theme4Name = context.getString(
-        R.string.theme_4_name);
+        R.string.theme_4_name), theme5Name = context.getString(R.string.theme_5_name);
 
     if ((themeName = P.themeName.get()).contentEquals(theme0Name)) {
       return R.style.AppStandard;
@@ -33,6 +33,8 @@ public abstract class ThemeUtil {
       return R.style.AppWarm;
     } else if (themeName.contentEquals(theme4Name)) {
       return R.style.AppMaterialLight;
+    } else if (themeName.contentEquals(theme5Name)) {
+      return R.style.AppMaterialDark;
     } else {
       throw new IllegalStateException(
           String.format(Locale.ENGLISH, "Unrecognized theme name %s", themeName));
@@ -45,7 +47,7 @@ public abstract class ThemeUtil {
         context.getString(R.string.theme_1_name), theme2Name =
         context.getString(R.string.theme_2_name), theme3Name =
         context.getString(R.string.theme_3_name), theme4Name = context.getString(R.string
-        .theme_4_name);
+        .theme_4_name), theme5Name = context.getString(R.string.theme_5_name);
 
     if ((themeName = P.themeName.get()).contentEquals(theme0Name)) {
       return R.style.SettingsStandard;
@@ -57,6 +59,8 @@ public abstract class ThemeUtil {
       return R.style.SettingsWarm;
     } else if (themeName.contentEquals(theme4Name)) {
       return R.style.SettingsMaterialLight;
+    } else if (themeName.contentEquals(theme5Name)) {
+      return R.style.SettingsMaterialDark;
     } else {
       throw new IllegalStateException(
           String.format(Locale.ENGLISH, "Unrecognized theme name %s", themeName));
@@ -66,10 +70,10 @@ public abstract class ThemeUtil {
   public static boolean isAppThemeLight(final @NonNull Context context) {
     final String themeName, theme0Name = context.getString(R.string.theme_0_name), theme2Name =
         context.getString(R.string.theme_2_name), theme4Name = context.getString(R.string
-        .theme_4_name);
+        .theme_4_name), theme5Name = context.getString(R.string.theme_5_name);
 
     return (themeName = P.themeName.get()).contentEquals(theme0Name) || themeName.contentEquals(
-        theme2Name) || themeName.contentEquals(theme4Name);
+        theme2Name) || themeName.contentEquals(theme4Name) || themeName.contentEquals(theme5Name);
   }
 
   public static boolean isSettingsThemeDark(final @NonNull Context context) {
