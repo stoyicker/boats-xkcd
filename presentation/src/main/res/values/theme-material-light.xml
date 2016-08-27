@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="AppMaterialLight" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">@color/material_light_primary</item>
+    <item name="colorAccent">@color/material_light_accent</item>
+    <item name="color">@color/material_light_primary_light</item>
+    <item name="android:textColorPrimary">@color/material_light_primary_text</item>
+    <item name="android:textColorSecondary">@color/material_light_secondary_text</item>
+    <item name="divider">@color/material_light_divider</item>
+    <item name="windowActionBarOverlay">true</item>
+    <item name="android:windowActionModeOverlay">true</item>
+    <item name="android:actionModeBackground">?attr/colorPrimary</item>
+    <item name="android:windowBackground">@null</item>
+    <item name="actionBarBackground">@color/material_light_actionbar_background</item>
+  </style>
+
+  <style name="SettingsMaterialLight" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorAccent">@color/material_light_accent</item>
+    <item name="background">@color/material_light_settings_window_background</item>
+    <item name="android:textColorPrimary">@color/material_light_tertiary_text</item>
+    <item name="android:textColorSecondary">@color/material_light_secondary_text</item>
+    <item name="actionBarTheme">@style/SettingsActionBarThemeMaterialLight</item>
+    <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+    <item name="actionBarStyle">@style/BaseSettingsActionBarStyle</item>
+  </style>
+
+  <style name="SettingsActionBarThemeMaterialLight" 
+         parent="@style/ThemeOverlay.AppCompat.ActionBar">
+    <item name="colorControlNormal">@color/material_light_primary_text</item>
+  </style>
+</resources>
