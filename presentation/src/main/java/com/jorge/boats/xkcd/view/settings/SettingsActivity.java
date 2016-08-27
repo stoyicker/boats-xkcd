@@ -5,6 +5,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -31,9 +32,7 @@ public class SettingsActivity extends ViewServerAppCompatActivity {
   @Override
   protected void onCreate(final @Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
-    setTheme(ThemeUtil.getAppTheme(this));
-
+    setTheme(ThemeUtil.getSettingsTheme(this));
     setContentView(R.layout.activity_settings);
     ButterKnife.bind(this);
 
@@ -42,7 +41,10 @@ public class SettingsActivity extends ViewServerAppCompatActivity {
   }
 
   private void setupToolbar() {
+    final @ColorInt int toolbarContentColor = ResourceUtil.getAttrColor(this, R.attr.background);
+
     mToolbar.setTitle(R.string.label_settings);
+    mToolbar.setTitleTextColor(toolbarContentColor);
     setSupportActionBar(mToolbar);
 
     final ActionBar actionBar = getSupportActionBar();
@@ -50,8 +52,7 @@ public class SettingsActivity extends ViewServerAppCompatActivity {
     actionBar.setDisplayHomeAsUpEnabled(Boolean.TRUE);
     final Drawable upArrow = ResourceUtil.getDrawable(this, R.drawable.ic_arrow_left, getTheme());
     //noinspection ConstantConditions
-    upArrow.setColorFilter(ResourceUtil.getAttrColor(this, android.R.attr.textColorPrimary),
-        PorterDuff.Mode.SRC_ATOP);
+    upArrow.setColorFilter(toolbarContentColor, PorterDuff.Mode.SRC_ATOP);
     actionBar.setHomeAsUpIndicator(upArrow);
   }
 

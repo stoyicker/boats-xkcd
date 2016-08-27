@@ -1,6 +1,7 @@
 package com.jorge.boats.xkcd.view.widget;
 
 import android.content.Context;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -49,5 +50,10 @@ public class CustomTitleToolbar extends Toolbar {
     if (title != null) {
       ((FlickAndRevealTextView) mTitleView).playAndSetText(mTitle = title);
     }
+  }
+
+  @Override
+  public void setTitleTextColor(final @ColorInt int color) {
+    mTitleView.setTextColor(color);
   }
 }
