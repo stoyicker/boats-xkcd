@@ -17,6 +17,8 @@ public class CustomTitleToolbar extends Toolbar {
   @Bind(R.id.toolbar_title)
   TextView mTitleView;
 
+  private CharSequence mTitle;
+
   public CustomTitleToolbar(final @NonNull Context context, final @Nullable AttributeSet attrs) {
     super(context, attrs);
   }
@@ -38,6 +40,14 @@ public class CustomTitleToolbar extends Toolbar {
 
   @Override
   public void setTitle(final @Nullable CharSequence title) {
-    ((FlickAndRevealTextView) mTitleView).playAndSetText(title);
+    if (title != null && (mTitle == null || mTitle.toString().contentEquals(title))) {
+      ((FlickAndRevealTextView) mTitleView).playAndSetText(title);
+    }
+  }
+
+  public void lockTitle(final @Nullable CharSequence title) {
+    if (title != null) {
+      ((FlickAndRevealTextView) mTitleView).playAndSetText(mTitle = title);
+    }
   }
 }

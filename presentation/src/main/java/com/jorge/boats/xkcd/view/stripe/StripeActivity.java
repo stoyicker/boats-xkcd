@@ -190,8 +190,8 @@ public class StripeActivity extends ViewServerAppCompatActivity
   }
 
   private void setupToolbar() {
-    mToolbar.setTitle(R.string.app_name);
     setSupportActionBar(mToolbar);
+    mToolbar.lockTitle(getString(R.string.app_name));
   }
 
   private void setupNavigationLayout() {

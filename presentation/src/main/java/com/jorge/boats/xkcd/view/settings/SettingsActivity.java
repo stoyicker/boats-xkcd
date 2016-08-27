@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.StyleRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
@@ -33,8 +32,7 @@ public class SettingsActivity extends ViewServerAppCompatActivity {
   protected void onCreate(final @Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    final @StyleRes int theme = ThemeUtil.getAppTheme(this);
-    setTheme(theme);
+    setTheme(ThemeUtil.getAppTheme(this));
 
     setContentView(R.layout.activity_settings);
     ButterKnife.bind(this);
@@ -42,7 +40,7 @@ public class SettingsActivity extends ViewServerAppCompatActivity {
     setupToolbar();
     initFragment(savedInstanceState);
     //Need to apply the theme twice for both the toolbar and fragment to get it right
-    setTheme(theme);
+    setTheme(ThemeUtil.getAppTheme(this));
   }
 
   private void setupToolbar() {
