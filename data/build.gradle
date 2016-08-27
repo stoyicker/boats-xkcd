@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 apply plugin: 'com.neenbedankt.android-apt'
 
-apply from: "model/generate.gradle"
+//apply from: "model/generate.gradle"
 
 android {
 

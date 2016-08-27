@@ -39,8 +39,6 @@ public class SettingsActivity extends ViewServerAppCompatActivity {
 
     setupToolbar();
     initFragment(savedInstanceState);
-    //Need to apply the theme twice for both the toolbar and fragment to get it right
-    setTheme(ThemeUtil.getAppTheme(this));
   }
 
   private void setupToolbar() {

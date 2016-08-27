@@ -31,7 +31,7 @@ buildscript {
     classpath classpathDependencies.dexcountPlugin
     classpath classpathDependencies.androidAptPlugin
     classpath classpathDependencies.pSync
-    classpath classpathDependencies.jsonSchema2PojoPlugin
+//    classpath classpathDependencies.jsonSchema2PojoPlugin
     classpath classpathDependencies.fabricToolsPlugin
   }
 }

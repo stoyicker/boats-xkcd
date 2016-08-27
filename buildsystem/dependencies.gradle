@@ -39,7 +39,6 @@ ext {
   retrofitVersion = "2.0.0"
   commonsLang3Version = "3.4"
   jetbrainsAnnotationsVersion = "15.0"
-  leakCanaryVersion = "1.4-beta2"
   materialProgressBarVersion = "1.1.4"
   glideVersion = "3.7.0"
   okHttpVersion = "3.3.1"
@@ -58,8 +57,7 @@ ext {
                                       javaxAnnotation     : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
                                       jetbrainsAnnotations: "org.jetbrains:annotations:${jetbrainsAnnotationsVersion}"]
 
-  debugCompilePresentationDependencies = [timber    : "com.jakewharton.timber:timber:${timberVersion}",
-                                          leakCanary: "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"]
+  debugCompilePresentationDependencies = [timber    : "com.jakewharton.timber:timber:${timberVersion}"]
 
   compilePresentationDependencies = [dagger                : "com.google.dagger:dagger:${daggerVersion}",
                                      rxAndroid             : "io.reactivex:rxandroid:${rxAndroidVersion}",
