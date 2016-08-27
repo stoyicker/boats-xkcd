@@ -121,24 +121,10 @@ dependencies {
 
   final Collection<String> compileDependencies = compilePresentationDependencies.values()
   final Collection<String> aptDependencies = aptPresentationDependencies.values()
-  final Collection<String> androidTestCompileDependencies =
-      androidTestCompilePresentationDependencies.
-          values()
-  final Collection<String> testCompileDependencies = testCompilePresentationDependencies.
-      values()
+  final Collection<String> testCompileDependencies = testCompilePresentationDependencies.values()
   for (final String dependency : providedDependencies) provided dependency
   for (final String dependency : compileDependencies) compile dependency
   for (final String dependency : aptDependencies) apt dependency
-  for (final String dependency : androidTestCompileDependencies) {
-    if (dependency.contains("support.test")) {
-      androidTestCompile(dependency) {
-        exclude group: 'com.android.support', module: 'support-v4'
-        exclude group: 'com.android.support', module: 'support-annotations'
-      }
-    } else {
-      androidTestCompile dependency
-    }
-  }
   for (final String dependency : debugCompileDependencies) debugCompile dependency
   for (final String dependency : testCompileDependencies) testCompile dependency
 }

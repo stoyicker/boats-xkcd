@@ -14,17 +14,17 @@ buildscript {
   final def dexcountPluginVersion = "0.5.6"
   final def androidAptPluginVersion = "1.8"
   final def pSyncPluginVersion = "1.1.5"
-  //Frozen
+  //Frozen, new versions not compatible with the current model
   final def jsonSchema2PojoPluginVersion = "0.4.19"
   final def fabricToolsPluginVersion = "1.21.7"
 
   final
-  def classpathDependencies = [androidPlugin        : "com.android.tools" + "" + "" + ".build:gradle:${androidPluginVersion}",
-                               dexcountPlugin       : "com.getkeepsafe" + "" + "" + ".dexcount:dexcount-gradle-plugin:${dexcountPluginVersion}",
-                               androidAptPlugin     : "com.neenbedankt.gradle" + "" + "" + ".plugins:android-apt:${androidAptPluginVersion}",
-                               pSync                : "gradle.plugin.com" + "" + "" + ".flipboard:psync:${pSyncPluginVersion}",
-                               jsonSchema2PojoPlugin: "org" + "" + "" + ".jsonschema2pojo:jsonschema2pojo-gradle-plugin:${jsonSchema2PojoPluginVersion}",
-                               fabricToolsPlugin    : "io.fabric" + "" + "" + ".tools:gradle:${fabricToolsPluginVersion}"]
+  def classpathDependencies = [androidPlugin        : "com.android.tools.build:gradle:${androidPluginVersion}",
+                               dexcountPlugin       : "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${dexcountPluginVersion}",
+                               androidAptPlugin     : "com.neenbedankt.gradle.plugins:android-apt:${androidAptPluginVersion}",
+                               pSync                : "gradle.plugin.com.flipboard:psync:${pSyncPluginVersion}",
+                               jsonSchema2PojoPlugin: "org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:${jsonSchema2PojoPluginVersion}",
+                               fabricToolsPlugin    : "io.fabric.tools:gradle:${fabricToolsPluginVersion}"]
 
   dependencies {
     classpath classpathDependencies.androidPlugin

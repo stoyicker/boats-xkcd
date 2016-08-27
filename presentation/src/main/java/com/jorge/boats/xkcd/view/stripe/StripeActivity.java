@@ -59,7 +59,7 @@ import com.jorge.boats.xkcd.view.widget.RetryLinearLayout;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import io.fabric.sdk.android.Fabric;
 import uk.co.senab.photoview.PhotoView;
 import uk.co.senab.photoview.PhotoViewAttacher;
@@ -86,23 +86,23 @@ public class StripeActivity extends ButterKnifeDaggerActivity
   @Inject
   StripePresenter mStripePresenter;
 
-  @BindView(R.id.content)
+  @Bind(R.id.content)
   View mContent;
-  @BindView(R.id.toolbar)
+  @Bind(R.id.toolbar)
   CustomTitleToolbar mToolbar;
-  @BindView(R.id.navigation)
+  @Bind(R.id.navigation)
   NavigationLinearLayout mNavigationLayout;
-  @BindView(R.id.progress_bar)
+  @Bind(R.id.progress_bar)
   View mLoading;
-  @BindView(R.id.retry)
+  @Bind(R.id.retry)
   RetryLinearLayout mRetry;
-  @BindView(R.id.stripe_presenter)
+  @Bind(R.id.stripe_presenter)
   PhotoViewExceptionProofRelativeLayout mStripePresenterViewGroup;
-  @BindView(R.id.image)
+  @Bind(R.id.image)
   PhotoView mImage;
-  @BindView(R.id.title)
+  @Bind(R.id.title)
   TextView mTitle;
-  @BindView(R.id.description)
+  @Bind(R.id.description)
   TextView mDescription;
 
   @NonNull

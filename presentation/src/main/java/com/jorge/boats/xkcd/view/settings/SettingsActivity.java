@@ -20,11 +20,11 @@ import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ThemeUtil;
 import com.jorge.boats.xkcd.view.activity.ButterKnifeActivity;
 
-import butterknife.BindView;
+import butterknife.Bind;
 
 public class SettingsActivity extends ButterKnifeActivity {
 
-  @BindView(R.id.toolbar)
+  @Bind(R.id.toolbar)
   Toolbar mToolbar;
 
   @Override

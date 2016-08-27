@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 import com.jorge.boats.xkcd.R;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class CustomTitleToolbar extends Toolbar {
 
-  @BindView(R.id.toolbar_title)
+  @Bind(R.id.toolbar_title)
   TextView mTitleView;
 
   public CustomTitleToolbar(final @NonNull Context context, final @Nullable AttributeSet attrs) {
