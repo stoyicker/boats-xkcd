@@ -8,6 +8,7 @@ import com.jorge.boats.xkcd.data.P;
 import com.jorge.boats.xkcd.di.PerActivity;
 import com.jorge.boats.xkcd.domain.entity.DomainStripe;
 import com.jorge.boats.xkcd.domain.interactor.GetStripeUseCase;
+import com.jorge.boats.xkcd.domain.interactor.SingleUseCase;
 import com.jorge.boats.xkcd.domain.interactor.UseCase;
 import com.jorge.boats.xkcd.log.ApplicationLogger;
 import com.jorge.boats.xkcd.mapper.PresentationEntityMapper;
@@ -25,7 +26,7 @@ import rx.Subscriber;
 @PerActivity
 public class StripePresenter implements Presenter<StripeContentView> {
 
-  private final UseCase<Typeface> mTypefaceUseCase;
+  private final SingleUseCase<Typeface> mTypefaceUseCase;
   private final UseCase<DomainStripe> mStripeUseCase;
 
   @Inject
@@ -37,7 +38,7 @@ public class StripePresenter implements Presenter<StripeContentView> {
   private StripeContentView mStripeContentView;
 
   @Inject
-  public StripePresenter(final @NonNull @Named("typeface") UseCase<Typeface> typefaceUseCase,
+  public StripePresenter(final @NonNull @Named("typeface") SingleUseCase<Typeface> typefaceUseCase,
       final @NonNull @Named("stripe") UseCase<DomainStripe> stripeUseCase) {
     mTypefaceUseCase = typefaceUseCase;
     mStripeUseCase = stripeUseCase;

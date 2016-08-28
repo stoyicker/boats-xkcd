@@ -9,6 +9,7 @@ import com.jorge.boats.xkcd.domain.entity.DomainStripe;
 import com.jorge.boats.xkcd.domain.executor.PostExecutionThread;
 import com.jorge.boats.xkcd.domain.executor.ThreadExecutor;
 import com.jorge.boats.xkcd.domain.interactor.GetStripeUseCase;
+import com.jorge.boats.xkcd.domain.interactor.SingleUseCase;
 import com.jorge.boats.xkcd.domain.interactor.UseCase;
 import com.jorge.boats.xkcd.domain.repository.XkcdStore;
 import com.jorge.boats.xkcd.navigation.NavigationLinearLayout;
@@ -56,7 +57,7 @@ public class StripeModule {
   @Provides
   @PerActivity
   @Named("typeface")
-  UseCase<Typeface> provideTypefaceUseCase(
+  SingleUseCase<Typeface> provideTypefaceUseCase(
       final @NonNull TypefaceLoadTask typefaceLoad) {
     return typefaceLoad;
   }

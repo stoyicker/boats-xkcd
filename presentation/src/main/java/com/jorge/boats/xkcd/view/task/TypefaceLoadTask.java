@@ -6,14 +6,14 @@ import android.support.annotation.NonNull;
 
 import com.jorge.boats.xkcd.domain.executor.PostExecutionThread;
 import com.jorge.boats.xkcd.domain.executor.ThreadExecutor;
-import com.jorge.boats.xkcd.domain.interactor.UseCase;
+import com.jorge.boats.xkcd.domain.interactor.SingleUseCase;
 import com.jorge.boats.xkcd.view.FontManager;
 
 import javax.inject.Inject;
 
-import rx.Observable;
+import rx.Single;
 
-public class TypefaceLoadTask extends UseCase<Typeface> {
+public class TypefaceLoadTask extends SingleUseCase<Typeface> {
 
   private final Context mContext;
 
@@ -24,9 +24,8 @@ public class TypefaceLoadTask extends UseCase<Typeface> {
     mContext = context;
   }
 
-  //TODO Change this to use rx.single
   @Override
-  protected Observable<Typeface> buildUseCaseObservable() {
-    return Observable.just(FontManager.get(mContext, FontManager.FONT_APP));
+  protected Single<Typeface> buildUseCaseObservable() {
+    return Single.just(FontManager.get(mContext, FontManager.FONT_APP));
   }
 }
