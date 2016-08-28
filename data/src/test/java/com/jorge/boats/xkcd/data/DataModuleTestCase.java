@@ -9,8 +9,8 @@ import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 @RunWith(RobolectricGradleTestRunner.class)
-//TODO Change Robolectric supported SDK to 23 when available
-@Config(constants = BuildConfig.class, application = StubApplication.class, sdk = 21)
+//TODO Change Robolectric supported SDK to 24 when available
+@Config(constants = BuildConfig.class, application = StubApplication.class, sdk = 23)
 public abstract class DataModuleTestCase {
 
   @Before
