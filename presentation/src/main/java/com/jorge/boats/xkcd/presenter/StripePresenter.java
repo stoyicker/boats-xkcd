@@ -176,13 +176,13 @@ public class StripePresenter implements Presenter<StripeContentView> {
 
     @Override
     public void onError(final @NonNull Throwable e) {
-      ApplicationLogger.e(e, e.getClass().getName());
       mStripeContentView.hideLoading();
       //Upon attempt of loading a non-existing stripe, load the current stripe instead
       if ((e instanceof HttpException) && ((HttpException) e).code() == 404) {
         switchToStripeNum(DomainStripe.STRIPE_NUM_CURRENT);
         return;
       }
+      ApplicationLogger.e(e, e.getClass().getName());
       mStripeContentView.showRetry(e);
       mStripeContentView.hideContent();
     }
