@@ -10,11 +10,16 @@
   <issue id="InvalidPackage">
     <ignore regexp="retrofit"/>
     <ignore regexp="okio"/>
+    <ignore regexp="dagger"/>
   </issue>
   <issue id="LogNotTimber">
     <ignore path="*/ViewServer.java"/>
   </issue>
   <issue id="Registered">
     <ignore path="*/UserRetentionGcmTaskService.java"/>
+  </issue>
+  <issue id="StringFormatInvalid">
+    <ignore regexp="market_base_url"/>
+    <ignore regexp="xkcd_mobile_link_pattern"/>
   </issue>
 </lint>
