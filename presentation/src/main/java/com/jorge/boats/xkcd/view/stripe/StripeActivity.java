@@ -271,14 +271,20 @@ public class StripeActivity extends ViewServerAppCompatActivity
   @Override
   public boolean onOptionsItemSelected(final @NonNull MenuItem item) {
     switch (item.getItemId()) {
-      case R.id.action_settings:
-        openSettings();
+      case R.id.action_open_in_browser:
+        openModelInBrowser();
         return true;
       case R.id.action_share:
         mStripePresenter.actionShare(this);
         return true;
-      case R.id.action_open_in_browser:
-        openModelInBrowser();
+      case R.id.action_first:
+        mStripePresenter.switchToStripeNum(DomainStripe.STRIPE_NUM_FIRST);
+        return true;
+      case R.id.action_last:
+        mStripePresenter.switchToStripeNum(DomainStripe.STRIPE_NUM_CURRENT);
+        return true;
+      case R.id.action_settings:
+        openSettings();
         return true;
       default:
         return super.onOptionsItemSelected(item);
