@@ -27,6 +27,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,6 +54,7 @@ import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ThemeUtil;
 import com.jorge.boats.xkcd.view.BaseView;
 import com.jorge.boats.xkcd.view.activity.ViewServerAppCompatActivity;
+import com.jorge.boats.xkcd.view.animation.BoatsLayoutTransition;
 import com.jorge.boats.xkcd.view.settings.SettingsActivity;
 import com.jorge.boats.xkcd.view.widget.CustomTitleToolbar;
 import com.jorge.boats.xkcd.view.widget.PhotoViewExceptionProofRelativeLayout;
@@ -118,9 +120,7 @@ public class StripeActivity extends ViewServerAppCompatActivity
   @Override
   public void onCreate(final @Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setTheme(ThemeUtil.getAppTheme(this));
-    setContentView(R.layout.activity_main);
-    ButterKnife.bind(this);
+    setupLayout();
 
     createComponentAndInjectSelf();
 
@@ -133,6 +133,14 @@ public class StripeActivity extends ViewServerAppCompatActivity
     initializeRetry();
     initializeImage();
     initializePresenterLayout();
+  }
+
+  private void setupLayout() {
+    setTheme(ThemeUtil.getAppTheme(this));
+    setContentView(R.layout.activity_main);
+    ButterKnife.bind(this);
+    ((ViewGroup) findViewById(android.R.id.content)).setLayoutTransition(new BoatsLayoutTransition
+        (this));
   }
 
   private void updateLastOpenedEpoch() {

@@ -15,11 +15,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ThemeUtil;
 import com.jorge.boats.xkcd.view.activity.ViewServerAppCompatActivity;
+import com.jorge.boats.xkcd.view.animation.BoatsLayoutTransition;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,12 +34,18 @@ public class SettingsActivity extends ViewServerAppCompatActivity {
   @Override
   protected void onCreate(final @Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+
+    setupLayout();
+    setupToolbar();
+    initFragment(savedInstanceState);
+  }
+
+  private void setupLayout() {
     setTheme(ThemeUtil.getSettingsTheme(this));
     setContentView(R.layout.activity_settings);
     ButterKnife.bind(this);
-
-    setupToolbar();
-    initFragment(savedInstanceState);
+    ((ViewGroup) findViewById(android.R.id.content)).setLayoutTransition(new BoatsLayoutTransition
+        (this));
   }
 
   private void setupToolbar() {
