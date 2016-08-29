@@ -7,9 +7,9 @@
     android:title="@string/label_open_in_browser"
     app:showAsAction="ifRoom"/>
   <item
-    android:id="@+id/action_random"
-    android:icon="@drawable/ic_dice"
-    android:title="@string/label_random"
+    android:id="@+id/action_share"
+    android:icon="@drawable/ic_share"
+    android:title="@string/action_share_title"
     app:showAsAction="ifRoom"/>
   <item
     android:id="@+id/action_settings"

@@ -274,8 +274,8 @@ public class StripeActivity extends ViewServerAppCompatActivity
       case R.id.action_settings:
         openSettings();
         return true;
-      case R.id.action_random:
-        mStripePresenter.actionRandom();
+      case R.id.action_share:
+        mStripePresenter.actionShare(this);
         return true;
       case R.id.action_open_in_browser:
         openModelInBrowser();

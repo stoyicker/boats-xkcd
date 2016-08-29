@@ -1,7 +1,9 @@
 package com.jorge.boats.xkcd.presenter;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.data.P;
@@ -117,8 +119,12 @@ public class StripePresenter implements Presenter<StripeContentView> {
     switchToStripeNum(RandomUtil.nextLong(1, P.maxShownStripeNum.get()));
   }
 
-  public void actionShare() {
-    mStripeContentView.share();
+  public void actionShare(final @NonNull Context context) {
+    if (isRetryViewShown()) {
+      Toast.makeText(context, R.string.content_error_action_share, Toast.LENGTH_LONG).show();
+    } else {
+      mStripeContentView.share();
+    }
   }
 
   public void actionPrevious() {

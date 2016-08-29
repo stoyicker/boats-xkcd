@@ -17,7 +17,6 @@ import android.view.WindowManager;
 import android.view.animation.AnticipateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.presenter.StripePresenter;
@@ -26,9 +25,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class NavigationLinearLayout extends LinearLayout {
+public class  NavigationLinearLayout extends LinearLayout {
 
-  @Bind({ R.id.fab_index_zero, R.id.fab_index_one, R.id.fab_index_two, R.id.fab_index_three })
+  @Bind({ R.id.fab_index_zero, R.id.fab_index_one, R.id.fab_index_two })
   View[] mButtons;
 
   private boolean isExpanded = false;
@@ -204,16 +203,6 @@ public class NavigationLinearLayout extends LinearLayout {
   }
 
   @OnClick(R.id.fab_index_two)
-  void navigateToShare() {
-    if (mStripePresenter.isRetryViewShown()) {
-      Toast.makeText(getContext(), R.string.content_error_action_share, Toast.LENGTH_LONG).show();
-    } else {
-      mStripePresenter.actionShare();
-    }
-    hide();
-  }
-
-  @OnClick(R.id.fab_index_three)
   void navigateToNext() {
     mStripePresenter.actionNext();
     hide();
