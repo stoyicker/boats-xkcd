@@ -9,4 +9,4 @@ Project setup
 Third party licenses
 ====================
 
-https://docs.google.com/spreadsheets/d/1Xv4C16PVaEaXg9vYKt5GgUAGqNHStkjx16tGO_oEyAI/edit#gid=1386834576
+[Here](https://docs.google.com/spreadsheets/d/1Xv4C16PVaEaXg9vYKt5GgUAGqNHStkjx16tGO_oEyAI/edit#gid=1386834576).
