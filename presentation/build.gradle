@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
-apply plugin: 'com.neenbedankt.android-apt'
 
 android {
 
@@ -31,6 +30,7 @@ android {
     //noinspection GroovyAssignabilityCheck
     sourceCompatibility javaVersion
     targetCompatibility javaVersion
+    incremental false
   }
 
   signingConfigs {
@@ -62,13 +62,22 @@ android {
     dev {
       minSdkVersion 21
       dimension "stage"
+      jackOptions {
+        enabled true
+      }
     }
     prod {
       dimension "stage"
+      jackOptions {
+        enabled true
+      }
     }
     core {
       applicationId String.format(Locale.ENGLISH, androidApplicationIdBase, "")
       dimension "base"
+      jackOptions {
+        enabled true
+      }
     }
   }
 
@@ -122,7 +131,7 @@ dependencies {
   final Collection<String> testCompileDependencies = testCompilePresentationDependencies.values()
   for (final String dependency : providedDependencies) provided dependency
   for (final String dependency : compileDependencies) compile dependency
-  for (final String dependency : aptDependencies) apt dependency
+  for (final String dependency : aptDependencies) annotationProcessor dependency
   for (final String dependency : debugCompileDependencies) debugCompile dependency
   for (final String dependency : testCompileDependencies) testCompile dependency
 }

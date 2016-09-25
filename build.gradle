@@ -12,21 +12,18 @@ buildscript {
 
   final def androidPluginVersion = "2.2.0"
   final def dexcountPluginVersion = "0.5.6"
-  final def androidAptPluginVersion = "1.8"
   final def pSyncPluginVersion = "1.1.5"
   final def fabricToolsPluginVersion = "1.21.7"
 
   final
   def classpathDependencies = [androidPlugin        : "com.android.tools.build:gradle:${androidPluginVersion}",
                                dexcountPlugin       : "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${dexcountPluginVersion}",
-                               androidAptPlugin     : "com.neenbedankt.gradle.plugins:android-apt:${androidAptPluginVersion}",
                                pSync                : "gradle.plugin.com.flipboard:psync:${pSyncPluginVersion}",
                                fabricToolsPlugin    : "io.fabric.tools:gradle:${fabricToolsPluginVersion}"]
 
   dependencies {
     classpath classpathDependencies.androidPlugin
     classpath classpathDependencies.dexcountPlugin
-    classpath classpathDependencies.androidAptPlugin
     classpath classpathDependencies.pSync
     classpath classpathDependencies.fabricToolsPlugin
   }
@@ -49,7 +46,7 @@ allprojects {
     androidTestInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
 
     androidApplicationIdBase = "com.jorge.boats.xkcd%s"
-    javaVersion = JavaVersion.VERSION_1_7
+    javaVersion = JavaVersion.VERSION_1_8
 
     staticAnalysisReportTarget = staticAnalysisReportFolderTarget
   }

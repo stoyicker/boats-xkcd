@@ -1,9 +1,5 @@
 apply plugin: 'com.android.library'
 
-apply plugin: 'com.neenbedankt.android-apt'
-
-//apply from: "model/generate.gradle"
-
 android {
 
   //noinspection GroovyAssignabilityCheck
@@ -22,6 +18,7 @@ android {
     //noinspection GroovyAssignabilityCheck
     sourceCompatibility javaVersion
     targetCompatibility javaVersion
+    incremental false
   }
 
   lintOptions {
@@ -57,6 +54,6 @@ dependencies {
 
   for (final String dependency : providedDependencies) provided dependency
   for (final String dependency : compileDependencies) compile dependency
-  for (final String dependency : aptDependencies) apt dependency
+  for (final String dependency : aptDependencies) annotationProcessor dependency
   for (final String dependency : testCompileDataDependencies) testCompile dependency
 }
