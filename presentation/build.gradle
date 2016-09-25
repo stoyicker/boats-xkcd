@@ -22,7 +22,7 @@ android {
     //noinspection GroovyAssignabilityCheck
     testInstrumentationRunner androidTestInstrumentationRunner
 
-    manifestPlaceholders = [fabricApiKey: "$System.env.FABRIC_API_KEY"]
+    manifestPlaceholders = [fabricApiKey: fabricApiKey]
 
     multiDexEnabled true
   }
@@ -72,13 +72,10 @@ android {
     }
   }
 
-  applicationVariants.all { variant ->
-    variant.outputs.each { output ->
-      def apk = output.outputFile
-      def newName = String.format(Locale.ENGLISH, "%s-%s-%d.apk", variant.productFlavors[0].name,
-          variant.buildType.name, variant.versionCode)
-
-      output.outputFile = new File(apk.parentFile, newName);
+  applicationVariants.all { final variant ->
+    variant.outputs.each { final output ->
+      output.outputFile = new File(output.outputFile.parentFile, String.format(Locale.ENGLISH, "%s-%s-%d.apk", variant.productFlavors[0].name,
+          variant.buildType.name, variant.versionCode));
     }
   }
 

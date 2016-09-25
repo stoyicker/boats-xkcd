@@ -25,12 +25,12 @@ ext {
   androidCompileSdkVersion = 24
 
   //Dependencies
-  supportAnnotationsVersion = "24.2.0"
-  supportFragmentVersion = "24.2.0"
-  supportDesignVersion = "24.2.0"
-  supportPreferenceVersion = "24.2.0"
+  supportAnnotationsVersion = "24.2.1"
+  supportFragmentVersion = "24.2.1"
+  supportDesignVersion = "24.2.1"
+  supportPreferenceVersion = "24.2.1"
   javaxAnnotationVersion = "1.0"
-  daggerVersion = "2.6.1"
+  daggerVersion = "2.7"
   rxJavaVersion = "1.1.9"
   rxAndroidVersion = "1.2.1"
   timberVersion = "4.1.2"
@@ -43,7 +43,7 @@ ext {
   glideVersion = "3.7.0"
   okHttpVersion = "3.3.1"
   rxPreferencesVersion = "1.0.1"
-  gcmVersion = "8.4.0"
+  gcmVersion = "9.6.0"
   crashlyticsVersion = "2.6.2"
   multidexSupportVersion = "1.0.1"
 
