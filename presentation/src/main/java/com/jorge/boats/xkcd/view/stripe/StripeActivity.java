@@ -153,7 +153,7 @@ public class StripeActivity extends ViewServerAppCompatActivity
     }
   }
 
-  protected final void showRateAppDialog() {
+  private void showRateAppDialog() {
     if (P.ratedGooglePlay.get()) {
       return;
     }
