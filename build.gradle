@@ -23,7 +23,6 @@ buildscript {
                                dexcountPlugin       : "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${dexcountPluginVersion}",
                                androidAptPlugin     : "com.neenbedankt.gradle.plugins:android-apt:${androidAptPluginVersion}",
                                pSync                : "gradle.plugin.com.flipboard:psync:${pSyncPluginVersion}",
-                               jsonSchema2PojoPlugin: "org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:${jsonSchema2PojoPluginVersion}",
                                fabricToolsPlugin    : "io.fabric.tools:gradle:${fabricToolsPluginVersion}"]
 
   dependencies {
@@ -31,7 +30,6 @@ buildscript {
     classpath classpathDependencies.dexcountPlugin
     classpath classpathDependencies.androidAptPlugin
     classpath classpathDependencies.pSync
-//    classpath classpathDependencies.jsonSchema2PojoPlugin
     classpath classpathDependencies.fabricToolsPlugin
   }
 }
