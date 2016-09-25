@@ -2,9 +2,6 @@
   <issue id="MergeRootFrame">
     <ignore path="*/activity_settings.xml"/>
   </issue>
-  <issue id="AllowBackup" severity="ignore">
-    <ignore path="debug/*/AndroidManifest.xml"/>
-  </issue>
   <issue id="IconMissingDensityFolder" severity="ignore"/>
   <issue id="GoogleAppIndexingWarning" severity="ignore"/>
   <issue id="InvalidPackage">

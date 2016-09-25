@@ -18,6 +18,7 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:ellipsize="end"
+      android:maxLines="1"
       android:textIsSelectable="true"
       app:in_duration_millis="@integer/content_in_duration_milliseconds"
       app:out_duration_millis="@integer/toolbar_text_out_duration_milliseconds"/>

@@ -5,25 +5,25 @@
     android:id="@+id/action_open_in_browser"
     android:icon="@drawable/ic_open_in_browser"
     android:title="@string/label_open_in_browser"
-    app:showAsAction="always"/>
+    app:showAsAction="ifRoom"/>
   <item
     android:id="@+id/action_share"
     android:icon="@drawable/ic_share"
     android:title="@string/label_share"
-    app:showAsAction="always"/>
+    app:showAsAction="ifRoom"/>
   <item
     android:id="@+id/action_first"
     android:icon="@drawable/ic_first"
     android:title="@string/label_first"
-    app:showAsAction="always"/>
+    app:showAsAction="ifRoom"/>
   <item
     android:id="@+id/action_last"
     android:icon="@drawable/ic_last"
     android:title="@string/label_last"
-    app:showAsAction="always"/>
+    app:showAsAction="ifRoom"/>
   <item
     android:id="@+id/action_settings"
     android:icon="@drawable/ic_settings"
     android:title="@string/label_settings"
-    app:showAsAction="always"/>
+    app:showAsAction="ifRoom"/>
 </menu>

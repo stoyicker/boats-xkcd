@@ -4,6 +4,7 @@
 
   <application
     android:name=".ReleaseApplication"
+    android:fullBackupContent="@xml/backup"
     tools:replace="android:name">
     <service
       android:name=".task.UserRetentionSafeGcmTaskService"

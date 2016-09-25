@@ -16,6 +16,7 @@ package com.jorge.boats.xkcd.util;
  * limitations under the License.
  */
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -148,7 +149,7 @@ class ViewServer implements Runnable {
   private View mFocusedWindow;
   private final ReentrantReadWriteLock mFocusLock = new ReentrantReadWriteLock();
 
-  private static ViewServer sServer;
+  @SuppressLint("StaticFieldLeak") private static ViewServer sServer;
 
   /**
    * Returns a unique instance of the ViewServer. This method should only be

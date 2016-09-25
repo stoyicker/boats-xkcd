@@ -7,7 +7,9 @@
   <uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
   <application
+    android:allowBackup="true"
     android:name=".DebugApplication"
+    android:fullBackupContent="@xml/backup"
     android:vmSafeMode="true"
     tools:replace="android:name">
     <service
