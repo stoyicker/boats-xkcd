@@ -61,9 +61,9 @@ task clean(type: Delete, overwrite: true) {
   group "Verification"
   description "Deletes the build directories of the whole project and the static analysis result."
 
-  for (final Project x : rootProject.allprojects) {
-    delete x.buildDir
-    delete Paths.get(x.projectDir.absolutePath, staticAnalysisReportFolderTarget).
+  for (final Project each : rootProject.allprojects) {
+    delete each.buildDir
+    delete Paths.get(each.projectDir.absolutePath, staticAnalysisReportFolderTarget).
         toAbsolutePath().
         toString()
   }
