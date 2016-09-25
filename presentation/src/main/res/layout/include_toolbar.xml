@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="?attr/actionBarSize"
@@ -12,16 +11,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.jorge.boats.xkcd.view.widget.FlickAndRevealTextView
+    <TextView
       android:id="@+id/toolbar_title"
       style="@style/ToolbarTitle"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:ellipsize="end"
       android:maxLines="1"
-      android:textIsSelectable="true"
-      app:in_duration_millis="@integer/content_in_duration_milliseconds"
-      app:out_duration_millis="@integer/toolbar_text_out_duration_milliseconds"/>
+      android:textIsSelectable="true"/>
+
   </com.jorge.boats.xkcd.view.widget.CustomTitleToolbar>
 
   <View

@@ -42,13 +42,13 @@ public class CustomTitleToolbar extends Toolbar {
   @Override
   public void setTitle(final @Nullable CharSequence title) {
     if (title != null && (mTitle == null || mTitle.toString().contentEquals(title))) {
-      ((FlickAndRevealTextView) mTitleView).playAndSetText(title);
+       mTitleView.setText(title);
     }
   }
 
   public void lockTitle(final @Nullable CharSequence title) {
     if (title != null) {
-      ((FlickAndRevealTextView) mTitleView).playAndSetText(mTitle = title);
+      mTitleView.setText(mTitle = title);
     }
   }
 

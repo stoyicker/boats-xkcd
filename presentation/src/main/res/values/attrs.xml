@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <declare-styleable name="FlickAndRevealTextView">
-    <attr name="in_duration_millis" format="integer"/>
-    <attr name="out_duration_millis" format="integer"/>
-  </declare-styleable>
-
   <attr name="actionBarBackground" format="reference"/>
 </resources>
