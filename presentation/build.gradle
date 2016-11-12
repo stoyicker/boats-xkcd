@@ -117,6 +117,15 @@ dexcount {
   verbose = false
 }
 
+apply plugin: 'com.github.ben-manes.versions'
+
+task dependencyReport(type: Exec) {
+    group "Maintenance"
+    description "Shows a report of versions for dependencies."
+    workingDir rootDir
+    commandLine './gradlew dependencyUpdates -Drevision=release -DoutputFormatter=plain'.split(' ')
+}
+
 dependencies {
   compile project(':domain')
   compile project(':data')
