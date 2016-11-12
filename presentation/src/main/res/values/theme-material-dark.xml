@@ -4,7 +4,6 @@
   <style name="AppMaterialDark" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="colorPrimary">@color/material_dark_primary</item>
     <item name="colorAccent">@color/material_dark_accent</item>
-    <item name="color">@color/material_dark_primary_light</item>
     <item name="colorControlNormal">@color/material_dark_primary_text</item>
     <item name="android:textColorPrimary">@color/material_dark_primary_text</item>
     <item name="android:textColorSecondary">@color/material_dark_secondary_text</item>

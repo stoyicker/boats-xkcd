@@ -6,9 +6,13 @@ import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.PorterDuff;
+import android.support.annotation.ColorInt;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -20,6 +24,7 @@ import android.widget.LinearLayout;
 
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.presenter.StripePresenter;
+import com.jorge.boats.xkcd.util.ThemeUtil;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,7 +33,7 @@ import butterknife.OnClick;
 public class  NavigationLinearLayout extends LinearLayout {
 
   @Bind({ R.id.fab_index_zero, R.id.fab_index_one, R.id.fab_index_two })
-  View[] mButtons;
+  FloatingActionButton[] mButtons;
 
   private boolean isExpanded = false;
 
@@ -48,6 +53,16 @@ public class  NavigationLinearLayout extends LinearLayout {
     }
 
     ButterKnife.bind(this);
+    tintButtonIcons();
+  }
+
+  private void tintButtonIcons() {
+    final @ColorInt int colorAccent = ContextCompat.getColor(getContext(),
+            ThemeUtil.getAppColor(getContext()));
+
+    for (final FloatingActionButton button : mButtons) {
+      button.getDrawable().setColorFilter(colorAccent, PorterDuff.Mode.SRC_IN);
+    }
   }
 
   public boolean isExpanded() {

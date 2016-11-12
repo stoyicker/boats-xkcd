@@ -4,7 +4,6 @@
   <style name="AppNegative" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="colorPrimary">@color/negative_primary</item>
     <item name="colorAccent">@color/negative_accent</item>
-    <item name="color">@color/negative_primary_light</item>
     <item name="colorControlNormal">@color/negative_primary_text</item>
     <item name="android:textColorPrimary">@color/negative_primary_text</item>
     <item name="android:textColorSecondary">@color/negative_secondary_text</item>

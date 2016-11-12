@@ -4,7 +4,6 @@
   <style name="AppWeb" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="colorPrimary">@color/web_primary</item>
     <item name="colorAccent">@color/web_accent</item>
-    <item name="color">@color/web_primary_light</item>
     <item name="colorControlNormal">@color/web_primary_text</item>
     <item name="android:textColorPrimary">@color/web_primary_text</item>
     <item name="android:textColorSecondary">@color/web_secondary_text</item>
