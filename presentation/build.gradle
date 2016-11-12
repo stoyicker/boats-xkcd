@@ -58,25 +58,27 @@ android {
 
   flavorDimensions "stage", "base"
 
+  def enableJack = rootProject.ext.javaVersion == JavaVersion.VERSION_1_8
+
   productFlavors {
     dev {
       minSdkVersion 21
       dimension "stage"
       jackOptions {
-        enabled true
+        enabled enableJack
       }
     }
     prod {
       dimension "stage"
       jackOptions {
-        enabled true
+        enabled enableJack
       }
     }
     core {
       applicationId String.format(Locale.ENGLISH, androidApplicationIdBase, "")
       dimension "base"
       jackOptions {
-        enabled true
+        enabled enableJack
       }
     }
   }

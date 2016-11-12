@@ -43,7 +43,7 @@ allprojects {
     androidTestInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
 
     androidApplicationIdBase = "com.jorge.boats.xkcd%s"
-    javaVersion = JavaVersion.VERSION_1_8
+    javaVersion = JavaVersion.VERSION_1_7
 
     staticAnalysisReportTarget = staticAnalysisReportFolderTarget
   }
