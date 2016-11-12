@@ -11,14 +11,14 @@ buildscript {
   }
 
   final def androidPluginVersion      = "2.2.2"
-  final def dexcountPluginVersion     = "0.5.6"
+  final def dexCountPluginVersion     = "0.5.6"
   final def pSyncPluginVersion        = "1.1.5"
-  final def fabricToolsPluginVersion  = "1.21.7"
+  final def fabricToolsPluginVersion  = "+"
   final def versionsPlugin            = "0.13.0"
 
   final
   def classpathDependencies = [androidPlugin        : "com.android.tools.build:gradle:${androidPluginVersion}",
-                               dexcountPlugin       : "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${dexcountPluginVersion}",
+                               dexcountPlugin       : "com.getkeepsafe.dexcount:dexcount-gradle-plugin:${dexCountPluginVersion}",
                                pSync                : "gradle.plugin.com.flipboard:psync:${pSyncPluginVersion}",
                                fabricToolsPlugin    : "io.fabric.tools:gradle:${fabricToolsPluginVersion}",
                                versionsPlugin       : "com.github.ben-manes:gradle-versions-plugin:${versionsPlugin}"]
