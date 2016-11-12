@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <integer name="content_in_duration_milliseconds">400</integer>
-  <integer name="toolbar_text_out_duration_milliseconds">100</integer>
   <integer name="bezel_gesture_span_pixels">150</integer>
   <integer name="navigation_layout_show_minimum_distance_pixels">60</integer>
   <integer name="navigation_layout_hide_minimum_distance_pixels">40</integer>
