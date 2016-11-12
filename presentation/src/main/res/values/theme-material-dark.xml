@@ -5,6 +5,7 @@
     <item name="colorPrimary">@color/material_dark_primary</item>
     <item name="colorAccent">@color/material_dark_accent</item>
     <item name="color">@color/material_dark_primary_light</item>
+    <item name="colorControlNormal">@color/material_dark_primary_text</item>
     <item name="android:textColorPrimary">@color/material_dark_primary_text</item>
     <item name="android:textColorSecondary">@color/material_dark_secondary_text</item>
     <item name="divider">@color/material_dark_divider</item>
@@ -25,8 +26,7 @@
     <item name="actionBarStyle">@style/BaseSettingsActionBarStyle</item>
   </style>
 
-  <style name="SettingsActionBarThemeMaterialDark"
-         parent="@style/ThemeOverlay.AppCompat.ActionBar">
+  <style name="SettingsActionBarThemeMaterialDark" parent="@style/ThemeOverlay.AppCompat.ActionBar">
     <item name="colorControlNormal">@color/material_dark_primary_text</item>
   </style>
 </resources>

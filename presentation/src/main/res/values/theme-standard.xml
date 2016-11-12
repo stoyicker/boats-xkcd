@@ -5,6 +5,7 @@
     <item name="colorPrimary">@color/standard_primary</item>
     <item name="colorAccent">@color/standard_accent</item>
     <item name="color">@color/standard_primary_light</item>
+      <item name="colorControlNormal">@color/standard_primary_text</item>
     <item name="android:textColorPrimary">@color/standard_primary_text</item>
     <item name="android:textColorSecondary">@color/standard_secondary_text</item>
     <item name="divider">@color/standard_divider</item>
@@ -28,4 +29,5 @@
   <style name="SettingsActionBarThemeStandard" parent="@style/ThemeOverlay.AppCompat.ActionBar">
     <item name="colorControlNormal">@color/standard_primary_text</item>
   </style>
+
 </resources>

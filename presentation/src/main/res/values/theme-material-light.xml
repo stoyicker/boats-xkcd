@@ -5,6 +5,7 @@
     <item name="colorPrimary">@color/material_light_primary</item>
     <item name="colorAccent">@color/material_light_accent</item>
     <item name="color">@color/material_light_primary_light</item>
+    <item name="colorControlNormal">@color/material_light_primary_text</item>
     <item name="android:textColorPrimary">@color/material_light_primary_text</item>
     <item name="android:textColorSecondary">@color/material_light_secondary_text</item>
     <item name="divider">@color/material_light_divider</item>
@@ -25,8 +26,7 @@
     <item name="actionBarStyle">@style/BaseSettingsActionBarStyle</item>
   </style>
 
-  <style name="SettingsActionBarThemeMaterialLight" 
-         parent="@style/ThemeOverlay.AppCompat.ActionBar">
+  <style name="SettingsActionBarThemeMaterialLight" parent="@style/ThemeOverlay.AppCompat.ActionBar">
     <item name="colorControlNormal">@color/material_light_primary_text</item>
   </style>
 </resources>

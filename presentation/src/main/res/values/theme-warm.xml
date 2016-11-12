@@ -5,6 +5,7 @@
     <item name="colorPrimary">@color/warm_primary</item>
     <item name="colorAccent">@color/warm_accent</item>
     <item name="color">@color/warm_primary_light</item>
+    <item name="colorControlNormal">@color/warm_primary_text</item>
     <item name="android:textColorPrimary">@color/warm_primary_text</item>
     <item name="android:textColorSecondary">@color/warm_secondary_text</item>
     <item name="divider">@color/warm_divider</item>
