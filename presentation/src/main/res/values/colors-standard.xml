@@ -7,6 +7,5 @@
   <color name="standard_secondary_text">#727272</color>
   <color name="standard_tertiary_text">#000000</color>
   <color name="standard_divider">#B6B6B6</color>
-  <color name="standard_actionbar_background">#000000</color>
   <color name="standard_settings_window_background">#FFFFFF</color>
 </resources>

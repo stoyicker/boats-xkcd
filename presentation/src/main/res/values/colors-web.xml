@@ -7,6 +7,5 @@
   <color name="web_secondary_text">#656565</color>
   <color name="web_tertiary_text">#000000</color>
   <color name="web_divider">#0A0A0A</color>
-  <color name="web_actionbar_background">#657185</color>
   <color name="web_settings_window_background">#FFFFFF</color>
 </resources>

@@ -13,7 +13,7 @@
     <item name="android:windowActionModeOverlay">true</item>
     <item name="android:actionModeBackground">?attr/colorPrimary</item>
     <item name="android:windowBackground">@null</item>
-    <item name="actionBarBackground">@color/negative_actionbar_background</item>
+    <item name="android:itemBackground">@color/negative_accent</item>
   </style>
 
   <style name="SettingsNegative" parent="Theme.AppCompat.Light.NoActionBar">

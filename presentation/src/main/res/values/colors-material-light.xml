@@ -7,6 +7,5 @@
   <color name="material_light_secondary_text">#727272</color>
   <color name="material_light_tertiary_text">#000000</color>
   <color name="material_light_divider">#B6B6B6</color>
-  <color name="material_light_actionbar_background">#000000</color>
   <color name="material_light_settings_window_background">#FFFFFF</color>
 </resources>
