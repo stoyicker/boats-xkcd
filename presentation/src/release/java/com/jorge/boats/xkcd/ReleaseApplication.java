@@ -1,6 +1,7 @@
 package com.jorge.boats.xkcd;
 
 import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.answers.Answers;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -14,6 +15,9 @@ public final class ReleaseApplication extends MainApplication {
   }
 
   private void initializeCreepers() {
-    Fabric.with(new Fabric.Builder(this).kits(new Crashlytics()).build());
+    Fabric.with(
+            new Fabric.Builder(this)
+                    .kits(new Crashlytics(), new Answers())
+                    .build());
   }
 }
