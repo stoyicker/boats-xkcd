@@ -103,7 +103,7 @@ android {
 
   dexOptions {
     preDexLibraries true
-    javaMaxHeapSize "4g"
+    javaMaxHeapSize "8g"
   }
 }
 
