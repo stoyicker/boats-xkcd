@@ -35,17 +35,11 @@ buildscript {
 //If this is modified, remember to update the script(s) accordingly
 final def staticAnalysisReportFolderTarget = project.rootDir.absolutePath + "/staticAnalysisReport"
 
-// Query git for the tag and commit count. Use these to automate versioning. (https://github
-// .com/nickbutcher/plaid/blob/master/app/build.gradle)
-final def gitTag = 'git describe --tags'.execute([], project.rootDir).text.trim()
-final def gitCommitCount = 100 + Integer.parseInt('git rev-list --count HEAD'.execute([], project
-    .rootDir).text.trim())
-
 allprojects {
   ext {
     //Application details
-    androidVersionCode = gitCommitCount
-    androidVersionName = gitTag
+    androidVersionCode = 503
+    androidVersionName = '1.11'
     androidTestInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
 
     androidApplicationIdBase = "com.jorge.boats.xkcd%s"
