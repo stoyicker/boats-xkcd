@@ -25,10 +25,10 @@ ext {
   androidCompileSdkVersion = 25
 
   //Dependencies
-  supportAnnotationsVersion = "24.2.1"
-  supportFragmentVersion = "24.2.1"
-  supportDesignVersion = "24.2.1"
-  supportPreferenceVersion = "24.2.1"
+  supportAnnotationsVersion = "25.0.0"
+  supportFragmentVersion = "25.0.0"
+  supportDesignVersion = "25.0.0"
+  supportPreferenceVersion = "25.0.0"
   javaxAnnotationVersion = "1.0"
   daggerVersion = "2.7"
   rxJavaVersion = "1.1.9"
