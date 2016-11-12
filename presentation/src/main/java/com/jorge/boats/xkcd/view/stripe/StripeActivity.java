@@ -306,7 +306,11 @@ public class StripeActivity extends ViewServerAppCompatActivity
       Intent intent = new Intent(Intent.ACTION_VIEW);
       intent.setData(Uri.parse(
           getContext().getString(R.string.xkcd_mobile_link_pattern, mShareableRenderedData[2])));
-      startActivity(intent);
+      if (intent.resolveActivity(getPackageManager()) != null) {
+          startActivity(intent);
+      } else {
+          Toast.makeText(this, "No browser was found :(", Toast.LENGTH_LONG).show();
+      }
     }
   }
 
