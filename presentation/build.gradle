@@ -119,11 +119,25 @@ dexcount {
 
 apply plugin: 'com.github.ben-manes.versions'
 
+dependencyUpdates.resolutionStrategy = {
+    componentSelection { rules ->
+        rules.all { ComponentSelection selection ->
+            final boolean rejected = ['assertj', 'butterknife', 'jsr250-api', 'dbflow'].any {
+                final artifactName -> selection.candidate.displayName.contains(artifactName)
+            }
+
+            if (rejected) {
+                selection.reject('Frozen artifact')
+            }
+        }
+    }
+}
+
 task dependencyReport(type: Exec) {
     group "Maintenance"
     description "Shows a report of versions for dependencies."
     workingDir rootDir
-    commandLine './gradlew dependencyUpdates -Drevision=release -DoutputFormatter=plain'.split(' ')
+    commandLine './gradlew dependencyUpdates -Drevision=release'.split(' ')
 }
 
 dependencies {
@@ -132,8 +146,7 @@ dependencies {
   compile project(':photoview')
 
   final Collection<String> providedDependencies = providedPresentationDependencies.values()
-  final Collection<String> debugCompileDependencies = debugCompilePresentationDependencies.
-      values()
+  final Collection<String> debugCompileDependencies = debugCompilePresentationDependencies.values()
 
   final Collection<String> compileDependencies = compilePresentationDependencies.values()
   final Collection<String> aptDependencies = aptPresentationDependencies.values()
