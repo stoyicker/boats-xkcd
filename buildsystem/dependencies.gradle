@@ -33,7 +33,7 @@ ext {
   daggerVersion = "2.7"
   rxJavaVersion = "1.1.9"
   rxAndroidVersion = "1.2.1"
-  timberVersion = "4.1.2"
+  timberVersion = "4.3.1"
   dbFlowVersion = "3.0.0-beta5" //Frozen, too many API changes
   butterknifeVersion = "7.0.1" //Frozen, changes the time when views are parsed
   retrofitVersion = "2.0.0"
