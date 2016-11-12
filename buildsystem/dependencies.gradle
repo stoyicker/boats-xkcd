@@ -21,8 +21,8 @@ ext {
   //Android
   androidBuildToolsVersion = "25.0.0"
   androidMinSdkVersion = 16
-  androidTargetSdkVersion = 24
-  androidCompileSdkVersion = 24
+  androidTargetSdkVersion = 25
+  androidCompileSdkVersion = 25
 
   //Dependencies
   supportAnnotationsVersion = "24.2.1"
