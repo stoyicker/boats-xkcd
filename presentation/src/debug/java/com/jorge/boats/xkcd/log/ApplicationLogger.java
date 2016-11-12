@@ -19,9 +19,8 @@ public abstract class ApplicationLogger {
     Timber.w(message, args);
   }
 
-  public static void e(final @NonNull Throwable throwable, final @NonNull String message,
-      final @Nullable Object... args) {
-    Timber.e(throwable, message, args);
+  public static void e(final @NonNull Throwable throwable) {
+    Timber.e(throwable);
   }
 
   public static void i(final @NonNull String message, final @Nullable Object... args) {

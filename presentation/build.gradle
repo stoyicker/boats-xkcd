@@ -58,28 +58,13 @@ android {
 
   flavorDimensions "stage", "base"
 
-  def enableJack = rootProject.ext.javaVersion == JavaVersion.VERSION_1_8
-
   productFlavors {
-    dev {
-      minSdkVersion 21
-      dimension "stage"
-      jackOptions {
-        enabled enableJack
-      }
-    }
     prod {
       dimension "stage"
-      jackOptions {
-        enabled enableJack
-      }
     }
     core {
       applicationId String.format(Locale.ENGLISH, androidApplicationIdBase, "")
       dimension "base"
-      jackOptions {
-        enabled enableJack
-      }
     }
   }
 
@@ -124,7 +109,7 @@ apply plugin: 'com.github.ben-manes.versions'
 dependencyUpdates.resolutionStrategy = {
     componentSelection { rules ->
         rules.all { ComponentSelection selection ->
-            final boolean rejected = ['assertj', 'butterknife', 'jsr250-api', 'dbflow'].any {
+            final boolean rejected = ['assertj', 'butterknife', 'jsr250-api', 'dbflow', 'dagger'].any {
                 final artifactName -> selection.candidate.displayName.contains(artifactName)
             }
 
@@ -157,5 +142,7 @@ dependencies {
   for (final String dependency : compileDependencies) compile dependency
   for (final String dependency : aptDependencies) annotationProcessor dependency
   for (final String dependency : debugCompileDependencies) debugCompile dependency
-  for (final String dependency : testCompileDependencies) testCompile dependency
+  for (final String dependency : testCompileDependencies) testCompile(dependency) {
+    exclude module: 'guava'
+  }
 }

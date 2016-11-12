@@ -19,22 +19,23 @@ rootProject.project("data") {
 
 ext {
   //Android
-  androidBuildToolsVersion = "25.0.0"
+  androidBuildToolsVersion = "25.0.2"
   androidMinSdkVersion = 16
   androidTargetSdkVersion = 25
   androidCompileSdkVersion = 25
 
   //Dependencies
-  supportAnnotationsVersion   = "25.0.0"
-  supportFragmentVersion      = "25.0.0"
-  supportDesignVersion        = "25.0.0"
-  supportPreferenceVersion    = "25.0.0"
+  supportAppCompatVersion   = "25.3.1"
+  supportAnnotationsVersion   = "25.3.1"
+  supportFragmentVersion      = "25.3.1"
+  supportDesignVersion        = "25.3.1"
+  supportPreferenceVersion    = "25.3.1"
   javaxAnnotationVersion      = "1.0"
-  daggerVersion               = "2.7"
+  daggerVersion               = "2.7" //Frozen, the 2.8 java artifact contains Java 8 bytecode, and the android one cannot be used in a Java module (nor can you mix them)
   rxJavaVersion               = "1.2.2"
   rxAndroidVersion            = "1.2.1"
-  timberVersion               = "4.3.1"
-  dbFlowVersion               = "3.0.0-beta5" //Frozen, too many API changes
+  timberVersion               = "4.5.1"
+  dbFlowVersion               = "3.0.0" //Frozen, too many API changes
   butterknifeVersion          = "7.0.1" //Frozen, changes the time when views are parsed
   retrofitVersion             = "2.1.0"
   commonsLang3Version         = "3.5"
@@ -91,7 +92,7 @@ ext {
                               jetbrainsAnnotations: "org.jetbrains:annotations:${jetbrainsAnnotationsVersion}"]
 
   compileDataDependencies = [dagger               : "com.google.dagger:dagger:${daggerVersion}",
-                             dbFlowCore           : "com.github.Raizlabs" + ".DBFlow:dbflow-core:${dbFlowVersion}",
+                             dbFlowCore           : "com.github.Raizlabs.DBFlow:dbflow-core:${dbFlowVersion}",
                              dbFlow               : "com.github.Raizlabs.DBFlow:dbflow:${dbFlowVersion}",
                              retrofit             : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
                              retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
@@ -108,4 +109,6 @@ ext {
                                  assertj    : "org.assertj:assertj-core:${assertJVersion}",
                                  mockito    : "org.mockito:mockito-core:${mockitoVersion}",
                                  robolectric: "org.robolectric:robolectric:${robolectricVersion}"]
+
+  compilePhotoViewDpendencies = [appCompat: "com.android.support:appcompat-v7:${supportAppCompatVersion}"]
 }

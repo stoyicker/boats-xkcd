@@ -37,7 +37,7 @@ public class PhotoViewExceptionProofRelativeLayout extends RelativeLayout {
     try {
       return super.onInterceptTouchEvent(ev);
     } catch (final @NonNull IllegalArgumentException e) {
-      ApplicationLogger.e(e, PhotoViewExceptionProofRelativeLayout.class.getCanonicalName());
+      ApplicationLogger.e(e);
       return false;
     }
   }

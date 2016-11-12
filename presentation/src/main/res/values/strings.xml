@@ -14,7 +14,7 @@
   <string name="pref_summary_volume_navigation_off">Do nothing</string>
   <string name="pref_summary_swipe_navigation_on">Change strips</string>
   <string name="pref_summary_swipe_navigation_off">Do nothing</string>
-  <string name="rate_popup_title" formatted="false">I can see you like %s!</string>
+  <string name="rate_popup_title">I can see you like %s!</string>
   <string name="rate_popup_body">I know you\'re having fun, so what about a short break to rate the app?</string>
   <string name="notification_title_user_retention">New strips</string>
   <string name="notification_user_retention_content">Tap to see them!</string>

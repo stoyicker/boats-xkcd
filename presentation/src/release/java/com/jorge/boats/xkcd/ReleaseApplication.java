@@ -31,7 +31,6 @@ public final class ReleaseApplication extends MainApplication {
       @Override
       public void uncaughtException(Thread thread, Throwable throwable) {
         if (throwable.getClass().getCanonicalName().contains("xposed")) {
-            Log.e(MainApplication.class.getName(), "Something buggy in Xposed caused a crash. Ignoring it...");
             Crashlytics.logException(throwable);
         } else {
             uncaughtExceptionHandler.uncaughtException(thread, throwable);

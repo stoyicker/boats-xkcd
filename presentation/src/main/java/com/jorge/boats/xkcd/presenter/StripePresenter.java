@@ -149,7 +149,7 @@ public class StripePresenter implements Presenter<StripeContentView> {
 
     @Override
     public void onError(final @NonNull Throwable e) {
-      ApplicationLogger.e(e, e.getClass().getName());
+      ApplicationLogger.e(e);
     }
 
     @Override
@@ -182,7 +182,7 @@ public class StripePresenter implements Presenter<StripeContentView> {
         switchToStripeNum(DomainStripe.STRIPE_NUM_CURRENT);
         return;
       }
-      ApplicationLogger.e(e, e.getClass().getName());
+      ApplicationLogger.e(e);
       mStripeContentView.showRetry(e);
       mStripeContentView.hideContent();
     }

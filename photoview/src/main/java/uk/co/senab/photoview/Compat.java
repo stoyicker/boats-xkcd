@@ -26,7 +26,7 @@ public class Compat {
 
   private static final int SIXTY_FPS_INTERVAL = 1000 / 60;
 
-  public static void postOnAnimation(View view, Runnable runnable) {
+  static void postOnAnimation(View view, Runnable runnable) {
     if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
       postOnAnimationJellyBean(view, runnable);
     } else {
@@ -40,17 +40,7 @@ public class Compat {
   }
 
   public static int getPointerIndex(int action) {
-    if (VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
-      return getPointerIndexHoneyComb(action);
-    } else {
-      return getPointerIndexEclair(action);
-    }
-  }
-
-  @SuppressWarnings("deprecation")
-  @TargetApi(Build.VERSION_CODES.ECLAIR)
-  private static int getPointerIndexEclair(int action) {
-    return (action & MotionEvent.ACTION_POINTER_ID_MASK) >> MotionEvent.ACTION_POINTER_ID_SHIFT;
+    return getPointerIndexHoneyComb(action);
   }
 
   @TargetApi(Build.VERSION_CODES.HONEYCOMB)
