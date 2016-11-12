@@ -19,7 +19,7 @@ rootProject.project("data") {
 
 ext {
   //Android
-  androidBuildToolsVersion = "24.0.2"
+  androidBuildToolsVersion = "25.0.0"
   androidMinSdkVersion = 16
   androidTargetSdkVersion = 24
   androidCompileSdkVersion = 24
