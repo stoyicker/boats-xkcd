@@ -19,4 +19,10 @@
     <ignore regexp="market_base_url"/>
     <ignore regexp="xkcd_mobile_link_pattern"/>
   </issue>
+  <issue id="UnusedResources">
+    <!-- Eaten by PSync -->
+    <ignore regexp="prefs_dump.xml"/>
+    <!-- Eaten by PSync -->
+    <ignore regexp="prefs_settings.xml"/>
+</issue>
 </lint>

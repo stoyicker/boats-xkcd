@@ -21,15 +21,15 @@ import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
-import android.widget.ImageView;
 
 import uk.co.senab.photoview.PhotoViewAttacher.OnMatrixChangedListener;
 import uk.co.senab.photoview.PhotoViewAttacher.OnPhotoTapListener;
 import uk.co.senab.photoview.PhotoViewAttacher.OnViewTapListener;
 
-public class PhotoView extends ImageView implements IPhotoView {
+public class PhotoView extends AppCompatImageView implements IPhotoView {
 
   private PhotoViewAttacher mAttacher;
 

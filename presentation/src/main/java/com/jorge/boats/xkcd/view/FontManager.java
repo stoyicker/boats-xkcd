@@ -34,7 +34,7 @@ public abstract class FontManager {
       try {
         tf = Typeface.createFromAsset(context.getAssets(), name);
       } catch (final @NonNull Exception e) {
-        ApplicationLogger.e(e, e.getClass().getName());
+        ApplicationLogger.e(e);
         return null;
       }
       FONT_CACHE.put(name, tf);

@@ -17,8 +17,7 @@ public abstract class ApplicationLogger {
     //No-op
   }
 
-  public static void e(final @NonNull Throwable throwable, final String message,
-      final Object... args) {
+  public static void e(final @NonNull Throwable throwable) {
     //No-op
   }
 

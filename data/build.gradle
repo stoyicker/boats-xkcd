@@ -16,8 +16,8 @@ android {
 
   compileOptions {
     //noinspection GroovyAssignabilityCheck
-    sourceCompatibility javaVersion
-    targetCompatibility javaVersion
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
     incremental false
   }
 

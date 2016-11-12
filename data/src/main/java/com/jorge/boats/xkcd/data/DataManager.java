@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 
 import com.jorge.boats.xkcd.data.di.component.DaggerDataComponent;
 import com.jorge.boats.xkcd.data.di.module.DataModule;
+import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
 public abstract class DataManager {
@@ -15,7 +16,7 @@ public abstract class DataManager {
 
   public static void initialize(final @NonNull Application application) {
     DaggerDataComponent.builder().dataModule(new DataModule(application)).build();
-    FlowManager.init(application);
+    FlowManager.init(new FlowConfig.Builder(application).build());
     initializeSharedPreferences(application.getApplicationContext());
   }
 
