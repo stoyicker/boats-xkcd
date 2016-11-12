@@ -1,11 +1,9 @@
 build
 .gradle
 local.properties
-*/fabric.properties
 .idea
 *.iml
-*/gradle.properties
-fabric.properties
+gradle.properties
 staticAnalysisReport
 *.keystore
 *.pwd
