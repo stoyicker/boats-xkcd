@@ -1,5 +1,7 @@
 package com.jorge.boats.xkcd;
 
+import android.util.Log;
+
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
 
@@ -11,6 +13,7 @@ public final class ReleaseApplication extends MainApplication {
   public void onCreate() {
     super.onCreate();
 
+    this.overwriteExceptionHandler();
     this.initializeCreepers();
   }
 
@@ -19,5 +22,21 @@ public final class ReleaseApplication extends MainApplication {
             new Fabric.Builder(this)
                     .kits(new Crashlytics(), new Answers())
                     .build());
+  }
+
+  private void overwriteExceptionHandler() {
+    final Thread.UncaughtExceptionHandler uncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
+
+    Thread.currentThread().setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+      @Override
+      public void uncaughtException(Thread thread, Throwable throwable) {
+        if (throwable.getClass().getCanonicalName().contains("xposed")) {
+            Log.e(MainApplication.class.getName(), "Something buggy in Xposed caused a crash. Ignoring it...");
+            Crashlytics.logException(throwable);
+        } else {
+            uncaughtExceptionHandler.uncaughtException(thread, throwable);
+        }
+      }
+    });
   }
 }

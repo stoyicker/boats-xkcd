@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.multidex.MultiDex;
+import android.util.Log;
 
 import com.jorge.boats.xkcd.data.DataManager;
 import com.jorge.boats.xkcd.di.component.ApplicationComponent;
