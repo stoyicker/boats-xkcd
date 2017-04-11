@@ -4,6 +4,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.nio.charset.Charset;
+
 public class PresentationStripe {
 
   private String month;
@@ -120,7 +122,7 @@ public class PresentationStripe {
    * @return The alt
    */
   public String getAlt() {
-    return alt;
+    return new String(alt.getBytes(Charset.forName("ISO-8859-1")), Charset.forName("UTF-8"));
   }
 
   /**
