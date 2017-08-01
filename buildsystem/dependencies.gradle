@@ -8,28 +8,30 @@ allprojects {
 rootProject.project("presentation") {
   repositories {
     maven { url 'https://maven.fabric.io/public' }
+    maven { url 'https://maven.google.com/' }
   }
 }
 
 rootProject.project("data") {
   repositories {
     maven { url 'https://maven.fabric.io/public' }
+    maven { url 'https://maven.google.com/' }
   }
 }
 
 ext {
   //Android
-  androidBuildToolsVersion = "25.0.2"
+  androidBuildToolsVersion = "26.0.0"
   androidMinSdkVersion = 16
-  androidTargetSdkVersion = 25
-  androidCompileSdkVersion = 25
+  androidTargetSdkVersion = 26
+  androidCompileSdkVersion = 26
 
   //Dependencies
-  supportAppCompatVersion   = "25.3.1"
-  supportAnnotationsVersion   = "25.3.1"
-  supportFragmentVersion      = "25.3.1"
-  supportDesignVersion        = "25.3.1"
-  supportPreferenceVersion    = "25.3.1"
+  supportAppCompatVersion     = "26.0.0"
+  supportAnnotationsVersion   = "26.0.0"
+  supportFragmentVersion      = "26.0.0"
+  supportDesignVersion        = "26.0.0"
+  supportPreferenceVersion    = "26.0.0"
   javaxAnnotationVersion      = "1.0"
   daggerVersion               = "2.7" //Frozen, the 2.8 java artifact contains Java 8 bytecode, and the android one cannot be used in a Java module (nor can you mix them)
   rxJavaVersion               = "1.2.2"
