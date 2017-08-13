@@ -143,12 +143,15 @@ public class StripeActivity extends ViewServerAppCompatActivity
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
     if (!ThemeUtil.isAppThemeLight(this)) {
-        mImage.setColorFilter(new ColorMatrixColorFilter(new float[]{
+        final ColorMatrixColorFilter negative = new ColorMatrixColorFilter(new float[]{
                 -1.0f, 0, 0, 0, 255, // red
                 0, -1.0f, 0, 0, 255, // green
                 0, 0, -1.0f, 0, 255, // blue
                 0, 0, 0, 1.0f, 0    // alpha
-        }));
+        });
+        ((View) mImage.getParent()).getBackground().setColorFilter(negative);
+        mImage.setColorFilter(negative);
+        mTitle.getPaint().setColorFilter(negative);
     }
     ((ViewGroup) findViewById(android.R.id.content)).setLayoutTransition(new BoatsLayoutTransition
         (this));
