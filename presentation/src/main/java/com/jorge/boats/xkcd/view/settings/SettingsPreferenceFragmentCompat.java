@@ -1,5 +1,6 @@
 package com.jorge.boats.xkcd.view.settings;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 
@@ -41,7 +43,21 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
     initializeSharePreference();
   }
 
-  private void initializeVolumeKeyControlPreference() {
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            TypedValue typedValue = new TypedValue();
+            getActivity().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+            int color = typedValue.data;
+            ActivityManager.TaskDescription td
+                    = new ActivityManager.TaskDescription(
+                    getContext().getString(R.string.app_name), null, color);
+            getActivity().setTaskDescription(td);
+        }
+    }
+
+    private void initializeVolumeKeyControlPreference() {
 
     mVolumeKeyNavigationSummary = P.swipeControlNavigationEnabled.rx()
         .asObservable()
@@ -61,7 +77,7 @@ public class SettingsPreferenceFragmentCompat extends PreferenceFragmentCompat {
     mThemeChangeListener = new StyledListPreference.ThemeChangeListener() {
       @Override
       public void onThemeChanged() {
-        P.shouldRestart.put(true).apply();
+          P.shouldRestart.put(true).apply();
         ActivityUtil.restart(getActivity());
       }
     };

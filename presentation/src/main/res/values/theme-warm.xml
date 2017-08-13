@@ -16,6 +16,7 @@
   </style>
 
   <style name="SettingsWarm" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">@color/warm_primary</item>
     <item name="colorAccent">@color/warm_accent</item>
     <item name="background">@color/warm_settings_window_background</item>
     <item name="android:textColorPrimary">@color/warm_tertiary_text</item>

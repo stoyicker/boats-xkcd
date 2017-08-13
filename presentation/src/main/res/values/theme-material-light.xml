@@ -16,6 +16,7 @@
   </style>
 
   <style name="SettingsMaterialLight" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">@color/material_light_primary</item>
     <item name="colorAccent">@color/material_light_accent</item>
     <item name="background">@color/material_light_settings_window_background</item>
     <item name="android:textColorPrimary">@color/material_light_tertiary_text</item>

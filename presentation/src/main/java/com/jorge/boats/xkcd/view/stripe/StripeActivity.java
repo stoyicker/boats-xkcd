@@ -1,5 +1,6 @@
 package com.jorge.boats.xkcd.view.stripe;
 
+import android.app.ActivityManager;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -22,6 +23,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -159,6 +161,18 @@ public class StripeActivity extends ViewServerAppCompatActivity
   private void initializeBackgroundTasks() {
     if (GooglePlayUtil.isServicesAvailable(this, false)) {
       BackgroundTaskManager.initialize(GcmNetworkManager.getInstance(this));
+    }
+  }
+
+  private void updateTaskDescription() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      TypedValue typedValue = new TypedValue();
+      getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+      int color = typedValue.data;
+      ActivityManager.TaskDescription td
+              = new ActivityManager.TaskDescription(
+                      getContext().getString(R.string.app_name), null, color);
+      setTaskDescription(td);
     }
   }
 
@@ -396,6 +410,7 @@ public class StripeActivity extends ViewServerAppCompatActivity
 
     updateLastOpenedEpoch();
     initializeBackgroundTasks();
+    updateTaskDescription();
 
     if (P.shouldRestart.get()) {
       P.scheduledStripeReload.put(true).apply();
