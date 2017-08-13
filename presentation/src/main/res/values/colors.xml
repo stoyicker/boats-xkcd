@@ -3,7 +3,6 @@
   <color name="content_empty_text">#FFFFFF</color>
   <color name="content_background_empty">#000000</color>
   <color name="content_background_normal">#FFFFFF</color>
-  <color name="stripe_info_background">#FFFFFF</color>
   <color name="text_invariant_title">#000000</color>
   <color name="text_invariant_body">#555555</color>
 </resources>
