@@ -186,7 +186,7 @@ public class StripeActivity extends ViewServerAppCompatActivity
     if (mRateAppDialog == null) {
       //noinspection deprecation -- Yes, deprecated, but the replacement is added in API 22
       mRateAppDialog = new AlertDialog.Builder(this,
-          ThemeUtil.isAppThemeLight(this) ? android.app.AlertDialog.THEME_DEVICE_DEFAULT_DARK
+          !ThemeUtil.isAppThemeLight(this) ? android.app.AlertDialog.THEME_DEVICE_DEFAULT_DARK
               : android.app.AlertDialog.THEME_DEVICE_DEFAULT_LIGHT).
           setTitle(getString(R.string.rate_popup_title, getString(R.string.app_name)))
           .setMessage(R.string.rate_popup_body)
