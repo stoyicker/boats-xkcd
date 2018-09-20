@@ -1,11 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="com.jorge.boats.xkcd">
-
-  <application
-    android:name=".ReleaseApplication"
-    android:fullBackupContent="@xml/backup"
-    tools:replace="android:name">
+  <application>
     <service
       android:name=".task.UserRetentionSafeGcmTaskService"
       android:exported="true"

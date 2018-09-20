@@ -7,24 +7,22 @@ allprojects {
 
 rootProject.project("presentation") {
   repositories {
-    maven { url 'https://maven.fabric.io/public' }
     maven { url 'https://maven.google.com/' }
   }
 }
 
 rootProject.project("data") {
   repositories {
-    maven { url 'https://maven.fabric.io/public' }
     maven { url 'https://maven.google.com/' }
   }
 }
 
 ext {
   //Android
-  androidBuildToolsVersion = "26.0.0"
+  androidBuildToolsVersion = "28.0.2"
   androidMinSdkVersion = 16
-  androidTargetSdkVersion = 26
-  androidCompileSdkVersion = 26
+  androidTargetSdkVersion = 28
+  androidCompileSdkVersion = 28
 
   //Dependencies
   supportAppCompatVersion     = "26.0.0"
@@ -77,7 +75,7 @@ ext {
   testCompilePresentationDependencies = [junit      : "junit:junit:${jUnitVersion}",
                                          mockito    : "org.mockito:mockito-core:${mockitoVersion}",
                                          assertj    : "org.assertj:assertj-core:${assertJVersion}",
-                                         robolectric: "org" + "" + "" + "" + ".robolectric:robolectric:${robolectricVersion}"]
+                                         robolectric: "org.robolectric:robolectric:${robolectricVersion}"]
 
   compileDomainDependencies = [rxJava         : "io.reactivex:rxjava:${rxJavaVersion}",
                                javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
