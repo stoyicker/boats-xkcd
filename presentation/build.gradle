@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
 
 android {
 
@@ -20,8 +19,6 @@ android {
 
     //noinspection GroovyAssignabilityCheck
     testInstrumentationRunner androidTestInstrumentationRunner
-
-    manifestPlaceholders = [fabricApiKey: fabricApiKey]
 
     multiDexEnabled true
   }
