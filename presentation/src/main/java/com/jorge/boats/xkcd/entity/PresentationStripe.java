@@ -122,6 +122,9 @@ public class PresentationStripe {
    * @return The alt
    */
   public String getAlt() {
+    if (alt == null) {
+      return null;
+    }
     return new String(alt.getBytes(Charset.forName("ISO-8859-1")), Charset.forName("UTF-8"));
   }
 
