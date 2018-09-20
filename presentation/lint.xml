@@ -13,7 +13,7 @@
     <ignore path="*/ViewServer.java"/>
   </issue>
   <issue id="Registered">
-    <ignore path="*/UserRetentionGcmTaskService.java"/>
+    <ignore path="*/UserRetentionTaskService.java"/>
   </issue>
   <issue id="StringFormatInvalid">
     <ignore regexp="market_base_url"/>

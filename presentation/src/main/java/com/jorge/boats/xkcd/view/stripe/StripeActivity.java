@@ -36,7 +36,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.gcm.GcmNetworkManager;
 import com.jorge.boats.xkcd.BuildConfig;
 import com.jorge.boats.xkcd.MainApplication;
 import com.jorge.boats.xkcd.R;
@@ -50,7 +49,6 @@ import com.jorge.boats.xkcd.navigation.NavigationLinearLayout;
 import com.jorge.boats.xkcd.presenter.StripePresenter;
 import com.jorge.boats.xkcd.task.BackgroundTaskManager;
 import com.jorge.boats.xkcd.util.ActivityUtil;
-import com.jorge.boats.xkcd.util.GooglePlayUtil;
 import com.jorge.boats.xkcd.util.ResourceUtil;
 import com.jorge.boats.xkcd.util.ThemeUtil;
 import com.jorge.boats.xkcd.view.BaseView;
@@ -159,9 +157,7 @@ public class StripeActivity extends ViewServerAppCompatActivity
   }
 
   private void initializeBackgroundTasks() {
-    if (GooglePlayUtil.isServicesAvailable(this, false)) {
-      BackgroundTaskManager.initialize(GcmNetworkManager.getInstance(this));
-    }
+    BackgroundTaskManager.initialize(getApplicationContext());
   }
 
   private void updateTaskDescription() {

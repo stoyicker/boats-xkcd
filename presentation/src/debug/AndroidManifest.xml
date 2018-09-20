@@ -1,26 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="com.jorge.boats.xkcd">
-
   <!-- Leak canary needs access to external storage to save heap dumps -->
   <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
   <uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
   <application
     android:allowBackup="true"
     android:name=".DebugApplication"
     android:fullBackupContent="@xml/backup"
     android:vmSafeMode="true"
-    tools:replace="android:name">
-    <service
-      android:name=".task.UserRetentionGcmTaskService"
-      android:exported="true"
-      android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
-      <intent-filter>
-        <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
-        <action android:name="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE"/>
-      </intent-filter>
-    </service>
-  </application>
-
+    tools:replace="android:name" />
 </manifest>

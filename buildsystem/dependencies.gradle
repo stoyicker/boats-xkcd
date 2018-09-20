@@ -7,13 +7,13 @@ allprojects {
 
 rootProject.project("presentation") {
   repositories {
-    maven { url 'https://maven.google.com/' }
+      google()
   }
 }
 
 rootProject.project("data") {
   repositories {
-    maven { url 'https://maven.google.com/' }
+      google()
   }
 }
 
@@ -25,11 +25,11 @@ ext {
   androidCompileSdkVersion = 28
 
   //Dependencies
-  supportAppCompatVersion     = "26.0.0"
-  supportAnnotationsVersion   = "26.0.0"
-  supportFragmentVersion      = "26.0.0"
-  supportDesignVersion        = "26.0.0"
-  supportPreferenceVersion    = "26.0.0"
+  supportAppCompatVersion     = "28.0.0-rc02"
+  supportAnnotationsVersion   = "28.0.0-rc02"
+  supportFragmentVersion      = "28.0.0-rc02"
+  supportDesignVersion        = "28.0.0-rc02"
+  supportPreferenceVersion    = "28.0.0-rc02"
   javaxAnnotationVersion      = "1.0"
   daggerVersion               = "2.7" //Frozen, the 2.8 java artifact contains Java 8 bytecode, and the android one cannot be used in a Java module (nor can you mix them)
   rxJavaVersion               = "1.2.2"
@@ -44,8 +44,6 @@ ext {
   glideVersion                = "3.7.0"
   okHttpVersion               = "3.4.2"
   rxPreferencesVersion        = "1.0.2"
-  gcmVersion                  = "9.8.0"
-  crashlyticsVersion          = "+"
   multidexSupportVersion      = "1.0.1"
 
   //Testing
@@ -67,7 +65,6 @@ ext {
                                      materialProgressBar   : "me.zhanghai.android.materialprogressbar:library:${materialProgressBarVersion}",
                                      supportDesign         : "com.android.support:design:${supportDesignVersion}",
                                      glide                 : "com.github.bumptech.glide:glide:${glideVersion}",
-                                     gcm                   : "com.google.android.gms:play-services-gcm:${gcmVersion}",
                                      multidexSupport       : "com.android.support:multidex:${multidexSupportVersion}"]
 
   aptPresentationDependencies = [daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}"]
@@ -99,8 +96,7 @@ ext {
                              retrofitRxJavaAdapter: "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
                              commonsLang3         : "org.apache.commons:commons-lang3:${commonsLang3Version}",
                              supportPreference    : "com.android.support:preference-v7:${supportPreferenceVersion}",
-                             rxPreferences        : "com.f2prateek.rx.preferences:rx-preferences:${rxPreferencesVersion}",
-                             crashlytics          : "com.crashlytics.sdk.android:crashlytics:${crashlyticsVersion}"]
+                             rxPreferences        : "com.f2prateek.rx.preferences:rx-preferences:${rxPreferencesVersion}"]
 
   aptDataDependencies = [daggerCompiler : "com.google.dagger:dagger-compiler:${daggerVersion}",
                          dbFlowCompiler : "com.github.Raizlabs.DBFlow:dbflow-processor:${dbFlowVersion}"]
