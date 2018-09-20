@@ -52,25 +52,6 @@ public class PresentationEntityMapperTest {
   }
 
   @Test
-  public void testTransformFromDomainAllFieldsRegular() {
-    final DomainStripe source = new DomainStripe();
-
-    source.setAlt(generateString(Value.REGULAR));
-    source.setDay(generateString(Value.REGULAR));
-    source.setImg(generateString(Value.REGULAR));
-    source.setLink(generateString(Value.REGULAR));
-    source.setMonth(generateString(Value.REGULAR));
-    source.setYear(generateString(Value.REGULAR));
-    source.setNews(generateString(Value.REGULAR));
-    source.setNum(generateLong(Value.REGULAR));
-    source.setTitle(generateString(Value.REGULAR));
-    source.setSafe_title(generateString(Value.REGULAR));
-    source.setTranscript(generateString(Value.REGULAR));
-
-    assertEquivalent(source, mSut.transform(source));
-  }
-
-  @Test
   public void testTransformFromPresentationAllFieldsNull() {
     final PresentationStripe source = new PresentationStripe();
 
@@ -108,18 +89,18 @@ public class PresentationEntityMapperTest {
     assertEquivalent(mSut.transform(source), source);
   }
 
-  private void assertEquivalent(final @NonNull DomainStripe dataStripe,
-      final @NonNull PresentationStripe databaseStripe) {
-    assertThat(dataStripe.getAlt()).isEqualTo(databaseStripe.getAlt());
-    assertThat(dataStripe.getDay()).isEqualTo(databaseStripe.getDay());
-    assertThat(dataStripe.getImg()).isEqualTo(databaseStripe.getImg());
-    assertThat(dataStripe.getLink()).isEqualTo(databaseStripe.getLink());
-    assertThat(dataStripe.getMonth()).isEqualTo(databaseStripe.getMonth());
-    assertThat(dataStripe.getYear()).isEqualTo(databaseStripe.getYear());
-    assertThat(dataStripe.getNews()).isEqualTo(databaseStripe.getNews());
-    assertThat(dataStripe.getNum()).isEqualTo(databaseStripe.getNum());
-    assertThat(dataStripe.getTitle()).isEqualTo(databaseStripe.getTitle());
-    assertThat(dataStripe.getSafe_title()).isEqualTo(databaseStripe.getSafe_title());
-    assertThat(dataStripe.getTranscript()).isEqualTo(databaseStripe.getTranscript());
+  private void assertEquivalent(final @NonNull DomainStripe domainStripe,
+      final @NonNull PresentationStripe presentationStripe) {
+    assertThat(domainStripe.getAlt()).isEqualTo(presentationStripe.getAlt());
+    assertThat(domainStripe.getDay()).isEqualTo(presentationStripe.getDay());
+    assertThat(domainStripe.getImg()).isEqualTo(presentationStripe.getImg());
+    assertThat(domainStripe.getLink()).isEqualTo(presentationStripe.getLink());
+    assertThat(domainStripe.getMonth()).isEqualTo(presentationStripe.getMonth());
+    assertThat(domainStripe.getYear()).isEqualTo(presentationStripe.getYear());
+    assertThat(domainStripe.getNews()).isEqualTo(presentationStripe.getNews());
+    assertThat(domainStripe.getNum()).isEqualTo(presentationStripe.getNum());
+    assertThat(domainStripe.getTitle()).isEqualTo(presentationStripe.getTitle());
+    assertThat(domainStripe.getSafe_title()).isEqualTo(presentationStripe.getSafe_title());
+    assertThat(domainStripe.getTranscript()).isEqualTo(presentationStripe.getTranscript());
   }
 }
