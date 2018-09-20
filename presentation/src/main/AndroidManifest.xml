@@ -1,6 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.jorge.boats.xkcd">
-
   <uses-permission android:name="android.permission.INTERNET"/>
   <!-- To fix a bug with the notifications in Android 4.2: -->
   <uses-permission
@@ -36,10 +35,17 @@
         android:name="android.support.PARENT_ACTIVITY"
         android:value=".view.stripe.StripeActivity"/>
     </activity>
-
+    <service
+        android:name=".task.UserRetentionService"
+        android:permission="android.permission.BIND_JOB_SERVICE" />
+    <receiver
+        android:name=".task.OnBootBroadcastReceiver">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+      </intent-filter>
+    </receiver>
     <meta-data
         android:name="android.max_aspect"
         android:value="2.1" />
   </application>
-
 </manifest>

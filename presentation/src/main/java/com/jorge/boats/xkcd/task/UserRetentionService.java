@@ -1,37 +1,55 @@
 package com.jorge.boats.xkcd.task;
 
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.support.v4.app.JobIntentService;
 import android.support.v4.app.NotificationCompat;
 
-import com.google.android.gms.gcm.GcmNetworkManager;
-import com.google.android.gms.gcm.GcmTaskService;
-import com.google.android.gms.gcm.TaskParams;
 import com.jorge.boats.xkcd.R;
 import com.jorge.boats.xkcd.data.P;
 import com.jorge.boats.xkcd.view.stripe.StripeActivity;
 
-public class UserRetentionGcmTaskService extends GcmTaskService {
-
-  private static final long APP_IGNORED_LIMIT_MILLISECONDS = 1000 * 60 * 60 * 24 * 4;
+public class UserRetentionService extends JobIntentService {
+  private static final long SELF_SCHEDULE_DELAY_MILLIS = 1000 * 60 * 60 * 24 * 1; // 1 day
+  private static final long APP_IGNORED_LIMIT_MILLISECONDS = 1000 * 60 * 60 * 24 * 8; // 8 days
 
   @Override
-  public int onRunTask(final @Nullable TaskParams taskParams) {
+  protected void onHandleWork(@NonNull Intent intent) {
     try {
       if (System.currentTimeMillis() - Long.parseLong(P.lastOpenedEpoch.get())
-          > APP_IGNORED_LIMIT_MILLISECONDS) {
+              > APP_IGNORED_LIMIT_MILLISECONDS) {
         showReengageNotification();
       }
-      return GcmNetworkManager.RESULT_SUCCESS;
-    } catch (final @NonNull NumberFormatException e) {
-      //The preference has not been written yet, so just reschedule and move on
-      return GcmNetworkManager.RESULT_RESCHEDULE;
+    } catch (final @NonNull NumberFormatException ignored) {
+      //The preference has not been written yet, so just move on to reschedule
     }
+    reschedule();
+  }
+
+  private void reschedule() {
+    final AlarmManager alarmManager = ((AlarmManager) getApplicationContext().getSystemService(
+            Context.ALARM_SERVICE));
+    if (alarmManager != null) {
+      alarmManager.set(
+              AlarmManager.RTC_WAKEUP,
+              System.currentTimeMillis() + SELF_SCHEDULE_DELAY_MILLIS,
+              PendingIntent.getBroadcast(
+                      getApplicationContext(),
+                      0,
+                      OnBootBroadcastReceiver.callingIntent(getApplicationContext()),
+                      PendingIntent.FLAG_ONE_SHOT));
+    }
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    reschedule();
   }
 
   private void showReengageNotification() {
