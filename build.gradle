@@ -34,8 +34,8 @@ final def staticAnalysisReportFolderTarget = project.rootDir.absolutePath + "/st
 allprojects {
   ext {
     //Application details
-    androidVersionCode = 508
-    androidVersionName = '1.20'
+    androidVersionCode = 509
+    androidVersionName = '1.90'
     androidTestInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
 
     androidApplicationIdBase = "com.jorge.boats.xkcd%s"
