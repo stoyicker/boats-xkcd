@@ -48,8 +48,8 @@ public class UserRetentionService extends JobIntentService {
 
   @Override
   public void onDestroy() {
-    super.onDestroy();
     reschedule();
+    super.onDestroy();
   }
 
   private void showReengageNotification() {
