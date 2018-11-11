@@ -15,7 +15,11 @@ public abstract class BackgroundTaskManager {
   }
 
   private static void scheduleUserRetentionTask(final Context context) {
-    UserRetentionService.enqueueWork(
+    try {
+      UserRetentionService.enqueueWork(
             context, UserRetentionService.class, 1000, new Intent());
+    } catch (final SecurityException ignored) {
+      // Service is not running, can't schedule anything
+    }
   }
 }
