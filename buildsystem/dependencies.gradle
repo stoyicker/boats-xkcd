@@ -21,8 +21,8 @@ ext {
   //Android
   androidBuildToolsVersion = "28.0.2"
   androidMinSdkVersion = 16
-  androidTargetSdkVersion = 28
-  androidCompileSdkVersion = 28
+  androidTargetSdkVersion = 34
+  androidCompileSdkVersion = 34
 
   //Dependencies
   supportAppCompatVersion     = "28.0.0-rc02"
